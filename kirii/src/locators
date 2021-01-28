@@ -1,0 +1,5 @@
+#LoginPage
+LoginPage.input.userName = ".//*[contains(@placeholder.'user')]"
+
+
+#HomePage
