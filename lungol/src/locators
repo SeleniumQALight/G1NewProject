@@ -1,0 +1,9 @@
+
+Групппировать локаторы по страничкам
+
+#login page
+Loginpage.input.userName = " {locator} "
+
+#homepage
+Homepage.input.userName = " {locator} "
+Post.Button.CreateNewPost
