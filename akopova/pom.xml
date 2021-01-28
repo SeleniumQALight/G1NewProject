@@ -5,27 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
-  <artifactId>G1Project</artifactId>
+  <artifactId>akopova</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <modules>
-    <module>overAll</module>
-      <module>akopova</module>
-    <module>velikohod</module>
-    <module>dikovitska</module>
-    <module>kosenko</module>
-    <module>lungol</module>
-    <module>lutskevych</module>
-    <module>makovskii</module>
-    <module>petrenko</module>
-    <module>tonkovid</module>
-    <module>chepurna</module>
-    <module>chernenko</module>
-    <module>shablii</module>
-    <module>iakovenko</module>
-  </modules>
-  <packaging>pom</packaging>
 
-  <name>G1Project</name>
+  <name>akopova</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -39,7 +22,8 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>4.11</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
