@@ -1,4 +1,5 @@
-Description:
+
+Description: Testing of Sign in functionality
 Verification of  Sign up functionality with creation of new user.
 
 Steps to reproduce:                                                     | Expected result:
@@ -13,6 +14,13 @@ Password (at leas 12 symbols) as example TestUser1Creation              |passwor
                                                                         |uploaded and displayed.
                                                                         |Url https://qa-complex-app-for-testing.herokuapp.com/
                                                                         |Xpath .//html [@class ='fontawesome-i2svg-active fontawesome-i2svg-complete' ]
+4. Click the Sign out Button on the top left-hand corner in the         |4. The lending page is loaded
+header                                                                  |Url https://qa-complex-app-for-testing.herokuapp.com/
+5.	Fill in fields Username - "TestName"                                |5. The entered data is accepted
+and Password - "TestUser1Creation"in the top of starting page.          |
+6.Click the button Sign in                                              |6. User is signed in to the account
+                                                                        |Xpath .//html [@class ='fontawesome-i2svg-active fontawesome-i2svg-complete' ]
+
 
 
 Status ()
