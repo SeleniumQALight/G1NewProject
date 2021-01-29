@@ -1,6 +1,6 @@
 
-Description: Testing of Sign in functionality
-Verification of  Sign up functionality with creation of new user.
+Description:
+Testing of Sign in functionality
 
 Steps to reproduce:                                                     | Expected result:
 1.	Open in browser https://qa-complex-app-for-testing.herokuapp.com/   |1. The lending page is loaded
