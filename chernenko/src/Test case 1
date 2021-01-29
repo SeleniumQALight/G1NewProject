@@ -4,11 +4,12 @@ Verification of  Sign up functionality with creation of new user.
 Steps to reproduce:                                                     | Expected result:
 1.	Open in browser https://qa-complex-app-for-testing.herokuapp.com/   |1. The lending page is loaded
                                                                         |Url https://qa-complex-app-for-testing.herokuapp.com/
-2.	Enter any eligible data to the required fields                      |2.
-Username (any three (or longer) English letters or numbers)             |Name "TestName" is accepted
-as example TestName                                                     |
-Email - as example  "qt@gmail.com                                       |email "qt@gmail.com" is accepted
-Password (at leas 12 symbols) as example TestUser1Creation              |password "TestUser1Creation" is accepted
+2.	Enter eligible data to the required fields.                         |2. The entered data is accepted by the system
+Test data:                                                              |
+Username (any three (or longer) English letters or numbers)             |
+Username - "TestName"                                                   |Name "TestName" is accepted
+Email - as example  "qt@gmail.com"                                      |email "qt@gmail.com" is accepted
+Password (at leas 12 symbols) - "TestUser1Creation"                     |password "TestUser1Creation" is accepted
 3.	Click the button “Sign up for Our App”                              |3. Account is created, home page Home page is
                                                                         |uploaded and displayed.
                                                                         |Url https://qa-complex-app-for-testing.herokuapp.com/

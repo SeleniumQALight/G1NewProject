@@ -5,19 +5,21 @@ Testing of Sign in functionality
 Steps to reproduce:                                                     | Expected result:
 1.	Open in browser https://qa-complex-app-for-testing.herokuapp.com/   |1. The lending page is loaded
                                                                         |Url https://qa-complex-app-for-testing.herokuapp.com/
-2.	Enter any eligible data to the required fields                      |2.
-Username (any three (or longer) English letters or numbers)             |Name "TestName" is accepted
-as example TestName                                                     |
+2.	Enter eligible data to the required fields                          |2. The entered data is accepted by the system
+Test data:                                                              |
+Username (any three (or longer) English letters or numbers)             |
+Username - "TestName"                                                   |Name "TestName" is accepted
 Email - as example  "qt@gmail.com                                       |email "qt@gmail.com" is accepted
 Password (at leas 12 symbols) as example TestUser1Creation              |password "TestUser1Creation" is accepted
 3.	Click the button “Sign up for Our App”                              |3. Account is created, home page Home page is
                                                                         |uploaded and displayed.
                                                                         |Url https://qa-complex-app-for-testing.herokuapp.com/
                                                                         |Xpath .//html [@class ='fontawesome-i2svg-active fontawesome-i2svg-complete' ]
-4. Click the Sign out Button on the top left-hand corner in the         |4. The lending page is loaded
+4. Click the Sign out Button in the top left-hand corner in the         |4. The lending page is loaded
 header                                                                  |Url https://qa-complex-app-for-testing.herokuapp.com/
-5.	Fill in fields Username - "TestName"                                |5. The entered data is accepted
-and Password - "TestUser1Creation"in the top of starting page.          |
+5.	Fill in fields in the header (Xpath .//form [@action='/login'])     |5. The entered data is accepted
+ Username - "TestName"                                                  |
+and Password - "TestUser1Creation".                                     |
 6.Click the button Sign in                                              |6. User is signed in to the account
                                                                         |Xpath .//html [@class ='fontawesome-i2svg-active fontawesome-i2svg-complete' ]
 
