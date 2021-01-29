@@ -22,5 +22,4 @@ and Password - "TestUser1Creation"in the top of starting page.          |
                                                                         |Xpath .//html [@class ='fontawesome-i2svg-active fontawesome-i2svg-complete' ]
 
 
-
 Status ()
