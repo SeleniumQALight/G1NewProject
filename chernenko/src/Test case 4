@@ -15,9 +15,10 @@ and Password - "TestUser1Creation"in the header of the starting page    |
 5. Enter Title in the title field "Test Title"                          | 5. Title " Test Title "is displayed in the title field
 6. Enter description of the post in the Body Content text box           | 6. The text "Some text for post" is displayed in
 "Some text for post"                                                    |the Body Content  text box
-7. Tick the “This is a unique post”  in checkbox under the text box     |7. The check mark is displayed in the checkbox
+7. Tick the “This is a unique post” checkbox under the text box         |7. The check mark is displayed in the checkbox
 8. Open and select public  in the “Select value” drop-down list         |8. The value of drop-down list equal public
 9. Click the Save New Post button.                                      |9. The message "New post successfully created." is displayed
+                                                                        |The message in Note has value : This post was written for All Users
                                                                         | end-point -post/post_id
 
 
