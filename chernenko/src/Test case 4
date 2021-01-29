@@ -1,0 +1,24 @@
+
+Description:
+ Verification  of the Create post (unique /public ) functionality
+Steps to reproduce:                                                     | Expected result:
+1.	Open in browser https://qa-complex-app-for-testing.herokuapp.com/   |1. The lending page is loaded
+                                                                        |Url https://qa-complex-app-for-testing.herokuapp.com/
+2.	Fill in fields Username - "TestName"                                |2. The entered data is accepted
+and Password - "TestUser1Creation"in the header of the starting page    |
+                                                                        |
+3.Click the button Sign in                                              |3. User is signed in to the account
+                                                                        |Url https://qa-complex-app-for-testing.herokuapp.com/
+                                                                        |Xpath .//html [@class ='fontawesome-i2svg-active fontawesome-i2svg-complete' ]
+4. Click the Create Post button in the header                           | 4. The page with the form to create post is loaded
+                                                                        |url https://qa-complex-app-for-testing.herokuapp.com/create-post
+5. Enter Title in the title field "Test Title"                          | 5. Title " Test Title "is displayed in the title field
+6. Enter description of the post in the Body Content text box           | 6. The text "Some text for post" is displayed in
+"Some text for post"                                                    |the Body Content  text box
+7. Tick the “This is a unique post”  in checkbox under the text box     |7. The check mark is displayed in the checkbox
+8. Open and select public  in the “Select value” drop-down list         |8. The value of drop-down list equal public
+9. Click the Save New Post button.                                      |9. The message "New post successfully created." is displayed
+                                                                        | end-point -post/post_id
+
+
+Status ()
