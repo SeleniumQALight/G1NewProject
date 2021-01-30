@@ -10,7 +10,7 @@ HOMEPAGE FOR USER
 Homepage.Header.MyProfile = .//header//img[@data-original-title='My Profile']
 Homepage.Header.User = .//header//span[contains(text(),'tonya')]
 Homepage.Header..CreatePost = .//header//a[@href='/create-post']
-Homepage.Header..SignOut = .//header//button
+Homepage.Header.SignOut = .//header//button
 
 CREATE POST
 CreatePost.Title = .//*[@id='post-title']
