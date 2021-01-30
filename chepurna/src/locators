@@ -1,0 +1,32 @@
+Locators
+https://qa-complex-app-for-testing.herokuapp.com/
+
+HOMEPAGE
+Homepage.LoginForm.Username = .//form[@action='/login']//input[@name='username']
+Homepage.LoginForm.Password = .//form[@action='/login']//input[@name='password']
+Homepage.LoginForm.Button = .//form[@action='/login']//button
+
+HOMEPAGE FOR USER
+Homepage.Header.MyProfile = .//header//img[@data-original-title='My Profile']
+Homepage.Header.User = .//header//span[contains(text(),'tonya')]
+Homepage.Header..CreatePost = .//header//a[@href='/create-post']
+Homepage.Header..SignOut = .//header//button
+
+CREATE POST
+CreatePost.Title = .//*[@id='post-title']
+CreatePost.BodyContent = .//*[@id='post-body']
+CreatePost.SaveNewPost = .//form[@action='/create-post']//button
+
+POST
+Post.Success = .//div[@class='alert alert-success text-center' and contains(text(),'New post successfully created.')]
+Post.Delete = .//button[@class='delete-post-button text-danger']
+Post.Title = .//div[@class='d-flex justify-content-between']//h2
+
+PROFILE
+Profile.Posts = .//a[contains(text(),'Posts')]
+Profile.Followers = .//a[contains(text(),'Followers')]
+Profile.Following = .//a[contains(text(),'Following')]
+Profile.AllPosts = .//div[@class='list-group']
+Profile.PostWasDeleted = .//div[@class='alert alert-success text-center' and contains(text(),'Post successfully deleted')]
+
+
