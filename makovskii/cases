@@ -1,0 +1,58 @@
+CASE 1
+Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
+
+CASE 2
+Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
+Click Button click button "Sign up for our App" -> Validation messages are highlighted
+(Username must be at least 3 characters.
+You must provide a valid email address.
+Password must be at least 12 characters.)
+
+CASE 3
+Go to https://qa-complex-app-for-testing.herokuapp.com/ -> Page is opened
+click button "Sign in" -> Error message appears
+
+CASE 4 Sign UP
+Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
+Type usermane in Username Input field
+Type Email in Email Input field
+Type Pasword in Pasword field
+click button "Sign up for our App"
+
+CASE 5
+Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
+Type usermane in Username Input field
+Type Pasword in Pasword field
+click button "Sign in" - > Welcome screen is opened
+click button "Sign out" -> User is back to main page
+
+CASE 6 Create post
+Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
+Type usermane in Username Input field
+Type Pasword in Pasword field
+click button "Sign in" - > Welcome screen is opened
+click "Create POST"
+Fil in "Title"
+Fil in "Body Content"
+Click "Save new Post" -> New post successfully created.is shown
+
+CASE 6 DELETE Created  post
+Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
+Type usermane in Username Input field
+Type Pasword in Pasword field
+click button "Sign in" - > Welcome screen is opened
+click "Create POST"
+Fil in "Title"
+Fil in "Body Content"
+Click "Save new Post" -> New post successfully created.is shown
+
+CASE 6 DELETE Created  post
+Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
+Type usermane in Username Input field
+Type Pasword in Pasword field
+click button "Sign in" - > Welcome screen is opened
+click "Create POST"
+Fil in "Title"
+Fil in "Body Content"
+Click "Save new Post" -> New post successfully created.is shown
+Click "Delete post" -> post is deleted
