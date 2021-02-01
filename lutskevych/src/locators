@@ -10,6 +10,8 @@ LoginPage.header.Error" = .//*[contains(text(),'Errorr')]"
 Homepage.link.createPost = ".//a[contains(text(),'Create Post')]"
 Homepage.button.signOut = ".//button[contains(text(),'Sign Out')]"
 Homepage.link.complexAppForTestingQA = ".//a[contains(text(),'Complex app for testing - QA')]"
+Homepage.img.MyProfile = ".//img[contains(@data-original-title,'My Profile')]"
+
 
 #CreatePost
 CreatePost.input.title = ".//input[@name = 'title']"
@@ -17,6 +19,8 @@ CreatePost.textarea.bodyContent = ".//textarea[@name = 'body']"
 CreatePost.select.allUsers = ".//select//option[@value = 'All Users']"
 CreatePost.button.saveNewPost = ".//button[contains(text(),'Save New Post')]"
 CreatePost.header.NewPostSuccessfullyCreated' = ".//*[contains(text(),'New post successfully created')]"
+CreatePost.FindPostText = ".//*[contains(text(),'Weather test')]"
+CreatePost.form.deletePost = ".//form[contains(@class,'delete')]"
 
 
 
