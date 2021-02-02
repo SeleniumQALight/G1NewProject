@@ -1,0 +1,29 @@
+# Starting page
+url https://qa-complex-app-for-testing.herokuapp.com/
+
+Registration form on the starting page:    .//form[@id='registration-form']
+Username field:                            .//input [@id='username-register']
+Email field:                               .//input [@id='email-register']
+Password field:                            .//input [@id='password-register']
+Submit button:                             .//button[@type='submit']
+Button contains text 'Sign up for OurApp': .//button [text()='Sign up for OurApp']
+Registration form 'Sing in' in the header: .//form[@action='/login']
+Username field in the header:              .//form[@action='/login']//input[@name='username']
+Password field in the header:              .//input [@type='hidden' and @name='_csrf']
+Sign In button in the header:              .//button[contains(text(),'Sign In')]
+
+# Home page of the logged in user
+https://qa-complex-app-for-testing.herokuapp.com/
+ has Xpath locator .//html [@class='fontawesome-i2svg-active fontawesome-i2svg-complete'] contains numbers!!!
+
+Sign out button:                           .//button
+Create Post button:                        .//a[@href='/create-post']
+
+# Create Post page
+https://qa-complex-app-for-testing.herokuapp.com/create-post
+Title field:                                 .//input[@id='post-title']
+Body Content text box:                       .//textarea[@id='post-body']
+Check box "This is unique post":             .//input[@id='”UniquePost”']
+Drop-down list with types of post (public):  .//select//option[@value='All Users']
+Drop-down list with types of post (private): .//select//option[@value='One Person']
+Button "Save New Post":                      .//button[contains(text(),'Save New Post')]
