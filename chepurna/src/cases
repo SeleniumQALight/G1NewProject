@@ -1,0 +1,48 @@
+https://qa-complex-app-for-testing.herokuapp.com
+
+Test case 1:
+1. Open  https://qa-complex-app-for-testing.herokuapp.com
+2. Enter "Tonya" into Username field
+3. Enter "TonyaTonya123" into Password field
+4. Submit
+Expected result: "tonya" is displayed in the header of the page
+                 Login form is not displayed
+
+Test case 2:
+Precondition : Sign with login "Tonya" and login "TonyaTonya123"
+1. Press the button to sign out
+Expected result: Login form is displayed
+
+Test case 3:
+Precondition : Sign with login "Tonya" and login "TonyaTonya123"
+1. Press the button to open profile
+Expected result: https://qa-complex-app-for-testing.herokuapp.com/profile/tonya is opened
+                 Username "Tonya" is displayed
+                 Posts, Followers and Following links present on the page
+
+Test case 4:
+Precondition : Sign in with login "Tonya" and login "TonyaTonya123"
+1. Press the button "Create Post"
+2. Confirm that https://qa-complex-app-for-testing.herokuapp.com/create-post is opened
+3. Type "Test title" into "Title" field
+4. Type "Hello" into "Body content" field
+5. Press the button to save the post
+Expected result: The message "New post successfully created." is displayed
+                 The title "Test title" is displayed
+
+Test case 5:
+Precondition 1: Sign with login "Tonya" and login "TonyaTonya123"
+Precondition 2: Create the post with "Delete the post" title and "test" as body content
+1. For post "Delete post" press the Delete sign
+Expected result: https://qa-complex-app-for-testing.herokuapp.com/profile/tonya is opened
+                 The message "Post successfully deleted" is displayed
+                 There is no "Delete post" in the list of posts
+
+
+
+
+
+
+
+
+
