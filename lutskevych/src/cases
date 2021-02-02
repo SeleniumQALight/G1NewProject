@@ -1,0 +1,85 @@
+ТС№1 Зайти в кабинет под заранее зарегистрированным пользователем.
+Pre-conditions:
+Логин: auto
+Пароль: 123456qwerty
+Steps:
+1.	Открыть сайт https://qa-complex-app-for-testing.herokuapp.com/
+2.	В поле Username ввести логин
+3.	В поле Password ввести пароль
+4.	Нажать кнопку Sign In
+5.	В новом открывшемся окне  вверху справа есть конопка Sign Out
+
+
+ТС№2 Выйти из кабинета зарегистрированного пользователя.
+Pre-conditions:
+Логин: auto
+Пароль: 123456qwerty
+Steps:
+1.	Открыть сайт https://qa-complex-app-for-testing.herokuapp.com/
+2.	В поле Username ввести логин
+3.	В поле Password ввести пароль
+4.	Нажать кнопку Sign In
+5.	В новом открывшемся окне  вверху слева есть надпись «Complex app for testing - QA»
+6.	Вверху справа есть кнопка Create Post
+7.	Вверху справа есть кнопка Sign out
+8.	Нажать кнопку Sign out
+9.	В новом открывшемся окне по центру справа зелёная кнопка с надписью «Sign up for OurApp»
+10.	Вверху справа синяя кнопка Sign In
+
+TC№3 Невозможность логина с правильным паролем и пустым логином
+Pre-conditions:
+Логин: auto
+Steps:
+1.	Открыть сайт https://qa-complex-app-for-testing.herokuapp.com/
+2.	В поле Username ввести логин
+3.	В поле Password ввести пароль : 12345
+4.	Нажать кнопку Sign In
+5.	Данные в поле Username удалились.
+6.	Данные в поле Password удалились.
+7.	Вверху справа синяя кнопка Sign In
+8.	Ожидаемый результат: розовый прямоугольник с надписью «Errorr»
+
+
+ТС№4 Создать новый пост
+Pre-conditions:
+Логин: auto
+Пароль: 123456qwerty
+Steps:
+1.	Открыть сайт https://qa-complex-app-for-testing.herokuapp.com/
+2.	В поле Username ввести логин
+3.	В поле Password ввести пароль
+4.	Нажать кнопку Sign In
+5.	Вверху справа есть кнопка Create Post
+6.	Нажать кнопку Create Post
+7.	Открылся сайт https://qa-complex-app-for-testing.herokuapp.com/create-post
+8.	Ввести в поле «Title» текст «Weather test»
+9.	Ввести в поле «Body Content» текст «Today is a good weather.»
+10.	В выпадающем списке «Select value» выбрать: Общедоступное
+11.	Внизу экрана есть синяя кнопка Save New Post
+12.	Нажать на кнопку Save New Post
+13.	Оживаемый результат: в новом открывшемся окне есть текст «New post successfully created.»
+14. Нажать на кнопку My Profile
+15. Ожидаемый результат: в новом открывшемся окне есть текст "Weather test"
+16. Нажать на пост с названием "Weather test"
+17. Нажать на кнопку Delete
+18. Ожидаемый результат: в открывшемся окне отсутсвует пост с названием "Weather test"
+
+
+
+ТС№5 Создать новый пост без контента
+Pre-conditions:
+Логин: auto
+Пароль: 123456qwerty
+Steps:
+1.	Открыть сайт https://qa-complex-app-for-testing.herokuapp.com/
+2.	В поле Username ввести логин
+3.	В поле Password ввести пароль
+4.	Нажать кнопку Sign In
+5.	Вверху справа есть кнопка Create Post
+6.	Нажать кнопку Create Post
+7.	Открылся сайт https://qa-complex-app-for-testing.herokuapp.com/create-post
+8.	Ввести в поле «Title» текст «Good mood»
+9.	Внизу экрана есть синяя кнопка Save New Post
+10.	Нажать на кнопку Save New Post
+11.	Ожидаемый результат: поле «Body Content» пустое, выделено синей рамкой
+12. Открыта страничка https://qa-complex-app-for-testing.herokuapp.com/create-post
