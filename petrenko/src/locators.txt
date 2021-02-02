@@ -1,0 +1,32 @@
+#loginPage
+LoginPage.input.userName = ".//form[@action = '/login']//input[@name = 'username']"
+LoginPage.input.password = ".//form[@action = '/login']//input[@name = 'password']"
+LoginPage.button.login.signIn = ".//button[@class='btn btn-primary btn-sm']"
+
+LoginPage.register.input.userName = ".//form[@action='/register']//input[@name = 'username']"
+LoginPage.register.input.email = ".//form[@action='/register']//input[@name = 'email']"
+LoginPage.register.input.password = ".//form[@action='/register']//input[@name = 'password']"
+
+
+#HomePage
+
+HomePage.button.createPost =
+HomePage.button.signOut =
+HomePage.icon.myProfile =
+HomePage.icon.chat =
+
+#MyProfile
+
+MyProfile.listOfPost =
+
+
+#Post
+Post.icon.editPost
+Post.icon.deletePost
+
+
+#EditPost
+
+EditPost.input.title
+EditPost.input.BodyContent
+EditPost.button.SaveUpdates =

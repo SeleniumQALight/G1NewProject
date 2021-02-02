@@ -1,0 +1,37 @@
+1.
+               Title
+               Create new post
+               Preconditions
+
+               go to https://qa-complex-app-for-testing.herokuapp.com/   and login
+               login  :bald2003
+               pasword:tetyyytetyyytetyyy
+               Steps
+               1)Click the button on the right top corner
+               2)Fill out fields "Title" and "Body Content"
+               3)Click button "Save new post"
+
+
+               Expected Result
+
+               Massage "New post successfully created".
+
+
+
+2.
+               Title
+               Delete post.
+
+               Preconditions
+               1)go to https://qa-complex-app-for-testing.herokuapp.com/   and login
+                login  :bald2003
+                pasword:tetyyytetyyytetyyy
+               2) Check  listPost is empty
+
+               Steps
+               1)Click button "My Profile" on the top
+               2)
+
+
+               Expected Result
+               1)
