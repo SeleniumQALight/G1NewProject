@@ -1,8 +1,33 @@
-// Login Page
+#LoginPage
 LoginPage.input.userName = ".//*[@id='username5']";  //UserName for Signing In
-LoginPage.input.userPassword = ".//*[@name='password' AND @type = 'password']";  //User Password for Signing IKn
+LoginPage.input.userPassword = ".//*[@name='password' AND @type = 'password']";  //User Password for Signing In
 LoginPage.input.signInButton = ".//*[@class = 'col-md-auto']";  //Sign In button
 LoginPage.input.homePageLinkQA = ".//*[@class = 'text-white']";  //A Href to Homepage
-LoginPage.input.userName = ".//*[@id='username5']";  //UserName for Registering
+LoginPage.input.userSinUpName = ".//*[@id='username-register']";  //UserName for Registering
+LoginPage.input.userSignUpEmail = ".//*[@id='email-register']";  //User Email for Registering
+LoginPage.input.userSignUpPassword = ".//*[@id='password-register']";  //User Password for Registering
+LoginPage.input.signUpButton = ".//*[@type = 'submit']";  //Sign Up button for Registering
+LoginPage.description.text = ".//*[@class= 'display-3']"; // 'Remember Writing' text
 
-//HomePAge
+#HomePage
+HomePage.header.homePageLink = ".//*[@class= 'text-white']"; // 'Link to HomePage Complex for AppTesting - QA' text
+HomePage.header.homePageLink = ".//*[@class='my-0 mr-md-auto font-weight-normal']/descendant::*" // Same as above
+HomePage.header.searchIcon = ".//*[@data-icon='search' and@role='img']";
+HomePage.header.chatIcon = ".//*[@data-icon='comment' and @role='img']";
+HomePage.header.profileIcon = ".//*[@data-original-title='My Profile']";
+HomePage.header.currentUserName = ".//*[@class ='text-white mr-2']";
+HomePage.header.createPostButton = ".//*[@href ='/create-post']";
+HomePage.header.signOutButton = ".//*[@action='/logout']/descendant::*/following-sibling::*";
+HomePage.chatPopUp = ".//*[@id='chat-wrapper']";
+HomePage.chatMessageArea = ".//*[@id='chatField']";
+HomePage.chatCloseIcon = ".//*[@class='chat-title-bar-close']/descendant::*";
+HomePage.chatUpdates.title = ".//*[@class='text-center mb-4']";
+HomePage.chatUpdates.userUpdate = ".//*[@class='list-group']/descendant::*";
+
+#ProfilePage
+ProfilePage.mainArea.userHeadSection = ".//*[@class='container py-md-5 container--narrow']/descendant::*";
+ProfilePage.mainArea.avatarIcon = ".//*[@class='avatar-small']";
+ProfilePage.mainArea.tabPosts = ".//*[@href='/profile/auto']";
+ProfilePage.mainArea.tabFollowers = ".//*[@href='/profile/auto/followers']";
+ProfilePage.mainArea.tabFollowing = ".//*[@href='/profile/auto/following']";
+ProfilePage.mainArea.postLine = ".//*[@class='list-group']/descendant::*[1]";
