@@ -12,13 +12,21 @@ click button "Sign in" -> User can see "Errorr" message
 
 
 CASE 3
+Pre-conditions:
+Login: auto
+Pas: 123456qwerty
+Steps:
 Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
 Type usermane in Username Input field
 Type Pasword in Pasword field
-click button "Sign in" - > Welcome screen is opened, message "Hello nikolai, your feed is empty." is shown
+click button "Sign in" - > Welcome screen is opened, message "Hello auto, your feed is empty." is shown
 click button "Sign out" -> User is back to main page
 
 CASE 4 Create post
+Pre-conditions:
+Login: auto
+Pas: 123456qwerty
+Steps:
 Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
 Type usermane in Username Input field
 Type Pasword in Pasword field
@@ -30,6 +38,10 @@ Click "Save new Post" -> User is redirected to the new page and see message "New
 
 
 CASE 5 DELETE post
+Pre-conditions:
+Login: auto
+Pas: 123456qwerty
+Steps:
 Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
 Type usermane in Username Input field
 Type Pasword in Pasword field
