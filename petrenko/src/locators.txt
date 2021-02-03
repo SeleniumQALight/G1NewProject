@@ -1,23 +1,26 @@
 #loginPage
-LoginPage.input.userName = ".//form[@action = '/login']//input[@name = 'username']"
-LoginPage.input.password = ".//form[@action = '/login']//input[@name = 'password']"
-LoginPage.button.login.signIn = ".//button[@class='btn btn-primary btn-sm']"
+LoginPage.input.userName =          ".//form[@action = '/login']//input[@name = 'username']"
+LoginPage.input.password =          ".//form[@action = '/login']//input[@name = 'password']"
+LoginPage.button.login.signIn =     ".//button[@class='btn btn-primary btn-sm']"
 
-LoginPage.register.input.userName = ".//form[@action='/register']//input[@name = 'username']"
-LoginPage.register.input.email = ".//form[@action='/register']//input[@name = 'email']"
-LoginPage.register.input.password = ".//form[@action='/register']//input[@name = 'password']"
+LoginPage.register.input.userName =  ".//form[@action='/register']//input[@name = 'username']"
+LoginPage.register.input.email =     ".//form[@action='/register']//input[@name = 'email']"
+LoginPage.register.input.password =  ".//form[@action='/register']//input[@name = 'password']"
 
 
 #HomePage
 
-HomePage.button.createPost =
-HomePage.button.signOut =
-HomePage.icon.myProfile =
+HomePage.button.createPost =          ".//*[text() = 'Create Post']"
+HomePage.button.signOut =             ".//*[text() = 'Sign Out']"
+HomePage.icon.myProfile =             ".//img[@data-original-title="My Profile"]"
 HomePage.icon.chat =
 
-#MyProfile
+#Profile
 
-MyProfile.listOfPost =
+Profile.listOfPost =
+Profile.FirstPostFromListOfPost =
+Profile.listOfFollowers =
+Profile.listOfFollowing =
 
 
 #Post
