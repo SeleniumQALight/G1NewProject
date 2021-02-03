@@ -1,0 +1,8 @@
+// Login Page
+LoginPage.input.userName = ".//*[@id='username5']";  //UserName for Signing In
+LoginPage.input.userPassword = ".//*[@name='password' AND @type = 'password']";  //User Password for Signing IKn
+LoginPage.input.signInButton = ".//*[@class = 'col-md-auto']";  //Sign In button
+LoginPage.input.homePageLinkQA = ".//*[@class = 'text-white']";  //A Href to Homepage
+LoginPage.input.userName = ".//*[@id='username5']";  //UserName for Registering
+
+//HomePAge
