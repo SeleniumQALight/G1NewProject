@@ -1,58 +1,41 @@
-CASE 1
-Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
 
-CASE 2
+CASE 1
 Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
 Click Button click button "Sign up for our App" -> Validation messages are highlighted
 (Username must be at least 3 characters.
 You must provide a valid email address.
 Password must be at least 12 characters.)
 
-CASE 3
+CASE 2
 Go to https://qa-complex-app-for-testing.herokuapp.com/ -> Page is opened
-click button "Sign in" -> Error message appears
+click button "Sign in" -> User can see "Errorr" message
 
-CASE 4 Sign UP
-Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
-Type usermane in Username Input field
-Type Email in Email Input field
-Type Pasword in Pasword field
-click button "Sign up for our App"
 
-CASE 5
+CASE 3
 Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
 Type usermane in Username Input field
 Type Pasword in Pasword field
-click button "Sign in" - > Welcome screen is opened
+click button "Sign in" - > Welcome screen is opened, message "Hello nikolai, your feed is empty." is shown
 click button "Sign out" -> User is back to main page
 
-CASE 6 Create post
+CASE 4 Create post
 Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
 Type usermane in Username Input field
 Type Pasword in Pasword field
 click button "Sign in" - > Welcome screen is opened
 click "Create POST"
-Fil in "Title"
-Fil in "Body Content"
-Click "Save new Post" -> New post successfully created.is shown
+Fil in "test" in "Title"
+Fil in "test" in  "Body Content"
+Click "Save new Post" -> User is redirected to the new page and see message "New post successfully created"
 
-CASE 6 DELETE Created  post
-Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
-Type usermane in Username Input field
-Type Pasword in Pasword field
-click button "Sign in" - > Welcome screen is opened
-click "Create POST"
-Fil in "Title"
-Fil in "Body Content"
-Click "Save new Post" -> New post successfully created.is shown
 
-CASE 6 DELETE Created  post
+CASE 5 DELETE post
 Go to https://qa-complex-app-for-testing.herokuapp.com/ - Page is opened
 Type usermane in Username Input field
 Type Pasword in Pasword field
 click button "Sign in" - > Welcome screen is opened
 click "Create POST"
-Fil in "Title"
-Fil in "Body Content"
-Click "Save new Post" -> New post successfully created.is shown
-Click "Delete post" -> post is deleted
+Fil in "test" in "Title"
+Fil in "test" in  "Body Content"
+Click "Save new Post" -> User is redirected to the new page and see message "New post successfully created"
+Click "Delete post" button -> User is redirected to the new page and see message "Post successfully deleted"
