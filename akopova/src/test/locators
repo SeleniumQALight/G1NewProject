@@ -26,7 +26,8 @@ LoginPage.description.text = ".//*[@class= 'display-3']"; // 'Remember Writing' 
 #HomePage
 HomePage.header.homePageLink = ".//*[@class= 'text-white']"; // 'Link to HomePage Complex for AppTesting - QA' text
 HomePage.header.homePageLink = ".//*[@class='my-0 mr-md-auto font-weight-normal']/descendant::*" // Same as above
-HomePage.header.searchIcon = ".//*[@data-icon='search' and@role='img']";
+
+HomePage.header.searchIcon = ".//*[@data-toggle='tooltip' and @data-original-title='Search']"; // corrected
 HomePage.header.chatIcon = ".//*[@data-icon='comment' and @role='img']";
 HomePage.header.profileIcon = ".//*[@data-original-title='My Profile']";
 HomePage.header.currentUserName = ".//*[@class ='text-white mr-2']";
@@ -34,7 +35,8 @@ HomePage.header.createPostButton = ".//*[@href ='/create-post']";
 HomePage.header.signOutButton = ".//*[@action='/logout']/descendant::*/following-sibling::*";
 HomePage.chatPopUp = ".//*[@id='chat-wrapper']";
 HomePage.chatMessageArea = ".//*[@id='chatField']";
-HomePage.chatCloseIcon = ".//*[@class='chat-title-bar-close']/descendant::*";
+HomePage.chatCloseIcon = ".//*[@class='chat-title-bar-close']/descendant::*[2]"; // [2] added
+
 HomePage.chatUpdates.title = ".//*[@class='text-center mb-4']";
 HomePage.chatUpdates.userUpdate = ".//*[@class='list-group']/descendant::*";
 
