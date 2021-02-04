@@ -4,22 +4,25 @@
 
                Preconditions
 
-              1) go to https://qa-complex-app-for-testing.herokuapp.com/   and login
+               1)go to https://qa-complex-app-for-testing.herokuapp.com/   and login
                login  :bald2003
                pasword:tetyyytetyyytetyyy
 
 
                Steps
-               1)Click the button on the right top corner
-               2)Fill out fields "Title" and "Body Content"
+               1)On the right top click button "Create Post"
+               1)To the field "Title" input text "New Post0402211533"  and to the field "Body Content" input text "Good day0402211533"
                3)Click button "Save new post"
 
-
                Expected Result
-              1) Massage "New post successfully created".
+
+               1)Title text "New Post0402211533" and Body Content "Good day0402211533" was displayed.
+
                Post conditions
-               Post conditions
-              1) Delete post
+
+               1)Click button "My Profile" on the top
+               2)Click on post with title 'New Post0402211533'
+               3)Click on icon 'delete'
 
 2.
                Title
@@ -27,17 +30,18 @@
 
                Preconditions
                1)go to https://qa-complex-app-for-testing.herokuapp.com/   and login
-                login  :bald2003
-                pasword:tetyyytetyyytetyyy
-                2) Create new post with title 'NewPost'
+               login  :bald2003
+               pasword:tetyyytetyyytetyyy
+               2) Create new post with title "New Post0402211536" and Body Content "Good Day0402211536"
 
                Steps
                1)Click button "My Profile" on the top
-               2) Click on post with title 'NewPost'
+               2) Click on post with title "New Post0402211536"
                3) Click on icon 'delete'
 
                Expected Result
-               1) Post with title 'NewPost' is not displayed
+               1)Click button "My Profile" on the top
+               2) Post with title "New Post0402211536" is not displayed in the list of posts
 
 
 
@@ -48,19 +52,27 @@
 
                 Preconditions
                 1)go to https://qa-complex-app-for-testing.herokuapp.com/   and login
-                 login  :bald2003
-                 password:tetyyytetyyytetyyy
-                 2) Create new post with title 'NewPost'
+                login  :bald2003
+                password:tetyyytetyyytetyyy
+                1)On the right top click button "Create Post"
+                2)To the field "Title" input text "New Post0402211538"  and to the field "Body Content" input text "Good day0402211538"
+                3)Click button "Save new post"
 
                 Steps
                 1)Click button "My Profile" on the top
                 2) Click on post with title 'New Post'
                 3) Click on icon 'Edit'
-                4) Change fields title and body content
+                4) Change fields title on the text "New Post0402211538 was changed" and  "body content"  on the "Good day0402211538 was changed"
                 5) Click button 'Save Updates'
 
                 Expected Result
-                1) Get message "Post successfully updated." . Change was saved in the fields.
+                1)Title text "New Post0402211538 was changed" and Body Content "Good day0402211538 was changed" was displayed.
+
+                Post conditions
+
+                1)Click button "My Profile" on the top
+                2)Click on post with title 'New Post0402211538 was changed'
+                3)Click on icon 'delete'
 
 4.
                 Title
@@ -70,7 +82,7 @@
                 1)go to https://qa-complex-app-for-testing.herokuapp.com/   and login
                  login  :bald2003
                  password:tetyyytetyyytetyyy
-                 2) Create new post with title 'New Post'
+                 2) Create new post with title "New Post0402211540" and text in Body Content - "Good day0402211540"
                  3) Log out
                  4) login
                  login  :bald2004
@@ -78,20 +90,21 @@
 
                 Steps
                 1)Click icon "Search" on the top
-                2) Input text 'New Post'
+                2) Input text "New Post0402211540"
                 3) Click enter
-                4) Click post with title "New Post"
+                4) Click post with title "New Post0402211540"
 
 
                 Expected Result
-                1) Get title and  text of post
+                1) Get title "New Post0402211540" and  Body content "Good day0402211540"
+
                 Post conditions
                 1)Logout
                 2) Login
                 login  :bald2003
                 password:tetyyytetyyytetyyy
                 4) Click icon on the top "My Profile"
-                5) Click post "New Post"
+                5) Click post "New Post0402211540"
                 3) Click button delete
 
 
@@ -100,30 +113,33 @@
                 Following on user
                 Preconditions
                 1)go to https://qa-complex-app-for-testing.herokuapp.com/   and login
-                 login  :bald2003
-                 password:tetyyytetyyytetyyy
-                 2) Create new post with title 'New Post'
-                 3) Log out
-                 4) login
-                 login  :bald2004
-                 password:tetyyytetyyytetyyy
+                login  :bald2003
+                password:tetyyytetyyytetyyy
+                2) Create new post with title 'New Post0402211533' and Body content "0402211533"
+                3) Log out
+                4) login
+                login  :bald2004
+                password:tetyyytetyyytetyyy
 
                 Steps
                 1)Click icon "Search" on the top
-                2) Input text 'New Post'
+                2) Input text 'New Post0402211533'
                 3) Click enter
-                4) Click post with title "New Post"
+                4) Click post with title "New Post0402211533"
                 5) Click link  user name "bald2003" near title
                 6) Click icon "Follow" near userName "bald2003"
 
                 Expected Result
+
                 1) Icon "Follow" stayed "Stop Following"
+
                 Post conditions
+
                 1)Click icon "Stop Following" near userName "bald2003"
                 2)Logout
                 3) Login
-                login  :bald2003
+                login   :bald2003
                 password:tetyyytetyyytetyyy
                 4) Click icon on the top "My Profile"
-                5) Click post "New Post"
+                5) Click post "New Post0402211533"
                 6) Click button delete
