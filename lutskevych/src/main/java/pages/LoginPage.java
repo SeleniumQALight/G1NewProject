@@ -55,4 +55,11 @@ public class LoginPage extends ParentPage{
             Assert.fail("Can not work with Button SignIn");
         }
     }
+    public boolean IsAllertErrorrVisible(){
+        try{
+            return webDriver.findElement(By.xpath(".//*[contains(text(),'Errorr')]")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
 }
