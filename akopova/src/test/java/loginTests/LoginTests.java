@@ -25,8 +25,8 @@ public class LoginTests {
         webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
         System.out.println("Site was opened");
 
-        webDriver.findElement(By.xpath(".//*[@name='username' and @placeholder='Username']")).clear();
-        webDriver.findElement(By.xpath(".//*[@name='username' and @placeholder='Username']")).sendKeys("auto");
+        webDriver.findElement(By.xpath(".//*[@placeholder='Username']")).clear();
+        webDriver.findElement(By.xpath(".//*[@placeholder='Username']")).sendKeys("auto");
         System.out.println("'auto' was inputted into LoginInput");
                     
         webDriver.findElement(By.xpath(".//*[@placeholder='Password']")).clear();
@@ -41,10 +41,54 @@ public class LoginTests {
 
     }
 
+    @Test
     public void invalidLogin() {
+        File fileFF = new File("./drivers/chromedriver.exe");
+
+        System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
+        webDriver = new ChromeDriver();
+
+        webDriver.manage().window().maximize();
+        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //open our URL
+        webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
+        System.out.println("Site was opened");
+
+        webDriver.findElement(By.xpath(".//*[@name='username' and @placeholder='Username']")).clear();
+        webDriver.findElement(By.xpath(".//*[@name='username' and @placeholder='Username']")).sendKeys("auto1");
+        System.out.println("'auto' was inputted into LoginInput");
+
+        webDriver.findElement(By.xpath(".//*[@placeholder='Password']")).clear();
+        webDriver.findElement(By.xpath(".//*[@placeholder='Password']")).sendKeys("123456qwerty");
+        System.out.println("'123456qwerty' was inputted into InputPass");
+
+        webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
+        System.out.println("button Sign In clicked");
+
+        webDriver.findElement(By.xpath(".//*[@class='alert alert-danger text-center']"));
+        Assert.assertTrue("Error Text is displayed", isErrorTextVisible());
+        webDriver.quit();
 
     }
 
+    private boolean isErrorTextVisible() {
+        try {
+            return webDriver.findElement(By.xpath(".//*[@class='alert alert-danger text-center']")).isDisplayed();
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean isButtonSignInVisible() {
+        try {
+            return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
+        }
+        catch (Exception e) {
+            return false;
+        }
+
+    }
 
     private boolean isButtonSignOutVisible() {
         try {
