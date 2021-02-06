@@ -1,0 +1,101 @@
+TC1 : Verify the correct credentials
+Pre-conditions:
+User is logged out
+Steps :
+1. Enter 'auto' as Login
+2. Enter '123456qwerty' as Password
+3. Click 'Sign In' button
+4. Verify that User logged in correctly, i.e. main page displays the proper information
+
+Expected Results :
+1. Text 'auto' is displayed in 'Login' field
+2. Entered password is displayed in 'Password' field hidden (***)
+3. By click on 'Sign In' button the main page opens
+4. The main page displays the elements correctly:
+    4.1. Username ('auto') is displayed
+    4.2. 'Sign out' button is visible and clickable
+    4.3. 'Sign In' button is absent (not visible)
+    4.4. Link to User profile is visible and clickable
+    4.5. Chat icon is available
+    4.6. Welcome text containing Username is displayed on the page
+
+
+TC2 : Verify incorrect credentials (Login and Password)
+Pre-conditions:
+User is logged out
+Steps :
+1. Enter 'auto' as Login
+2. Enter '123456' as Password
+3. Click 'Sign In' button
+4. Verify that User is not logged in correctly, i.e. Error page displays the proper information
+
+Expected Results :
+1. Text 'auto' is displayed in 'Login' field
+2. Entered password is displayed in 'Password' field hidden (***)
+3. By click on 'Sign In' button the Error page opens
+4. The Error page displays the elements correctly:
+    4.1. Fields entering for credentials ('Username','Password') are displayed
+    4.2. Fields for registering ('Username','E-mail', 'Password') are displayed
+    4.3. 'Sign In' button is present (visible)
+    4.4. No Link to User profile
+    4.5. No Chat indicator
+    4.6. Highlighted text 'Error' is displayed on the page
+
+TC3 : Verify the New User Signing In
+Pre-conditions:
+User is logged out
+1. Enter 'new_User' as Login in a Field for entering Username
+2. Enter 'new_User@gmail.com' as E-mail in a Field for entering E-mail
+3. Enter 'new_UserPass123' as Password in a Field for entering Password
+4. Click 'Sign Up for OurApp' button
+
+Expected Results :
+1. Text 'new_User' is displayed in a field for entering 'Login'
+2. Text 'new_User@gmail.com' is displayed in a field for entering 'E-mail'
+3. Entered password is displayed in 'Password' field hidden (***)
+4. By clicking 'Sign Up for OurApp', a page requiring confirmation of the registration opens
+
+TC4 : Verify the correct display and functioning of the elements on the Main Page
+Pre-conditions:
+User is logged in with the correct credentials (Login = 'new_User', Password = 'new_UserPass123')
+Steps :
+1. Verify that 'Sign out' button is visible and clickable
+2. Verify that there is no 'Sign In' button on the page
+3. Verify that link to User profile is visible and clickable
+4. Verify that Chat icon is displayed properly
+5. Hover over the Chat icon
+6. Click the Chat icon, should be present, clickable and invoking Chat pop-up
+7. Close Chat pop-up by clicking on the black cross in the upper right corner
+8. Hover the 'User Profile' icon
+9. Click on the 'User Profile' icon
+10. Click on the 'Complex app for testing - QA' link
+11. Click on the 'Create Post' icon
+12. Click on the 'Complex app for testing - QA' link
+
+Expected Results :
+1. Username ('new-User') is displayed correctly
+2. 'Sign out' button is visible and clickable
+3. Link to User profile is visible and clickable; it displayes User name (new-User)
+4. Chat icon is available and displayed properly
+5. Hover text 'Chat' is displayed highlighted
+6. Chat pop-up arise
+7. Chat pop-up closes
+8. Hover text 'My Profile' is displayed highlighted
+9. Page containing User details, opens
+10. Return to the HomePage
+11. Page for creation new post, opens
+12. Return to the HomePage
+
+TC5 : Verify Sign Out functionality
+User is logged in with the correct credentials (Login = 'auto', Password = '123456qwerty')
+
+Steps :
+1. Click 'Sign Out' button
+
+Expected Results :
+1. User is logged out
+2. Page displayed is a Sign In page :
+    2.1. Fields for entering credentials ('Username', 'Password') are displayed
+    2.2. Fields for entering daa for signing up ('Username', 'Email', 'Password') are displayed
+    2.3. 'Sign In' button is present (visible)
+    2.4. 'Sign up for OurApp' button is present (visible)
