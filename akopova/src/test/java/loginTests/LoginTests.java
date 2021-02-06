@@ -25,12 +25,12 @@ public class LoginTests {
         webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
         System.out.println("Site was opened");
 
-        webDriver.findElement(By.xpath(".//*[@placeholder='Username']")).clear();
-        webDriver.findElement(By.xpath(".//*[@placeholder='Username']")).sendKeys("auto");
+        webDriver.findElement(By.xpath(".//*[@name='username' and @placeholder='Username']")).clear();
+        webDriver.findElement(By.xpath(".//*[@name='username' and @placeholder='Username']")).sendKeys("auto");
         System.out.println("'auto' was inputted into LoginInput");
-
+                    
         webDriver.findElement(By.xpath(".//*[@placeholder='Password']")).clear();
-        webDriver.findElement(By.xpath(".//*[@placeholder='Password']")).sendKeys("12356qwerty");
+        webDriver.findElement(By.xpath(".//*[@placeholder='Password']")).sendKeys("123456qwerty");
         System.out.println("'123456qwerty' was inputted into InputPass");
 
         webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
@@ -38,6 +38,10 @@ public class LoginTests {
 
         Assert.assertTrue("Button SignOut is not displayed", isButtonSignOutVisible());
         webDriver.quit();
+
+    }
+
+    public void invalidLogin() {
 
     }
 
