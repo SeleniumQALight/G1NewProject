@@ -20,8 +20,8 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterPasswordSignIn("123456");
         loginPage.clickButtonSignIn();
 
-        checkExpectedResult("Allert Errorr is not visible",loginPage.IsAllertErrorrVisible());
-        checkExpectedResult("Button SignOut is not visible",homePage.isButtonSignOutNotVisible());
+        checkExpectedResult("Allert Errorr is not visible",loginPage.isAllertErrorrVisible());
+        checkExpectedResult("Button Sign Up For Our App Is visible",loginPage.buttonSignUpForOurAppIsVisible());
     }
 
 }
