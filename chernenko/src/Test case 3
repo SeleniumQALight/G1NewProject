@@ -1,0 +1,16 @@
+Description:
+Testing of Sign out functionality
+Steps to reproduce:                                                     | Expected result:
+1.	Open in browser https://qa-complex-app-for-testing.herokuapp.com/   |1. The lending page is loaded
+                                                                        |Url https://qa-complex-app-for-testing.herokuapp.com/
+2.	Fill in fields Username - "TestName"                                |2. The entered data is accepted
+and Password - "TestUser1Creation"in the header of the starting page    |
+(Xpath .//form [@action='/login']).                                     |
+3.Click the button Sign in                                              |3. User is signed into the account
+Xpath .//form[@action='/logout']                                        |Url https://qa-complex-app-for-testing.herokuapp.com/
+                                                                        |Xpath .//html [@class ='fontawesome-i2svg-active fontawesome-i2svg-complete' ]
+4. Click the button Sign out in the top left-hand corner                |4. User is signed out. The lending page is loaded
+                                                                        |Url https://qa-complex-app-for-testing.herokuapp.com/
+
+Status ()
+

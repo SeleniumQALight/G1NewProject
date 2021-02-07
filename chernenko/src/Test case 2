@@ -1,0 +1,27 @@
+
+Description:
+Testing of Sign in functionality
+
+Steps to reproduce:                                                     | Expected result:
+1.	Open in browser https://qa-complex-app-for-testing.herokuapp.com/   |1. The starting page is loaded
+                                                                        |Url https://qa-complex-app-for-testing.herokuapp.com/
+2.	Enter eligible data to the required fields.                         |2. The entered data is accepted by the system
+Test data:                                                              |            |
+Username - "TestName"                                                   |Name "TestName" is accepted and displayed in the username field
+Email - as example  "qt@gmail.com"                                      |email "qt@gmail.com" is accepted and displayed in the email field
+Password (at leas 12 symbols) - "TestUser1Creation"                     |password "TestUser1Creation" is accepted, asterix symbols are
+                                                                        | displayed in the Password field. The number of asterix symbols equal
+                                                                        |to the number of letters in the entered password
+3.	Click the button “Sign up for Our App”                              |3. Account is created, home page  is loaded and displayed.
+                                                                        |Url https://qa-complex-app-for-testing.herokuapp.com/
+                                                                        |Xpath .//html [@class ='fontawesome-i2svg-active fontawesome-i2svg-complete' ]
+4. Click the Sign out Button in the top of left-hand corner in the      |4. The starting page is loaded
+header                                                                  |Url https://qa-complex-app-for-testing.herokuapp.com/
+5.	Fill in fields in the header. Same data that were entered in step2  |5. The entered data is accepted
+ Username - "TestName"                                                  |
+and Password - "TestUser1Creation".                                     |
+6.Click the button Sign in                                              |6. User is signed in to the account
+                                                                        |Xpath .//html [@class ='fontawesome-i2svg-active fontawesome-i2svg-complete' ]
+
+
+Status ()
