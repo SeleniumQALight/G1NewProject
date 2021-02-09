@@ -1,0 +1,102 @@
+No.	Priority	Requirements No.	Summary	                                                                  Module
+1	High	    1	                Check that a user can Sign In with valid credentials	                      LogIn
+
+"Precondition:
+User is registered with credentials: auto/123456qwerty
+Steps:
+1. Open "https://qa-complex-app-for-testing.herokuapp.com/"
+2. Write down "auto" Username
+3. Write down "123456qwerty" Password
+4. Click Sign In button
+5. Check Username on the header of the page
+6. Inspect "auto" username
+
+Expected Results
+1. Webservice is opened. The webservice looks as per comps
+2. Username is added
+3. Password is added
+4. The user is signed In with valid credentials
+5. "auto" username is displayed on the header of the page
+6. "auto" username element is displayed as "<span class="text-white mr-2"> auto</span>"
+
+
+2	Medium	     2	                 Check the user greeting is displayed as per signed in user	              Username
+
+"Precondition:
+User is registered with credentials: auto/123456qwerty
+Steps:
+1. Open "https://qa-complex-app-for-testing.herokuapp.com/"
+2. Write down "auto" Username
+3. Write down "123456qwerty" Password
+4. Click Sign In button
+5. Check Username on the main greeting page
+6. Inspect "auto" username on the main greeting page
+
+Expected Results
+1. Webservice is opened. The webservice looks as per comps
+2. Username is added
+3. Password is added
+4. The user is signed In
+5. "auto" username is displayed on the main greeting page as per signed in user
+6. "auto" username element on the main greeting page is displayed as "<strong>auto</strong>"
+
+
+3	Medium	      5	               Check that the user can create post                                      Create Post
+
+"Precondition:
+User is Signed In with credentials: auto/123456qwerty
+Steps:
+1. Open "https://qa-complex-app-for-testing.herokuapp.com/"
+2. Click on "Create Post" button
+3. Write down "New user post" into Title field
+4. Write down "Hi" into Body Content field
+5. Click Save New Post
+6. Click on "My Profile" button
+
+Expected Results
+1. Webservice is opened. The webservice looks as per comps
+2. Creating Post page is opened
+3. "New user post" Title is filled
+4. "Hi" Content is filled
+5. New post is successfully created."New user post" Title and "Hi" Body Content are displayed
+6. Posts list is displayed. "New user post" Title is displayed on the top of the list with the correct date
+
+
+4	Medium	        6	        Check that the message can be added to the chat	                                   Chat
+
+"Precondition:
+User is Signed In with credentials: auto/123456qwerty
+Steps:
+1. Open "https://qa-complex-app-for-testing.herokuapp.com/"
+2. Click on "Chat" button
+3. Write down "New chat message" into the chat and click `Enter`
+4. Write down "Second chat message" into the chat and click `Enter`
+5. Close the chat via `X` button
+
+Expected Results
+1. Webservice is opened. The webservice looks as per comps
+2. "Chat" is opened
+3. "New chat message" message is filled and displayed as added
+4. "Second chat message" message is filled and displayed as added
+5. "Chat" is closed
+
+
+5	Medium	          6	         Check that a user can Sign Out                                               Sign Out
+
+"Precondition:
+User is registered with credentials: auto/123456qwerty
+Steps:
+1. Open "https://qa-complex-app-for-testing.herokuapp.com/"
+2. Write down "auto" Username
+3. Write down "123456qwerty" Password
+4. Click Sign In button
+5. Refresh the page
+6. Click Sign Out button and refresh the page
+
+Expected Results
+1. Webservice is opened. The webservice looks as per comps
+2. Username is added
+3. Password is added
+4. The user is signed In
+5. The user is still Signed In
+6. The user is Signed Out even if the page was refreshed

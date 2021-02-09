@@ -1,0 +1,24 @@
+#LoginPage
+.//input[@placeholder='Username']
+.//input[@placeholder='Password']
+.//button[text()='Sign In']
+.//input[@placeholder='Pick a username']
+.//input[@placeholder='you@example.com']
+.//input[@placeholder='Create a password']
+
+#User Page
+chat button .//span[@class='text-white mr-2 header-chat-icon']
+My profile Button .//a[@class='mr-2']
+Person name .//span[@class='text-white mr-2']
+Create Post button .//a[text()='Create Post']
+Sign Out button .//button[text()='Sign Out']
+
+#Create Post Page
+Title Input .//input[@id='post-title']
+Body Content .//textarea[@id='post-body']
+Unique post checkbox .//input[@id='”UniquePost”']
+Select value dropdown .//select[@id='select']
+Dropdown Post for all .//option[@value='All Users']
+Dropdown Private Post .//option[@value='One Person']
+Dropdown Group Post .//option[@value='Group Message']
+Save new Post Button .//button[text()='Save New Post']
