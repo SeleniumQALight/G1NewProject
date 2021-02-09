@@ -53,4 +53,29 @@ public class LoginPage extends ParentPage{
             Assert.fail("Can not work with Button SignIn");
         }
     }
+
+    public boolean isButtonSignInVisible() {
+        try {
+            logger.info("Button Sign In visible");
+            return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+    public boolean isMessageErrorVisible() {
+        try {
+            logger.info("Message error visible");
+            return webDriver.findElement(By.xpath(".//*[contains(text(),'Error')]")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+    public boolean isButtonSignOutNotVisible() {
+        try {
+            logger.info("Button Sign Out not visible");
+            return !webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
+        }catch (Exception e){
+            return true;
+        }
+    }
 }
