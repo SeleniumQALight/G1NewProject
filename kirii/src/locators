@@ -1,0 +1,30 @@
+#LoginPage
+LoginPage.input.userName = ".//*[contains(@placeholder.'user')]"
+LoginPage.input.password = ".//*[@placeholder='Password']"
+LoginPage.click.SignIn = ".//button[text()='Sign In']"
+
+
+#HomePage
+HomePage.inspect.userName = ".//span[contains(text(),'auto')]"
+HomePage.click.createPost = ".//a[contains(text(),'Create Post')]"
+HomePage.inspect.MyProfile = ".//header/div[1]/div[1]/a[2]/img[1]"
+HomePage.click.Chat = ".//header/div[1]/div[1]/span[1]/*[1]"
+HomePage.click.SignOut = ".//button[contains(text(),'Sign Out')]"
+
+
+#MyProfilePage
+MyProfilePage.greeting.inspect.userName = ".//body/div[2]/h2[contains(text(),'auto')]"
+MyProfilePage.inspect.addedPost = ".//body[1]/div[2]/div[2]/a[1]/strong[1][contains(text(),'test')]"
+
+
+#CreatePostPage
+CreatePostPage.input.titleField = ".//input[@id='post-title']"
+CreatePostPage.input.bodyContentField = ".//textarea[@id='post-body']"
+CreatePostPage.click.saveNewPost = ".//button[contains(text(),'Save New Post')]"
+
+
+#ChatPage
+ChatPage.input.chatMessageField = ".//form[@id='chatForm']"
+ChatPage.inspect.chatMessage = ".//div[contains(text(),'New chat message')]"
+ChatPage.inspect.chatMessage = ".//div[contains(text(),'Second chat message')]"
+ChatPage.click.closeChatButton = ".//body/div[@id='chat-wrapper']/div[1]/span[1]/*[1]"
