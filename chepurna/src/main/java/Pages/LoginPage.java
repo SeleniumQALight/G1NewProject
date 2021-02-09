@@ -26,7 +26,7 @@ public class LoginPage extends ParentPage{
             WebElement inputLogin = webDriver.findElement(By.xpath(".//form[@action='/login']//input[@name='username']"));
             inputLogin.clear();
             inputLogin.sendKeys(login);
-            logger.info(login + "was inputted into Login Input");
+            logger.info(login + " was inputted into Login Input");
         }catch (Exception e){
             logger.error("Cannot work with login input");
             Assert.fail("Cannot work with login input");
@@ -38,7 +38,7 @@ public class LoginPage extends ParentPage{
             WebElement inputLogin = webDriver.findElement(By.xpath(".//form[@action='/login']//input[@name='password']"));
             inputLogin.clear();
             inputLogin.sendKeys(passWord);
-            logger.info(passWord + "was inputted into passWord Input");
+            logger.info(passWord + " was inputted into passWord Input");
         }catch (Exception e){
             logger.error("Cannot work with passWord input");
             Assert.fail("Cannot work with passWord input");
@@ -50,10 +50,17 @@ public class LoginPage extends ParentPage{
             WebElement button = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
             button.click();
             logger.info("Button Sign In was clicked");
-
         } catch (Exception e){
             logger.error("Cannot work with Button input");
             Assert.fail("Cannot work with Button input");
+        }
+    }
+
+    public boolean isMessageErrorVisible() {
+        try {
+            return webDriver.findElement(By.xpath(".//*[contains(text(),'Error')]")).isDisplayed();
+        }catch (Exception e){
+            return false;
         }
     }
 }
