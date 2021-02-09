@@ -1,0 +1,30 @@
+#LoginPage
+LoginPage.heading = ".//h1"
+LoginPage.input.userName_for_register = ".//input[@id="username-register"]"
+LoginPage.input.email = ".//input[@id="email-register"]"
+LoginPage.input.password_for_register = ".//input[@id="password-register"]"
+LoginPage.button.register = ".//button[@type='submit' and text()='Sign up for OurApp']"
+LoginPage.input.userName_for_login = ".//input[@placeholder='Username']"
+LoginPage.input.password_for_login = ".//input[@placeholder='Password']"
+LoginPage.button.login = ".//button[text()='Sign In']"
+
+
+#HomePage
+HomePage.heading = ".//h2"
+HomePage.button.logout = ".//button[text()='Sign Out']"
+HomePage.header.CreatePost = "//*[@href="/create-post" and text() ='Create Post']"
+HomePage.header.MyProfile = ".//img[@data-original-title='My Profile']"
+HomePage.MyProfile.Posts_tab = ".//a[@href= '/profile/auto' and contains (text(), 'Posts')]"
+HomePage.MyProfile.Followers_tab = ".//a[@href= '/profile/auto/followers' and contains (text(), 'Followers')]"
+HomePage.MyProfile.Following_tab = ".//a[@href= '/profile/auto/following' and contains (text(), 'Following')]"
+HomePage.CreatePost.Title = ".//input[@id= 'post-title']"
+HomePage.CreatePost.Body = ".//textarea[@id= 'post-body']"
+HomePage.CreatePost.checkbox = ".//input[@type= 'checkbox' and @id = '”UniquePost”']"
+HomePage.CreatePost.dropdown = ".//select"
+HomePage.CreatePost.button = ".//button[text() = 'Save New Post']"
+HomePage.MyProfile.name_of_new_post = ".//*[contains (text(), 'Mой первый пост')]"
+
+
+Дальше лишние локаторы, но я не стала удалять)
+HomePage.header.Search = ".//*[@data-original-title = 'Search']"
+HomePage.search_field = ".//input[@id = 'live-search-field']"
