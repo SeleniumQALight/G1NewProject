@@ -17,5 +17,8 @@ public class HomePage extends ParentPage {
        return isElementDisplayed(buttonSignOut);
     }
 
+    public boolean isButtonSignOutNotVisible() {
+        return !isButtonSignOutVisible();
+    }
 
 }
