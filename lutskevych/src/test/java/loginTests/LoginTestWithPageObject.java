@@ -15,10 +15,11 @@ public class LoginTestWithPageObject extends BaseTest {
     }
     @Test
     public void inValidLogin(){
-        loginPage.openLoginPage();
-        loginPage.enterLoginSignIn("auto");
-        loginPage.enterPasswordSignIn("123456");
-        loginPage.clickButtonSignIn();
+//        loginPage.openLoginPage();
+////        loginPage.enterLoginSignIn("auto");
+////        loginPage.enterPasswordSignIn("123456");
+////        loginPage.clickButtonSignIn();
+        loginPage.fillLoginFormAndSubmit("WrongLogin", "123456qwerty");
 
         checkExpectedResult("Allert Errorr is not visible",loginPage.isAllertErrorrVisible());
         checkExpectedResult("Button Sign Up For Our App Is visible",loginPage.buttonSignUpForOurAppIsVisible());
