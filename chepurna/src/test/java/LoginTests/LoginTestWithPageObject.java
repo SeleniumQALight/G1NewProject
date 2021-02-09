@@ -17,11 +17,8 @@ public class LoginTestWithPageObject extends BaseTest {
 
     @Test
     public void invalidPassword(){
-        loginPage.openLoginPage();
-        loginPage.enterLoginSignIn("auto");
-        loginPage.enterPassSignIn("123456");
-        loginPage.clickButtonSignIn();
+       loginPage.fillLoginFormAndSubmit("WrongLogin", "123456qwerty");
 
-        checkExpectedResult("Error message in not visible", loginPage.isMessageErrorVisible());
+        checkExpectedResult("Button SignOut is visible, but should't", !homePage.isButtonSignOutVisible());
     }
 }
