@@ -4,8 +4,19 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage{
+    @FindBy(xpath = ".//*[@placeholder='Username']")
+    private WebElement inputLogin;
+
+    @FindBy(xpath = ".//*[@placeholder='Password']")
+    private WebElement inputPassWord;
+
+    @FindBy(xpath = ".//button[text()='Sign In']")
+    private WebElement buttonSignIn;
+
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -19,38 +30,21 @@ public class LoginPage extends ParentPage{
         }
     }
 
-    public void enterLoginSignIn(String login) {
-        try{
-            WebElement inputLogin = webDriver.findElement(By.xpath(".//*[@placeholder='Username']"));
-            inputLogin.clear();
-            inputLogin.sendKeys(login);
-            logger.info(login + " was inputted into Login Input");
-        }catch (Exception e){
-            logger.error("Can't work with Login Input");
-            Assert.fail("Can't work with Login Input");
-        }
+    public void  enterLoginSignIn(String login) {
+        enterTextInToElement(inputLogin, login);
     }
     public void enterPassWordSignIn(String passWord) {
-        try{
-            WebElement inputLogin = webDriver.findElement(By.xpath(".//*[@placeholder='Password']"));
-            inputLogin.clear();
-            inputLogin.sendKeys(passWord);
-            logger.info(passWord + " was inputted into PassWord Input");
-        }catch (Exception e){
-            logger.error("Can't work with PassWord Input");
-            Assert.fail("Can't work with PassWord Input");
-        }
+        enterTextInToElement(inputPassWord, passWord);
     }
 
     public void clickButtonSignIn() {
-        try{
-            WebElement button = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
-            button.click();
-logger.info("Button Sign In was clicked");
-
-        }catch (Exception e) {
-            logger.error("Can't work with Button SignIn");
-            Assert.fail("Can't work with Button SignIn");
+       clickOnElement(buttonSignIn);
+        }
+        public void fillLoginFormAndSubmit(String login, String pass){
+        openLoginPage();
+        enterLoginSignIn(login);
+        enterPassWordSignIn(pass);
+        clickButtonSignIn();
         }
     }
-}
+
