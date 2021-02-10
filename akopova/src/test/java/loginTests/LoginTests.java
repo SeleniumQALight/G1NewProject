@@ -30,7 +30,7 @@ public class LoginTests {
         System.out.println("'auto' was inputted into LoginInput");
 
         webDriver.findElement(By.xpath(".//*[@placeholder='Password']")).clear();
-        webDriver.findElement(By.xpath(".//*[@placeholder='Password']")).sendKeys("12356qwerty");
+        webDriver.findElement(By.xpath(".//*[@placeholder='Password']")).sendKeys("123456qwerty");
         System.out.println("'123456qwerty' was inputted into InputPass");
 
         webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
