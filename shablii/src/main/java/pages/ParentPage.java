@@ -15,7 +15,7 @@ public class ParentPage {
 
     }
 
-    public void enterTextIntoElement(WebElement webElement, String text){
+    protected void enterTextIntoElement(WebElement webElement, String text){
         try {
             webElement.clear();
             webElement.sendKeys(text);
@@ -26,7 +26,7 @@ public class ParentPage {
     }
 
 
-    public void clickOnElement(WebElement webElement){
+    protected void clickOnElement(WebElement webElement){
         try{
             webElement.click();
             logger.info("Element was clicked");
@@ -46,6 +46,9 @@ public class ParentPage {
         }
     }
 
+    protected void checkIsElementVisible(WebElement webElement){
+        Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
+    }
 
 
     private void printErrorMessageAndStopTest(Exception e) {
