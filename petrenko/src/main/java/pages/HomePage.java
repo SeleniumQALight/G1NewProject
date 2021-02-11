@@ -10,6 +10,9 @@ public class HomePage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Sign Out']")
     private WebElement buttonSignOut;
 
+    @FindBy(xpath = ".//*[text()='Create Post']")
+    private WebElement createPostButton;
+
 
     public HomePage(WebDriver webDriver) {
 
@@ -23,6 +26,17 @@ public class HomePage extends ParentPage {
 
     public boolean isButtonSignOutNotVisible() {
         return !isElementDisplayed(buttonSignOut);
+    }
+
+    public  CreatePostPage clickOnCreatePostButton(){
+
+        clickOnElement(createPostButton);
+        return new CreatePostPage(webDriver);
+    }
+
+    public HomePage checkisButtonSignOutVisible(){
+        checkIsElementVisible(buttonSignOut);
+        return this;
     }
 
 }
