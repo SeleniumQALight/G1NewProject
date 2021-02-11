@@ -39,5 +39,4 @@ public class BaseTest {
     protected void checkExpectedResult(String message, boolean actualResult){
         Assert.assertTrue(message, actualResult);
     }
-
 }
