@@ -35,7 +35,6 @@ public class CreatePostPage extends ParentPage {
             e.printStackTrace();
         }
 
-
         enterTextInToElement(inputTitle, title);
         return this;
     }

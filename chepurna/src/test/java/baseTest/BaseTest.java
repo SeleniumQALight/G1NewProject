@@ -2,6 +2,7 @@ package baseTest;
 
 import Pages.HomePage;
 import Pages.LoginPage;
+import Pages.SinglePostPage;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Assert;
@@ -17,6 +18,7 @@ public class BaseTest {
     protected Logger logger = Logger.getLogger(getClass());
     protected LoginPage loginPage;
     protected HomePage homePage;
+    protected SinglePostPage singlePostPage;
 
 
     @Before
