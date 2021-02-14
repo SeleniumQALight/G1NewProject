@@ -38,8 +38,6 @@ public class BaseTest {
     public void tearDown(){
         webDriver.quit();
         logger.info("Browser was closed");
-
-
     }
 
     protected void checkExpectedResult(String message, boolean actualResult){

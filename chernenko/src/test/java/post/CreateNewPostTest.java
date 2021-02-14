@@ -2,9 +2,19 @@ package post;
 
 import baseTest.BaseTest;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import pages.CreatePostPage;
+import pages.ParentPage;
+
+import static org.hamcrest.Matchers.containsString;
 
 public class CreateNewPostTest extends BaseTest {
+
+
+
     @Test
     public void createNewPost (){
         loginPage.loginWithValidCred()
@@ -20,6 +30,6 @@ public class CreateNewPostTest extends BaseTest {
 
     @After
     public void deletePost(){
-
+        CreatePostPage.clickOnDeleteButton();
     }
 }
