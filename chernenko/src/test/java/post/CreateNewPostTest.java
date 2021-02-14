@@ -2,14 +2,8 @@ package post;
 
 import baseTest.BaseTest;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import pages.CreatePostPage;
-import pages.ParentPage;
-
-import static org.hamcrest.Matchers.containsString;
+import pages.SinglePostPageWithNewPost;
 
 public class CreateNewPostTest extends BaseTest {
 
@@ -23,7 +17,8 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTitleIntoInputTitle("Cherchenko Lena Title of Post")
                 .enterTextIntoInputBody("Cherchenko Post Body")
                 .clickOnButtonSaveNewPost()
-                .checkIsRedirectToSinglePostPage();
+                .checkIsRedirectToSinglePostPage()
+                .clickOnDeleteButton();
 
     }
 

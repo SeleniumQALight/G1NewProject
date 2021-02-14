@@ -48,9 +48,11 @@ public class CreatePostPage extends ParentPage {
         return new SinglePostPage(webDriver);
     }
 
+    @After
     public SinglePostPage clickOnDeleteButton(){
-        clickOnElement(PostPage.deletePostButton);
-        return  new SinglePostPage(webDriver);
+
+        clickOnDeleteButton();
+        return new SinglePostPage(webDriver);
     }
 
 }
