@@ -14,22 +14,17 @@ import static org.hamcrest.Matchers.containsString;
 public class CreateNewPostTest extends BaseTest {
 
 
-
     @Test
-    public void createNewPost (){
+    public void createNewPost() {
         loginPage.loginWithValidCred()
-                     .checkIsButtonSignOutVisible()
+                .checkIsButtonSignOutVisible()
                 .clickOnCreatePostButton()
-                     .checkIsRedirectedOnCreatePostPage ()
-                     .enterTitleIntoInputTitle("Cherchenko Lena Title of Post")
-                     .enterTextIntoInputBody("Cherchenko Post Body")
+                .checkIsRedirectedOnCreatePostPage()
+                .enterTitleIntoInputTitle("Cherchenko Lena Title of Post")
+                .enterTextIntoInputBody("Cherchenko Post Body")
                 .clickOnButtonSaveNewPost()
-                    .checkIsRedirectToSinglePostPage();
+                .checkIsRedirectToSinglePostPage();
 
     }
 
-    @After
-    public void deletePost(){
-        CreatePostPage.clickOnDeleteButton();
-    }
 }
