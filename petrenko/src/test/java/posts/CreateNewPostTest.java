@@ -29,7 +29,9 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsPostWithTheValidTitleIsVisible()
                 .clickOnPostWithTheValidTitle()
                 .checkIsRedirectOnSinglePostPage()
-                .clickOnDeletePostButton();
+                .clickOnDeletePostButton()
+                .clickOnMyProfileButton()
+                .checkIsPostWithTheValidTitleIsNotVisible();
 
     }
 

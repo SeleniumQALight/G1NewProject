@@ -17,5 +17,17 @@ public class DeletePost extends BaseTest {
                .clickOnDeletePostButton();
 
     }
+    @Test
+    public void deleteSecondPost() {
+        loginPage.loginWithValidCred()
+                .checkIsButtonSignOutVisible()
+                .clickOnMyProfileButton()
+                .checkIsRedirectOnMyProfilePage()
+                .checkIsPostWithTheValidTitleIsVisible()
+                .clickOnPostWithTheValidTitle()
+                .checkIsRedirectOnSinglePostPage()
+                .clickOnDeletePostButton();
+
+    }
 
 }
