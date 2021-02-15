@@ -4,9 +4,14 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class ParentPage {
+
+    @FindBy(xpath = ".//*[contains(text(),'Complex app for testing')]")
+    private WebElement homePageLink;
+
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     public ParentPage (WebDriver webDriver)
@@ -27,7 +32,7 @@ public class ParentPage {
         }
     }
 
-    protected void clickOnElement(WebElement webElement) {
+    public void clickOnElement(WebElement webElement) {
         try {
             webElement.click();
             logger.info("Element was clicked");
@@ -60,7 +65,15 @@ public class ParentPage {
         Assert.fail("Can't work with element " + e);
     }
 
-
+    public void clickOnHomePageLink() {
+        try {
+            clickOnElement(homePageLink);
+            Thread.sleep(1000);
+            logger.info("Homepage opened");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }
