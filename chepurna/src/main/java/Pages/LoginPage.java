@@ -1,5 +1,6 @@
 package Pages;
 
+import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -73,5 +74,10 @@ public void clickButtonSignIn() {
         enterLoginSignIn(login);
         enterPassSignIn(pass);
         clickButtonSignIn();
+    }
+
+    public HomePage loginWithValidCred(){
+    fillLoginFormAndSubmit(TestData.VALID_LOGIN, TestData.VALID_PASSWORD);
+    return new HomePage(webDriver); //result is new page Home page
     }
 }
