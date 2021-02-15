@@ -11,12 +11,19 @@ public class SinglePostPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
     private WebElement successMessageElement;
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement deleteButton;
 
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
     public SinglePostPage checkIsRedirectToSinglePostPage(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Assert.assertThat("Invalid page", webDriver.getCurrentUrl() , containsString("https://qa-complex-app-for-testing.herokuapp.com/post/")); //содержит ли частичный урл
                 //<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
                 //        <dependency>
@@ -33,4 +40,10 @@ public class SinglePostPage extends ParentPage {
         checkIsElementVisible(successMessageElement);
         return this;
     }
+
+    public ProfilePage clickOnDeleteButton(){
+        clickOnElement(deleteButton);
+        return new ProfilePage(webDriver);
+    }
+
 }
