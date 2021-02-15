@@ -12,7 +12,7 @@ public class CreateNewPostTest extends BaseTest {
                  .checkIsButtonSignOutVisible()
                  .clickOnCreatePostButton()
            .checkIsRedirectedOnCreatePostPage()
-                .enterTitleInToInputTile("Taras Title of Post")
+                .enterTitleInToInputTile("Vera Title of Post")
                 .enterTextInToInputBody("Post body")
                 .clickOnButtonSaveNewPost()
            .checkIsRedirectToSinglePostPage()
