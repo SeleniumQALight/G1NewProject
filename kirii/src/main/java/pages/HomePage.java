@@ -15,6 +15,8 @@ public class HomePage extends ParentPage {
     private WebElement createPostButton;
     @FindBy(xpath = ".//a[contains(text(),'Complex app for testing - QA')]")
     private WebElement createHomeButton;
+    @FindBy(xpath = ".//*[@data-original-title='My Profile']")
+    private WebElement profileButton;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -47,6 +49,10 @@ public class HomePage extends ParentPage {
         clickOnElement(createHomeButton);
         return new HomePage(webDriver);
     }
+    public ProfilePage clickOnProfileButton(){
+        clickOnElement(profileButton);
+        return new ProfilePage(webDriver);
+    }
 
     public HomePage checkIsRedirectedOnHomePage(){
         try {
@@ -55,6 +61,16 @@ public class HomePage extends ParentPage {
             e.printStackTrace();
         }
         Assert.assertEquals("Valid home page", "https://qa-complex-app-for-testing.herokuapp.com/" , webDriver.getCurrentUrl()); //"", expected, actual
+        return this;
+    }
+
+    public HomePage openHomePage() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (!isButtonSignOutVisible()){
+            loginPage.loginWithValidCred();
+        }
+        logger.info("Home Page was opened");
         return this;
     }
 }

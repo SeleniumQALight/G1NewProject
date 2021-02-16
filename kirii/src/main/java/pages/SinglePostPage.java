@@ -1,5 +1,6 @@
 package pages;
 
+import libs.Util;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,11 +20,7 @@ public class SinglePostPage extends ParentPage {
     }
 
     public SinglePostPage checkIsRedirectToSinglePostPage(){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Util.waitABit(2);
         Assert.assertThat("Invalid page", webDriver.getCurrentUrl() , containsString("https://qa-complex-app-for-testing.herokuapp.com/post/")); //содержит ли частичный урл
                 //<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
                 //        <dependency>
