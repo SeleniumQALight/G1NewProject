@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 
 public class CreatePostPage extends ParentPage {
 
+    public String title;
+
     @FindBy(id = "post-title")
     private WebElement inputTitle;
     @FindBy(id = "post-body")
@@ -33,6 +35,7 @@ public class CreatePostPage extends ParentPage {
             e.printStackTrace();
         }
         enterTextInToElement(inputTitle, title);
+        this.title = title;
         return this;
     }
 
@@ -41,9 +44,9 @@ public class CreatePostPage extends ParentPage {
         return this;
     }
 
-    public SinglePostpage clickOnButtonSavePost(){
+    public SinglePostPage clickOnButtonSavePost(){
         clickOnElement(clickOnButtonSaveNewPost);
-        return  new SinglePostpage(webDriver);
+        return  new SinglePostPage(webDriver);
     }
 
 }

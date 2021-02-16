@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
+import posts.DeletePost;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -19,7 +20,7 @@ public class BaseTest {
     Logger logger = Logger.getLogger(getClass());
     protected LoginPage loginPage;
     protected HomePage homePage;
-    protected CreatePostPage createPostPage;
+
 
     @Before
     public void setup() {
@@ -32,7 +33,7 @@ public class BaseTest {
         logger.info("Browser was open.");
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
-      //  createPostPage = new
+
 
     }
 
