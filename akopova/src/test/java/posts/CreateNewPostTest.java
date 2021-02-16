@@ -22,8 +22,20 @@ public class CreateNewPostTest extends BaseTest {
     }
 
     @After
+
     public void deletePost(){
+    singlePostPage.clickOnHomePageLink();
+               homePage.clickOnProfileIcon();
+                myProfilePage.checkIsRedirectedOnMyProfilePage()
+                              .clickOnPost();
+                singlePostPage.checkIsRedirectedToSinglePostPage()
+                        .clickOnDeleteIcon();
+                myProfilePage.checkIsRedirectedOnMyProfilePage()
+                        .checkForDeletionSuccess();
+
+            ;
 
     }
+
 
 }

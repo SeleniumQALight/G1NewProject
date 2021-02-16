@@ -20,8 +20,10 @@ public class BaseTest {
 
     @Before
     public void setUp(){
-
-        File fileFF = new File("./drivers/chromedriver");
+       // for mac OS
+       // File fileFF = new File("./drivers/chromedriver");
+        // for Win
+        File fileFF = new File("./drivers/chromedriver.exe");
         System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
         webDriver = new ChromeDriver();
 
@@ -38,8 +40,6 @@ public class BaseTest {
     public void tearDown(){
         webDriver.quit();
         logger.info("Browser was closed");
-
-
     }
 
     protected void checkExpectedResult(String message, boolean actualResult){

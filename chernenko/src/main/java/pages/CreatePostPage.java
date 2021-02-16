@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,6 +15,7 @@ public class CreatePostPage extends ParentPage {
 
     @FindBy (xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
+
 
     public CreatePostPage (WebDriver webDriver){
         super(webDriver);
@@ -45,4 +47,12 @@ public class CreatePostPage extends ParentPage {
         clickOnElement(buttonSaveNewPost);
         return new SinglePostPage(webDriver);
     }
+
+    @After
+    public SinglePostPage clickOnDeleteButton(){
+
+        clickOnDeleteButton();
+        return new SinglePostPage(webDriver);
+    }
+
 }

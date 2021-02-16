@@ -24,7 +24,7 @@ public class ParentPage {
         }
     }
 
-    protected void clickOnElement (WebElement webElement){
+    public void clickOnElement(WebElement webElement){
         try {
             webElement.click();
             logger.info("Element was clicked");

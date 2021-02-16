@@ -5,8 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import javax.security.auth.login.CredentialExpiredException;
-
 public class HomePage extends ParentPage{
 
     @FindBy(xpath = ".//*[@class = 'col-md-auto']")
@@ -17,6 +15,11 @@ public class HomePage extends ParentPage{
 
     @FindBy(xpath = ".//*[text()='Create Post']")
     private WebElement createPostButton;
+
+    @FindBy(xpath=".//*[@data-original-title='My Profile']")
+    private WebElement myProfileIcon;
+
+
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -51,6 +54,20 @@ public class HomePage extends ParentPage{
     public CreatePostPage clickOnCreatePostButton() {
         clickOnElement(createPostButton);
         return new CreatePostPage(webDriver);
+    }
+
+
+    public boolean checkForTheEnteredPost() {
+        try{
+            return webDriver.findElement(By.xpath(".//*[contains(text(),'auto')]")).isDisplayed();
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+    public void clickOnProfileIcon() {
+        clickOnElement(myProfileIcon);
     }
 
 

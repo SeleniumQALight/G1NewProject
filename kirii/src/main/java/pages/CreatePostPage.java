@@ -12,6 +12,9 @@ public class CreatePostPage extends ParentPage {
     private WebElement inputBody;
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
+    @FindBy(xpath = ".//*[@data-original-title='My Profile']")
+    private WebElement createProfileButton;
+
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -44,4 +47,11 @@ public class CreatePostPage extends ParentPage {
         clickOnElement(buttonSaveNewPost);
         return new SinglePostPage(webDriver);
     }
+
+    public ProfilePage clickOnProfileButton(){
+        clickOnElement(createProfileButton);
+        return new ProfilePage(webDriver);
+    }
+
+
 }

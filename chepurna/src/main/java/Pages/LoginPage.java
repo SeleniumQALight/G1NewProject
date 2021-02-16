@@ -17,10 +17,11 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath =".//button[text()='Sign In']")
     private WebElement buttonSignIn;
 
-//__________________________________________________________________________
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    //=========================================================
 
     //open Login page method
     public void openLoginPage(){
@@ -80,4 +81,5 @@ public void clickButtonSignIn() {
     fillLoginFormAndSubmit(TestData.VALID_LOGIN, TestData.VALID_PASSWORD);
     return new HomePage(webDriver); //result is new page Home page
     }
+
 }

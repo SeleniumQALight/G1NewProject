@@ -9,14 +9,23 @@ import static org.hamcrest.Matchers.containsString;
 
 
 public class SinglePostPage extends ParentPage {
+
     @FindBy(xpath = ".//*[contains(text(),'New post successfully created')]")
     private WebElement successMessageElement;
+    @FindBy(xpath = ".//form[contains(@class,'delete')]")
+    private WebElement deleteButton;
 
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
     public SinglePostPage checkIsRedirectToSinglePostPage(){
+        // TODO will be fixed
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Assert.assertThat("Invalid page",webDriver.getCurrentUrl(),containsString("https://qa-complex-app-for-testing.herokuapp.com/post/"));
         return this;
     }
@@ -25,6 +34,10 @@ public class SinglePostPage extends ParentPage {
         checkIsElementVisible(successMessageElement);
         return this;
     }
+    public void clickOnDeleteButton (){
+        clickOnElement(deleteButton);
+    }
+
 
 
 }

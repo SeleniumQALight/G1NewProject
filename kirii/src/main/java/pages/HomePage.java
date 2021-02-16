@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,8 @@ public class HomePage extends ParentPage {
 
     @FindBy(xpath = ".//*[text()='Create Post']")
     private WebElement createPostButton;
+    @FindBy(xpath = ".//a[contains(text(),'Complex app for testing - QA')]")
+    private WebElement createHomeButton;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -38,5 +41,20 @@ public class HomePage extends ParentPage {
     public CreatePostPage clickOnCreatePostButton(){
         clickOnElement(createPostButton);
         return new CreatePostPage(webDriver);
+    }
+
+    public HomePage clickOnHomePage(){
+        clickOnElement(createHomeButton);
+        return new HomePage(webDriver);
+    }
+
+    public HomePage checkIsRedirectedOnHomePage(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Assert.assertEquals("Valid home page", "https://qa-complex-app-for-testing.herokuapp.com/" , webDriver.getCurrentUrl()); //"", expected, actual
+        return this;
     }
 }
