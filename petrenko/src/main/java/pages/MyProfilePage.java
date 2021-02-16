@@ -1,33 +1,37 @@
 package pages;
 
 import libs.TestData;
+import libs.Util;
 import org.junit.Assert;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
 
 public class MyProfilePage extends ParentPage {
 
-    @FindBy(xpath = ".//*[text()= '" + TestData.VALID_TITLE + "']")
+    final String postTitleLocator = ".//*[text()= '%s']";
+
+    @FindBy(xpath = postTitleLocator)
     private WebElement validTitleOfPost;
 
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
     private WebElement myProfileButton;
+    @FindBy(xpath = ".//*[contains(text(), 'successfully deleted')]")
+    private WebElement successPostDeleteElement;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
 
     public MyProfilePage checkIsRedirectOnMyProfilePage() {
-        //TODO
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        Util.waitABit(2);
         Assert.assertThat("Invalid page", webDriver.getCurrentUrl(), containsString("https://qa-complex-app-for-testing.herokuapp.com/profile"));
         return this;
     }
@@ -47,19 +51,15 @@ public class MyProfilePage extends ParentPage {
 
 
     public SinglePostPage clickOnPostWithTheValidTitle() {
-        //TODO
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        Util.waitABit(2);
 
         clickOnElement(validTitleOfPost);
         return new SinglePostPage(webDriver);
     }
 
 
-    public MyProfilePage checkIsPostWithTheValidTitleIsNotVisible() {
+    public MyProfilePage checkIsPostWithTheValidTitleIsNotVisible(String postTitle) {
         try {
             Assert.assertTrue("Element is visible", !isElementDisplayed(validTitleOfPost));
             logger.info("Post with title \"" + TestData.VALID_TITLE + "\" is not visible in the  list of posts.");
@@ -73,14 +73,32 @@ public class MyProfilePage extends ParentPage {
     }
 
     public MyProfilePage clickOnMyProfileButton() {
-        //TODO
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Util.waitABit(2);
         clickOnElement(myProfileButton);
         return new MyProfilePage(webDriver);
     }
 
+    public MyProfilePage deletePostWhilePresent(String post_title) {
+
+        List<WebElement> listOfPost = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
+        int counter =0;
+        while (!listOfPost.isEmpty() && counter < 100) {
+            clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, post_title))));
+            new SinglePostPage(webDriver)
+                    .checkIsRedirectOnSinglePostPage()
+                    .clickOnDeletePostButton()
+                    .checkIsRedirectOnMyProfilePage()
+                    .checkSuccessDeletePost();
+            Util.waitABit(2);
+            listOfPost = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
+
+        }
+
+        return this;
+    }
+
+    private MyProfilePage checkSuccessDeletePost() {
+        checkIsElementVisible(successPostDeleteElement);
+        return this;
+    }
 }
