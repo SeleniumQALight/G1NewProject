@@ -32,10 +32,10 @@ public class LoginPage extends ParentPage {
     }
 
     public void  enterLoginSignIn(String login) {
-        enterTextInToElement(inputLogin, login);
+        enterTextIntoElement(inputLogin, login);
     }
     public void enterPassWordSignIn(String passWord) {
-        enterTextInToElement(inputPassWord, passWord);
+        enterTextIntoElement(inputPassWord, passWord);
     }
 
     public void clickButtonSignIn() {
