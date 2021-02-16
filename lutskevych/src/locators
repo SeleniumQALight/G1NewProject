@@ -22,5 +22,9 @@ CreatePost.header.NewPostSuccessfullyCreated' = ".//*[contains(text(),'New post 
 CreatePost.FindPostText = ".//*[contains(text(),'Weather test')]"
 CreatePost.form.deletePost = ".//form[contains(@class,'delete')]"
 
+#MyProfile
+MyProfile.href.posts = ".//a[contains(text(),'Posts')]"
+MyProfile.div.PostSuccessfullyDeletedText = "//*[contains(text(),'Post successfully deleted')]"
+
 
 
