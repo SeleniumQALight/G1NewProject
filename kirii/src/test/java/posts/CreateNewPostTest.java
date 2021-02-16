@@ -11,7 +11,7 @@ public class CreateNewPostTest extends BaseTest {
         .checkIsButtonSignOutVisible()
         .clickOnCreatePostButton()
                 .checkIsRedirectedOnCreatePostPage() //переход на другую страницу
-        .enterTitleToInputTitle("Yaroslav Title of Post")
+        .enterTitleToInputTitle("Yaroslav4 Title of Post")
         .enterTextIntoInputBody("Post body")
         .clickOnButtonSaveNewPost()
                 .checkIsRedirectToSinglePostPage()
@@ -20,6 +20,19 @@ public class CreateNewPostTest extends BaseTest {
 
     @After
     public void deletePost(){
-        //опен хомпейдж, убедиться что  хом пейдже, кликнуть на профайл кнопку, кликнуть на пост, найти элемент по посту (и удалить)
+        //опен хомпейдж, убедиться что  хом пейдже, кликнуть на профайл кнопку, найти элемент по посту, кликнуть на пост (и удалить)
+        homePage.clickOnHomePage()
+        .checkIsRedirectedOnHomePage();
+        createPostPage.clickOnProfileButton()
+                .checkIsRedirectedToProfilePage()
+        .checkIsFindPostButton()
+        .clickOnPostButton()
+                .checkIsRedirectToSinglePostPage()
+        .clickOnDeleteButton()
+                .checkIsRedirectedToProfilePage()
+        .checkIsSuccessMessageDisplayed()
+        ;
+
+
     }
 }
