@@ -1,6 +1,7 @@
 package posts;
 
 import baseTest.BaseTest;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
@@ -12,12 +13,19 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsButtonSignOutVisible()
                 .clickOnCreatePostButton()
                 .checkIsRedirectedOnCreatePostPage()
-                .enterTitleIntoInputTitle("Cherchenko Lena Title of Post")
-                .enterTextIntoInputBody("Cherchenko Post Body")
+                .enterTitleIntoInputTitle("Kosenko Title of Post")
+                .enterTextIntoInputBody("Kosenko Post Body")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectToSinglePostPage()
                 ;
-
+    }
+    @After
+    public void deletePost(){
+        homePage
+                .openHomePage()
+                .checkIsButtonSignOutVisible(){
+            clickOnElement
+        }
     }
 
 }

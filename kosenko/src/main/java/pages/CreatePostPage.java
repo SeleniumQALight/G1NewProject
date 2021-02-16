@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class CreatePostPage extends ParentPage {
     @FindBy (id = "post-title")
     private WebElement inputTitle;
@@ -53,6 +55,13 @@ public class CreatePostPage extends ParentPage {
 
         clickOnDeleteButton();
         return new SinglePostPage(webDriver);
+    }
+
+    public LoginPage openHomePage() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+
+        return loginPage;
     }
 
 }
