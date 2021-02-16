@@ -9,27 +9,56 @@ import org.openqa.selenium.support.FindBy;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.contains;
 
-public class SinglePostPage extends ParentPage{
+public class SinglePostPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
     private WebElement successMessageElement;
+
+    @FindBy(xpath = ".//button[@data-original-title='Delete']")
+    private WebElement DeletePostButton;
+
+    @FindBy(xpath = ".//img[@data-original-title='My Profile']")
+    private WebElement myProfileButton;
 
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public SinglePostPage chechIsRedirectToSinglePostPage(){
+    //=========================================================
+
+    public SinglePostPage chechIsRedirectToSinglePostPage() {
         Assert.assertThat("Invalid page"
                 , webDriver.getCurrentUrl()
-                , containsString("https://qa-complex-app-for-testing.herokuapp.com/post/")) ;
+                , containsString("https://qa-complex-app-for-testing.herokuapp.com/post/"));
         return this;
     }
 
-    public SinglePostPage checkIsSuccessMessageDisplayed(){
+    public SinglePostPage checkIsSuccessMessageDisplayed() {
         checkIsElementVisible(successMessageElement);
         return this;
     }
 
+    //HOMEWORK 02-13
+    public ProfilePage clickOnMyProfileButton() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+        clickOnElement(myProfileButton);
+        return new ProfilePage(webDriver);
+    }
 
+    public ProfilePage clickOnDeletePostButton() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        clickOnElement(DeletePostButton);
+        return new ProfilePage(webDriver);
+    }
 }
+
