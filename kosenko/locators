@@ -1,0 +1,5 @@
+#LoginPage
+LoginPage.input.userName = ".//input[@id='username-register']"
+LoginPage.input.email = ".//input[@id='email-register']"
+LoginPage.input.password = ".//input[@id='password-register']"
+LoginPage.button.submit = ".//button[@type='submit']"
