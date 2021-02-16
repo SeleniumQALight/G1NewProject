@@ -12,7 +12,9 @@ LoginPage.register.input.password =  ".//form[@action='/register']//input[@name 
 
 HomePage.button.createPost =          ".//*[text() = 'Create Post']"
 HomePage.button.signOut =             ".//*[text() = 'Sign Out']"
-HomePage.icon.myProfile =             ".//img[@data-original-title="My Profile"]"
+HomePage.button.myProfileButton =     ".//*[@data-original-title='My Profile']"
+
+
 HomePage.icon.chat =
 
 #Profile
@@ -33,3 +35,6 @@ Post.icon.deletePost
 EditPost.input.title
 EditPost.input.BodyContent
 EditPost.button.SaveUpdates =
+
+# SinglPostPage
+SinglPostPage.button.deletePostButton = ".//button[@data-original-title="Delete"]"
