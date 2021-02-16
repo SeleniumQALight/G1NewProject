@@ -15,7 +15,7 @@ public class ParentPage {
         PageFactory.initElements(webDriver, this);
     }
 
-    public void enterTextInToElement(WebElement webElement, String text) {
+    protected void enterTextInToElement(WebElement webElement, String text) {
         try {
             webElement.clear();
             webElement.sendKeys(text);
@@ -25,7 +25,7 @@ public class ParentPage {
         }
     }
 
-    public void clickOnElement (WebElement webElement){
+    protected void clickOnElement (WebElement webElement){
         try {
             webElement.click();
             logger.info("Element was clicked");
@@ -49,6 +49,10 @@ public class ParentPage {
         logger.error("Can not work with element" + e);
         Assert.fail("Can not work with element" + e);
 
+    }
+
+    protected void checkIsElementVisible (WebElement webElement){
+        Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
     }
 
 

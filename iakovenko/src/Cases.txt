@@ -1,0 +1,41 @@
+1. TC#1:  "Sign up"
+	Open Chrome browser - Chrome browser is opened
+	Open site (https://qa-complex-app-for-testing.herokuapp.com/) - Site is opened
+	In input "Username" with placeholder "Pick a user name " enter user name (for example : TestUser)
+	In input "Email" with placeholder "you@example.com" enter email (for example: TestUser@test.com)
+	In input "Password" with placeholder "Create a password" enter password with a least 12 characters (for example: 123456qwerty)
+	Click button "Sign up for our App" - Welcome screen is opened, message "Hello TestUser, your feed is empty." is shown,
+
+2. TC#2: "Sign in"
+	Open Chrome browser - Chrome browser is opened
+	Open site (https://qa-complex-app-for-testing.herokuapp.com/) - Site is opened
+	In input "Username" with placeholder "Username" enter registered username (for example: Auto)
+	In input "Password" with placeholder "Password" enter user's password (for user Auto: "123456qwerty")
+	Click on button "Sign In" - username ("Auto") is displayed in user profile on the page
+
+3. TC#3: "Create post"
+	Open Chrome browser - Chrome browser is opened
+	Open site (https://qa-complex-app-for-testing.herokuapp.com/) - Site is opened
+	In input "Username" with placeholder "Username" enter registered username (for example: Auto)
+	In input "Password" with placeholder "Password" enter user's password (for user Auto: "123456qwerty")
+	Click on button "Sign In" - username ("Auto") is displayed in user profile on the page
+	Click on button "Create post" - "Create-post" page is opened
+	In input "Title" enter "Test post"
+	In input "Body content" enter  "Test body content"
+	Click on button "Save new Post" - User is redirected to the new page , message "New post successfully created" is displayed
+
+4. TC#4: "Log out"
+	Open Chrome browser - Chrome browser is opened
+	Open site (https://qa-complex-app-for-testing.herokuapp.com/) - Site is opened
+	In input "Username" with placeholder "Username" enter registered username (for example: Auto)
+	In input "Password" with placeholder "Password" enter user's password (for user Auto: "123456qwerty")
+	Click on button "Sign In" - username ("Auto") is displayed in user profile on the page
+	Click on button "Sign out" - User is redirected on LogIn page, Sign Up form is displayed
+
+5. TC#5: "Open Search field"
+	Open Chrome browser - Chrome browser is opened
+	Open site (https://qa-complex-app-for-testing.herokuapp.com/) - Site is opened
+	In input "Username" with placeholder "Username" enter registered username (for example: Auto)
+	In input "Password" with placeholder "Password" enter user's password (for user Auto: "123456qwerty")
+	Click on button "Sign In" - username ("Auto") is displayed in user profile on the page
+	Click on icon "Search" - Search field is opened
