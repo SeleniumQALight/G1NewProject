@@ -61,6 +61,10 @@ public class ParentPage {
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
         }
 
+        protected  void checkIsElementUnVisible(WebElement webElement){
+            Assert.assertTrue("Element is visible", !isElementDisplayed(webElement));
+        }
+
 
 
 
