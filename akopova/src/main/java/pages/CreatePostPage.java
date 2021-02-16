@@ -51,11 +51,5 @@ public class CreatePostPage extends ParentPage{
     }
 
 
-    /**
-    public clickSaveNewPostButton(WebElement button) {
-        clickOnElement(savePostButton);
-
-    }
-*/
 
 }
