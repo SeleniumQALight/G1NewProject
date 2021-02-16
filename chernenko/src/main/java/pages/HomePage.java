@@ -12,6 +12,9 @@ public class HomePage extends ParentPage{
     @FindBy (xpath =".//*[text()='Create Post']")
     private WebElement clickOnCreatePostButton;
 
+    @FindBy (xpath = ".//*[@data-original-title='My Profile']")
+    private WebElement profileButton;
+
     public HomePage(WebDriver webDriver){
         super(webDriver);
     }
@@ -30,5 +33,21 @@ public class HomePage extends ParentPage{
     public CreatePostPage clickOnCreatePostButton (){
         clickOnElement(clickOnCreatePostButton);
         return new CreatePostPage(webDriver);
+    }
+
+    public HomePage openHomePage() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (!isButtonSignOutVisible()){
+            loginPage.loginWithValidCred();
+
+        }
+        logger.info("Home page was opened");
+        return this;
+    }
+
+    public ProfilePage clickOnProfileButton() {
+        clickOnElement(profileButton);
+        return new ProfilePage(webDriver);
     }
 }

@@ -6,19 +6,35 @@ import org.junit.Test;
 import pages.SinglePostPageWithNewPost;
 
 public class CreateNewPostTest extends BaseTest {
-
+    final String POST_TITLE = "Cherchenko Lena Title of Post";
+    final String POST_BODY_TEXT = "Cherchenko Post Body";
 
     @Test
     public void createNewPost() {
         loginPage.loginWithValidCred()
                 .checkIsButtonSignOutVisible()
-                .clickOnCreatePostButton()
+                    .clickOnCreatePostButton()
                 .checkIsRedirectedOnCreatePostPage()
-                .enterTitleIntoInputTitle("Cherchenko Lena Title of Post")
-                .enterTextIntoInputBody("Cherchenko Post Body")
-                .clickOnButtonSaveNewPost()
+                    .enterTitleIntoInputTitle(POST_TITLE)
+                    .enterTextIntoInputBody(POST_BODY_TEXT)
+                    .clickOnButtonSaveNewPost()
                 .checkIsRedirectToSinglePostPage()
-                .clickOnDeleteButton();
+                    .checkIsSuccessMessageDisplayed()
+
+                ;
+
+    }
+
+    @After
+    public void deletePost (){
+        homePage
+                .openHomePage()
+                .checkIsButtonSignOutVisible()
+                .clickOnProfileButton()
+                .checkIsRedirectToProfilePage()
+                    .deletePostWhilePresent(POST_TITLE)
+        ;
+
 
     }
 
