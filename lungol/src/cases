@@ -1,0 +1,169 @@
+Login page - Sign up form
+
+TC1 - Empty fields can not be submitted to Sign in form
+Preconditions
+- Browser is opened;
+- Page https://qa-complex-app-for-testing.herokuapp.com/ is opened;
+STR
+1. Observe login page to find Sign up form;
+2. Hover over the Sign up button;
+3. Verify all fields of Sign up form have no entered values;
+4. Click "Sign up for our App" button;
+EXP
+All mandatory fields are validated and highlighted red and have corresponding tooltips:
+User stays on Login page.
+
+TC2 - Tooltip for empty Username field is displayed
+Preconditions
+- Browser is opened;
+- Page https://qa-complex-app-for-testing.herokuapp.com/ is opened;
+STR
+1. Observe login page to find Sign up form;
+2. Verify Username field has "Pick a username" placeholder;
+3. Enter valid email into Email field;
+4. Enter valid password into Password field;
+5. Click "Sign up for our App" button;
+EXP
+All mandatory fields are validated.
+"Username" field is highlighted red and has corresponding tooltip:
+"Username must be at least 3 characters.".
+User stays on Login page.
+
+TC3 - Tooltip for empty Email field is displayed
+Preconditions
+- Browser is opened;
+- Page https://qa-complex-app-for-testing.herokuapp.com/ is opened;
+STR
+1. Observe login page to find Sign up form;
+2. Enter valid username into Username field;
+3. Verify Email field has "you@example.com" placeholder;
+4. Enter valid password into Password field;
+5. Click "Sign up for our App" button;
+EXP
+All mandatory fields are validated.
+"Email" field is highlighted red and has corresponding tooltip:
+"You must provide a valid email address.".
+User stays on Login page.
+
+TC3 - Tooltip for empty Password field is displayed
+Preconditions
+- Browser is opened;
+- Page https://qa-complex-app-for-testing.herokuapp.com/ is opened;
+STR
+1. Observe login page to find Sign up form;
+2. Enter valid username into Username field;
+3. Enter valid email into Email field;
+4. Verify Email field has "Create a password" placeholder;
+5. Click "Sign up for our App" button;
+EXP
+All mandatory fields are validated.
+"Password" field is highlighted red and has corresponding tooltip:
+"Password must be at least 12 characters.".
+User stays on Login page.
+
+TC4 - New user is created via Sign up form
+Preconditions
+- Browser is opened;
+- Page https://qa-complex-app-for-testing.herokuapp.com/ is opened;
+STR
+1. Observe login page to find Sign up form;
+2. Enter valid username into Username field;
+3. Enter valid email into Email field;
+4. Enter valid password into Password field;
+5. Click "Sign up for our App" button;
+EXP
+User is created, logged in and redirected to Home page.
+
+Login page - Sign in form
+
+TC5 - User is not signed in with invalid credentials.
+Preconditions
+- Browser is opened;
+- Page https://qa-complex-app-for-testing.herokuapp.com/ is opened;
+- User credentials: Username:vera, Password:123456qwerty.
+STR
+1. Observe login page to find Sign in form;
+2. Verify all fields of Sign in form have no entered values;
+3. Hover over the "Sign in" button;
+4. Click "Sign in" button;
+EXP
+User stays on Login page.
+"Errorr" message is displayed on the screen.
+
+TC6 - User is signed in with valid credentials
+Preconditions
+- Browser is opened;
+- Page https://qa-complex-app-for-testing.herokuapp.com/ is opened;
+- User credentials: Username:vera, Password:123456qwerty.
+STR
+1. Observe login page to find Sign in form;
+2. Enter valid username given in Preconditions into Username field;
+3. Enter valid Password given in Preconditions into Password fields;
+4. Hover over the "Sign in" button;
+5. Click "Sign in" button;
+EXP
+User is logged in and redirected to Home page.
+Observe new options available in header: Search, chat, profile,
+Create post button and Sign out button.
+Personalized greeting is displayed on the home screen.
+
+TC7 - Error message is shown after submitting invalid credentials into Sign in form
+Preconditions
+- Browser is opened;
+- Page https://qa-complex-app-for-testing.herokuapp.com/ is opened;
+- User credentials: Username:vera, Password:123456qwerty.
+STR
+1. Observe login page to find Sign in form;
+2. Enter invalid username into Username field;
+3. Enter invalid Password into Password fields;
+4. Hover over the "Sign in" button;
+5. Click "Sign in" button;
+EXP
+User is logged in and redirected to Home page.
+
+TC8 - Clicking on site name in header clears every field
+Preconditions
+- Browser is opened;
+- Page https://qa-complex-app-for-testing.herokuapp.com/ is opened;
+STR
+1. Observe login page to find Sign in form;
+2. Enter valid username into Username field;
+3. Enter valid Password into Password fields;
+4. Observe login page to find Sign up form;
+5. Enter valid username into Username field;
+6. Enter valid email into Email field;
+7. Enter valid password into Password field;
+8. Find site name "Complex app for testing - QA" and click it.
+EXP
+All entered info is removed as page is refreshed.
+
+HomePage
+
+TC9 - Clicking on Sign out button signs user out to login page
+Preconditions
+- Browser is opened;
+- Page https://qa-complex-app-for-testing.herokuapp.com/ is opened;
+- User is logged in with credentials: Username:vera, Password:123456qwerty.
+STR
+1. Observe Home page to find "Sign out" button;
+2. Click "Sign out" button;
+EXP
+User is signed out to Login page.
+
+TC10 - Create new Post via clicking "Create Post" button
+Preconditions
+- Browser is opened;
+- Page https://qa-complex-app-for-testing.herokuapp.com/ is opened;
+- User is logged in with credentials: Username:vera, Password:123456qwerty.
+STR
+1. Observe Home page to find "Create Post" button;
+2. Click "Create Post" button;
+3. Enter valid name into "Title" input field;
+4. Enter valid name into "Body Content" input text area;
+5. Click "Save New Post" button;
+EXP
+User is redirected to Home page.
+Post is created and displayed with entered name and body content on the page.
+
+https://qa-complex-app-for-testing.herokuapp.com/create-post
+https://qa-complex-app-for-testing.herokuapp.com/profile/auto
