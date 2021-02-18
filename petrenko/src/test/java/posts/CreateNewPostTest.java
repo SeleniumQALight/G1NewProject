@@ -5,7 +5,10 @@ import libs.TestData;
 import org.junit.After;
 import org.junit.Test;
 
+
 public class CreateNewPostTest extends BaseTest {
+
+    final String POST_TITLE = "Yura Title of post.";
 
     @Test
     public void createNewPost() {
@@ -13,25 +16,29 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsButtonSignOutVisible()
                 .clickOnCreatePostButton()
                 .checkIsRedirectOnCreatePostPage()
-                .enterTitleInToTitle(TestData.VALID_TITLE)
+                .enterTitleInToTitle(POST_TITLE)
                 .enterTextInToInputBody("bshzbzx")
                 .clickOnButtonSavePost()
                 .checkIsRedirectOnSinglePostPage()
                 .checkIsSuccessMessageDisplayed();
 
+
     }
+
 
     @After
     public void deletePost() {
-        homePage.clickTextBackToStartHomePage()
+
+        homePage.openHomePage()
+                .checkIsButtonSignOutVisible()
                 .clickOnMyProfileButton()
-                .checkIsRedirectOnMyProfilePage()
-                .checkIsPostWithTheValidTitleIsVisible()
-                .clickOnPostWithTheValidTitle()
-                .checkIsRedirectOnSinglePostPage()
-                .clickOnDeletePostButton()
-                .clickOnMyProfileButton()
-                .checkIsPostWithTheValidTitleIsNotVisible();
+                .checkIsRedirectOnMyProfilePage().deletePostWhilePresent(POST_TITLE);
+//                .checkIsPostWithTheValidTitleIsVisible()
+//                .clickOnPostWithTheValidTitle()
+//                .checkIsRedirectOnSinglePostPage()
+//                .clickOnDeletePostButton()
+//                .clickOnMyProfileButton()
+//                .checkIsPostWithTheValidTitleIsNotVisible(POST_TITLE);
 
     }
 

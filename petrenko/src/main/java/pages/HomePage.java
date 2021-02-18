@@ -1,5 +1,6 @@
 package pages;
 
+import libs.Util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -45,24 +46,25 @@ public class HomePage extends ParentPage {
     }
 
     public HomePage clickTextBackToStartHomePage() {
-        //TODO
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Util.waitABit(2);
         clickOnElement(textComplexAppForTestingQa);
         return new HomePage(webDriver);
     }
 
     public MyProfilePage clickOnMyProfileButton() {
-        //TODO
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Util.waitABit(2);
         clickOnElement(myProfileButton);
         return new MyProfilePage(webDriver);
+    }
+
+    public HomePage openHomePage() {
+
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoinPage();
+        if(!isButtonSignOutVisible()){
+          loginPage.loginWithValidCred();
+                }
+        logger.info("Home page was opened.");
+        return this;
     }
 }

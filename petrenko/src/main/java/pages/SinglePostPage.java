@@ -1,6 +1,7 @@
 package pages;
 
 import libs.TestData;
+import libs.Util;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,7 +32,7 @@ public class SinglePostPage extends ParentPage {
     }
 
     public SinglePostPage checkIsSuccessMessageDisplayed() {
-
+        Util.waitABit(2);
         checkIsElementVisible(successMessageElement);
         return this;
     }
@@ -42,23 +43,13 @@ public class SinglePostPage extends ParentPage {
     }
 
     public SinglePostPage checkIsButtonDeletePostIsDisplayed() {
-       //TODO
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Util.waitABit(2);
         checkIsElementVisible(deletePostButton);
         return this;
     }
 
     public MyProfilePage clickOnDeletePostButton() {
-        //TODO
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Util.waitABit(2);
 
         try {
             clickOnElement(deletePostButton);
