@@ -5,32 +5,36 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
+
 public class CreatePostPage extends ParentPage {
     @FindBy(id = "post-title")
-    private WebElement inputTitle;
+    private TextInput inputTitle;
     @FindBy(id = "post-body")
-    private WebElement inputBody;
+    private TextInput inputBody;
     @FindBy(xpath = ".//button[text()='Save New Post']")
-    private WebElement buttonSaveNewPost;
+    private Button buttonSaveNewPost;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectedOnCreatePostPage() {
+        waitPageLoaded();
         Assert.assertEquals("Invalid page"
-                , "https://qa-complex-app-for-testing.herokuapp.com/create-post"
+                , baseUrl + getRelativeUrl()
                 , webDriver.getCurrentUrl());
         return this;
     }
 
     public CreatePostPage enterTitleInToInputTile (String title){
-        // TODO will be fixed
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
 
         enterTextInToElement(inputTitle, title);
         return this;
