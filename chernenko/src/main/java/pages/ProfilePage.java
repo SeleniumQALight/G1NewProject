@@ -23,8 +23,8 @@ public class ProfilePage extends ParentPage{
     }
 
     public ProfilePage checkIsRedirectToProfilePage(){
-
-        Util.waitABit(2);
+        //Util.waitABit(2);
+        waitChatBeHied();
         Assert.assertThat(webDriver.getCurrentUrl(), containsString("https://qa-complex-app-for-testing.herokuapp.com/profile"));
         return this;
     }
