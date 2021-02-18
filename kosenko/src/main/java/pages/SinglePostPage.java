@@ -39,23 +39,23 @@ public class SinglePostPage extends ParentPage {
 
     //HOMEWORK 02-13
     public ProfilePage clickOnMyProfileButton() {
-        try {
+        waitChatToBeHide();
+       /* try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+            e.printStackTrace(); */
 
         clickOnElement(myProfileButton);
         return new ProfilePage(webDriver);
     }
 
     public ProfilePage clickOnDeletePostButton() {
-        try {
+        /* try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-
+        } */
+        waitChatToBeHide();
         clickOnElement(DeletePostButton);
         return new ProfilePage(webDriver);
     }

@@ -11,12 +11,12 @@ import java.util.List;
 public class CreatePostPage extends ParentPage {
     @FindBy (id = "post-title")
     private WebElement inputTitle;
-
     @FindBy (id = "post-body")
     private WebElement inputBody;
-
     @FindBy (xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
+    @FindBy(tagName = "select")
+    private WebElement dropDownRole;
 
 
     public CreatePostPage (WebDriver webDriver){
@@ -24,18 +24,12 @@ public class CreatePostPage extends ParentPage {
     }
 
     public CreatePostPage checkIsRedirectedOnCreatePostPage() {
+        waitChatToBeHide();
         Assert.assertEquals("Invalid page", "https://qa-complex-app-for-testing.herokuapp.com/create-post", webDriver.getCurrentUrl());
         return this;
     }
 
     public CreatePostPage enterTitleIntoInputTitle (String title){
-        //TODO will be changed in the future
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         enterTextIntoElement(inputTitle, title);
         return this;
     }
@@ -64,6 +58,10 @@ public class CreatePostPage extends ParentPage {
         return loginPage;
     }
 
+    public CreatePostPage selectTextInDropDownRole(String textInDD) {
+        selectTextInDropDown(dropDownRole, textInDD);
+        return this;
+    }
 }
 
 

@@ -29,7 +29,7 @@ public class BaseTest {
             webDriver = new ChromeDriver();
 
             webDriver.manage().window().maximize();  //full size for window
-            webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); //default time for waiting
+            webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); //default time for waiting
             logger.info("Browser was opend");
             loginPage = new LoginPage(webDriver); // from this go to constructor
             homePage = new HomePage(webDriver);

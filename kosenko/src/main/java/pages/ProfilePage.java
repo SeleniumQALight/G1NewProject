@@ -23,6 +23,7 @@ public class ProfilePage extends ParentPage {
     }
 
     public ProfilePage chechIsRedirectToProfilePage(){
+        waitChatToBeHide();
         Assert.assertThat("Invalid page"
                 , webDriver.getCurrentUrl()
                 , containsString("https://qa-complex-app-for-testing.herokuapp.com/profile")) ;
