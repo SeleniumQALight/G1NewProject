@@ -16,16 +16,17 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTitleIntoInputTitle("Kosenko Title of Post")
                 .enterTextIntoInputBody("Kosenko Post Body")
                 .clickOnButtonSaveNewPost()
-                .checkIsRedirectToSinglePostPage()
-                ;
+                .chechIsRedirectToSinglePostPage()
+                .checkIsSuccessMessageDisplayed();
     }
     @After
-    public void deletePost(){
-        homePage
-                .openHomePage()
-                .checkIsButtonSignOutVisible(){
-            clickOnElement
-        }
-    }
 
+    public void deletePost(){
+        singlePostPage.clickOnMyProfileButton()
+                .chechIsRedirectToProfilePage()
+                .clickOnPostTitle()
+                .chechIsRedirectToSinglePostPage()
+                .clickOnDeletePostButton()
+                .checkIsSuccessDeletedMessageDisplayed();
+    }
 }
