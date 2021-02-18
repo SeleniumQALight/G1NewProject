@@ -1,5 +1,6 @@
 package pages;
 
+import libs.Util;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,7 +15,7 @@ public class SinglePostPage extends ParentPage {
     private WebElement successMessageElement;
 
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
-    private WebElement deletePostButton;
+    private WebElement deleteButton;
 
     @FindBy(xpath = ".//h2")
     private WebElement postTitle;
@@ -27,6 +28,7 @@ public class SinglePostPage extends ParentPage {
     }
 
     public SinglePostPage checkIsRedirectToSinglePostPage(){
+        Util.waitABit(2);
         Assert.assertThat("Invalid Page",webDriver.getCurrentUrl(), containsString("https://qa-complex-app-for-testing.herokuapp.com/post/"));
         return this;
     }
@@ -41,10 +43,10 @@ public class SinglePostPage extends ParentPage {
         return new SinglePostPage(webDriver);
     }
 
-    public CreatePostPage clickOnDeleteButton(){
-        clickOnElement(deletePostButton);
+    public ProfilePage clickOnDeleteButton(){
+        clickOnElement(deleteButton);
         logger.info("The post was deleted");
-        return new CreatePostPage(webDriver);
+        return new ProfilePage(webDriver);
     }
 
 }
