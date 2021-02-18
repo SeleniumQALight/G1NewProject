@@ -5,13 +5,16 @@ import org.junit.After;
 import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
+
+    final String POST_TITLE = "Nikolai Title of post";
+
     @Test
     public void createNewPost(){
         loginPage.loginWithValidCred()
         .checkIsButtonSignOutVisible()
         .clickOnCreatePostButton()
      .checkIsRedirectedOnCreatePostPage()
-        .enterTitleInToInputTitle("Nikolai Title of post")
+        .enterTitleInToInputTitle(POST_TITLE)
         .enterTextInToInputBody("Post body")
         .clickOnButtonSaveNewPost()
      .checkIsRedirectToSinglePostPage()
@@ -22,6 +25,13 @@ public class CreateNewPostTest extends BaseTest {
 
     @After
     public void deletePost(){
+        homePage
+                .openHomePage()
+                .checkIsButtonSignOutVisible()
+                .clickOnProfileButton()
+                .checkIsRedirectToProfilePage()
+                .deletePostWhilePresent(POST_TITLE)
+        ;
 
     }
 
