@@ -31,7 +31,7 @@ public class BaseTest {
         webDriver = new ChromeDriver();
 
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         logger.info("Browser opened");
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);

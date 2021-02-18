@@ -1,11 +1,12 @@
 package posts;
 
 import baseTest.BaseTest;
+import libs.MyUtil;
 import org.junit.After;
 import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
-    final String POST_TITLE = "Inga Post Title";
+    final String POST_TITLE = "Inga Post Title" + MyUtil.getDateAndTimeFormated();
 
     @Test
     public void createNewPost() {
@@ -16,6 +17,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectedOnCreatePostPage()
                 .enterTitleIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("Inga Post Body")
+                .selectTextInDropdownRole("Частное сообщение")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectedToSinglePostPage()
         .checkIsSuccessMessageDisplayed()
