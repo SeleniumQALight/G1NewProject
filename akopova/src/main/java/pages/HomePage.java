@@ -17,7 +17,7 @@ public class HomePage extends ParentPage{
     private WebElement createPostButton;
 
     @FindBy(xpath=".//*[@data-original-title='My Profile']")
-    private WebElement myProfileIcon;
+    private WebElement profileButton;
 
 
 
@@ -66,9 +66,19 @@ public class HomePage extends ParentPage{
         }
     }
 
-    public void clickOnProfileIcon() {
-        clickOnElement(myProfileIcon);
+    public void clickOnProfileButton() {
+        clickOnElement(profileButton);
     }
 
 
+    public HomePage openHomePage() {
+
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (!isButtonSignOutVisible()) {
+            loginPage.loginWithValidCreds();
+        }
+        logger.info("Home Page was opened");
+        return this;
+    }
 }

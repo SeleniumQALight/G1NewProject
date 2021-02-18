@@ -1,5 +1,6 @@
 package pages;
 
+import libs.MyUtil;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,8 @@ public class SinglePostPage extends ParentPage{
     private WebElement successMessageElement;
 
     @FindBy(xpath = ".//*[@data-original-title='Delete']")
+
+    // FinbBy ".//button[@class='delete-post-button text-danger']"
    // @FindBy(xpath = ".//*[@class='svg-inline--fa fa-trash fa-w-14']")
 
     private WebElement deleteIcon;
@@ -21,11 +24,7 @@ public class SinglePostPage extends ParentPage{
     }
 
     public SinglePostPage checkIsRedirectedToSinglePostPage(){
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        MyUtil.waitABit(2);
         Assert.assertThat("Invalid page"
                 , webDriver.getCurrentUrl()
                 , containsString("https://qa-complex-app-for-testing.herokuapp.com/post/")
@@ -38,15 +37,11 @@ public class SinglePostPage extends ParentPage{
         return this;
     }
 
-    public void clickOnDeleteIcon(){
-        try {
+    public MyProfilePage clickOnDeleteIcon(){
+
             clickOnElement(deleteIcon);
-            Thread.sleep(1000);
-            logger.info("Delete Post icon was clicked");
-        } catch (InterruptedException e) {
-            logger.error("can't click on Delete Post");
-            e.printStackTrace();
-        }
+
+         return new MyProfilePage(webDriver);
     }
 
 

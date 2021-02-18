@@ -5,6 +5,8 @@ import org.junit.After;
 import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
+    final String POST_TITLE = "Inga Post Title";
+
     @Test
     public void createNewPost() {
 
@@ -12,10 +14,11 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsButtonSignOutVisible()
                 .clickOnCreatePostButton()
                 .checkIsRedirectedOnCreatePostPage()
-                .enterTitleIntoInputTitle("Inga Post Title")
+                .enterTitleIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("Inga Post Body")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectedToSinglePostPage()
+        .checkIsSuccessMessageDisplayed()
         ;
 
 
@@ -24,16 +27,14 @@ public class CreateNewPostTest extends BaseTest {
     @After
 
     public void deletePost(){
-    singlePostPage.clickOnHomePageLink();
-               homePage.clickOnProfileIcon();
+               homePage.openHomePage()
+                       .checkIsButtonSignOutVisible()
+                       .clickOnProfileButton()
+                        ;
                 myProfilePage.checkIsRedirectedOnMyProfilePage()
-                              .clickOnPost();
-                singlePostPage.checkIsRedirectedToSinglePostPage()
-                        .clickOnDeleteIcon();
-                myProfilePage.checkIsRedirectedOnMyProfilePage()
-                        .checkForDeletionSuccess();
+                              .deletePostTillWhilePresent(POST_TITLE);
 
-            ;
+
 
     }
 
