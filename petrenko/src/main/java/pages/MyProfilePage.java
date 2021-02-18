@@ -31,7 +31,7 @@ public class MyProfilePage extends ParentPage {
 
     public MyProfilePage checkIsRedirectOnMyProfilePage() {
 
-        Util.waitABit(2);
+        waitChatToBeHide();
         Assert.assertThat("Invalid page", webDriver.getCurrentUrl(), containsString("https://qa-complex-app-for-testing.herokuapp.com/profile"));
         return this;
     }
@@ -52,8 +52,6 @@ public class MyProfilePage extends ParentPage {
 
     public SinglePostPage clickOnPostWithTheValidTitle() {
 
-        Util.waitABit(2);
-
         clickOnElement(validTitleOfPost);
         return new SinglePostPage(webDriver);
     }
@@ -73,7 +71,7 @@ public class MyProfilePage extends ParentPage {
     }
 
     public MyProfilePage clickOnMyProfileButton() {
-        Util.waitABit(2);
+
         clickOnElement(myProfileButton);
         return new MyProfilePage(webDriver);
     }
