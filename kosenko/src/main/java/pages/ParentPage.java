@@ -13,19 +13,18 @@ public class ParentPage {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
     }
-
-    public void enterTextInToElement(WebElement webElement, String text){
-        try {
+    public void enterTextIntoElement(WebElement webElement, String text){
+        try{
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " was inputted into element");
-
+            logger.info(text + "  was inputted into element");
         }catch (Exception e){
-            printErrorMessageAndStopTest(e);
+            printErrorMessageAndStopTest (e);
         }
     }
 
-     public void clickOnElement(WebElement webElement){
+
+     protected void clickOnElement(WebElement webElement){
         try {
             webElement.click();
             logger.info("Element was clicked");
@@ -43,6 +42,9 @@ public class ParentPage {
              logger.info("Element displayed: false" );
              return false;
          }
+     }
+     protected void checkIsElementVisible(WebElement webElement){
+        Assert.assertTrue("element is not visible", isElementDisplayed(webElement));
      }
     private void printErrorMessageAndStopTest(Exception e) {
         logger.error("Can not work with element" + e);

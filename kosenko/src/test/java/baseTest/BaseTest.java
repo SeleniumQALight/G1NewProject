@@ -9,34 +9,39 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.SinglePostPage;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    public WebDriver webDriver;
-    protected Logger logger = Logger.getLogger(getClass());
-    protected LoginPage loginPage;
-    protected HomePage homePage;
-    @Before
-    public void setUp(){
-        File fileFF = new File("./drivers/chromedriver.exe");
-        System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
-        webDriver = new ChromeDriver();
+        public WebDriver webDriver;
+        protected Logger logger = Logger.getLogger(getClass());
+        protected LoginPage loginPage;
+        protected HomePage homePage;
+        protected SinglePostPage singlePostPage;
 
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-logger.info("Browser was opened");
-loginPage = new LoginPage(webDriver);
-homePage = new HomePage(webDriver);
-    }
-    @After
-    public void tearDown(){
-        webDriver.quit();
-        logger.info("Browser was closed");
-    }
-    protected void checkExpectedResult(String message, boolean actualResult){
-        Assert.assertTrue(message, actualResult);
-    }
 
-}
+        @Before
+        public void setUp(){
+            File fileFF = new File("./drivers/chrome-driver");
+            System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
+            webDriver = new ChromeDriver();
+
+            webDriver.manage().window().maximize();  //full size for window
+            webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); //default time for waiting
+            logger.info("Browser was opend");
+            loginPage = new LoginPage(webDriver); // from this go to constructor
+            homePage = new HomePage(webDriver);
+        }
+        @After
+        public void teamDown(){
+            webDriver.quit();
+            logger.info("Browser was closed");
+
+        }
+
+        protected void checkExpectedResult(String message, boolean actualResult){
+            Assert.assertTrue(message, actualResult);
+        }
+    }
