@@ -33,5 +33,13 @@ public class HomePage extends ParentPage {
     }
 
 
-
+    public HomePage openHomePage() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if(!isButtonSignOutVisible()){
+           loginPage.loginWithValidCred();
+        }
+        logger.info("Home Page was opened ");
+        return this;
+    }
 }
