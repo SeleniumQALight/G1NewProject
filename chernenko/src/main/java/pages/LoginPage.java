@@ -18,6 +18,21 @@ public class LoginPage extends ParentPage{
     @FindBy (xpath = ".//button[text()='Sign In']")
     private WebElement buttonSignIn;
 
+    @FindBy (xpath = ".//*[@id = 'username-register']")
+    private WebElement pickAUsername;
+
+    @FindBy (xpath = ".//*[@id = 'email-register']")
+    private WebElement emailForRegistration;
+
+    @FindBy (xpath = ".//*[@id ='password-register']")
+    private WebElement passwordForRegistration;
+
+    @FindBy (xpath = ".//button[contains(text(),'Sign up for OurApp')]")
+    private WebElement buttonSignUp;
+
+    @FindBy (xpath = "")
+    private WebElement WrongPassword;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -44,6 +59,10 @@ public class LoginPage extends ParentPage{
         enterTextIntoElement(inputLogin, login);
     }
 
+    public void enterUsernameIntoLogin(String newUsername){
+        enterTextIntoElement(pickAUsername, newUsername);
+    }
+
     public void enterPasswordSignIn(String passWord) {
 //        try{
 ////            inputPassword.clear();
@@ -54,6 +73,14 @@ public class LoginPage extends ParentPage{
 ////            Assert.fail("Can not work with PassWord input");
 ////        }
         enterTextIntoElement(inputPassword, passWord);
+    }
+
+    public void enterEmailIntoLogin (String userEmail){
+        enterTextIntoElement(emailForRegistration, userEmail);
+    }
+
+    public void enterPasswordIntoLogin (String newPassword){
+        enterTextIntoElement(passwordForRegistration, newPassword);
     }
 
     public void clickButtonSignIn() {
@@ -78,5 +105,22 @@ public class LoginPage extends ParentPage{
     public HomePage loginWithValidCred (){
         fillLoginFormAndSubmit(TestData.VALID_LOGIN, TestData.VALID_PASSWORD);
         return new HomePage(webDriver);
+    }
+
+    public void fillLoginFormNewUserAndSubmit (String newUsername, String userEmail, String newPassword){
+        openLoginPage();
+        enterUsernameIntoLogin(newUsername);
+        enterEmailIntoLogin(userEmail);
+        enterPasswordIntoLogin(newPassword);
+        clickButtonSignUp();
+    }
+
+    public void clickButtonSignUp() {
+        clickOnElement(buttonSignUp);
+    }
+
+    public boolean isErrorMessageWrongPassword() {
+
+        return isElementDisplayed(WrongPassword);
     }
 }
