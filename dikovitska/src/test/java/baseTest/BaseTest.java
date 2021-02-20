@@ -25,7 +25,7 @@ public class BaseTest {
         webDriver = new ChromeDriver(); /* объявляем переменную, в которую будем записывать драйвер (браузер)*/
 
         webDriver.manage().window().maximize(); /*открыть браузер полностью (развернуть)*/
-        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); /*установить дефолтное время, на протяжении которого будет браузер выполнять действие*/
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); /*установить дефолтное время, на протяжении которого будет браузер выполнять действие*/
         logger.info("Browser was opened");
         loginPage = new LoginPage(webDriver);
         homePage= new HomePage(webDriver);
