@@ -33,8 +33,7 @@ public class MyProfilePage extends ParentPage {
     }
 
     public MyProfilePage checkIsSuccessRedirectToMyProfilePage (){
-        // TODO will be fixed
-        Util.waitABit(2);
+        waitChatToBeHide();
         checkIsElementVisible(bookmarkPosts);
         Assert.assertThat(webDriver.getCurrentUrl(),containsString("https://qa-complex-app-for-testing.herokuapp.com/profile"));
 
