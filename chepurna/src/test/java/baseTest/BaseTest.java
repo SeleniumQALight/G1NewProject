@@ -25,10 +25,10 @@ public class BaseTest {
     public void setUp(){
         File fileFF = new File("./drivers/chrome-driver");
         System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
-        webDriver = new ChromeDriver();
+        webDriver = new ChromeDriver(); //we create web driver
 
         webDriver.manage().window().maximize();  //full size for window
-        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); //default time for waiting
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); //default time for waiting
         logger.info("Browser was opend");
         loginPage = new LoginPage(webDriver); // from this go to constructor
         homePage = new HomePage(webDriver);
@@ -37,7 +37,6 @@ public class BaseTest {
     public void teamDown(){
        webDriver.quit();
        logger.info("Browser was closed");
-
     }
 
     protected void checkExpectedResult(String message, boolean actualResult){
