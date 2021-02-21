@@ -1,5 +1,6 @@
 package Pages;
 
+import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,7 +25,7 @@ public class SinglePostPage extends ParentPage {
         super(webDriver);
     }
 
-    //=========================================================
+//=========================================================
 
     public SinglePostPage chechIsRedirectToSinglePostPage() {
         Assert.assertThat("Invalid page"
@@ -38,27 +39,28 @@ public class SinglePostPage extends ParentPage {
         return this;
     }
 
-    //HOMEWORK 02-13
-    public ProfilePage clickOnMyProfileButton() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//HOMEWORK 02-13
 
+    public ProfilePage clickOnMyProfileButton() {
+        waitChatToBeHide();
         clickOnElement(myProfileButton);
         return new ProfilePage(webDriver);
     }
 
     public ProfilePage clickOnDeletePostButton() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        waitChatToBeHide();
         clickOnElement(DeletePostButton);
         return new ProfilePage(webDriver);
     }
+
+// I WAS ILL
+    public SinglePostPage checkIsRedirectToSinglePostPage(){
+        waitChatToBeHide();
+        Assert.assertThat("Invalid page"
+                , webDriver.getCurrentUrl()
+                , Matchers.containsString("https://qa-complex-app-for-testing.herokuapp.com/post/"));
+        return this;
+    }
+
 }
 
