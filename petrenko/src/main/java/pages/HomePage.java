@@ -46,13 +46,13 @@ public class HomePage extends ParentPage {
     }
 
     public HomePage clickTextBackToStartHomePage() {
-        Util.waitABit(2);
+
         clickOnElement(textComplexAppForTestingQa);
         return new HomePage(webDriver);
     }
 
     public MyProfilePage clickOnMyProfileButton() {
-        Util.waitABit(2);
+
         clickOnElement(myProfileButton);
         return new MyProfilePage(webDriver);
     }

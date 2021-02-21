@@ -16,24 +16,27 @@ public class CreatePostPage extends ParentPage {
     @FindBy (xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy (tagName = "select")
+    private WebElement dropDownRole;
+
 
     public CreatePostPage (WebDriver webDriver){
         super(webDriver);
     }
 
     public CreatePostPage checkIsRedirectedOnCreatePostPage() {
+        waitChatBeHied();
         Assert.assertEquals("Invalid page", "https://qa-complex-app-for-testing.herokuapp.com/create-post", webDriver.getCurrentUrl());
         return this;
     }
 
     public CreatePostPage enterTitleIntoInputTitle (String title){
         //TODO will be changed in the future
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         enterTextIntoElement(inputTitle, title);
         return this;
     }
@@ -55,4 +58,8 @@ public class CreatePostPage extends ParentPage {
         return new SinglePostPage(webDriver);
     }
 
+    public CreatePostPage selectTextInDropDownRole(String textInDD) {
+        selectTextInDropDown(dropDownRole, textInDD);
+        return this;
+    }
 }

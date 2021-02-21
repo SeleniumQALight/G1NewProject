@@ -34,6 +34,7 @@ public class MyProfilePage extends ParentPage{
             e.printStackTrace();
         }
          */
+        waitChatToBeHide();
         MyUtil.waitABit(2);
         Assert.assertThat("HomePage does not match"
                 , webDriver.getCurrentUrl()

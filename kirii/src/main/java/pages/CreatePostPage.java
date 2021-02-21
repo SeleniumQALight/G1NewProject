@@ -14,6 +14,8 @@ public class CreatePostPage extends ParentPage {
     private WebElement buttonSaveNewPost;
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
     private WebElement profileButton;
+    @FindBy(tagName = "select")
+    private WebElement dropDownRole;
 
 
     public CreatePostPage(WebDriver webDriver) {
@@ -21,17 +23,13 @@ public class CreatePostPage extends ParentPage {
     }
 
     public CreatePostPage checkIsRedirectedOnCreatePostPage() {
+        waitChatToBeHide();
         Assert.assertEquals("Invalid page", "https://qa-complex-app-for-testing.herokuapp.com/create-post" , webDriver.getCurrentUrl()); //"", expected, actual
         return this;
     }
 
     public CreatePostPage enterTitleToInputTitle(String title){
-        //TODO will be fixed
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        enterTextIntoElement(inputTitle, title);
         //делаем задержку
 
         enterTextIntoElement (inputTitle, title);
@@ -46,6 +44,11 @@ public class CreatePostPage extends ParentPage {
     public SinglePostPage clickOnButtonSaveNewPost(){
         clickOnElement(buttonSaveNewPost);
         return new SinglePostPage(webDriver);
+    }
+
+    public CreatePostPage selectTextInDropDownRole(String textInDD) {
+        selectTextInDropdown(dropDownRole, textInDD);
+        return this;
     }
 
 /*    public ProfilePage clickOnProfileButton(){

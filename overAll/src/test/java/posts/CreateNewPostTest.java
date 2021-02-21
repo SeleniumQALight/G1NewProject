@@ -4,9 +4,10 @@ import org.junit.After;
 import org.junit.Test;
 
 import baseTest.BaseTest;
+import libs.Util;
 
 public class CreateNewPostTest extends BaseTest {
-    final String POST_TITLE = "Taras Title of Post";
+    final String POST_TITLE = "Taras Title of Post" + Util.getDateAndTimeFormated();
 
     @Test
     public void createNewPost(){
@@ -16,6 +17,7 @@ public class CreateNewPostTest extends BaseTest {
            .checkIsRedirectedOnCreatePostPage()
                 .enterTitleInToInputTile(POST_TITLE)
                 .enterTextInToInputBody("Post body")
+                .selectTextInDropDownRole("Частное сообщение")
                 .clickOnButtonSaveNewPost()
            .checkIsRedirectToSinglePostPage()
                 .checkIsSuccessMessageDisplayed()
