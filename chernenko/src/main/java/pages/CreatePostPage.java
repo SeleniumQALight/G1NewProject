@@ -2,6 +2,7 @@ package pages;
 
 import org.junit.After;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,6 +20,12 @@ public class CreatePostPage extends ParentPage {
     @FindBy (tagName = "select")
     private WebElement dropDownRole;
 
+    @FindBy (id = "select1")
+    private WebElement typeOfPostList;
+
+    @FindBy (xpath = ".// select [@id = 'select1']")
+    private WebElement valueOfList;
+
 
     public CreatePostPage (WebDriver webDriver){
         super(webDriver);
@@ -31,12 +38,6 @@ public class CreatePostPage extends ParentPage {
     }
 
     public CreatePostPage enterTitleIntoInputTitle (String title){
-        //TODO will be changed in the future
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         enterTextIntoElement(inputTitle, title);
         return this;
     }
@@ -45,6 +46,8 @@ public class CreatePostPage extends ParentPage {
         enterTextIntoElement(inputBody, body);
         return this;
     }
+
+
 
     public SinglePostPage clickOnButtonSaveNewPost (){
         clickOnElement(buttonSaveNewPost);
@@ -60,6 +63,12 @@ public class CreatePostPage extends ParentPage {
 
     public CreatePostPage selectTextInDropDownRole(String textInDD) {
         selectTextInDropDown(dropDownRole, textInDD);
+        return this;
+    }
+
+    public CreatePostPage selectValueInDropDownRole (String value){
+        clickOnElement(typeOfPostList);
+        selectValueInDropDown(valueOfList, value);
         return this;
     }
 }
