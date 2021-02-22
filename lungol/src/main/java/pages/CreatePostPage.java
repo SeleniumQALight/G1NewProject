@@ -12,12 +12,15 @@ public class CreatePostPage extends ParentPage {
     private WebElement inputBody;
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
+    @FindBy(tagName = "select")
+    private WebElement dropDownRole;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
     public CreatePostPage checkIsRedirectedOnCreatePostPage() {
+        waitChatToBeHide();
         Assert.assertEquals("Invalid page"
                 , "https://qa-complex-app-for-testing.herokuapp.com/create-post"
                 , webDriver.getCurrentUrl());
@@ -44,5 +47,10 @@ public class CreatePostPage extends ParentPage {
     public SinglePostPage clickOnButtonSaveNewPost(){
         clickOnElement(buttonSaveNewPost);
         return new SinglePostPage(webDriver);
+    }
+
+    public CreatePostPage selectTextInDropdownRole(String textInDD) {
+       selectTextInDropdown(dropDownRole, textInDD);
+        return this;
     }
 }

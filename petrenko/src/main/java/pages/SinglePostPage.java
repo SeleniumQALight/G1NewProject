@@ -25,7 +25,7 @@ public class SinglePostPage extends ParentPage {
     }
 
     public SinglePostPage checkIsRedirectOnSinglePostPage() {
-
+        waitChatToBeHide();
         Assert.assertThat("Invalid page", webDriver.getCurrentUrl(), containsString("https://qa-complex-app-for-testing.herokuapp.com/post"));
 
         return this;
@@ -55,7 +55,7 @@ public class SinglePostPage extends ParentPage {
             clickOnElement(deletePostButton);
             logger.info("Post was deleted.");
             return new MyProfilePage(webDriver);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.info("Post was not deleted.");
             Assert.fail("Post was not deleted.");
         }

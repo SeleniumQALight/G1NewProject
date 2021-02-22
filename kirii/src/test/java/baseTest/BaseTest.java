@@ -27,7 +27,7 @@ public class BaseTest {
         webDriver = new ChromeDriver();
 
         webDriver.manage().window().maximize();                           //во весь экран
-        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);  //дефолтное неявное ожидание
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);  //дефолтное неявное ожидание
         logger.info("Browser was opened");
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);

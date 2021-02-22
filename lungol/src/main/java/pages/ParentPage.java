@@ -2,20 +2,33 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ParentPage {
     protected WebDriver webDriver;
+    protected WebDriverWait webDriverWait10, webDriverWait15;
+
     Logger logger = Logger.getLogger(getClass());
     public ParentPage (WebDriver webDriver){
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
+        webDriverWait10 = new WebDriverWait(webDriver, 10);
+        webDriverWait15 = new WebDriverWait(webDriver,15);
+    }
+
+    protected void waitChatToBeHide(){
+        webDriverWait10.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
     }
 
     protected void enterTextInToElement(WebElement webElement, String text){
         try {
+            webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
             logger.info(text + " was inputted into element");
@@ -26,6 +39,7 @@ public class ParentPage {
 
     protected void clickOnElement(WebElement webElement){
         try{
+            webDriverWait15.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
             logger.info("Element was clicked");
         }catch (Exception e){
@@ -46,6 +60,26 @@ public class ParentPage {
 
     protected void checkIsElementVisible(WebElement webElement){
         Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
+    }
+
+    protected void selectTextInDropdown(WebElement webElement, String text){
+        try{
+            Select select = new Select(webElement);
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in Dropdown");
+        }catch (Exception e){
+            printErrorMessageAndStopTest(e);
+        }
+    }
+
+    protected void selectValueInDropdown(WebElement webElement, String value){
+        try{
+            Select select = new Select(webElement);
+            select.selectByVisibleText(value);
+            logger.info(value + " was selected in Dropdown");
+        }catch (Exception e){
+            printErrorMessageAndStopTest(e);
+        }
     }
 
     private void printErrorMessageAndStopTest(Exception e) {
