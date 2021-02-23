@@ -7,19 +7,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.List;
 
 // ELEMENTS LOGIN VIA HEADER
 public class LoginPage extends ParentPage{
     @FindBy(xpath =".//form[@action='/login']//input[@name='username']")
-    private WebElement inputLogin;
+    private TextInput inputLogin;
 
     @FindBy(xpath =".//form[@action='/login']//input[@name='password']")
-    private WebElement intutPassword;
+    private TextInput intutPassword;
 
     @FindBy(xpath =".//button[text()='Sign In']")
-    private WebElement buttonSignIn;
+    private Button buttonSignIn;
 
 // ELEMENTS FOR REGISTRATION
 
@@ -35,7 +37,7 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath =".//button[text()='Sign up for OurApp']")
     private WebElement buttonSignUp;
 
-    //Locator like String
+//Locator like String
     final String validationMessageLocator = ".//*[text()='%s']";
 
     @FindAll(@FindBy(xpath =".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"))
@@ -45,12 +47,18 @@ public class LoginPage extends ParentPage{
         super(webDriver);
     }
 
+//URL of this page
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
 //=========================================================
 
 //OPEN LOGIN PAGE
     public void openLoginPage(){
         try {
-            webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
+            webDriver.get(baseUrl + getRelativeUrl()); // = URL
             logger.info("Login Page was opened");
         }catch (Exception e){
             logger.error("Can not open Login page");
