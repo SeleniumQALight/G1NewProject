@@ -19,7 +19,7 @@ public class HomePage extends ParentPage{
         super(webDriver);
     }
 
-    //=========================================================
+//=========================================================
 
     public HomePage checkIsButtonSignOutVisible(){
         checkIsElementVisible(buttonSignOut);
@@ -35,7 +35,7 @@ public class HomePage extends ParentPage{
         return new CreatePostPage(webDriver);
     }
 
-    //HOMEWORK 02-13
+//HOMEWORK 02-13
     public ProfilePage clickOnMyProfileButton(){
         clickOnElement(myProfileButton);
         return new ProfilePage(webDriver);

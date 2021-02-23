@@ -25,6 +25,9 @@ public class ParentPage {
     }
 
     protected void enterTextIntoElement(WebElement webElement, String text){
+        if(text == null){
+            return;
+        }
         try{
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
