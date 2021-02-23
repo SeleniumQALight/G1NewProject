@@ -18,24 +18,30 @@ public class errorMessagesLoginPage extends BaseTest {
 
 
     @Test
-    public void numberOfErrorMessageWereDisplayed (){
+    public void oneErrorMessageIsDisplayed (){
         // Use for the test date from TestData file
-        loginPage.fillLoginFormNewUserAndSubmit(TestData.UNIQUE_USERNAME,TestData.INVALID_EMAIL,TestData.SORT_PASSWORD);
-        Util.waitABit(2);
+        loginPage.fillLoginFormNewUserAndSubmit(TestData.VALID_UNIQUE_USERNAME,TestData.INVALID_EMAIL,TestData.VALID_PASSWORD);
         List<WebElement> list = new ArrayList<>();
-        list = webDriver.findElements(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]"));
-        Assert.assertEquals("Wrong numbers of messages ",3,list.size());
-//        if (list.size()<=1){
-//            logger.info(list.size() + "  error message was displayed");
-//        }else if (list.size()>1){
-//        logger.info(list.size() + "  error messages were displayed");
-//        }
+        list = loginPage.numberOfErrorMessageWereDisplayed();
+        Assert.assertEquals("Wrong numbers of messages ",1,list.size());
     }
 
 
     @Test
-    public void checkTextInErrorMessage (){
+    public void twoErrorMessagesAreDisplayed (){
+        // Use for the test date from TestData file
+        loginPage.fillLoginFormNewUserAndSubmit(TestData.INVALID_SHORT_USERNAME,TestData.VALID_UNIQUE_USER_EMAIL,TestData.INVALID_SHORT_PASSWORD);
+        List<WebElement> list = new ArrayList<>();
+        list = loginPage.numberOfErrorMessageWereDisplayed();
+        Assert.assertEquals("Wrong numbers of messages ",2,list.size());
+    }
 
-
+    @Test
+    public void threeErrorMessagesAreDisplayed (){
+        // Use for the test date from TestData file
+        loginPage.fillLoginFormNewUserAndSubmit(TestData.INVALID_LONG_USERNAME,TestData.INVALID_EMAIL,TestData.INVALID_LONG_PASSWORD);
+        List<WebElement> list = new ArrayList<>();
+        list = loginPage.numberOfErrorMessageWereDisplayed();
+        Assert.assertEquals("Wrong numbers of messages ",3,list.size());
     }
 }
