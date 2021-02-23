@@ -6,26 +6,33 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@placeholder='Username']")
-     private WebElement inputLogin;
-
+    private TextInput inputLogin;
+//@Name(value = "")
     @FindBy(xpath = ".//*[@placeholder='Password']")
-    private WebElement inputPassword;
+    private TextInput inputPassword;
 
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement buttonSignIn;
+    private Button buttonSignIn;
 
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
     public void openLoginPage() {
         try {
-            webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
+            webDriver.get(baseUrl + getRelativeUrl());
             logger.info("Login Page was opened");
         } catch (Exception e) {
             logger.error("Can not open login page");
