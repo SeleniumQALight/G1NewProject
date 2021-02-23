@@ -1,6 +1,8 @@
 package pages;
 
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -18,7 +20,8 @@ import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory
 abstract class ParentPage {
     protected WebDriver webDriver;
     protected WebDriverWait webDriverWait10, webDriverWait15;
-    protected final String baseUrl = "https://qa-complex-app-for-testing.herokuapp.com";
+    protected static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+    protected final String baseUrl = configProperties.base_url();
     Logger logger = Logger.getLogger(getClass());
 
     public ParentPage(WebDriver webDriver) {
