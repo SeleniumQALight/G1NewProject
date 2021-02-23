@@ -5,21 +5,27 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
 
 public class HomePage extends ParentPage {
 
     @FindBy(xpath = ".//button[text()='Sign Out']")
-    private WebElement buttonSignOut;
+    private Button buttonSignOut;
 
     @FindBy(xpath = ".//*[text()='Create Post']")
-    private WebElement createPostButton;
+    private Button createPostButton;
     @FindBy(xpath = ".//a[contains(text(),'Complex app for testing - QA')]")
-    private WebElement createHomeButton;
+    private Button createHomeButton;
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
-    private WebElement profileButton;
+    private Button profileButton;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    String getRelativeUrl() {
+        return "/";
     }
 
     public boolean isButtonSignOutVisible() {
@@ -60,7 +66,7 @@ public class HomePage extends ParentPage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Assert.assertEquals("Valid home page", "https://qa-complex-app-for-testing.herokuapp.com/" , webDriver.getCurrentUrl()); //"", expected, actual
+        Assert.assertEquals("Valid home page", baseUrl + getRelativeUrl() , webDriver.getCurrentUrl()); //"", expected, actual
         return this;
     }
 
