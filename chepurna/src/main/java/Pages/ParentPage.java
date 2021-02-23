@@ -1,5 +1,7 @@
 package Pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -17,7 +19,9 @@ import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory
 abstract class ParentPage {         //abstract = nobody can create object and we can create abstract method
     protected WebDriver webDriver;
     protected WebDriverWait webDriverWait10, webDriverWait15;
-    protected final String baseUrl = "https://qa-complex-app-for-testing.herokuapp.com";
+//Properties
+    protected static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+    protected final String baseUrl = configProperties.base_url();
     Logger logger = Logger.getLogger(getClass());
     public ParentPage(WebDriver webDriver){ //constrictor
         this.webDriver = webDriver;
