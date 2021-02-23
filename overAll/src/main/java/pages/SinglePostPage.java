@@ -16,6 +16,9 @@ public class SinglePostPage extends ParentPage {
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement deleteButton;
 
+    @FindBy(xpath = ".//*[@data-original-title='My Profile']")
+    private WebElement profileButton;
+
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -35,6 +38,11 @@ public class SinglePostPage extends ParentPage {
 
     public ProfilePage clickOnDeleteButton() {
         clickOnElement(deleteButton);
+        return new ProfilePage(webDriver);
+    }
+
+    public ProfilePage clickOnProfileButton() {
+        clickOnElement(profileButton);
         return new ProfilePage(webDriver);
     }
 }
