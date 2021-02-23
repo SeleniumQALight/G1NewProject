@@ -16,7 +16,6 @@ import java.util.List;
 
 public class errorMessagesLoginPage extends BaseTest {
 
-
     @Test
     public void oneErrorMessageIsDisplayed (){
         // Use for the test date from TestData file
