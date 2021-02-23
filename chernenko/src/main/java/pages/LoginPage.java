@@ -11,6 +11,8 @@ import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElementsLocatedBy;
+
 public class LoginPage extends ParentPage{
 
     @FindBy (xpath =".//*[@placeholder='Username']")
@@ -128,13 +130,11 @@ public class LoginPage extends ParentPage{
         return isElementDisplayed(WrongPassword);
     }
 
-    public ArrayList numberOfErrorMessageWereDisplayed (){
-        // Use for the test date from TestData file
-        //fillLoginFormNewUserAndSubmit(TestData.UNIQUE_USERNAME,TestData.INVALID_EMAIL,TestData.SORT_PASSWORD);
-        Util.waitABit(2);
+    public int numberOfErrorMessageWereDisplayed (){
+        visibilityOfAllElementsLocatedBy(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]"));
         List<WebElement> list = new ArrayList<>();
         list = webDriver.findElements(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]"));
-        return (ArrayList) list;
-
+        int listSize = list.size();
+        return listSize;
     }
 }
