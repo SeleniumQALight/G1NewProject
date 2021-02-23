@@ -29,6 +29,9 @@ public class ParentPage {
 
 
     protected void enterTextIntoElement(WebElement webElement, String text) {
+        if(text == null){
+            return;
+        }
         try {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
@@ -37,6 +40,9 @@ public class ParentPage {
         } catch (Exception e) {
             printErrorMessageAndStopTest(e);
         }
+    }
+    protected void waitErrorMessageAppears(){
+        webDriverWait10.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".// div[contains(@class, 'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]")));
     }
 
     protected void clickOnElement(WebElement webElement) {
@@ -75,10 +81,10 @@ public class ParentPage {
         }
     }
 
-    protected void selectValueInDropdown(WebElement webElement, String value){
+    protected void selectValueInDropDown(WebElement webElement, String value){
         try{
             Select select = new Select(webElement);
-            select.selectByVisibleText(value);
+            select.selectByValue(value);
             logger.info(value + " was selected in DropDown");
         }catch (Exception e){
             printErrorMessageAndStopTest(e);
