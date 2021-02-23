@@ -8,7 +8,7 @@ public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void validLogin(){
         loginPage.openLoginPage();
-        loginPage.enterLoginSignIn("auto");
+        loginPage.enterLoginSignIn("auto1");
         loginPage.enterPassWordSignIn("123456qwerty");
         loginPage.clickButtonSignIn();
 
