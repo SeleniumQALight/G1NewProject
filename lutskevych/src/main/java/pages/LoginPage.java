@@ -6,6 +6,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
+
+import static java.lang.String.format;
 
 public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//*[@placeholder='Username']")
@@ -14,6 +19,14 @@ public class LoginPage extends ParentPage{
     private WebElement inputPassword;
     @FindBy(xpath = ".//button [contains(text(),'Sign In')]")
     private WebElement buttonSignIn;
+    @FindBy(xpath = ".//input [@name = 'email']")
+    private WebElement inputEmail;
+    @FindBy(xpath = ".//button [@type = 'submit']")
+    private WebElement buttonSignUpForOurApp;
+    @FindBy(xpath = ".//input [@id='username-register']")
+    private WebElement registerLogin;
+    @FindBy(xpath = ".//input [@id='password-register']")
+    private WebElement registerPassword;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -54,9 +67,45 @@ public class LoginPage extends ParentPage{
 //        }
         clickOnElement(buttonSignIn);
     }
+    public void clickButtonSignUpForOurApp(){
+        clickOnElement(buttonSignUpForOurApp);
+    }
     public boolean isAllertErrorrVisible(){
         try{
             return webDriver.findElement(By.xpath(".//*[contains(text(),'Errorr')]")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+    public boolean isAlertForInvalidIdVisible(){
+        try{
+            return webDriver.findElement(By.xpath(".//*[contains(text(),'Username must be at least 3 characters.')]")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+    public boolean isAlertForInvalidEmailVisible(){
+        try{
+            return webDriver.findElement(By.xpath(".//*[contains(text(),'You must provide a valid email address.')]")).isDisplayed();
+        } catch (Exception e){
+            return false;
+        }
+    }
+    public boolean isAlertForInvalidPassVisible(){
+        try{
+            return webDriver.findElement(By.xpath(".//*[contains(text(),'Password must be at least 12 characters.')]")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+    public boolean isAlertForInvalidPassInvisible(){
+        try{
+            List<WebElement> alert = webDriver.findElements(By.xpath(".//*[contains(text(),'Password must be at least 12 characters.')]"));
+            if (alert.size()>0){
+                return false;
+            }else{
+                return true;
+            }
         }catch (Exception e){
             return false;
         }
@@ -79,4 +128,10 @@ public class LoginPage extends ParentPage{
         fillLoginFormAndSubmit(TestData.VALID_LOGIN,TestData.VALID_PASSWORD);
         return new HomePage(webDriver);
     }
+    public void fullFillLoginForm(String login, String email, String pass){
+            enterTextIntoElement(registerLogin, login);
+            enterTextIntoElement(inputEmail, email);
+            enterTextIntoElement(registerPassword, pass);
+    }
+
 }
