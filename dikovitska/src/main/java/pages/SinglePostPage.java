@@ -14,6 +14,8 @@ public class SinglePostPage extends ParentPage{
     private WebElement successMessageElement;
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement deleteButton;
+    @FindBy(xpath = ".//*[@data-original-title='My Profile']")
+    private WebElement profileButton;
 
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -34,5 +36,11 @@ public class SinglePostPage extends ParentPage{
                 , webDriver.getCurrentUrl()
                 , containsString("https://qa-complex-app-for-testing.herokuapp.com/post/"));
         return this;
+    }
+
+
+    public ProfilePage clickOnProfileButton() {
+        clickOnElement(profileButton);
+        return new ProfilePage(webDriver);
     }
 }
