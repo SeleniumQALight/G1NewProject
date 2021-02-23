@@ -18,7 +18,7 @@ public class SinglePostPage extends ParentPage {
         super(webDriver);
     }
     public SinglePostPage checkIsRedirectToSinglePostPage(){
-        Util.waitABit(2);
+        waitChatToBeHide();
         Assert.assertThat("Invalid page",webDriver.getCurrentUrl(),
                 containsString("https://qa-complex-app-for-testing.herokuapp.com/post/") );
         return this;

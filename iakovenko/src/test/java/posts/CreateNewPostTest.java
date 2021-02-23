@@ -1,12 +1,13 @@
 package posts;
 
 import baseTest.BaseTest;
+import libs.Util;
 import org.junit.After;
 import org.junit.Test;
 import pages.LoginPage;
 
 public class CreateNewPostTest extends BaseTest {
-    final String POST_TITLE = "Roman Title of Post";
+    final String POST_TITLE = "Roman Title of Post" + Util.getDateAndTimeFormated();
     @Test
     public void createNewPost(){
     loginPage.loginWithValidCred()
@@ -15,6 +16,7 @@ public class CreateNewPostTest extends BaseTest {
             .checkIsRedirectedOnCreatePostPage()
             .enterTitleInToInputTitle(POST_TITLE)
             .enterTextInToInputBody("Post body")
+            .selectTextInDropDownRole("Частное сообщение")
             .clickOnButtonSaveNewPost()
             .checkIsRedirectToSinglePostPage()
             .checkIsSuccessMessageDisplayed()
