@@ -1,11 +1,15 @@
 package pages;
 
 import libs.TestData;
+import libs.Util;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage extends ParentPage{
 
@@ -122,5 +126,15 @@ public class LoginPage extends ParentPage{
     public boolean isErrorMessageWrongPassword() {
 
         return isElementDisplayed(WrongPassword);
+    }
+
+    public ArrayList numberOfErrorMessageWereDisplayed (){
+        // Use for the test date from TestData file
+        //fillLoginFormNewUserAndSubmit(TestData.UNIQUE_USERNAME,TestData.INVALID_EMAIL,TestData.SORT_PASSWORD);
+        Util.waitABit(2);
+        List<WebElement> list = new ArrayList<>();
+        list = webDriver.findElements(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]"));
+        return (ArrayList) list;
+
     }
 }
