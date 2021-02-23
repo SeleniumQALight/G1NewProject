@@ -17,7 +17,8 @@ public class CreateNewPostTest extends BaseTest {
                  .checkIsRedirectedOnCteatePostPage()
                  .enterTitleInToInputTitle(POST_TITLE)
                  .enterTextInToInputBody("Post body")
-                        .selectTextInDropDownRole("Частное сообщение")
+                 //       .selectTextInDropDownRole("Частное сообщение")
+                 .selectTextInDropDownLikeManual("Частное сообщение")
                  .clickOnButtonSaveNewPost()
                  .chechIsRedirectToSinglePostPage()
                  .checkIsSuccessMessageDisplayed();
@@ -25,7 +26,6 @@ public class CreateNewPostTest extends BaseTest {
 
     //HOMEWORK 02-13
     @After
-
    public void deletePost(){
         singlePostPage.clickOnMyProfileButton()
                 .chechIsRedirectToProfilePage()
