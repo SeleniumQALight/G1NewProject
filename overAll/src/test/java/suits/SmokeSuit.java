@@ -10,7 +10,7 @@ import posts.CreateNewPostTest;
 @Suite.SuiteClasses(
         {
                 LoginTestWithPageObject.class,
-                CreateNewPostTest.class
+                CreateNewPostTest.class,
         }
 )
 public class SmokeSuit {
