@@ -5,26 +5,33 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import static org.hamcrest.CoreMatchers.containsString;
 
 public class SinglePostPage extends ParentPage{
 
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
-    private WebElement successMessageElement;
+    private TextInput successMessageElement;
 
     @FindBy(xpath = ".//*[@data-original-title='Delete']")
 
     // FinbBy ".//button[@class='delete-post-button text-danger']"
    // @FindBy(xpath = ".//*[@class='svg-inline--fa fa-trash fa-w-14']")
 
-    private WebElement deleteIcon;
+    private Button deleteIcon;
 
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
-    private WebElement profileButton;
+    private Button profileButton;
 
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    String getRelativeUrl() {
+        return "/post/";
     }
 
     public SinglePostPage checkIsRedirectedToSinglePostPage(){
@@ -32,7 +39,7 @@ public class SinglePostPage extends ParentPage{
         waitChatToBeHide();
         Assert.assertThat("Invalid page"
                 , webDriver.getCurrentUrl()
-                , containsString("https://qa-complex-app-for-testing.herokuapp.com/post/")
+                , containsString(baseUrl + getRelativeUrl())
         );
                 return this;
     }
