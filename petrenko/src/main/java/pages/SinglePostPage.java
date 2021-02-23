@@ -20,6 +20,9 @@ public class SinglePostPage extends ParentPage {
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
     private WebElement deletePostButton;
 
+    @FindBy(xpath = ".//*[@data-original-title='My Profile']")
+    private WebElement profileButton;
+
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -65,4 +68,9 @@ public class SinglePostPage extends ParentPage {
     }
 
 
+    public MyProfilePage clickOnProfileButton() {
+        clickOnElement(profileButton);
+        return new MyProfilePage(webDriver);
+
+    }
 }

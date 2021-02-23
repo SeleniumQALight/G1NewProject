@@ -99,4 +99,10 @@ public class MyProfilePage extends ParentPage {
         checkIsElementVisible(successPostDeleteElement);
         return this;
     }
+
+    public MyProfilePage checkIsPostWasAdded(String post_title) {
+        List<WebElement> postsList = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
+        Assert.assertEquals("Numbers of posts with title " + post_title, 1, postsList.size());
+        return this;
+    }
 }
