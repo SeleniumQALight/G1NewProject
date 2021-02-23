@@ -9,8 +9,7 @@ import posts.CreateNewPostTest;
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
         {
-                LoginTestWithPageObject.class
-
+                LoginTestWithPageObject.class,
                 CreateNewPostTest.class
         }
 )
