@@ -20,6 +20,11 @@ public class HomePage extends ParentPage {
     private WebElement myProfileButton;
 
 
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
     public HomePage(WebDriver webDriver) {
 
         super(webDriver);

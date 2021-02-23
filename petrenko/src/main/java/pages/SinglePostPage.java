@@ -23,13 +23,18 @@ public class SinglePostPage extends ParentPage {
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
     private WebElement profileButton;
 
+    @Override
+    String getRelativeUrl() {
+        return "/post";
+    }
+
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
     public SinglePostPage checkIsRedirectOnSinglePostPage() {
         waitChatToBeHide();
-        Assert.assertThat("Invalid page", webDriver.getCurrentUrl(), containsString("https://qa-complex-app-for-testing.herokuapp.com/post"));
+        Assert.assertThat("Invalid page", webDriver.getCurrentUrl(), containsString(baseUrl + getRelativeUrl() ));
 
         return this;
     }
