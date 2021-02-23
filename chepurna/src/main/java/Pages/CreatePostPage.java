@@ -1,6 +1,7 @@
 package Pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,28 +17,26 @@ public class CreatePostPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
-    @FindBy(tagName = "select")
+    @FindBy(id = "select1")
     private WebElement dropDownRole;
+
+    final String textDDLocator = ".//*[text()='%s']";   //Locator like String
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+//=========================================================
 
     public CreatePostPage checkIsRedirectedOnCteatePostPage() {
         Assert.assertEquals("Invalid page"
                 , "https://qa-complex-app-for-testing.herokuapp.com/create-post"
                 , webDriver.getCurrentUrl());
-    return this;
+        return this;
     }
-//TODO to fix
-    public CreatePostPage enterTitleInToInputTitle (String title){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
+    public CreatePostPage enterTitleInToInputTitle (String title){
+        waitChatToBeHide();
         enterTextInToElement(inputTitle, title);
         return this;
     }
@@ -52,9 +51,18 @@ public class CreatePostPage extends ParentPage {
         return new SinglePostPage(webDriver);
     }
 
-
     public CreatePostPage selectTextInDropDownRole(String textInDD) {
-        selectTestinDropDown(dropDownRole, textInDD);
+        selectTextInDropDown(dropDownRole, textInDD);
         return this;
     }
+
+//DROP DOWN (HOMEWORK 02-20)
+    public CreatePostPage selectTextInDropDownLikeManual(String textDD){
+        clickOnElement(dropDownRole);
+        checkIsElementVisible(webDriver.findElement(By.xpath(String.format(textDDLocator, textDD))));
+        clickOnElement(webDriver.findElement(By.xpath(String.format(textDDLocator, textDD))));
+        return this;
+    }
+
 }
+

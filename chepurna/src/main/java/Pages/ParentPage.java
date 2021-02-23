@@ -29,9 +29,9 @@ protected void waitChatToBeHide(){
             .invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
 }
 
-    //======METHODS WITH ELEMENTS================
+//======METHODS WITH ELEMENTS================
 
-    // ENTER TEXT TO THE ELEMENT
+// ENTER TEXT TO THE ELEMENT
     protected void enterTextInToElement (WebElement webElement, String text){
         try {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
@@ -43,7 +43,7 @@ protected void waitChatToBeHide(){
         }
     }
 
-    // CLICK ON THE ELEMENT
+// CLICK ON THE ELEMENT
     protected void clickOnElement(WebElement webElement){
         try {
             webDriverWait15.until(ExpectedConditions.elementToBeClickable(webElement));
@@ -54,7 +54,7 @@ protected void waitChatToBeHide(){
         }
     }
 
-    // IS ELEMENT DISPLAYED????
+// IS ELEMENT DISPLAYED????
     protected boolean isElementDisplayed(WebElement webElement){
         try {
             boolean state = webElement.isDisplayed();
@@ -66,8 +66,8 @@ protected void waitChatToBeHide(){
         }
     }
 
-    // SELECT IN DROP DOWN === JAVA need time
-    protected void selectTestinDropDown(WebElement webElement, String text){
+// SELECT IN DROP DOWN === JAVA BY TEXT (need time)
+    protected void selectTextInDropDown(WebElement webElement, String text){
         try{
             Select select = new Select (webElement);
             select.selectByVisibleText(text);
@@ -77,7 +77,7 @@ protected void waitChatToBeHide(){
         }
     }
 
-// SELECT VALUE THAT WILL GO TO DB === JAVA quick
+// SELECT VALUE THAT WILL GO TO DB === JAVA BY VALUE (quick but testing low)
     protected void selectValueinDropDown(WebElement webElement, String value){
         try{
             Select select = new Select (webElement);
@@ -88,7 +88,9 @@ protected void waitChatToBeHide(){
         }
     }
 
-      // IN CASE OF EXCEPTION
+//=========================================================
+
+// IN CASE OF EXCEPTION
     private void printErrorMessageAndStopTest(Exception e) {
         logger.error("Can not work with element" + e); // will write to log
         Assert.fail("Can not work with element" + e); // will write to report
