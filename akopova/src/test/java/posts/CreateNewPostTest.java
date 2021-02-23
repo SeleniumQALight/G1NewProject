@@ -21,6 +21,9 @@ public class CreateNewPostTest extends BaseTest {
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectedToSinglePostPage()
         .checkIsSuccessMessageDisplayed()
+        .clickOnProfileButton()
+        .checkIsRedirectedOnMyProfilePage()
+        .checkIsPostWasAdded(POST_TITLE)
         ;
 
 

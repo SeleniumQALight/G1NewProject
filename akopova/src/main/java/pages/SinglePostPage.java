@@ -19,6 +19,10 @@ public class SinglePostPage extends ParentPage{
    // @FindBy(xpath = ".//*[@class='svg-inline--fa fa-trash fa-w-14']")
 
     private WebElement deleteIcon;
+
+    @FindBy(xpath = ".//*[@data-original-title='My Profile']")
+    private WebElement profileButton;
+
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -46,4 +50,8 @@ public class SinglePostPage extends ParentPage{
     }
 
 
+    public MyProfilePage clickOnProfileButton() {
+        clickOnElement(profileButton);
+        return new MyProfilePage(webDriver);
+    }
 }
