@@ -23,6 +23,9 @@ public class SinglePostPage extends ParentPage {
     @FindBy(xpath = ".//strong[contains(text(),'Cherchenko Lena Title of Post')]")
     private WebElement titleOfPost;
 
+    @FindBy (xpath = ".//*[@data-original-title='My Profile']")
+    private WebElement profileButton;
+
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -50,4 +53,8 @@ public class SinglePostPage extends ParentPage {
         return new ProfilePage(webDriver);
     }
 
+    public ProfilePage clickOnProfilButton() {
+        clickOnElement(profileButton);
+        return new ProfilePage(webDriver);
+    }
 }
