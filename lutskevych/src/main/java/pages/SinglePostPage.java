@@ -5,6 +5,8 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import static org.hamcrest.Matchers.containsString;
 
@@ -12,19 +14,24 @@ import static org.hamcrest.Matchers.containsString;
 public class SinglePostPage extends ParentPage {
 
     @FindBy(xpath = ".//*[contains(text(),'New post successfully created')]")
-    private WebElement successMessageElement;
+    private TextInput successMessageElement;
     @FindBy(xpath = ".//form[contains(@class,'delete')]")
-    private WebElement deleteButton;
+    private Button deleteButton;
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
-    private WebElement profileButton;
+    private Button profileButton;
 
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/post/";
+    }
+
     public SinglePostPage checkIsRedirectToSinglePostPage(){
         waitChatToBeHide();
-        Assert.assertThat("Invalid page",webDriver.getCurrentUrl(),containsString("https://qa-complex-app-for-testing.herokuapp.com/post/"));
+        Assert.assertThat("Invalid page",webDriver.getCurrentUrl(),containsString(baseUrl + getRelativeUrl()));
         return this;
     }
 
