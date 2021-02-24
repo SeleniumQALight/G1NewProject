@@ -35,7 +35,7 @@ public class MyProfilePage extends ParentPage{
         }
          */
         waitChatToBeHide();
-        MyUtil.waitABit(2);
+        //MyUtil.waitABit(2);
         Assert.assertThat("HomePage does not match"
                 , webDriver.getCurrentUrl()
                 , containsString("https://qa-complex-app-for-testing.herokuapp.com/profile/auto")

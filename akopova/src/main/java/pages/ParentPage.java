@@ -63,7 +63,7 @@ public class ParentPage {
             return state;
         }
         catch (Exception e){
-            logger.info("Element displayed : false");
+            logger.info("Element is not yet displayed : false");
             return false;
         }
     }
@@ -113,5 +113,9 @@ public class ParentPage {
         }
     }
 
+    public ParentPage clearElement (WebElement webElement) {
+        webElement.clear();
+        return this;
+    }
 
 }
