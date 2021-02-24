@@ -13,6 +13,8 @@ import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.List;
 
+import static org.junit.Assert.*;
+
 public class LoginPage extends ParentPage{
 
     private final String WRONG_SIGNUP_LOGIN = "@login";
@@ -44,10 +46,7 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//*[@id='password-register']/following-sibling::*")
     private WebElement passwordSignUpErrorField;
 
-    //@FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
-    //@FindBy(xpath = ".//*[@id='username-register']/following-sibling::*")
-   // private String errorMessageLocator;
-
+    public static String signUpErrorMessageLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -65,7 +64,7 @@ public class LoginPage extends ParentPage{
         }
         catch (Exception e) {
             logger.info("can't open Login Page");
-            Assert.fail("can't open Login Page");
+            fail("can't open Login Page");
         }
 
     }
@@ -149,7 +148,7 @@ public class LoginPage extends ParentPage{
         }
         catch (Exception e) {
             logger.error("Can't work with SignIn Button");
-            Assert.fail("Can't work with SignIn Button");
+            fail("Can't work with SignIn Button");
 
         }
     }
@@ -162,7 +161,7 @@ public class LoginPage extends ParentPage{
         }
         catch (Exception e) {
             logger.error("Can't work with SignUp Button");
-            Assert.fail("Can't work with SignUp Button");
+            fail("Can't work with SignUp Button");
 
         }
     }
@@ -183,13 +182,24 @@ public class LoginPage extends ParentPage{
         return new HomePage(webDriver);
     }
 
-    public void enterSignUpInfo() {
+    public void enterValidSignUpInfo() {
         enterDataForSignUp(signUpLogin, TestData.VALID_SIGNUP_LOGIN);
         enterDataForSignUp(signUpEmail, TestData.VALID_SIGNUP_EMAIL);
         enterDataForSignUp(signUpPassword, TestData.VALID_SIGNUP_PASSWORD);
     }
 
     //TODO check that we registered the correct Isr; maybe redirect to HomePage
+
+    public LoginPage enterIvValidSignUpInfo(String signUpLoginValue, String signUpEmailValue, String signUpPasswordValue) {
+        enterDataForSignUp(signUpLogin, signUpLoginValue);
+        enterDataForSignUp(signUpEmail, signUpEmailValue);
+        enterDataForSignUp(signUpPassword, signUpPasswordValue);
+
+        return this;
+    }
+
+
+
 
 /**
     public void checkErrorMessage(WebElement webElement, String text, String locator){
@@ -218,35 +228,40 @@ public class LoginPage extends ParentPage{
 
 
     public  LoginPage checkLoginSignUpErrorMessageText(String text) {
-        Assert.assertEquals("Message does not match", text,
+        assertEquals("Message does not match", text,
                 loginSignUpErrorField.getText());
         return this;
     }
 
     public  LoginPage checkEmailSignUpErrorMessageText(String text) {
-        Assert.assertEquals("Message does not match", text,
+        assertEquals("Message does not match", text,
                 emailSignUpErrorField.getText());
         return this;
     }
 
     public  LoginPage checkPasswordSignUpErrorMessageText(String text) {
-        Assert.assertEquals("Message does not match", text,
+        assertEquals("Message does not match", text,
                 passwordSignUpErrorField.getText());
         return this;
     }
 
-    public void countErrorMessages(String errorMessageLocator){
+    public void checkErrorMessagesAmount(String errorMessageLocator,long expectedErrorMessagesNumber ){
         List<WebElement> listOfErrorMessages;
 
        // errorMessageLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
       try {
           listOfErrorMessages = webDriver.findElements(By.xpath(errorMessageLocator));
           logger.info("Now there are " + listOfErrorMessages.size() + " error messages on login page");
+          //compare number of expected and actual error messages numbers
+          Assert.assertEquals("Expected and actual number of error messages do not match"
+                  ,expectedErrorMessagesNumber
+                  ,listOfErrorMessages.size() );
+
       }
       catch (Exception e){
           logger.error("Exception " + e + "happened");
       }
-        //return listOfErrorMessages.size();
+
     }
 
 

@@ -17,6 +17,6 @@ public class TestData {
     public final static String INVALID_SIGNUP_EMAIL = "No_Mail";
     public final static String INVALID_SIGNUP_PASSWORD = "@#$1a";
 
-    public static String signUpErrorMessageLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
 
 }
