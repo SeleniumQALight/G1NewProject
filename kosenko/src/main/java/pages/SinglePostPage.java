@@ -17,13 +17,11 @@ public class SinglePostPage extends ParentPage {
     private WebElement DeletePostButton;
 
     @FindBy(xpath = ".//img[@data-original-title='My Profile']")
-    private WebElement myProfileButton;
+    private WebElement profileButton;
 
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
     }
-
-    //=========================================================
 
     public SinglePostPage chechIsRedirectToSinglePostPage() {
         Assert.assertThat("Invalid page"
@@ -45,7 +43,7 @@ public class SinglePostPage extends ParentPage {
         } catch (InterruptedException e) {
             e.printStackTrace(); */
 
-        clickOnElement(myProfileButton);
+        clickOnElement(profileButton);
         return new ProfilePage(webDriver);
     }
 
@@ -57,6 +55,11 @@ public class SinglePostPage extends ParentPage {
         } */
         waitChatToBeHide();
         clickOnElement(DeletePostButton);
+        return new ProfilePage(webDriver);
+    }
+
+    public ProfilePage clickOnProfileButton() {
+        clickOnElement(profileButton);
         return new ProfilePage(webDriver);
     }
 }

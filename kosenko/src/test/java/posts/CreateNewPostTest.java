@@ -19,13 +19,17 @@ final String POST_TITLE = "Kosenko Title of Post" + Util.getDateAndTimeFormated(
                 .selectTextInDropDownRole("Частное сообщение")
                 .clickOnButtonSaveNewPost()
                 .chechIsRedirectToSinglePostPage()
-                .checkIsSuccessMessageDisplayed();
+                .checkIsSuccessMessageDisplayed()
+                .clickOnProfileButton()
+        .checkIsRedirectedToProfilePage()
+        .checkIsPostWasAdded(POST_TITLE)
+        ;
     }
     @After
 
     public void deletePost(){
         singlePostPage.clickOnMyProfileButton()
-                .chechIsRedirectToProfilePage()
+                .checkIsRedirectedToProfilePage()
                 .clickOnPostTitle()
                 .chechIsRedirectToSinglePostPage()
                 .clickOnDeletePostButton()

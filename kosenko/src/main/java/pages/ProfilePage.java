@@ -3,14 +3,18 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ParentPage;
 
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.containsString;
 
 public class ProfilePage extends ParentPage {
+    final String postTitleLocator = ".//*[text()='%s']";
 
     @FindBy(xpath = ".//*[contains(text(),'Kosenko Title of Post')] ")
     private WebElement postTitle;
@@ -22,7 +26,7 @@ public class ProfilePage extends ParentPage {
         super(webDriver);
     }
 
-    public ProfilePage chechIsRedirectToProfilePage(){
+    public ProfilePage checkIsRedirectedToProfilePage(){
         waitChatToBeHide();
         Assert.assertThat("Invalid page"
                 , webDriver.getCurrentUrl()
@@ -50,6 +54,13 @@ public class ProfilePage extends ParentPage {
 
 
         checkIsElementVisible(successDeletedMessageElement);
+        return this;
+    }
+
+    public ProfilePage checkIsPostWasAdded(String post_title) {
+        List<WebElement> postLists = webDriver.findElements(
+                By.xpath(String.format(postTitleLocator, post_title)));
+        Assert.assertEquals("Number of posts with title " + post_title, 1, postLists.size());
         return this;
     }
 }

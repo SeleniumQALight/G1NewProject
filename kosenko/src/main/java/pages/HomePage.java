@@ -13,7 +13,7 @@ public class HomePage extends ParentPage {
     private WebElement createPostButton;
 
     @FindBy(xpath = ".//img[@data-original-title='My Profile']")
-    private WebElement myProfileButton;
+    private WebElement profileButton;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -37,7 +37,7 @@ public class HomePage extends ParentPage {
 
     //HOMEWORK 02-13
     public ProfilePage clickOnMyProfileButton(){
-        clickOnElement(myProfileButton);
+        clickOnElement(profileButton);
         return new ProfilePage(webDriver);
     }
 

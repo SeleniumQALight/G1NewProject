@@ -15,17 +15,20 @@ public class ParentPage {
     protected WebDriver webDriver;
     protected WebDriverWait webDriverWait10, webDriverWait15;
     Logger logger = Logger.getLogger(getClass());
-    public ParentPage (WebDriver webDriver){
+
+    public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
         webDriverWait10 = new WebDriverWait(webDriver, 10);
         webDriverWait15 = new WebDriverWait(webDriver, 15);
     }
-    protected void waitChatToBeHide(){
+
+    protected void waitChatToBeHide() {
         webDriverWait10.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
     }
 
-    public void enterTextIntoElement(WebElement webElement, String text){
+
+    protected void enterTextIntoElement(WebElement webElement, String text){
         try{
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
