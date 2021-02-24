@@ -16,6 +16,10 @@ public class CreatePostPage extends ParentPage {
     private WebElement buttonSveNewPost;
     @FindBy(tagName = "select")
     private WebElement dropDownRole;
+    @FindBy(xpath = ".//select[@name = 'select1']")
+    private WebElement dropDownList;
+    @FindBy(xpath = ".//select//option[@value = 'One Person']")
+    private WebElement onePerson;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -42,6 +46,11 @@ public class CreatePostPage extends ParentPage {
 
     public CreatePostPage selectTextInDropDownRole(String textUnDropDown) {
         selectTextInDropDown(dropDownRole,textUnDropDown);
+        return this;
+    }
+    public CreatePostPage selectItemFromDropDownList (){
+        clickOnElement(dropDownList);
+        clickOnElement(onePerson);
         return this;
     }
 }

@@ -7,6 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.List;
 
@@ -15,11 +18,13 @@ public class LoginPage extends ParentPage{
     private final String WRONG_SIGNUP_LOGIN = "@login";
 
     @FindBy(xpath = ".//*[@placeholder='Username']")
-    private WebElement inputLogin;
+    private TextInput inputLogin;
+
+    // @Name(value="inputPass") - an example
     @FindBy(xpath = ".//*[@placeholder='Password']")
-    private WebElement inputPassword;
+    private TextInput inputPassword;
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement buttonSignIn;
+    private Button buttonSignIn;
     @FindBy(xpath=".//*[@id = 'username-register']")
     public WebElement signUpLogin;
     @FindBy(xpath=".//*[@id = 'email-register']")
@@ -47,9 +52,15 @@ public class LoginPage extends ParentPage{
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
     public void openLoginPage() {
         try {
-            webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
+            webDriver.get(baseUrl + getRelativeUrl());
             logger.info("Login Page opened");
         }
         catch (Exception e) {

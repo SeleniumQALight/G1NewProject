@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 
 import java.util.List;
@@ -20,10 +21,15 @@ public class MyProfilePage extends ParentPage{
     private WebElement linkToPost;
 
     @FindBy(xpath = ".//*[contains(text(), 'successfully deleted')]")
-    private WebElement deletionSuccessText;
+    private TextInput deletionSuccessText;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    String getRelativeUrl() {
+        return "/profile/auto";
     }
 
 
@@ -38,7 +44,7 @@ public class MyProfilePage extends ParentPage{
         //MyUtil.waitABit(2);
         Assert.assertThat("HomePage does not match"
                 , webDriver.getCurrentUrl()
-                , containsString("https://qa-complex-app-for-testing.herokuapp.com/profile/auto")
+                , containsString(baseUrl + getRelativeUrl())
         );
         return this;
     }
@@ -69,7 +75,8 @@ public class MyProfilePage extends ParentPage{
         //while (!listOfPosts.isEmpty() && (counter<100)){
         while(!listOfPosts.isEmpty()){
                 clickOnElement(webDriver.findElement(
-                        By.xpath(String.format(postTitleLocator, post_title))));
+                        By.xpath(String.format(postTitleLocator, post_title))),
+                        " Post with Title " + post_title);
                 new SinglePostPage(webDriver).checkIsRedirectedToSinglePostPage()
                         .clickOnDeleteIcon()
                         .checkIsRedirectedOnMyProfilePage()
@@ -78,6 +85,15 @@ public class MyProfilePage extends ParentPage{
             //counter++;
         }
 
+
+        return this;
+    }
+
+    public MyProfilePage checkIsPostWasAdded(String post_title) {
+        List<WebElement> postList = webDriver.findElements(
+                By.xpath(String.format(postTitleLocator, post_title)));
+        Assert.assertEquals("Number of posts with title " + post_title
+                ,1, postList.size());
 
         return this;
     }

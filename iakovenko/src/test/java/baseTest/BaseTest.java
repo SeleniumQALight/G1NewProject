@@ -24,7 +24,7 @@ public class BaseTest {
         System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         logger.info("Browser was opened");
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);

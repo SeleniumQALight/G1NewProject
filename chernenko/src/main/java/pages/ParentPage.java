@@ -42,6 +42,10 @@ public class ParentPage {
         webDriverWait10.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
     }
 
+    protected void waitErrorMessageAppears(){
+        webDriverWait10.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".// div[contains(@class, 'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]")));
+    }
+
     public void clickOnElement(WebElement webElement){
         try {
             // WAit till the chat window disappeared
