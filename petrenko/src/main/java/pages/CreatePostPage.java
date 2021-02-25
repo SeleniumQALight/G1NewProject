@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 public class CreatePostPage extends ParentPage {
 
     public String title;
-
+    final String valueOfOptionOfDropDown = ".//*[text()= '%s']";
     @FindBy(id = "post-title")
     private WebElement inputTitle;
     @FindBy(id = "post-body")
@@ -17,6 +18,8 @@ public class CreatePostPage extends ParentPage {
     private WebElement clickOnButtonSaveNewPost;
     @FindBy(tagName = "select")
     private WebElement dropDownRole;
+    @FindBy(id = "select1")
+    private WebElement dropDownMenuInCreatePostOption;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -48,6 +51,12 @@ public class CreatePostPage extends ParentPage {
 
     public CreatePostPage selectTextInDropDownRole(String textInDD) {
         selectTextInDropDown(dropDownRole, textInDD);
+        return this;
+    }
+
+    public CreatePostPage clickValueOptionInDropDownMenu(String text){
+        WebElement value = webDriver.findElement(By.xpath(String.format(valueOfOptionOfDropDown, text)));
+        selectTextInDropDownByClickOnOptionWithText(dropDownMenuInCreatePostOption, value);
         return this;
     }
 }
