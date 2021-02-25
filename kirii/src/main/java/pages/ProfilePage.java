@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.List;
 
@@ -13,15 +14,20 @@ import static org.hamcrest.CoreMatchers.containsString;
 
 public class ProfilePage extends ParentPage{
     @FindBy(xpath = ".//*[text()='Post successfully deleted']")
-    private WebElement checkSuccessDeletePost;
+    private TextInput checkSuccessDeletePost;
     @FindBy(xpath = ".//strong[contains(text(),'Yaroslav5 Title of Post')]")
-    private WebElement yaroslavPost;
+    private TextInput yaroslavPost;
 
 
 
     final String postTitleLocator = ".//*[text()='%s']";
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    String getRelativeUrl() {
+        return "/profile";
     }
 
 /*    public ProfilePage checkIsFindPostButton(){
@@ -38,7 +44,7 @@ public class ProfilePage extends ParentPage{
     public ProfilePage checkIsRedirectedToProfilePage(){
         waitChatToBeHide();
         Assert.assertThat(webDriver.getCurrentUrl()
-        , containsString("https://qa-complex-app-for-testing.herokuapp.com/profile"));
+        , containsString(baseUrl + getRelativeUrl()));
         return this;
     }
 
@@ -47,7 +53,7 @@ public class ProfilePage extends ParentPage{
 
         int counter = 0;
         while (!listOfPost.isEmpty() && counter < 100){
-            clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, post_title))));
+            clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, post_title))), "Post with title " + post_title);
             new SinglePostPage(webDriver)
                     .checkIsRedirectToSinglePostPage()
                     .clickOnDeleteButton()
@@ -60,6 +66,12 @@ public class ProfilePage extends ParentPage{
     }
     public ProfilePage checkSuccessDeletePost(){
         checkIsElementVisible(checkSuccessDeletePost);
+        return this;
+    }
+
+    public ProfilePage checkIsPostWasAdded(String post_title) {
+        List<WebElement> postsList = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));  //формат вместо процент С добавляет значение
+        Assert.assertEquals("Number of with title " + post_title, 1, postsList.size());
         return this;
     }
 }

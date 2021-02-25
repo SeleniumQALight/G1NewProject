@@ -10,7 +10,7 @@ public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "Chepurna Title of Post" + Util.getDateAndTimeFormated();
     @Test
     public void createNewPost(){
-        singlePostPage=
+       //ProfilePage=
                 loginPage.loginWithValidCred()
                  .checkIsButtonSignOutVisible()
                  .clickOnCreatePostButton()
@@ -21,17 +21,16 @@ public class CreateNewPostTest extends BaseTest {
                  .selectTextInDropDownLikeManual("Частное сообщение")
                  .clickOnButtonSaveNewPost()
                  .chechIsRedirectToSinglePostPage()
-                 .checkIsSuccessMessageDisplayed();
+                 .checkIsSuccessMessageDisplayed()
+                 .clickOnMyProfileButton()
+                 .chechIsRedirectToProfilePage()
+                 .checkISPostWasAdded(POST_TITLE)
+
+                 .clickOnPostTitle()
+                 .chechIsRedirectToSinglePostPage()
+                 .clickOnDeletePostButton()
+                 .checkIsSuccessDeletedMessageDisplayed();
+
     }
 
-    //HOMEWORK 02-13
-    @After
-   public void deletePost(){
-        singlePostPage.clickOnMyProfileButton()
-                .chechIsRedirectToProfilePage()
-                .clickOnPostTitle()
-                .chechIsRedirectToSinglePostPage()
-                .clickOnDeletePostButton()
-                .checkIsSuccessDeletedMessageDisplayed();
-    }
 }
