@@ -1,18 +1,19 @@
 package pages;
 
-import com.sun.xml.internal.ws.policy.sourcemodel.AssertionData;
+import libs.MyUtil;
 import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.htmlelements.annotations.Name;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.*;
 
 public class LoginPage extends ParentPage{
@@ -28,26 +29,29 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//button[text()='Sign In']")
     private Button buttonSignIn;
     @FindBy(xpath=".//*[@id = 'username-register']")
-    public WebElement signUpLogin;
+    public TextInput signUpLogin;
     @FindBy(xpath=".//*[@id = 'email-register']")
-    public WebElement signUpEmail;
+    public TextInput signUpEmail;
     @FindBy(xpath=".//*[@id = 'password-register']")
-    public WebElement signUpPassword;
+    public TextInput signUpPassword;
     @FindBy(xpath = ".//*[@type = 'submit']")
-    private WebElement buttonSignUp;
+    private Button buttonSignUp;
 
     @FindBy(xpath = ".//*[@id='username-register']/following-sibling::*")
     //@FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
-    private WebElement loginSignUpErrorField;
+    private TextInput loginSignUpErrorField;
 
     @FindBy(xpath = ".//*[@id='email-register']/following-sibling::*")
-    private WebElement emailSignUpErrorField;
+    private TextInput emailSignUpErrorField;
 
     @FindBy(xpath = ".//*[@id='password-register']/following-sibling::*")
-    private WebElement passwordSignUpErrorField;
+    private TextInput passwordSignUpErrorField;
 
     public static String signUpErrorMessageLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
+    public static String loginErrorMessageLocator = ".//*[@id='username-register']/following-sibling::*";
+    public static String emailErrorMessageLocator = ".//*[@id='email-register']/following-sibling::*";
+    public static String passwordErrorMessageLocator = ".//*[@id='password-register']/following-sibling::*";
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -127,6 +131,7 @@ public class LoginPage extends ParentPage{
 
     public LoginPage enterDataForSignUp(WebElement element, String text){
         try {
+            element.clear();
             enterTextIntoElement(element, text);
         }
         catch (Exception e){
@@ -183,47 +188,54 @@ public class LoginPage extends ParentPage{
     }
 
     public void enterValidSignUpInfo() {
+        openLoginPage();
         enterDataForSignUp(signUpLogin, TestData.VALID_SIGNUP_LOGIN);
         enterDataForSignUp(signUpEmail, TestData.VALID_SIGNUP_EMAIL);
         enterDataForSignUp(signUpPassword, TestData.VALID_SIGNUP_PASSWORD);
+
     }
 
-    //TODO check that we registered the correct Isr; maybe redirect to HomePage
+    public HomePage registerNewValidUser() {
+        enterValidSignUpInfo();
+        MyUtil.waitABit(5);
+        clickButtonSignUp();
+        // Check that we registered correct User : Homepage should open
+        MyUtil.waitABit(10);
+        checkIsRedirectedOnHomePage();
+        return new HomePage(webDriver);
+    }
 
-    public LoginPage enterIvValidSignUpInfo(String signUpLoginValue, String signUpEmailValue, String signUpPasswordValue) {
+
+
+    public LoginPage enterInvalidSignUpInfo(String signUpLoginValue
+            , String signUpEmailValue
+            , String signUpPasswordValue) {
         enterDataForSignUp(signUpLogin, signUpLoginValue);
+        waitForErrorMessageToBecomeVisible(loginErrorMessageLocator);
+
         enterDataForSignUp(signUpEmail, signUpEmailValue);
+        waitForErrorMessageToBecomeVisible(emailErrorMessageLocator);
+
         enterDataForSignUp(signUpPassword, signUpPasswordValue);
+        waitForErrorMessageToBecomeVisible(passwordErrorMessageLocator);
 
         return this;
     }
 
 
-
-
-/**
-    public void checkErrorMessage(WebElement webElement, String text, String locator){
-        //enterDataForSignUp(webElement, text);
-        //checkIsElementVisible(webDriver.findElement(By.xpath(locator)));
-        checkIsElementVisible(webElement);
-    }
- */
     public LoginPage checkLoginErrorMessageIsDisplayed(){
         checkIsElementVisible(loginSignUpErrorField);
         return this;
-
 }
 
     public LoginPage checkEmailErrorMessageIsDisplayed(){
         checkIsElementVisible(emailSignUpErrorField);
         return this;
-
     }
 
     public LoginPage checkPasswordErrorMessageIsDisplayed(){
         checkIsElementVisible(passwordSignUpErrorField);
         return this;
-
     }
 
 
@@ -248,15 +260,13 @@ public class LoginPage extends ParentPage{
     public void checkErrorMessagesAmount(String errorMessageLocator,long expectedErrorMessagesNumber ){
         List<WebElement> listOfErrorMessages;
 
-       // errorMessageLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
-      try {
+       try {
           listOfErrorMessages = webDriver.findElements(By.xpath(errorMessageLocator));
           logger.info("Now there are " + listOfErrorMessages.size() + " error messages on login page");
           //compare number of expected and actual error messages numbers
           Assert.assertEquals("Expected and actual number of error messages do not match"
                   ,expectedErrorMessagesNumber
                   ,listOfErrorMessages.size() );
-
       }
       catch (Exception e){
           logger.error("Exception " + e + "happened");
@@ -264,6 +274,27 @@ public class LoginPage extends ParentPage{
 
     }
 
+    protected LoginPage waitForErrorMessageToBecomeVisible(String errorMessageLocator){
+        webDriverWait10.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath(errorMessageLocator)));
+        return this;
+    }
+
+    public HomePage waitForHomePageToLoad() {
+        webDriverWait10.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath(".//*[@class='header-bar mb-3']")));
+        return new HomePage(webDriver);
+
+    }
+
+    public HomePage checkIsRedirectedOnHomePage(){
+
+        Assert.assertThat("HomePage does not match"
+                , webDriver.getCurrentUrl()
+                , containsString(baseUrl + getRelativeUrl())
+        );
+        return new HomePage(webDriver);
+    }
 
 
 

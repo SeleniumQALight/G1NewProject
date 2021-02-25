@@ -8,8 +8,8 @@ public class TestData {
 
 
     // Correct Credentials to sign up
-    public final static String VALID_SIGNUP_LOGIN = "newAuto";
-    public final static String VALID_SIGNUP_EMAIL = "mymail@gmail.com";
+    public final static String VALID_SIGNUP_LOGIN = "newAuto2";
+    public final static String VALID_SIGNUP_EMAIL = "mymail2@gmail.com";
     public final static String VALID_SIGNUP_PASSWORD = "098765poiuyt";
     // Incorrect Credentials to sign up
     public final static String INVALID_SIGNUP_LOGIN_SIGN = "@auto";

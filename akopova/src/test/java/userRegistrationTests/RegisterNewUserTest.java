@@ -10,11 +10,11 @@ public class RegisterNewUserTest extends BaseTest {
 
     @Test
     public void registerValidUser() {
-        loginPage.openLoginPage();
-        loginPage.enterValidSignUpInfo();
+        //loginPage.openLoginPage();
+        loginPage.registerNewValidUser();
 
     }
-
+/**
     @Test
     public void checkErrorMessages() {
         // Insert incorrect Sign Up Login (Username)
@@ -61,14 +61,15 @@ public class RegisterNewUserTest extends BaseTest {
         MyUtil.waitABit(5);
         loginPage.checkErrorMessagesAmount(loginPage.signUpErrorMessageLocator, 2);
     }
-
+*/
     @Test
     public void checkErrorMessagesAmounts() {
 
         loginPage.openLoginPage();
-        loginPage.enterIvValidSignUpInfo(TestData.INVALID_SIGNUP_LOGIN_SHORT
-                , TestData.INVALID_SIGNUP_EMAIL, TestData.INVALID_SIGNUP_PASSWORD);
-        MyUtil.waitABit(5);
+        loginPage.enterInvalidSignUpInfo(TestData.INVALID_SIGNUP_LOGIN_SHORT
+                , TestData.INVALID_SIGNUP_EMAIL
+                , TestData.INVALID_SIGNUP_PASSWORD
+                );
         loginPage.checkErrorMessagesAmount(loginPage.signUpErrorMessageLocator, 3);
     }
 }
