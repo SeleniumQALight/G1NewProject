@@ -13,25 +13,29 @@ public class HomePage extends ParentPage {
     @FindBy(xpath = ".//*[text()='Create Post']")
     private Button createPostButton;
 
-    @FindBy(xpath = ".//img[@data-original-title='My Profile']")
+    @FindBy(xpath = ".//*[@data-original-title='My Profile']")
     private Button profileButton;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    //=========================================================
     @Override
     String getRelativeUrl() {
         return "/";
     }
+
+    public boolean isButtonSignOutVisible() {
+        return isElementDisplayed(buttonSignOut);
+    }
+
     public HomePage checkIsButtonSignOutVisible(){
         checkIsElementVisible(buttonSignOut);
         return this;
     }
 
-    public boolean isButtonSignOutVisible() {
-        return  isElementDisplayed(buttonSignOut);
+    public boolean isButtonSignOutNotVisible() {
+        return !isButtonSignOutVisible();
     }
 
     public CreatePostPage clickOnCreatePostButton(){
@@ -39,11 +43,18 @@ public class HomePage extends ParentPage {
         return new CreatePostPage(webDriver);
     }
 
-    //HOMEWORK 02-13
-    public ProfilePage clickOnMyProfileButton(){
+    public HomePage openHomePage() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (!isButtonSignOutVisible()){
+            loginPage.loginWithValidCred();
+        }
+        logger.info("Home Page was opened");
+        return this;
+    }
+
+    public ProfilePage clickOnProfileButton() {
         clickOnElement(profileButton);
         return new ProfilePage(webDriver);
     }
-
 }
-

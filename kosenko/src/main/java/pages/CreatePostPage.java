@@ -20,7 +20,7 @@ public class CreatePostPage extends ParentPage {
     private Select dropDownRole;
 
 
-    public CreatePostPage (WebDriver webDriver){
+    public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
@@ -31,37 +31,25 @@ public class CreatePostPage extends ParentPage {
 
     public CreatePostPage checkIsRedirectedOnCreatePostPage() {
         waitChatToBeHide();
-        Assert.assertEquals("Invalid page", baseUrl + getRelativeUrl(), webDriver.getCurrentUrl());
+        Assert.assertEquals("Invalid page"
+                , baseUrl + getRelativeUrl()
+                , webDriver.getCurrentUrl());
         return this;
     }
 
-    public CreatePostPage enterTitleIntoInputTitle (String title){
+    public CreatePostPage enterTitleInToInputTitle (String title){
         enterTextInToElement(inputTitle, title);
         return this;
     }
 
-    public CreatePostPage enterTextIntoInputBody (String body){
-        enterTextInToElement(inputBody, body);
+    public CreatePostPage enterTextInToInputBody( String text){
+        enterTextInToElement(inputBody, text);
         return this;
     }
 
-    public SinglePostPage clickOnButtonSaveNewPost (){
+    public SinglePostPage clickOnButtonSaveNewPost(){
         clickOnElement(buttonSaveNewPost);
         return new SinglePostPage(webDriver);
-    }
-
-    @After
-    public SinglePostPage clickOnDeleteButton(){
-
-        clickOnDeleteButton();
-        return new SinglePostPage(webDriver);
-    }
-
-    public LoginPage openHomePage() {
-        LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.openLoginPage();
-
-        return loginPage;
     }
 
     public CreatePostPage selectTextInDropDownRole(String textInDD) {
