@@ -20,7 +20,7 @@ public class MyProfilePage extends ParentPage {
     final String postTitleLocator = ".//*[text()= '%s']";
 
     @FindBy(xpath = postTitleLocator)
-    private WebElement validTitleOfPost;
+    private TextBlock validTitleOfPost;
 
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
     private Button myProfileButton;
