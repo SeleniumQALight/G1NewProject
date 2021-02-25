@@ -5,10 +5,10 @@ import libs.TestData;
 import libs.Util;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebElement;
-import pages.LoginPage;
-import pages.ParentPage;
+
+
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;

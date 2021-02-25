@@ -23,6 +23,9 @@ public class CreateNewPostTest extends BaseTest {
                 .clickOnButtonSaveNewPost()
                     .checkIsRedirectToSinglePostPage()
                     .checkIsSuccessMessageDisplayed()
+                    .clickOnProfilButton()
+                .checkIsRedirectToProfilePage()
+                .checkIsPostWasAdded(POST_TITLE)
                 ;
 
     }
@@ -39,6 +42,7 @@ public class CreateNewPostTest extends BaseTest {
                 .clickOnButtonSaveNewPost()
                     .checkIsRedirectToSinglePostPage()
                     .checkIsSuccessMessageDisplayed()
+
         ;
 
     }
