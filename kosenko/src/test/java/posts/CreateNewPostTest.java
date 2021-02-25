@@ -18,7 +18,7 @@ final String POST_TITLE = "Kosenko Title of Post" + Util.getDateAndTimeFormated(
                 .enterTextIntoInputBody("Kosenko Post Body")
                 .selectTextInDropDownRole("Частное сообщение")
                 .clickOnButtonSaveNewPost()
-                .chechIsRedirectToSinglePostPage()
+                .checkIsRedirectToSinglePostPage()
                 .checkIsSuccessMessageDisplayed()
                 .clickOnProfileButton()
         .checkIsRedirectedToProfilePage()
@@ -31,7 +31,7 @@ final String POST_TITLE = "Kosenko Title of Post" + Util.getDateAndTimeFormated(
         singlePostPage.clickOnMyProfileButton()
                 .checkIsRedirectedToProfilePage()
                 .clickOnPostTitle()
-                .chechIsRedirectToSinglePostPage()
+                .checkIsRedirectToSinglePostPage()
                 .clickOnDeletePostButton()
                 .checkIsSuccessDeletedMessageDisplayed();
     }

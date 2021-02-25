@@ -27,7 +27,7 @@ public class SinglePostPage extends ParentPage {
         return "/post/";
     }
 
-    public SinglePostPage chechIsRedirectToSinglePostPage() {
+    public SinglePostPage checkIsRedirectToSinglePostPage() {
         Assert.assertThat("Invalid page"
                 , webDriver.getCurrentUrl()
                 , CoreMatchers.containsString(baseUrl + getRelativeUrl()));

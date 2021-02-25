@@ -2,20 +2,22 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//*[@placeholder='Username']")
-    private WebElement inputLogin;
+    private TextInput inputLogin;
+   // @Name(value = "")
 
     @FindBy(xpath = ".//*[@placeholder='Password']")
     private WebElement inputPassWord;
 
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement buttonSignIn;
+    private Button buttonSignIn;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -36,10 +38,10 @@ public class LoginPage extends ParentPage {
     }
 
     public void  enterLoginSignIn(String login) {
-        enterTextIntoElement(inputLogin, login);
+        enterTextInToElement(inputLogin, login);
     }
     public void enterPassWordSignIn(String passWord) {
-        enterTextIntoElement(inputPassWord, passWord);
+        enterTextInToElement(inputPassWord, passWord);
     }
 
     public void clickButtonSignIn() {

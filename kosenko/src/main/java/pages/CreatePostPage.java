@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-
 public class CreatePostPage extends ParentPage {
     @FindBy (id = "post-title")
     private WebElement inputTitle;
@@ -35,12 +33,12 @@ public class CreatePostPage extends ParentPage {
     }
 
     public CreatePostPage enterTitleIntoInputTitle (String title){
-        enterTextIntoElement(inputTitle, title);
+        enterTextInToElement(inputTitle, title);
         return this;
     }
 
     public CreatePostPage enterTextIntoInputBody (String body){
-        enterTextIntoElement(inputBody, body);
+        enterTextInToElement(inputBody, body);
         return this;
     }
 
