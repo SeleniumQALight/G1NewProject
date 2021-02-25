@@ -16,7 +16,7 @@ import ru.yandex.qatools.htmlelements.element.TypifiedElement;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
-abstract class ParentPage {
+public abstract class ParentPage {
 
     @FindBy(xpath = ".//*[contains(text(),'Complex app for testing')]")
     private WebElement homePageLink;
@@ -25,7 +25,7 @@ abstract class ParentPage {
     protected WebDriverWait webDriverWait10, getWebDriverWait15;
 
     // creating object of config.properties and create pairs of keys listed there
-    protected static ConfigProperties configProperties =
+    public static ConfigProperties configProperties =
             ConfigFactory.create(ConfigProperties.class);
     protected final String baseUrl = configProperties.base_url();
 
