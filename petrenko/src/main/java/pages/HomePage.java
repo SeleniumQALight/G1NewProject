@@ -4,20 +4,22 @@ import libs.Util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextBlock;
 
 public class HomePage extends ParentPage {
 
     @FindBy(xpath = ".//button[text()='Sign Out']")
-    private WebElement buttonSignOut;
+    private Button buttonSignOut;
 
     @FindBy(xpath = ".//*[text()='Create Post']")
-    private WebElement createPostButton;
+    private Button createPostButton;
 
     @FindBy(xpath = ".//*[text() = 'Complex app for testing - QA']")
-    private WebElement textComplexAppForTestingQa;
+    private TextBlock textComplexAppForTestingQa;
 
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
-    private WebElement myProfileButton;
+    private Button myProfileButton;
 
 
     @Override

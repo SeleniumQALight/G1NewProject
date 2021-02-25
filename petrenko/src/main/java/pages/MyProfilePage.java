@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextBlock;
 
 import java.util.List;
 
@@ -21,9 +23,9 @@ public class MyProfilePage extends ParentPage {
     private WebElement validTitleOfPost;
 
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
-    private WebElement myProfileButton;
+    private Button myProfileButton;
     @FindBy(xpath = ".//*[contains(text(), 'successfully deleted')]")
-    private WebElement successPostDeleteElement;
+    private TextBlock successPostDeleteElement;
 
     @Override
     String getRelativeUrl() {

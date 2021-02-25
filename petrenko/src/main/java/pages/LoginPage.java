@@ -1,6 +1,6 @@
 package pages;
 
-import jdk.jfr.Name;
+
 import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
