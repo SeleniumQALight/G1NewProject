@@ -11,22 +11,28 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import libs.Util;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 public class ProfilePage extends ParentPage {
 
     final String postTitleLocator = ".//*[text()='%s']";
 
     @FindBy(xpath = ".//*[contains(text(), 'successfully deleted')]")
-    private WebElement successPostDeleteElement;
+    private TextInput successPostDeleteElement;
 
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/profile";
+    }
+
     public ProfilePage checkIsRedirectToProfilePage(){
         waitChatToBeHide();
         Assert.assertThat(webDriver.getCurrentUrl()
-                , containsString("https://qa-complex-app-for-testing.herokuapp.com/profile"));
+                , containsString(baseUrl + getRelativeUrl()));
         return this;
     }
 
@@ -37,7 +43,7 @@ public class ProfilePage extends ParentPage {
         int counter = 0;
         while (!listOfPosts.isEmpty() && counter < 100){
             clickOnElement(webDriver.findElement(
-                    By.xpath(String.format(postTitleLocator, post_title))));
+                    By.xpath(String.format(postTitleLocator, post_title))), " Post with title " + post_title  );
             new SinglePostPage(webDriver)
                     .checkIsRedirectToSinglePostPage()
                     .clickOnDeleteButton()
@@ -52,6 +58,13 @@ public class ProfilePage extends ParentPage {
 
     private ProfilePage checkSuccessDeletePost() {
         checkIsElementVisible(successPostDeleteElement);
+        return this;
+    }
+
+    public ProfilePage checkIsPostWasAdded(String post_title) {
+        List<WebElement> postsList = webDriver.findElements(
+                By.xpath(String.format(postTitleLocator, post_title)));
+        Assert.assertEquals("Number of posts with title " + post_title , 1, postsList.size());
         return this;
     }
 }
