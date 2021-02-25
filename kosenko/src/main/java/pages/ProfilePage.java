@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ParentPage;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.List;
 
@@ -16,11 +17,12 @@ import static org.hamcrest.CoreMatchers.containsString;
 public class ProfilePage extends ParentPage {
     final String postTitleLocator = ".//*[text()='%s']";
 
-    @FindBy(xpath = ".//*[contains(text(),'Kosenko Title of Post')] ")
-    private WebElement postTitle;
-
-    @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
-    private WebElement successDeletedMessageElement;
+    //@FindBy(xpath = ".//*[contains(text(),'Kosenko Title of Post')] ")
+    //private WebElement postTitle;
+    //@FindBy(xpath = ".//*[@class='alert alert-success text-center']")
+    //private WebElement successDeletedMessageElement;
+    @FindBy(xpath = ".//*[contains(text(),'successfully deleted')]")
+    private TextInput successPostDeleteElement;;
 
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -45,7 +47,7 @@ public class ProfilePage extends ParentPage {
             e.printStackTrace();
         }
 
-        clickOnElement(postTitle);
+        clickOnElement(successPostDeleteElement);
         return new SinglePostPage(webDriver);
     }
 
@@ -57,7 +59,7 @@ public class ProfilePage extends ParentPage {
         }
 
 
-        checkIsElementVisible(successDeletedMessageElement);
+        checkIsElementVisible(successPostDeleteElement);
         return this;
     }
 

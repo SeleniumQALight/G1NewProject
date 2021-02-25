@@ -5,19 +5,19 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import static org.hamcrest.Matchers.containsString;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 public class SinglePostPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
-    private WebElement successMessageElement;
+    private TextInput successMessageElement;
 
-    @FindBy(xpath = ".//button[@data-original-title='Delete']")
-    private WebElement DeletePostButton;
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger")
+    private Button deleteButton;
 
     @FindBy(xpath = ".//img[@data-original-title='My Profile']")
-    private WebElement profileButton;
+    private Button profileButton;
 
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -58,7 +58,7 @@ public class SinglePostPage extends ParentPage {
             e.printStackTrace();
         } */
         waitChatToBeHide();
-        clickOnElement(DeletePostButton);
+        clickOnElement(deleteButton);
         return new ProfilePage(webDriver);
     }
 
