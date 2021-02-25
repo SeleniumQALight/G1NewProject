@@ -4,31 +4,39 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.Select;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 public class CreatePostPage extends ParentPage {
     @FindBy(id = "post-title")
-    private WebElement inputTitle;
+    private TextInput inputTitle;
     @FindBy(id = "post-body")
-    private WebElement inputBody;
+    private TextInput inputBody;
     @FindBy(xpath = ".//button[text()='Save New Post']")
-    private WebElement buttonSaveNewPost;
+    private Button buttonSaveNewPost;
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
-    private WebElement profileButton;
+    private Button profileButton;
     @FindBy(tagName = "select")
-    private WebElement dropDownRole;
+    private Select dropDownRole;
     @FindBy (id = "select1")
-    private WebElement postListType;
+    private TextInput postListType;
     @FindBy (xpath = ".// select [@id = 'select1']")
-    private WebElement valueOfList;
+    private TextInput valueOfList;
 
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectedOnCreatePostPage() {
         waitChatToBeHide();
-        Assert.assertEquals("Invalid page", "https://qa-complex-app-for-testing.herokuapp.com/create-post" , webDriver.getCurrentUrl()); //"", expected, actual
+        Assert.assertEquals("Invalid page", baseUrl + getRelativeUrl() , webDriver.getCurrentUrl()); //"", expected, actual
         return this;
     }
 
