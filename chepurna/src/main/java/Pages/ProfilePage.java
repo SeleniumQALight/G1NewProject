@@ -1,12 +1,14 @@
 //HOMEWORK 02-13
 package Pages;
 
+import com.sun.xml.internal.ws.api.message.saaj.SaajStaxWriter;
 import org.hamcrest.core.StringContains;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class ProfilePage extends ParentPage{
     private WebElement postTitle;
 
    @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
-    private WebElement successDeletedMessageElement;
+    private TextInput successDeletedMessageElement;
 
     final String postTitleLocator = ".//*[text()='%s']";
 
@@ -26,12 +28,18 @@ public class ProfilePage extends ParentPage{
         super(webDriver);
     }
 
+//URL of this page
+    @Override
+    String getRelativeUrl() {
+        return "/profile";
+    }
+
 //=========================================================
 
     public ProfilePage chechIsRedirectToProfilePage(){
         Assert.assertThat("Invalid page"
                 , webDriver.getCurrentUrl()
-                , containsString("https://qa-complex-app-for-testing.herokuapp.com/profile")) ;
+                , containsString(baseUrl + getRelativeUrl())); //= URL
         return this;
     }
 
@@ -51,7 +59,7 @@ public class ProfilePage extends ParentPage{
     public ProfilePage checkIsRedirectToProfilePage(){
         waitChatToBeHide();
         Assert.assertThat(webDriver.getCurrentUrl()
-                , StringContains.containsString("https://qa-complex-app-for-testing.herokuapp.com/profile"));
+                , StringContains.containsString(baseUrl +"/profile"));
         return this;
     }
 
@@ -66,7 +74,7 @@ public class ProfilePage extends ParentPage{
         int counter = 0;
         while (!listOfPosts.isEmpty() && counter < 100){
             clickOnElement(webDriver.findElement(
-                    By.xpath(String.format(postTitleLocator, post_title))));
+                    By.xpath(String.format(postTitleLocator, post_title))), " Post with title " +post_title);
             new SinglePostPage(webDriver)
                     .checkIsRedirectToSinglePostPage()
                     .clickOnDeletePostButton()
@@ -77,5 +85,13 @@ public class ProfilePage extends ParentPage{
         }
         return this;
     }
-//=========================================================
+
+//CHECK THAT WE CREATED JUST 1 POST
+
+    public ProfilePage checkISPostWasAdded(String post_title){
+        List<WebElement> postsList = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
+        Assert.assertEquals("Number of posts with title " + post_title , 1, postsList.size());
+        return this;
+    }
+
 }

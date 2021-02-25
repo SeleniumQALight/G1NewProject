@@ -5,6 +5,8 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -13,16 +15,22 @@ import static org.hamcrest.Matchers.contains;
 public class SinglePostPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
-    private WebElement successMessageElement;
+    private TextInput successMessageElement;
 
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
-    private WebElement DeletePostButton;
+    private Button DeletePostButton;
 
     @FindBy(xpath = ".//img[@data-original-title='My Profile']")
-    private WebElement myProfileButton;
+    private Button myProfileButton;
+
 
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    String getRelativeUrl() {
+        return "/post/";
     }
 
 //=========================================================
@@ -30,7 +38,7 @@ public class SinglePostPage extends ParentPage {
     public SinglePostPage chechIsRedirectToSinglePostPage() {
         Assert.assertThat("Invalid page"
                 , webDriver.getCurrentUrl()
-                , containsString("https://qa-complex-app-for-testing.herokuapp.com/post/"));
+                , containsString(baseUrl + getRelativeUrl())); // = URL
         return this;
     }
 
@@ -58,7 +66,7 @@ public class SinglePostPage extends ParentPage {
         waitChatToBeHide();
         Assert.assertThat("Invalid page"
                 , webDriver.getCurrentUrl()
-                , Matchers.containsString("https://qa-complex-app-for-testing.herokuapp.com/post/"));
+                , Matchers.containsString(baseUrl + "/post/"));
         return this;
     }
 
