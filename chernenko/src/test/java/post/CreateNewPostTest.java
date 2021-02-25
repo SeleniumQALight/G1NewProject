@@ -1,6 +1,7 @@
 package post;
 
 import baseTest.BaseTest;
+import libs.TestData;
 import libs.Util;
 import org.junit.After;
 import org.junit.Test;
@@ -19,11 +20,30 @@ public class CreateNewPostTest extends BaseTest {
                     .enterTitleIntoInputTitle(POST_TITLE)
                     .enterTextIntoInputBody(POST_BODY_TEXT)
                     .selectTextInDropDownRole ("Частное сообщение")
-                    .clickOnButtonSaveNewPost()
-                .checkIsRedirectToSinglePostPage()
+                .clickOnButtonSaveNewPost()
+                    .checkIsRedirectToSinglePostPage()
+                    .checkIsSuccessMessageDisplayed()
+                    .clickOnProfilButton()
+                .checkIsRedirectToProfilePage()
+                .checkIsPostWasAdded(POST_TITLE)
+                ;
+
+    }
+
+    @Test
+    public void createNewPostselectValueInDropDownRole() {
+        loginPage.loginWithValidCred()
+                    .checkIsButtonSignOutVisible()
+                .clickOnCreatePostButton()
+                    .checkIsRedirectedOnCreatePostPage()
+                    .enterTitleIntoInputTitle(POST_TITLE)
+                    .enterTextIntoInputBody(POST_BODY_TEXT)
+                    .selectValueInDropDownRole("Group Message")
+                .clickOnButtonSaveNewPost()
+                    .checkIsRedirectToSinglePostPage()
                     .checkIsSuccessMessageDisplayed()
 
-                ;
+        ;
 
     }
 

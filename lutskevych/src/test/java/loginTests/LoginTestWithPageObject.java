@@ -21,8 +21,59 @@ public class LoginTestWithPageObject extends BaseTest {
 ////        loginPage.clickButtonSignIn();
         loginPage.fillLoginFormAndSubmit("WrongLogin", "123456qwerty");
 
-        checkExpectedResult("Allert Errorr is not visible",loginPage.isAllertErrorrVisible());
+        checkExpectedResult("Alert Errorr is not visible",loginPage.isAllertErrorrVisible());
         checkExpectedResult("Button Sign Up For Our App Is visible",loginPage.buttonSignUpForOurAppIsVisible());
     }
+
+    @Test
+    public void checkErrorMessageForInvalidId(){
+        loginPage.openLoginPage();
+        loginPage.fullFillLoginForm("id",null,null);
+
+        checkExpectedResult("Alert for invalid id is not visible", loginPage.isAlertForInvalidIdVisible());
+    }
+    @Test
+    public void checkErrorMessageForInvalidEmail(){
+        loginPage.openLoginPage();
+        loginPage.fullFillLoginForm(null,"12",null);
+
+        checkExpectedResult("Alert for invalid email is not visible", loginPage.isAlertForInvalidEmailVisible());
+    }
+    @Test
+    public void checkErrorMessageForInvalidPass(){
+        loginPage.openLoginPage();
+        loginPage.fullFillLoginForm(null,null,"pass");
+
+        checkExpectedResult("Alert for invalid pass is not visible", loginPage.isAlertForInvalidPassVisible());
+    }
+    @Test
+    public void checkErrorMessageForInvalidIdPassEmail(){
+        loginPage.openLoginPage();
+        loginPage.fullFillLoginForm("id","98","pass");
+
+        checkExpectedResult("Alert for invalid id is not visible", loginPage.isAlertForInvalidIdVisible());
+        checkExpectedResult("Alert for invalid pass is not visible",loginPage.isAlertForInvalidPassVisible());
+        checkExpectedResult("Alert for invalid email is not visible",loginPage.isAlertForInvalidEmailVisible());
+    }
+    @Test
+    public void checkErrorMessageForEmptyIdPassEmail(){
+        loginPage.openLoginPage();
+        loginPage.fullFillLoginForm(null,null,null);
+        loginPage.clickButtonSignUpForOurApp();
+
+        checkExpectedResult("Alert for invalid id is not visible",loginPage.isAlertForInvalidIdVisible());
+        checkExpectedResult("Alert for invalid pass is not visible",loginPage.isAlertForInvalidPassVisible());
+        checkExpectedResult("Alert for invalid email is not visible",loginPage.isAlertForInvalidEmailVisible());
+    }
+    @Test
+    public void checkErrorMessageForInvalidIdEmail(){
+        loginPage.openLoginPage();
+        loginPage.fullFillLoginForm("id","95", "123456qwerty");
+
+        checkExpectedResult("Alert for invalid id is not visible",loginPage.isAlertForInvalidIdVisible());
+        checkExpectedResult("Alert for invalid email is not visible",loginPage.isAlertForInvalidEmailVisible());
+        checkExpectedResult("Alert for invalid pass is visible",loginPage.isAlertForInvalidPassInvisible());
+    }
+
 
 }

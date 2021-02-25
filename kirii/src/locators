@@ -2,6 +2,12 @@
 LoginPage.input.userName = ".//*[contains(@placeholder.'user')]"
 LoginPage.input.password = ".//*[@placeholder='Password']"
 LoginPage.click.SignIn = ".//button[text()='Sign In']"
+LoginPage.input.Email = ".//input [@name = 'email']"
+LoginPage.message.wrongId = ".//*[contains(text(),'Username must be at least 3 characters.')]"
+LoginPage.message.wrongEmail = ".//*[contains(text(),'You must provide a valid email address.')]"
+LoginPage.message.wrongPass = ".//*[contains(text(),'Password must be at least 12 characters.')]"
+LoginPage.input.userNameRegister = ".//input [@id='username-register']"
+LoginPage.input.userPassRegister = ".//input [@id='password-register']"
 
 
 #HomePage
@@ -21,6 +27,8 @@ MyProfilePage.inspect.addedPost = ".//body[1]/div[2]/div[2]/a[1]/strong[1][conta
 CreatePostPage.input.titleField = ".//input[@id='post-title']"
 CreatePostPage.input.bodyContentField = ".//textarea[@id='post-body']"
 CreatePostPage.click.saveNewPost = ".//button[contains(text(),'Save New Post')]"
+CreatePost.select.name = ".//select[@name = 'select1']"
+CreatePost.select.onePerson = ".//select//option[@value = 'One Person']"
 
 
 #ChatPage

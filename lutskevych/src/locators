@@ -1,9 +1,16 @@
 #loginpage
 LoginPage.input.userName = ".//input [@name = 'username' and @placeholder='Username']"
 LoginPage.input.Password = ".//input [@name = 'password' and @placeholder='Password']"
+LoginPage.input.Email = ".//input [@name = 'email']"
 LoginPage.button.SignIn = ".//button [contains(text(),'Sign In')]"
 LoginPage.button.SignUpForOurApp = ".//button [@type = 'submit']"
 LoginPage.header.Error" = .//*[contains(text(),'Errorr')]"
+LoginPage.message.wrongId = ".//*[contains(text(),'Username must be at least 3 characters.')]"
+LoginPage.message.wrongEmail = ".//*[contains(text(),'You must provide a valid email address.')]"
+LoginPage.message.wrongPass = ".//*[contains(text(),'Password must be at least 12 characters.')]"
+LoginPage.input.userNameRegister = ".//input [@id='username-register']"
+LoginPage.input.userPassRegister = ".//input [@id='password-register']"
+
 
 
 #Homepage
@@ -16,7 +23,9 @@ Homepage.img.MyProfile = ".//img[contains(@data-original-title,'My Profile')]"
 #CreatePost
 CreatePost.input.title = ".//input[@name = 'title']"
 CreatePost.textarea.bodyContent = ".//textarea[@name = 'body']"
+CreatePost.select.name = ".//select[@name = 'select1']"
 CreatePost.select.allUsers = ".//select//option[@value = 'All Users']"
+CreatePost.select.onePerson = ".//select//option[@value = 'One Person']"
 CreatePost.button.saveNewPost = ".//button[contains(text(),'Save New Post')]"
 CreatePost.header.NewPostSuccessfullyCreated' = ".//*[contains(text(),'New post successfully created')]"
 CreatePost.FindPostText = ".//*[contains(text(),'Weather test')]"
