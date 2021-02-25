@@ -27,7 +27,9 @@ public class SinglePostPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
     private Button profileButton;
-
+    @FindBy(name = "select1")
+    private Button dropDownInCreatePost;
+    String valueOfDropDownInCreatePost = ".//*[text() = '%s']";
 
     @Override
     String getRelativeUrl() {

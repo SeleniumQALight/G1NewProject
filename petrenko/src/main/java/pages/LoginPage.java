@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextBlock;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.List;
@@ -48,7 +49,9 @@ public class LoginPage extends ParentPage {
     private Button popUpErrorUnValidPassword;
     @FindBy(xpath = ".//button[@type = 'submit']")
     private Button buttonSignUpForOurApp;
-    private String registerError = ".//div[@class=\"alert alert-danger small liveValidateMessage liveValidateMessage--visible\"]";
+    @FindBy(xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private TextBlock registerErrorMessage;
+    private String registerError = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     @Override
     String getRelativeUrl() {
@@ -140,7 +143,9 @@ public class LoginPage extends ParentPage {
     }
 
     public Integer countErrorRegisterForm() {
-        Util.waitABit(10);
+
+
+
         List<WebElement> listOfError = webDriver.findElements(By.xpath(registerError));
         countPopUpAfterSubmitRegister = listOfError.size();
         logger.info("Count of error register form - " + countPopUpAfterSubmitRegister);
