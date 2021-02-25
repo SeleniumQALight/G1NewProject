@@ -3,7 +3,6 @@ package pages;
 import libs.TestData;
 import libs.Util;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,8 +12,6 @@ import static org.hamcrest.Matchers.containsString;
 
 public class SinglePostPage extends ParentPage {
 
-
-
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
     private WebElement successMessageElement;
 
@@ -22,7 +19,6 @@ public class SinglePostPage extends ParentPage {
     private WebElement validTitleOfPost;
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
     private WebElement deletePostButton;
-
 
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -67,8 +63,6 @@ public class SinglePostPage extends ParentPage {
 
         return new MyProfilePage(webDriver);
     }
-
-
 
 
 }
