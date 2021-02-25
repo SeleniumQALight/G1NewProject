@@ -78,11 +78,11 @@ public class ParentPage {
     protected void checkIsElementUnVisible(WebElement webElement) {
         Assert.assertTrue("Element is visible", !isElementDisplayed(webElement));
     }
-protected  void selectTextInDropDown(WebElement dropDown, String text){
+protected  void selectTextInDropDown(WebElement webElement, String text){
         try {
-            dropDown.click();
-            logger.info(dropDown + " was clicked.");
-
+            Select select = new Select(webElement);
+            select.selectByVisibleText(text);
+            logger.info(text + "was selcted in DropDown.");
 
         }catch (Exception e){
             printErrorMessageAndStopTest(e);
@@ -94,24 +94,6 @@ protected  void selectTextInDropDown(WebElement dropDown, String text){
             Select select = new Select(webElement);
             select.selectByValue(value);
             logger.info(value + "was selcted in DropDown.");
-
-        }catch (Exception e){
-            printErrorMessageAndStopTest(e);
-        }
-    }
-
-
-
-    protected  void selectTextInDropDownByClickOnOptionWithText(WebElement dropDownMenu, WebElement valueOfOption){
-        try {
-            dropDownMenu.isDisplayed();
-            logger.info("DropDownMenu is displayed.");
-            dropDownMenu.click();
-            logger.info("DropDownMenu was clicked.");
-            valueOfOption.isDisplayed();
-            logger.info("ValueOfOption is displayed.");
-            valueOfOption.click();
-            logger.info("Value  was clicked in DropDown.");
 
         }catch (Exception e){
             printErrorMessageAndStopTest(e);

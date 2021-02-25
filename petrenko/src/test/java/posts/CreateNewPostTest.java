@@ -19,7 +19,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectOnCreatePostPage()
                 .enterTitleInToTitle(POST_TITLE)
                 .enterTextInToInputBody("bshzbzx")
-                .clickValueOptionInDropDownMenu("Частное сообщение")
+                .selectTextInDropDownRole("Частное сообщение")
                 .clickOnButtonSavePost()
                 .checkIsRedirectOnSinglePostPage()
                 .checkIsSuccessMessageDisplayed();
