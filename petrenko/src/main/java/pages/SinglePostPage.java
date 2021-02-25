@@ -3,12 +3,15 @@ package pages;
 import libs.TestData;
 import libs.Util;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.w3c.dom.ls.LSOutput;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextBlock;
+
+import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
 
@@ -25,6 +28,7 @@ public class SinglePostPage extends ParentPage {
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
     private Button profileButton;
 
+
     @Override
     String getRelativeUrl() {
         return "/post";
@@ -36,7 +40,7 @@ public class SinglePostPage extends ParentPage {
 
     public SinglePostPage checkIsRedirectOnSinglePostPage() {
         waitChatToBeHide();
-        Assert.assertThat("Invalid page", webDriver.getCurrentUrl(), containsString(baseUrl + getRelativeUrl() ));
+        Assert.assertThat("Invalid page", webDriver.getCurrentUrl(), containsString(baseUrl + getRelativeUrl()));
 
         return this;
     }
@@ -80,4 +84,8 @@ public class SinglePostPage extends ParentPage {
         return new MyProfilePage(webDriver);
 
     }
+
+
+
+
 }

@@ -4,11 +4,14 @@ package pages;
 import libs.TestData;
 import libs.Util;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
+
+import java.util.List;
 
 public class LoginPage extends ParentPage {
     public static String validRegisterUserName = Util.getDateAndTimeFormated();
@@ -45,6 +48,7 @@ public class LoginPage extends ParentPage {
     private Button popUpErrorUnValidPassword;
     @FindBy(xpath = ".//button[@type = 'submit']")
     private Button buttonSignUpForOurApp;
+    private String registerError = ".//div[@class=\"alert alert-danger small liveValidateMessage liveValidateMessage--visible\"]";
 
     @Override
     String getRelativeUrl() {
@@ -91,5 +95,56 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    private void enterUserNameRegisterIn(String userName) {
+        inputUserNameInRegisterIn.isDisplayed();
+        inputUserNameInRegisterIn.sendKeys(userName);
+
+    }
+
+    private void enterEmailRegisterIn(String email) {
+        inputUserNameInRegisterIn.isDisplayed();
+        inputUserNameInRegisterIn.sendKeys(email);
+    }
+
+    private void enterPasswordRegisterIn(String password) {
+        inputPassWordInRegisterIn.isDisplayed();
+        inputPassWordInRegisterIn.sendKeys(password);
+    }
+
+    public LoginPage fillRegisterFormAndSubmit(String userName, String email, String password) {
+
+        openLoinPage();
+        enterUserNameRegisterIn(userName);
+        enterEmailRegisterIn(email);
+        enterPasswordRegisterIn(password);
+        buttonSignUpForOurApp.isDisplayed();
+        buttonSignUpForOurApp.click();
+        logger.info("Count UnValid value - " + countUnValidValueForRegisterForm(userName, email, password));
+        return new LoginPage(webDriver);
+    }
+
+
+    private Integer countUnValidValueForRegisterForm(String userName, String email, String password) {
+        if (userName == unValidRegisterUserName) {
+            countUnValidValueForRegisterForm++;
+        }
+        if (email == unValidRegisterEmail) {
+            countUnValidValueForRegisterForm++;
+        }
+
+        if (password == unValidRegisterPassword) {
+            countUnValidValueForRegisterForm++;
+        }
+
+        return countUnValidValueForRegisterForm;
+    }
+
+    public Integer countErrorRegisterForm() {
+        Util.waitABit(10);
+        List<WebElement> listOfError = webDriver.findElements(By.xpath(registerError));
+        countPopUpAfterSubmitRegister = listOfError.size();
+        logger.info("Count of error register form - " + countPopUpAfterSubmitRegister);
+        return countPopUpAfterSubmitRegister;
+    }
 
 }
