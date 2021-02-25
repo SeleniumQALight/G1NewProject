@@ -25,12 +25,16 @@ public class ProfilePage extends ParentPage {
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
+    @Override
+    String getRelativeUrl() {
+        return "/profile";
+    }
 
     public ProfilePage checkIsRedirectedToProfilePage(){
         waitChatToBeHide();
         Assert.assertThat("Invalid page"
                 , webDriver.getCurrentUrl()
-                , containsString("https://qa-complex-app-for-testing.herokuapp.com/profile")) ;
+                , containsString(baseUrl + getRelativeUrl())) ;
         return this;
     }
 

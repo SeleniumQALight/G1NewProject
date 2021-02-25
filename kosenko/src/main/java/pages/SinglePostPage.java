@@ -22,11 +22,15 @@ public class SinglePostPage extends ParentPage {
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
     }
+    @Override
+    String getRelativeUrl() {
+        return "/post/";
+    }
 
     public SinglePostPage chechIsRedirectToSinglePostPage() {
         Assert.assertThat("Invalid page"
                 , webDriver.getCurrentUrl()
-                , CoreMatchers.containsString("https://qa-complex-app-for-testing.herokuapp.com/post/"));
+                , CoreMatchers.containsString(baseUrl + getRelativeUrl()));
         return this;
     }
 

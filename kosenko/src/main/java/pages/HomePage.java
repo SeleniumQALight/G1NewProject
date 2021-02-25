@@ -20,7 +20,10 @@ public class HomePage extends ParentPage {
     }
 
     //=========================================================
-
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
     public HomePage checkIsButtonSignOutVisible(){
         checkIsElementVisible(buttonSignOut);
         return this;
