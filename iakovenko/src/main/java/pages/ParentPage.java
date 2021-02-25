@@ -20,7 +20,7 @@ public class ParentPage {
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
-        webDriverWait10 = new WebDriverWait(webDriver, 100);
+        webDriverWait10 = new WebDriverWait(webDriver, 10);
          webDriverWait15 = new WebDriverWait(webDriver, 15);
     }
 

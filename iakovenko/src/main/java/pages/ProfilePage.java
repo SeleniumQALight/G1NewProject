@@ -51,4 +51,11 @@ public class ProfilePage extends ParentPage {
         checkIsElementVisible(succesPostDeleteElement);
         return this;
     }
+
+    public ProfilePage checkIsPostWasAdded(String post_title) {
+
+        List<WebElement> postList = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
+        Assert.assertEquals("Number of posts with title" + post_title,1, postList.size());
+        return this;
+    }
 }
