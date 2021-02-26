@@ -91,6 +91,7 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterPasswordSignIn(String password) {
+
         enterTextIntoElement(inputPassword, password);
     }
 
@@ -111,12 +112,7 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage enterDataForSignUp(WebElement element, String text) {
-        try {
             enterTextIntoElement(element, text);
-        } catch (Exception e) {
-            logger.error(e + "Signup exception");
-        }
-
         return this;
     }
 
@@ -128,7 +124,6 @@ public class LoginPage extends ParentPage {
 
     public void clickButtonSignUp() {
         clickOnElement(buttonSignUp);
-        //buttonSignUp.click();
         logger.info("Sign-Up Button clicked");
     }
 
