@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.List;
 
@@ -16,7 +17,8 @@ public class ProfilePage extends ParentPage {
     final String postTitleLocator = ".//*[text()='%s']";
 
     @FindBy(xpath = ".//*[contains(text(), 'successfully deleted')]")
-    private WebElement successPostDeleteElement;
+    private TextInput successPostDeleteElement;
+
 
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -41,9 +43,9 @@ public class ProfilePage extends ParentPage {
 
 
         int counter = 0;
-        while (!listOfPosts.isEmpty() && counter > 100){
+        while (!listOfPosts.isEmpty() && counter < 100){
             clickOnElement(webDriver.findElement
-                    (By.xpath(String.format(postTitleLocator, post_title))));
+                    (By.xpath(String.format(postTitleLocator, post_title))), " Post with title " + post_title);
             new SinglePostPage(webDriver)
                     .checkIsRedirectToSinglePostPage()
                     .clickOnDeleteButton()
