@@ -23,11 +23,16 @@ public class SinglePostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/post/";
+    }
+
     public SinglePostPage checkIsRedirectToSinglePostPage(){
         waitChatToBeHide();
         Assert.assertThat("Invalid page"
                 , webDriver.getCurrentUrl()
-                , containsString("https://qa-complex-app-for-testing.herokuapp.com/post/"));
+                , containsString(baseUrl + "/post/"));
         return this;
     }
 

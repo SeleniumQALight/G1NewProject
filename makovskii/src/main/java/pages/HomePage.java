@@ -20,6 +20,12 @@ public class HomePage extends ParentPage {
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
     public boolean isButtonSignOutVisible() {
   return isElementDisplayed(buttonSignOut);
     }
@@ -29,7 +35,6 @@ public class HomePage extends ParentPage {
         checkIsElementVisible(buttonSignOut);
         return this;
     }
-
 
 
     public CreatePostPage clickOnCreatePostButton(){

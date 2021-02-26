@@ -19,10 +19,15 @@ public class CreatePostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectedOnCreatePostPage() {
         waitChatToBeHide();
         Assert.assertEquals("Invalid page"
-                ,"https://qa-complex-app-for-testing.herokuapp.com/create-post"
+                , baseUrl + getRelativeUrl()
                 , webDriver.getCurrentUrl());
         return this;
     }

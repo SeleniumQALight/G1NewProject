@@ -11,11 +11,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ParentPage {
+abstract class ParentPage {
     protected WebDriver webDriver;
 
     protected WebDriverWait webDriverWait10, webDriverWait15;
-
+    protected final String baseUrl = "https://qa-complex-app-for-testing.herokuapp.com";
 
     Logger logger = Logger.getLogger(getClass());
     public ParentPage (WebDriver webDriver){
@@ -25,6 +25,9 @@ public class ParentPage {
         webDriverWait15 = new WebDriverWait(webDriver, 15);
 
     }
+
+
+    abstract String  getRelativeUrl();
 
     protected void waitChatToBeHide(){
         webDriverWait10.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
