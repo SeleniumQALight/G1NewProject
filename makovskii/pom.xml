@@ -55,6 +55,16 @@
             <version>1.20.0</version> <!-- 1.18+ is SELENIUM 3.5.1+ compatible -->
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.aeonbits.owner/owner -->
+        <dependency>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner</artifactId>
+            <version>1.0.4</version>
+        </dependency>
+
+
+
+
 
 
 
