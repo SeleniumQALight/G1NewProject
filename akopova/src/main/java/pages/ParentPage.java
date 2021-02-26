@@ -116,14 +116,16 @@ abstract class ParentPage {
         , isElementEnabled(webElement));
     }
 
-    protected boolean isElementEnabled(WebElement webElement) {        try{
-        boolean state = webElement.isEnabled();
-        logger.info(getElementName(webElement) + "Element enabled : " + state);
+    protected boolean isElementEnabled(WebElement webElement) {
+        try{
+            boolean state = webElement.isEnabled();
+            logger.info(getElementName(webElement) + "Element enabled : " + state);
         return state;
+
     }
-    catch (Exception e){
-        logger.info(getElementName(webElement) + "Element is not yet enabled : false");
-        return false;
+        catch (Exception e){
+            logger.info(getElementName(webElement) + "Element is not yet enabled : false");
+            return false;
     }
     }
 

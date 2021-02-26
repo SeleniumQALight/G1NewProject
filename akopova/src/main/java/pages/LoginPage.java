@@ -111,10 +111,6 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public LoginPage enterDataForSignUp(WebElement element, String text) {
-            enterTextIntoElement(element, text);
-        return this;
-    }
 
 
     public void clickButtonSignIn() {
@@ -144,10 +140,9 @@ public class LoginPage extends ParentPage {
 
     public void enterValidSignUpInfo() {
         openLoginPage();
-        enterDataForSignUp(signUpLogin
-                , TestData.VALID_SIGNUP_LOGIN + MyUtil.getDateAndTimeFormated());
-        enterDataForSignUp(signUpEmail, TestData.VALID_SIGNUP_EMAIL);
-        enterDataForSignUp(signUpPassword, TestData.VALID_SIGNUP_PASSWORD);
+        enterLoginSignUp(TestData.VALID_SIGNUP_LOGIN + MyUtil.getDateAndTimeFormated());
+        enterEmailSignUp(TestData.VALID_SIGNUP_EMAIL);
+        enterPasswordSignUp(TestData.VALID_SIGNUP_PASSWORD);
 
     }
 
@@ -169,13 +164,13 @@ public class LoginPage extends ParentPage {
     public LoginPage enterSignUpInfo(String signUpLoginValue
             , String signUpEmailValue
             , String signUpPasswordValue) {
-        enterDataForSignUp(signUpLogin, signUpLoginValue);
+        enterLoginSignUp(signUpLoginValue);
         waitForErrorMessageToBecomeVisible(loginErrorMessageLocator);
 
-        enterDataForSignUp(signUpEmail, signUpEmailValue);
+        enterEmailSignUp(signUpEmailValue);
         waitForErrorMessageToBecomeVisible(emailErrorMessageLocator);
 
-        enterDataForSignUp(signUpPassword, signUpPasswordValue);
+        enterPasswordSignUp(signUpPasswordValue);
         waitForErrorMessageToBecomeVisible(passwordErrorMessageLocator);
 
         return this;
