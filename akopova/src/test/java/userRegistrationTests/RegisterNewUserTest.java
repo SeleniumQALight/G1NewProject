@@ -1,7 +1,6 @@
 package userRegistrationTests;
 
 import baseTest.BaseTest;
-import libs.MyUtil;
 import libs.TestData;
 import org.junit.Test;
 
@@ -10,8 +9,8 @@ public class RegisterNewUserTest extends BaseTest {
 
     @Test
     public void registerValidUser() {
-        //loginPage.openLoginPage();
         loginPage.registerNewValidUser();
+        loginPage.checkIsRedirectedOnHomePage();
 
     }
 /**
@@ -66,7 +65,7 @@ public class RegisterNewUserTest extends BaseTest {
     public void checkErrorMessagesAmounts() {
 
         loginPage.openLoginPage();
-        loginPage.enterInvalidSignUpInfo(TestData.INVALID_SIGNUP_LOGIN_SHORT
+        loginPage.enterSignUpInfo(TestData.INVALID_SIGNUP_LOGIN_SHORT
                 , TestData.INVALID_SIGNUP_EMAIL
                 , TestData.INVALID_SIGNUP_PASSWORD
                 );

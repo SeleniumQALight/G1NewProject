@@ -22,7 +22,7 @@ abstract class ParentPage {
     private WebElement homePageLink;
 
     protected WebDriver webDriver;
-    protected WebDriverWait webDriverWait10, getWebDriverWait15;
+    protected WebDriverWait webDriverWait10, getWebDriverWait15, getWebDriverWait20;
 
     // creating object of config.properties and create pairs of keys listed there
     protected static ConfigProperties configProperties =
@@ -39,6 +39,8 @@ abstract class ParentPage {
 
         webDriverWait10 = new WebDriverWait(webDriver, 10);
         getWebDriverWait15 = new WebDriverWait(webDriver, 15);
+        getWebDriverWait20 = new WebDriverWait(webDriver, 20);
+
     }
 
     abstract String getRelativeUrl();
@@ -108,6 +110,25 @@ abstract class ParentPage {
         Assert.assertTrue( "element is not visible", isElementDisplayed(webElement));
 
     }
+
+    protected void checkIsElementEnabled(WebElement webElement) {
+        Assert.assertTrue("Element " + webElement.getTagName() + " is not Clickable"
+        , isElementEnabled(webElement));
+    }
+
+    protected boolean isElementEnabled(WebElement webElement) {        try{
+        boolean state = webElement.isEnabled();
+        logger.info(getElementName(webElement) + "Element enabled : " + state);
+        return state;
+    }
+    catch (Exception e){
+        logger.info(getElementName(webElement) + "Element is not yet enabled : false");
+        return false;
+    }
+    }
+
+
+
 
     protected void selectTextInDropDown(WebElement webElement, String text) {
         try{

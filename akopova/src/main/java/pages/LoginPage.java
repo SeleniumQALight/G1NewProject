@@ -16,7 +16,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.*;
 
-public class LoginPage extends ParentPage{
+public class LoginPage extends ParentPage {
 
     private final String WRONG_SIGNUP_LOGIN = "@login";
 
@@ -28,12 +28,13 @@ public class LoginPage extends ParentPage{
     private TextInput inputPassword;
     @FindBy(xpath = ".//button[text()='Sign In']")
     private Button buttonSignIn;
-    @FindBy(xpath=".//*[@id = 'username-register']")
+    @FindBy(xpath = ".//*[@id = 'username-register']")
     public TextInput signUpLogin;
-    @FindBy(xpath=".//*[@id = 'email-register']")
+    @FindBy(xpath = ".//*[@id = 'email-register']")
     public TextInput signUpEmail;
-    @FindBy(xpath=".//*[@id = 'password-register']")
+    @FindBy(xpath = ".//*[@id = 'password-register']")
     public TextInput signUpPassword;
+    //@FindBy (xpath=".//*[@class='py-3 mt-4 btn btn-lg btn-success btn-block']")
     @FindBy(xpath = ".//*[@type = 'submit']")
     private Button buttonSignUp;
 
@@ -52,6 +53,7 @@ public class LoginPage extends ParentPage{
     public static String loginErrorMessageLocator = ".//*[@id='username-register']/following-sibling::*";
     public static String emailErrorMessageLocator = ".//*[@id='email-register']/following-sibling::*";
     public static String passwordErrorMessageLocator = ".//*[@id='password-register']/following-sibling::*";
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -65,8 +67,7 @@ public class LoginPage extends ParentPage{
         try {
             webDriver.get(baseUrl + getRelativeUrl());
             logger.info("Login Page opened");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.info("can't open Login Page");
             fail("can't open Login Page");
         }
@@ -74,67 +75,45 @@ public class LoginPage extends ParentPage{
     }
 
     public void enterLoginSignIn(String login) {
-      /**
-        try {
+        /**
+         try {
 
-            inputLogin.clear();
-            inputLogin.sendKeys(login);
-            logger.info(login + "was inputted into Login Input");
-        }
-        catch (Exception e){
-            logger.error("Can't work with Login Input");
-            Assert.fail("Can't work with Login Input");
-        }
-       */
-      enterTextIntoElement(inputLogin, login);
+         inputLogin.clear();
+         inputLogin.sendKeys(login);
+         logger.info(login + "was inputted into Login Input");
+         }
+         catch (Exception e){
+         logger.error("Can't work with Login Input");
+         Assert.fail("Can't work with Login Input");
+         }
+         */
+        enterTextIntoElement(inputLogin, login);
     }
 
     public void enterPasswordSignIn(String password) {
         enterTextIntoElement(inputPassword, password);
     }
 
-    public LoginPage enterLoginSignUp(String login){
-        try {
-            enterTextIntoElement(signUpLogin, login);
-        }
-        catch (Exception e){
-            logger.error(e + "login signup exception");
-        }
-
+    public LoginPage enterLoginSignUp(String login) {
+        enterTextIntoElement(signUpLogin, login);
         return this;
     }
 
 
-
-
-    public LoginPage enterEmailSignUp(String eMail){
-        try {
-            enterTextIntoElement(signUpEmail, eMail);
-        }
-        catch (Exception e){
-            logger.error(e + "Email signup exception");
-        }
-
+    public LoginPage enterEmailSignUp(String eMail) {
+        enterTextIntoElement(signUpEmail, eMail);
         return this;
     }
 
-    public LoginPage enterPasswordSignUp(String password){
-        try {
-            enterTextIntoElement(signUpPassword, password);
-        }
-        catch (Exception e){
-            logger.error(e + "Email signup exception");
-        }
-
+    public LoginPage enterPasswordSignUp(String password) {
+        enterTextIntoElement(signUpPassword, password);
         return this;
     }
 
-    public LoginPage enterDataForSignUp(WebElement element, String text){
+    public LoginPage enterDataForSignUp(WebElement element, String text) {
         try {
-            element.clear();
             enterTextIntoElement(element, text);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             logger.error(e + "Signup exception");
         }
 
@@ -142,35 +121,16 @@ public class LoginPage extends ParentPage{
     }
 
 
-
-
-
     public void clickButtonSignIn() {
-        try{
-
-            clickOnElement(buttonSignIn);
-            logger.info("SignIn Button clicked");
-        }
-        catch (Exception e) {
-            logger.error("Can't work with SignIn Button");
-            fail("Can't work with SignIn Button");
-
-        }
+        clickOnElement(buttonSignIn);
+        logger.info("SignIn Button clicked");
     }
 
     public void clickButtonSignUp() {
-        try{
-
-            clickOnElement(buttonSignUp);
-            logger.info("SignIn Button clicked");
-        }
-        catch (Exception e) {
-            logger.error("Can't work with SignUp Button");
-            fail("Can't work with SignUp Button");
-
-        }
+        clickOnElement(buttonSignUp);
+        //buttonSignUp.click();
+        logger.info("Sign-Up Button clicked");
     }
-
 
 
     public void fillLoginFormAndSubmit(String login, String pass) {
@@ -189,7 +149,8 @@ public class LoginPage extends ParentPage{
 
     public void enterValidSignUpInfo() {
         openLoginPage();
-        enterDataForSignUp(signUpLogin, TestData.VALID_SIGNUP_LOGIN);
+        enterDataForSignUp(signUpLogin
+                , TestData.VALID_SIGNUP_LOGIN + MyUtil.getDateAndTimeFormated());
         enterDataForSignUp(signUpEmail, TestData.VALID_SIGNUP_EMAIL);
         enterDataForSignUp(signUpPassword, TestData.VALID_SIGNUP_PASSWORD);
 
@@ -197,17 +158,20 @@ public class LoginPage extends ParentPage{
 
     public HomePage registerNewValidUser() {
         enterValidSignUpInfo();
-        MyUtil.waitABit(5);
+        MyUtil.waitABit(12);
+
+        Assert.assertTrue("SignUp button is not clickable"
+                , isElementEnabled(buttonSignUp));
         clickButtonSignUp();
         // Check that we registered correct User : Homepage should open
-        MyUtil.waitABit(10);
+        MyUtil.waitABit(5);
+        waitForHomePageToLoad();
         checkIsRedirectedOnHomePage();
         return new HomePage(webDriver);
     }
 
 
-
-    public LoginPage enterInvalidSignUpInfo(String signUpLoginValue
+    public LoginPage enterSignUpInfo(String signUpLoginValue
             , String signUpEmailValue
             , String signUpPasswordValue) {
         enterDataForSignUp(signUpLogin, signUpLoginValue);
@@ -223,76 +187,74 @@ public class LoginPage extends ParentPage{
     }
 
 
-    public LoginPage checkLoginErrorMessageIsDisplayed(){
+    public LoginPage checkLoginErrorMessageIsDisplayed() {
         checkIsElementVisible(loginSignUpErrorField);
         return this;
-}
+    }
 
-    public LoginPage checkEmailErrorMessageIsDisplayed(){
+    public LoginPage checkEmailErrorMessageIsDisplayed() {
         checkIsElementVisible(emailSignUpErrorField);
         return this;
     }
 
-    public LoginPage checkPasswordErrorMessageIsDisplayed(){
+    public LoginPage checkPasswordErrorMessageIsDisplayed() {
         checkIsElementVisible(passwordSignUpErrorField);
         return this;
     }
 
 
-    public  LoginPage checkLoginSignUpErrorMessageText(String text) {
+    public LoginPage checkLoginSignUpErrorMessageText(String text) {
         assertEquals("Message does not match", text,
                 loginSignUpErrorField.getText());
         return this;
     }
 
-    public  LoginPage checkEmailSignUpErrorMessageText(String text) {
+    public LoginPage checkEmailSignUpErrorMessageText(String text) {
         assertEquals("Message does not match", text,
                 emailSignUpErrorField.getText());
         return this;
     }
 
-    public  LoginPage checkPasswordSignUpErrorMessageText(String text) {
+    public LoginPage checkPasswordSignUpErrorMessageText(String text) {
         assertEquals("Message does not match", text,
                 passwordSignUpErrorField.getText());
         return this;
     }
 
-    public void checkErrorMessagesAmount(String errorMessageLocator,long expectedErrorMessagesNumber ){
+    public void checkErrorMessagesAmount(String errorMessageLocator, long expectedErrorMessagesNumber) {
         List<WebElement> listOfErrorMessages;
 
-       try {
-          listOfErrorMessages = webDriver.findElements(By.xpath(errorMessageLocator));
-          logger.info("Now there are " + listOfErrorMessages.size() + " error messages on login page");
-          //compare number of expected and actual error messages numbers
-          Assert.assertEquals("Expected and actual number of error messages do not match"
-                  ,expectedErrorMessagesNumber
-                  ,listOfErrorMessages.size() );
-      }
-      catch (Exception e){
-          logger.error("Exception " + e + "happened");
-      }
+        try {
+            listOfErrorMessages = webDriver.findElements(By.xpath(errorMessageLocator));
+            logger.info("Now there are " + listOfErrorMessages.size() + " error messages on login page");
+            //compare number of expected and actual error messages numbers
+            Assert.assertEquals("Expected and actual number of error messages do not match"
+                    , expectedErrorMessagesNumber
+                    , listOfErrorMessages.size());
+        } catch (Exception e) {
+            logger.error("Exception " + e + "happened");
+        }
 
     }
 
-    protected LoginPage waitForErrorMessageToBecomeVisible(String errorMessageLocator){
+    protected LoginPage waitForErrorMessageToBecomeVisible(String errorMessageLocator) {
         webDriverWait10.until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath(errorMessageLocator)));
         return this;
     }
 
     public HomePage waitForHomePageToLoad() {
-        webDriverWait10.until(ExpectedConditions
+        getWebDriverWait20.until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath(".//*[@class='header-bar mb-3']")));
+        waitChatToBeHide();
         return new HomePage(webDriver);
 
     }
 
-    public HomePage checkIsRedirectedOnHomePage(){
+    public HomePage checkIsRedirectedOnHomePage() {
 
-        Assert.assertThat("HomePage does not match"
-                , webDriver.getCurrentUrl()
-                , containsString(baseUrl + getRelativeUrl())
-        );
+        Assert.assertFalse("Homepage does not match"
+                , isElementDisplayed(buttonSignIn));
         return new HomePage(webDriver);
     }
 
