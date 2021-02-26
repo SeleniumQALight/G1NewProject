@@ -14,6 +14,8 @@ import ru.yandex.qatools.htmlelements.element.TextInput;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElements;
+
 public class LoginPage extends ParentPage{
 
     @FindBy (xpath =".//*[@placeholder='Username']")
@@ -108,13 +110,14 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSignUp);
     }
 
-    public ArrayList numberOfErrorMessageWereDisplayed (){
+    public Integer numberOfErrorMessageWereDisplayed (){
         // Use for the test date from TestData file
         //fillLoginFormNewUserAndSubmit(TestData.UNIQUE_USERNAME,TestData.INVALID_EMAIL,TestData.SORT_PASSWORD);
-        Util.waitABit(2);
+        visibilityOfAllElements();
         List<WebElement> list = new ArrayList<>();
         list = webDriver.findElements(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]"));
-        return (ArrayList) list;
+        int numberOfErrorMessages = list.size();
+        return numberOfErrorMessages;
 
     }
 
