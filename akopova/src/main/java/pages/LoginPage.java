@@ -250,6 +250,7 @@ public class LoginPage extends ParentPage {
 
         Assert.assertFalse("Homepage does not match"
                 , isElementDisplayed(buttonSignIn));
+            waitChatToBeHide();
         return new HomePage(webDriver);
     }
 
