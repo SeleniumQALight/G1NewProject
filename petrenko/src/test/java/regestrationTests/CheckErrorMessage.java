@@ -1,10 +1,9 @@
 package regestrationTests;
 
+import baseTest.BaseTest;
 import org.openqa.selenium.WebDriver;
-import pages.ParentPage;
 
-public class CheckErrorMessage extends ParentPage {
-    public CheckErrorMessage(WebDriver webDriver) {
-        super(webDriver);
-    }
+
+public class CheckErrorMessage extends BaseTest {
+
 }

@@ -25,6 +25,11 @@ public class MyProfilePage extends ParentPage {
     @FindBy(xpath = ".//*[contains(text(), 'successfully deleted')]")
     private WebElement successPostDeleteElement;
 
+    @Override
+    String getRelativeUrl() {
+        return "/profile";
+    }
+
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -32,7 +37,7 @@ public class MyProfilePage extends ParentPage {
     public MyProfilePage checkIsRedirectOnMyProfilePage() {
 
         waitChatToBeHide();
-        Assert.assertThat("Invalid page", webDriver.getCurrentUrl(), containsString("https://qa-complex-app-for-testing.herokuapp.com/profile"));
+        Assert.assertThat("Invalid page", webDriver.getCurrentUrl(), containsString(baseUrl + getRelativeUrl()));
         return this;
     }
 
@@ -97,6 +102,12 @@ public class MyProfilePage extends ParentPage {
 
     private MyProfilePage checkSuccessDeletePost() {
         checkIsElementVisible(successPostDeleteElement);
+        return this;
+    }
+
+    public MyProfilePage checkIsPostWasAdded(String post_title) {
+        List<WebElement> postsList = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
+        Assert.assertEquals("Numbers of posts with title " + post_title, 1, postsList.size());
         return this;
     }
 }

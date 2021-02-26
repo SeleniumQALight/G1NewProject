@@ -22,7 +22,10 @@ public class CreateNewPostTest extends BaseTest {
                 .selectTextInDropDownRole("Частное сообщение")
                 .clickOnButtonSavePost()
                 .checkIsRedirectOnSinglePostPage()
-                .checkIsSuccessMessageDisplayed();
+                .checkIsSuccessMessageDisplayed()
+                .clickOnProfileButton()
+                .checkIsRedirectOnMyProfilePage()
+                .checkIsPostWasAdded(POST_TITLE);
 
 
     }

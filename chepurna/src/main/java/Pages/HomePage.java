@@ -4,19 +4,26 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
 
 public class HomePage extends ParentPage{
     @FindBy(xpath = ".//button[text()='Sign Out']")
-    private WebElement buttonSignOut;
+    private Button buttonSignOut;
 
     @FindBy(xpath = ".//*[text()='Create Post']")
-    private WebElement createPostButton;
+    private Button createPostButton;
 
     @FindBy(xpath = ".//img[@data-original-title='My Profile']")
-    private WebElement myProfileButton;
+    private Button myProfileButton;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+//URL of this page
+    @Override
+    String getRelativeUrl() {
+        return "/";
     }
 
 //=========================================================

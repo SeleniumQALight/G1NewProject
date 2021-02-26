@@ -18,13 +18,18 @@ public class CreatePostPage extends ParentPage {
     @FindBy(tagName = "select")
     private WebElement dropDownRole;
 
+    @Override
+    String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
     public CreatePostPage checkIsRedirectOnCreatePostPage() {
         waitChatToBeHide();
-        Assert.assertEquals("Invalid page", "https://qa-complex-app-for-testing.herokuapp.com/create-post"
+        Assert.assertEquals("Invalid page", baseUrl + getRelativeUrl()
                 , webDriver.getCurrentUrl());
 
         return this;
