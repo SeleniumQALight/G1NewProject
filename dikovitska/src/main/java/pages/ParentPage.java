@@ -21,8 +21,7 @@ public abstract class ParentPage {
     protected WebDriver webDriver;
     protected WebDriverWait webDriverWait10, webDriverWait15;
     public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
-    //protected final String baseUrl = configProperties.base_url();
-    protected final String baseUrl = "https://qa-complex-app-for-testing.herokuapp.com";
+    protected final String baseUrl = configProperties.base_url();
     Logger logger = Logger.getLogger(getClass());
 
     public ParentPage(WebDriver webDriver) {
