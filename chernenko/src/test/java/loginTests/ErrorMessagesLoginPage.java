@@ -14,7 +14,7 @@ import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class errorMessagesLoginPage extends BaseTest {
+public class ErrorMessagesLoginPage extends BaseTest {
 
     @Test
     public void oneErrorMessageIsDisplayed (){
