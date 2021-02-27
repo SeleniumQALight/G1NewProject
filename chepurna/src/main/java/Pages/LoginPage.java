@@ -101,7 +101,6 @@ public class LoginPage extends ParentPage{
     }
 
 // REGISTRATION (HOMEWORK 02-20)
-
     public void enterRegUsername(String username) {
         enterTextInToElement(inputRegUsername, username);
     }
@@ -118,24 +117,7 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSignUp);
     }
 
-// COUNT VALIDATION MESSAGES (HOMEWORK 02-20)
-
-    public LoginPage checkAndCoundValidatiotMessages(int qty){
-        // work           List <WebElement> listOfWebElements = webDriver.findElements(By.xpath(".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
-        // does not work  List <WebElement> listOfWebElements = webDriver.findElements(validatiomMessages);
-        int counter = listOfValidatiomMessages.size();
-        logger.info(counter + " validation messages was found");
-        Assert.assertEquals(qty, counter);
-        return this;
-    }
-
-    public LoginPage checkIsValidationMessageDisplayed (String validationMessage){
-        checkIsElementVisible(webDriver.findElement(By.xpath(String.format(validationMessageLocator, validationMessage))));
-        return this;
-    }
-
 // REGISTRATION 5 IN 1 (HOMEWORK 02-20)
-
     public LoginPage fillRegFormAndSubmit(String username, String email, String passWord){
         openLoginPage();
         enterRegUsername(username);
@@ -145,30 +127,26 @@ public class LoginPage extends ParentPage{
         return this;
     }
 
+// COUNT VALIDATION MESSAGES (HOMEWORK 02-20)
+    public LoginPage checkAndCoundValidatiotMessages(int qty){
+        // work           List <WebElement> listOfWebElements = webDriver.findElements(By.xpath(".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
+        // does not work  List <WebElement> listOfWebElements = webDriver.findElements(validatiomMessages);
+        int counter = listOfValidatiomMessages.size();
+        logger.info(counter + " validation messages was found");
+        Assert.assertEquals(qty, counter);
+        return this;
+    }
+
+// CHECK MESSAGES (HOMEWORK 02-20)
+    public LoginPage checkIsValidationMessageDisplayed (String validationMessage){
+        checkIsElementVisible(webDriver.findElement(By.xpath(String.format(validationMessageLocator, validationMessage))));
+        return this;
+    }
+
 }
 
 
 
 
 
-/* OLD TEST enterLoginSignIn
-    public void enterLoginSignIn(String login) {
-        try{
-            inputLogin.clear();
-            inputLogin.sendKeys(login);
-            logger.info(login + " was inputted into Login Input");
-        }catch (Exception e){
-            logger.error("Cannot work with login input");
-            Assert.fail("Cannot work with login input");
-        }
-    }
 
-
-    public LoginPage checkAndCoundValidatiotMessages(int qty){
-        List <WebElement> listOfWebElements = webDriver.findElements(By.xpath(".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
-        int counter = listOfWebElements.size();
-        logger.info(counter + " validation messages was found");
-        Assert.assertEquals(qty, counter);
-        return this;
-    }
-*/

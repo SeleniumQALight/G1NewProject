@@ -67,7 +67,7 @@ protected void waitChatToBeHide(){
     return elementName;
     }
 
-    // CLICK ON THE ELEMENT
+// CLICK ON THE ELEMENT
     protected void clickOnElement(WebElement webElement){
         try {
             webDriverWait15.until(ExpectedConditions.elementToBeClickable(webElement));
@@ -100,6 +100,10 @@ protected void waitChatToBeHide(){
         }
     }
 
+    protected void checkIsElementVisible(WebElement webElement){
+        Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
+    }
+
 // SELECT IN DROP DOWN === JAVA BY TEXT (need time)
     protected void selectTextInDropDown(WebElement webElement, String text){
         try{
@@ -130,7 +134,4 @@ protected void waitChatToBeHide(){
         Assert.fail("Can not work with element" + e); // will write to report
     }
 
-    protected void checkIsElementVisible(WebElement webElement){
-        Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
-    }
 }
