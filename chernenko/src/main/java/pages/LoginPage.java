@@ -1,7 +1,6 @@
 package pages;
 
 import libs.TestData;
-import libs.Util;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +16,11 @@ import java.util.List;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElements;
 
 public class LoginPage extends ParentPage{
+
+
+
+
+
 
     @FindBy (xpath =".//*[@placeholder='Username']")
     private TextInput inputLogin;
@@ -39,6 +43,9 @@ public class LoginPage extends ParentPage{
 
     @FindBy (xpath = ".//button[contains(text(),'Sign up for OurApp')]")
     private Button buttonSignUp;
+
+    @FindBy (xpath = ".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]")
+    private TextInput errorMessage;
 
 
 
@@ -112,7 +119,6 @@ public class LoginPage extends ParentPage{
 
     public Integer numberOfErrorMessageWereDisplayed (){
         // Use for the test date from TestData file
-        //fillLoginFormNewUserAndSubmit(TestData.UNIQUE_USERNAME,TestData.INVALID_EMAIL,TestData.SORT_PASSWORD);
         visibilityOfAllElements();
         List<WebElement> list = new ArrayList<>();
         list = webDriver.findElements(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]"));
@@ -120,6 +126,31 @@ public class LoginPage extends ParentPage{
         return numberOfErrorMessages;
 
     }
+
+    public void textOfErrorMessageWasDisplayed (String message){
+        // Use for the test date from TestData file
+        visibilityOfAllElements();
+        List<WebElement> list = new ArrayList<>();
+        list = webDriver.findElements(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]"));
+        for (WebElement e: list
+             ) {
+            Assert.assertEquals("Wrong error message", e.getText(), message);
+        }
+    }
+
+//    public LoginPage textOfErrorWasDisplayed(String post_title) {
+//        List<WebElement> listOfErrors = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
+//        int counter = 0;
+//        while (!listOfPosts.isEmpty() & counter < 100){
+//            clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, post_title)))," Post with title " + post_title);
+//            new SinglePostPage(webDriver)
+//                    .checkIsRedirectToSinglePostPage()
+//                    .clickOnDeleteButton()
+//                    .checkIsRedirectToProfilePage()
+//                    .checkSuccessDeletePost();
+//            listOfPosts = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
+//            counter ++;
+//        }
 
 
 }

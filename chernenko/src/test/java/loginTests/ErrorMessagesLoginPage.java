@@ -41,5 +41,17 @@ public class ErrorMessagesLoginPage extends BaseTest {
         Assert.assertEquals("Wrong numbers of messages ",3,number);
     }
 
+    @Test
+    public void conformityOfErrorMessage (){
+        loginPage.fillLoginFormNewUserAndSubmit(TestData.INVALID_LONG_USERNAME,TestData.VALID_UNIQUE_USER_EMAIL,TestData.VALID_PASSWORD);
+        loginPage.textOfErrorMessageWasDisplayed("Username cannot exceed 30 characters.");
+    }
+
+    @Test
+    public void conformityOfErrorMessage1 (){
+        loginPage.fillLoginFormNewUserAndSubmit(TestData.INVALID_LONG_USERNAME,TestData.INVALID_EMAIL,TestData.INVALID_LONG_PASSWORD);
+        loginPage.textOfErrorMessageWasDisplayed("");
+    }
+
 
 }
