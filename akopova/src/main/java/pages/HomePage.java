@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -87,4 +88,15 @@ public class HomePage extends ParentPage{
         logger.info("Home Page was opened");
         return this;
     }
+
+    public HomePage checkIsRedirectedOnHomePage() {
+        waitChatToBeHide();
+        Assert.assertFalse("Homepage does not match"
+                , isElementDisplayed(buttonSignIn));
+
+        return new HomePage(webDriver);
+    }
+
+
+
 }
