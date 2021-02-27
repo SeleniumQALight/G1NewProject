@@ -156,7 +156,6 @@ public class LoginPage extends ParentPage {
         // Check that we registered correct User : Homepage should open
         MyUtil.waitABit(5);
         waitForHomePageToLoad();
-        checkIsRedirectedOnHomePage();
         return new HomePage(webDriver);
     }
 
@@ -241,13 +240,6 @@ public class LoginPage extends ParentPage {
 
     }
 
-    public HomePage checkIsRedirectedOnHomePage() {
-
-        Assert.assertFalse("Homepage does not match"
-                , isElementDisplayed(buttonSignIn));
-            waitChatToBeHide();
-        return new HomePage(webDriver);
-    }
 
 
 

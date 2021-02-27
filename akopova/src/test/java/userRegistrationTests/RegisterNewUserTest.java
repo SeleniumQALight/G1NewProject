@@ -10,7 +10,7 @@ public class RegisterNewUserTest extends BaseTest {
     @Test
     public void registerValidUser() {
         loginPage.registerNewValidUser();
-        loginPage.checkIsRedirectedOnHomePage();
+        homePage.checkIsRedirectedOnHomePage();
 
     }
 /**

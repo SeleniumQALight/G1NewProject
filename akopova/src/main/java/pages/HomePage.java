@@ -90,10 +90,10 @@ public class HomePage extends ParentPage{
     }
 
     public HomePage checkIsRedirectedOnHomePage() {
-
+        waitChatToBeHide();
         Assert.assertFalse("Homepage does not match"
                 , isElementDisplayed(buttonSignIn));
-        waitChatToBeHide();
+
         return new HomePage(webDriver);
     }
 
