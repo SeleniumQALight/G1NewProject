@@ -3,6 +3,7 @@ package pages;
 
 import com.google.common.base.Splitter;
 import libs.TestData;
+import libs.Util;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -51,7 +52,7 @@ public class LoginPage extends ParentPage {
     private TextBlock registerErrorMessage;
 
     private String popUpRegisterError = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
-
+    private String popUpLoginError = ".//div[@class='alert alert-danger text-center']";
     @Override
     String getRelativeUrl() {
         return "/";
@@ -85,11 +86,12 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignIn);
     }
 
-    public void fillLoginFormAndSubmit(String login, String password) {
+    public LoginPage fillLoginFormAndSubmit(String login, String password) {
         openLoinPage();
         enterLoginSignIn(login);
         enterPassWordSignIn(password);
         clickButtonSignIn();
+        return new LoginPage(webDriver);
     }
 
     public HomePage loginWithValidCred() {
@@ -123,14 +125,27 @@ public class LoginPage extends ParentPage {
     }
 
 
-     public LoginPage checkCountErrorOfMessagesAfterSubmit(int countUnValidValue) {
+     public LoginPage checkCountErrorOfMessagesAfterSubmitRegisterIn(int countUnValidValue) {
 
+         Util.waitABit(5);
         List<WebElement> listOfError = webDriver.findElements(By.xpath(popUpRegisterError));
+        logger.info(listOfError.size());
         Assert.assertEquals("Count of PopUp errors Message is not correct", listOfError.size(), countUnValidValue);
         return new LoginPage(webDriver);
     }
 
-    public void checkTextOfErrors(String textOfErrorMessages) {
+
+    public LoginPage checkCountErrorOfMessagesAfterSubmitLoginIn(int countUnValidValue) {
+
+        Util.waitABit(5);
+        List<WebElement> listOfError = webDriver.findElements(By.xpath(popUpLoginError));
+
+        Assert.assertEquals("Count of PopUp errors Message is not correct", listOfError.size(), countUnValidValue);
+        return new LoginPage(webDriver);
+    }
+
+
+    public void checkTextOfErrorsInRegisterIn(String textOfErrorMessages) {
 
         if(textOfErrorMessages.isEmpty()){
             logger.info("textOfErrorMessages ia empty.");
@@ -141,6 +156,17 @@ public class LoginPage extends ParentPage {
             for (int i = 0; i < words.length; i++) {
                 Assert.assertTrue("--------- " + words[i] + " message is not correct in PopUp. ", listOfTextsOfWebElementByXpath(popUpRegisterError).contains(words[i]));
             }
+        }
+
+    }
+
+    public void checkTextOfErrorsInLoginIn(String textOfErrorMessages) {
+
+        if(textOfErrorMessages.isEmpty()){
+            logger.info("textOfErrorMessages ia empty.");
+        }
+        else {
+            Assert.assertEquals("", textOfErrorMessages, webDriver.findElement(By.xpath(popUpLoginError)).getText() );
         }
 
     }

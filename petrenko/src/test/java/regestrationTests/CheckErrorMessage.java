@@ -24,8 +24,8 @@ public class CheckErrorMessage extends BaseTest {
     @TestCaseName("checkErrorMessageInRegisterForm: userName = {0}, email = {1}, password = {2}, countUnValidValue = {3}, textOfErrorMessages = {4}")
 
     public void checkErrorMessageInRegisterForm(String userName, String email, String password, int countUnValidValue, String textOfErrorMessages) {
-        loginPage.fillRegisterFormAndSubmit(userName, email, password).checkCountErrorOfMessagesAfterSubmit(countUnValidValue)
-                .checkTextOfErrors(textOfErrorMessages);
+        loginPage.fillRegisterFormAndSubmit(userName, email, password).checkCountErrorOfMessagesAfterSubmitRegisterIn(countUnValidValue)
+                .checkTextOfErrorsInRegisterIn(textOfErrorMessages);
 
 
     }
