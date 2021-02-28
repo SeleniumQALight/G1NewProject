@@ -16,6 +16,9 @@ import ru.yandex.qatools.htmlelements.element.TypifiedElement;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public abstract class ParentPage {
     protected WebDriver webDriver;
@@ -27,11 +30,10 @@ public abstract class ParentPage {
     abstract String getRelativeUrl();
 
 
-
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
-      //  PageFactory.initElements(webDriver, this);
-        PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(webDriver)),this);
+        //  PageFactory.initElements(webDriver, this);
+        PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(webDriver)), this);
         webDriverWait10 = new WebDriverWait(webDriver, 10);
         webDriverWait15 = new WebDriverWait(webDriver, 15);
     }
@@ -56,7 +58,7 @@ public abstract class ParentPage {
 
     private String getElementName(WebElement webElement) {
         String elementName = "";
-        if(webElement instanceof TypifiedElement){
+        if (webElement instanceof TypifiedElement) {
             elementName = " '" + ((TypifiedElement) webElement).getName() + "' ";
         }
         return elementName;
@@ -86,7 +88,7 @@ public abstract class ParentPage {
             logger.info(getElementName(webElement) + "Element displayed:" + state);
             return state;
         } catch (Exception e) {
-            logger.info(getElementName(webElement) +  "Element displayed:" + false);
+            logger.info(getElementName(webElement) + "Element displayed:" + false);
             return false;
         }
     }
@@ -103,7 +105,7 @@ public abstract class ParentPage {
         try {
             Select select = new Select(webElement);
             select.selectByVisibleText(text);
-            logger.info(text + "was selcted in DropDown." + getElementName(webElement) );
+            logger.info(text + "was selcted in DropDown." + getElementName(webElement));
 
         } catch (Exception e) {
             printErrorMessageAndStopTest(e);
@@ -119,6 +121,15 @@ public abstract class ParentPage {
         } catch (Exception e) {
             printErrorMessageAndStopTest(e);
         }
+    }
+
+    protected List<String> listOfTextsOfWebElementByXpath(String xpath) {
+        ArrayList<String> listOfTextErrors = new ArrayList<>();
+        List<WebElement> listOfError = webDriver.findElements(By.xpath(xpath)); // сохранил текст всех эроров в лист
+        for (int i = 0; i < listOfError.size(); i++) {
+            listOfTextErrors.add(listOfError.get(i).getText());
+        }
+        return listOfTextErrors;
     }
 
 }

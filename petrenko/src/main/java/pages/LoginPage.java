@@ -1,8 +1,8 @@
 package pages;
 
 
+import com.google.common.base.Splitter;
 import libs.TestData;
-import libs.Util;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,22 +12,19 @@ import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextBlock;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.Matchers.contains;
+
 public class LoginPage extends ParentPage {
-    public static String validRegisterUserName = Util.getDateAndTimeFormated();
-    public static String validRegisterEmail = Util.getDateAndTimeFormated() + "@" + "ukr.net";
-    public static String validRegisterPassword = Util.getDateAndTimeFormated() + Util.getDateAndTimeFormated();
-    public static String unValidRegisterUserName = "ab";
-    public static String unValidRegisterEmail = "123";
-    public static String unValidRegisterPassword = "123";
-    int countUnValidValueForRegisterForm = 0;
-    int countPopUpAfterSubmitRegister = 0;
+
 
     @FindBy(xpath = ".//form[@action = '/login']//input[@name = 'username']")
     private TextInput inputUserNameInLoginIn;
     @FindBy(xpath = ".//form[@action = '/login']//input[@name = 'password']")
-    private WebElement inputPasswordInLoginIn;
+    private TextInput inputPasswordInLoginIn;
 
     @FindBy(id = "username-register")
     private TextInput inputUserNameInRegisterIn;
@@ -39,19 +36,21 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private Button buttonSignIn;
-    @FindBy(xpath = ".//*[text() = 'Username must be at least 3 characters.']")
-    private WebElement popUpErrorUnValidUsername;
+    @FindBy(xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text() = 'Username must be at least 3 characters.']")
+    private TextBlock popUpErrorUnValidUsername;
 
-    @FindBy(xpath = ".//*[text() = 'You must provide a valid email address.']")
-    private WebElement popUpErrorUnValidEmail;
+    @FindBy(xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text() = 'You must provide a valid email address.']")
+    private TextBlock popUpErrorUnValidEmail;
 
-    @FindBy(xpath = ".//*[text() = 'Password must be at least 12 characters.']")
-    private Button popUpErrorUnValidPassword;
+    @FindBy(xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text() = 'Password must be at least 12 characters.']")
+    private TextBlock popUpErrorUnValidPassword;
+
     @FindBy(xpath = ".//button[@type = 'submit']")
     private Button buttonSignUpForOurApp;
     @FindBy(xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private TextBlock registerErrorMessage;
-    private String registerError = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    private String popUpRegisterError = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     @Override
     String getRelativeUrl() {
@@ -99,57 +98,51 @@ public class LoginPage extends ParentPage {
     }
 
     private void enterUserNameRegisterIn(String userName) {
-        inputUserNameInRegisterIn.isDisplayed();
-        inputUserNameInRegisterIn.sendKeys(userName);
-
+        enterTextInToElement(inputUserNameInRegisterIn, userName);
     }
 
     private void enterEmailRegisterIn(String email) {
-        inputUserNameInRegisterIn.isDisplayed();
-        inputUserNameInRegisterIn.sendKeys(email);
+        enterTextInToElement(inputEmailInRegisterIn, email);
     }
 
     private void enterPasswordRegisterIn(String password) {
-        inputPassWordInRegisterIn.isDisplayed();
-        inputPassWordInRegisterIn.sendKeys(password);
+        enterTextInToElement(inputPassWordInRegisterIn, password);
     }
 
     public LoginPage fillRegisterFormAndSubmit(String userName, String email, String password) {
-
         openLoinPage();
         enterUserNameRegisterIn(userName);
         enterEmailRegisterIn(email);
         enterPasswordRegisterIn(password);
-        buttonSignUpForOurApp.isDisplayed();
-        buttonSignUpForOurApp.click();
-        logger.info("Count UnValid value - " + countUnValidValueForRegisterForm(userName, email, password));
+        clickOnElement(buttonSignUpForOurApp);
         return new LoginPage(webDriver);
     }
 
-
-    private Integer countUnValidValueForRegisterForm(String userName, String email, String password) {
-        if (userName == unValidRegisterUserName) {
-            countUnValidValueForRegisterForm++;
-        }
-        if (email == unValidRegisterEmail) {
-            countUnValidValueForRegisterForm++;
-        }
-
-        if (password == unValidRegisterPassword) {
-            countUnValidValueForRegisterForm++;
-        }
-
-        return countUnValidValueForRegisterForm;
+    public void checkPopUpMessage() {
+        Assert.assertTrue("PopUp error userName was not displayed", popUpErrorUnValidUsername.isDisplayed());
     }
 
-    public Integer countErrorRegisterForm() {
 
+     public LoginPage checkCountErrorOfMessagesAfterSubmit(int countUnValidValue) {
 
-
-        List<WebElement> listOfError = webDriver.findElements(By.xpath(registerError));
-        countPopUpAfterSubmitRegister = listOfError.size();
-        logger.info("Count of error register form - " + countPopUpAfterSubmitRegister);
-        return countPopUpAfterSubmitRegister;
+        List<WebElement> listOfError = webDriver.findElements(By.xpath(popUpRegisterError));
+        Assert.assertEquals("Count of PopUp errors Message is not correct", listOfError.size(), countUnValidValue);
+        return new LoginPage(webDriver);
     }
 
+    public void checkTextOfErrors(String textOfErrorMessages) {
+
+        if(textOfErrorMessages.isEmpty()){
+            logger.info("textOfErrorMessages ia empty.");
+        }
+        else {
+            String[] words = textOfErrorMessages.split(";");
+
+            for (int i = 0; i < words.length; i++) {
+                Assert.assertTrue("--------- " + words[i] + " message is not correct in PopUp. ", listOfTextsOfWebElementByXpath(popUpRegisterError).contains(words[i]));
+            }
+        }
+
+    }
 }
+
