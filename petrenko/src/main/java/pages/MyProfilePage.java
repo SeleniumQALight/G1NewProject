@@ -108,8 +108,16 @@ public class MyProfilePage extends ParentPage {
     }
 
     public MyProfilePage checkIsPostWasAdded(String post_title) {
+
+
         List<WebElement> postsList = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
         Assert.assertEquals("Numbers of posts with title " + post_title, 1, postsList.size());
+        logger.info("End before");
         return this;
+    }
+
+    public SinglePostPage clickOnPostWithTitle(String post_title) {
+        clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator,post_title))));
+        return new SinglePostPage(webDriver);
     }
 }

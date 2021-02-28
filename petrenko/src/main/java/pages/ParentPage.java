@@ -43,6 +43,12 @@ public abstract class ParentPage {
         webDriverWait10.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
     }
 
+    protected void waitBackToPostPermalink() {
+        webDriverWait10.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[text() ='« Back to post permalink']")));
+    }
+
+    //« Back to post permalink
+
     protected void enterTextInToElement(WebElement webElement, String text) {
         try {
             webDriverWait15.until(ExpectedConditions.elementToBeClickable(webElement));
