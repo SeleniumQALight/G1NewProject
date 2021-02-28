@@ -12,6 +12,8 @@ import pages.LoginPage;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import static pages.ParentPage.configProperties;
+
 public class BaseTest {
     public WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
@@ -29,7 +31,7 @@ public class BaseTest {
 
 
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(configProperties.TIME_FOR_DFFAULT_WAIT(), TimeUnit.SECONDS);
         logger.info("Browser was opened");
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);

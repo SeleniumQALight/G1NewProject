@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
@@ -13,12 +14,10 @@ import ru.yandex.qatools.htmlelements.element.TextInput;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElements;
 
 public class LoginPage extends ParentPage{
-
-
-
 
 
 
@@ -117,40 +116,40 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSignUp);
     }
 
+    protected void waitMessagesWereDisplayed(){
+        webDriverWait10.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]")));
+    }
+
     public Integer numberOfErrorMessageWereDisplayed (){
         // Use for the test date from TestData file
-        visibilityOfAllElements();
+        waitMessagesWereDisplayed();
         List<WebElement> list = new ArrayList<>();
         list = webDriver.findElements(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]"));
         int numberOfErrorMessages = list.size();
         return numberOfErrorMessages;
-
     }
 
-    public void textOfErrorMessageWasDisplayed (String message){
-        // Use for the test date from TestData file
-        visibilityOfAllElements();
+    public  String textOfErrorMessageWasDisplayed (String message){
+        String testResult = "";
+        ArrayList <String> arrayListOfErrors = new ArrayList<>();
+        waitMessagesWereDisplayed();
         List<WebElement> list = new ArrayList<>();
         list = webDriver.findElements(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]"));
         for (WebElement e: list
              ) {
-            Assert.assertEquals("Wrong error message", e.getText(), message);
+            String textOfError = e.getText();
+            arrayListOfErrors.add(textOfError);
         }
+        for (String textOfError: arrayListOfErrors
+             ) {if (message.equals(textOfError)){
+            testResult = "found";
+            break;
+        }else {
+             testResult = "not found";
+             }
+        } return testResult;
     }
 
-//    public LoginPage textOfErrorWasDisplayed(String post_title) {
-//        List<WebElement> listOfErrors = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
-//        int counter = 0;
-//        while (!listOfPosts.isEmpty() & counter < 100){
-//            clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, post_title)))," Post with title " + post_title);
-//            new SinglePostPage(webDriver)
-//                    .checkIsRedirectToSinglePostPage()
-//                    .clickOnDeleteButton()
-//                    .checkIsRedirectToProfilePage()
-//                    .checkSuccessDeletePost();
-//            listOfPosts = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
-//            counter ++;
-//        }
 
 
 }

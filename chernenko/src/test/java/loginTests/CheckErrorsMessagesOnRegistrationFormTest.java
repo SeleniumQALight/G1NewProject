@@ -14,7 +14,7 @@ import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ErrorMessagesLoginPage extends BaseTest {
+public class CheckErrorsMessagesOnRegistrationFormTest extends BaseTest {
 
     @Test
     public void oneErrorMessageIsDisplayed (){
@@ -49,8 +49,9 @@ public class ErrorMessagesLoginPage extends BaseTest {
 
     @Test
     public void conformityOfErrorMessage1 (){
-        loginPage.fillLoginFormNewUserAndSubmit(TestData.INVALID_LONG_USERNAME,TestData.INVALID_EMAIL,TestData.INVALID_LONG_PASSWORD);
-        loginPage.textOfErrorMessageWasDisplayed("");
+        String textFromSpecification = "Username must be at least 3 characters.";
+        loginPage.fillLoginFormNewUserAndSubmit(TestData.INVALID_SHORT_USERNAME,TestData.VALID_UNIQUE_USER_EMAIL,TestData.VALID_PASSWORD);
+        Assert.assertEquals(("Message is correct"),"found",loginPage.textOfErrorMessageWasDisplayed(textFromSpecification));
     }
 
 
