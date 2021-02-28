@@ -59,6 +59,6 @@ public class errorMessagesLoginPage extends BaseTest {
     )
     public void checkErrorMessagesTestWithParameters(String username, String email, String password, int expectedResult){
         loginPage.fillLoginFormNewUserAndSubmit(username, email, password);
-        Assert.assertEquals("ERROR: The number of displayed erros is wrong. ", expectedResult, loginPage.numberOfErrorMessageWereDisplayed());
+        Assert.assertEquals("ERROR: The number of displayed errors is wrong. ", expectedResult, loginPage.numberOfErrorMessageWereDisplayed());
     }
 }

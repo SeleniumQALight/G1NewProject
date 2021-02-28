@@ -37,6 +37,9 @@ public class SinglePostPage extends ParentPage {
         return "/post/";
     }
 
+    @FindBy(xpath = ".//*[@data-original-title='Edit']")
+    private Button editPost;
+
     public SinglePostPage checkIsRedirectToSinglePostPage(){
         waitChatBeHied();
        // Util.waitABit(2);
@@ -49,10 +52,6 @@ public class SinglePostPage extends ParentPage {
         return this;
     }
 
-    public SinglePostPage clickOnTitleOfPost(){
-        clickOnElement(titleOfPost);
-        return new SinglePostPage(webDriver);
-    }
 
     public ProfilePage clickOnDeleteButton(){
         clickOnElement(deleteButton);
@@ -60,8 +59,14 @@ public class SinglePostPage extends ParentPage {
         return new ProfilePage(webDriver);
     }
 
-    public ProfilePage clickOnProfilButton() {
+    public ProfilePage clickOnProfileButton() {
         clickOnElement(profileButton);
         return new ProfilePage(webDriver);
     }
+
+    public CreatePostPage clickOnEditButton(){
+        clickOnElement(editPost);
+        return new CreatePostPage(webDriver);
+    }
+
 }

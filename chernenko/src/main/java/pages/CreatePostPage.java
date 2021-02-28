@@ -62,6 +62,7 @@ public class CreatePostPage extends ParentPage {
         return new SinglePostPage(webDriver);
     }
 
+
     @After
     public SinglePostPage clickOnDeleteButton(){
 
@@ -74,10 +75,13 @@ public class CreatePostPage extends ParentPage {
         return this;
     }
 
+
     //TODO Rework!!!!
     public CreatePostPage selectValueInDropDownRole (String value){
         clickOnElement(typeOfPostList);
-   //     selectValueInDropDown(valueOfList, value);
+        //     selectValueInDropDown(valueOfList, value);
         return this;
     }
+
+
 }

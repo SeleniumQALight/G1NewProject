@@ -13,6 +13,7 @@ public class SinglePostPageWithNewPost extends ParentPage{
     @FindBy(xpath = ".//h2")
     private TextInput postTitle;
 
+
     public SinglePostPageWithNewPost(WebDriver webDriver) {
         super(webDriver);
     }
@@ -26,4 +27,6 @@ public class SinglePostPageWithNewPost extends ParentPage{
         clickOnElement(deletePostButton);
         return new CreatePostPage(webDriver);
     }
+
+
 }

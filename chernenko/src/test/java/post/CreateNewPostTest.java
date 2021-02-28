@@ -1,11 +1,9 @@
 package post;
 
 import baseTest.BaseTest;
-import libs.TestData;
 import libs.Util;
 import org.junit.After;
 import org.junit.Test;
-import pages.SinglePostPageWithNewPost;
 
 public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "Cherchenko Lena Title of Post" + Util.getDateAndTimeFormated();
@@ -23,7 +21,7 @@ public class CreateNewPostTest extends BaseTest {
                 .clickOnButtonSaveNewPost()
                     .checkIsRedirectToSinglePostPage()
                     .checkIsSuccessMessageDisplayed()
-                    .clickOnProfilButton()
+                    .clickOnProfileButton()
                 .checkIsRedirectToProfilePage()
                 .checkIsPostWasAdded(POST_TITLE)
                 ;
@@ -42,10 +40,10 @@ public class CreateNewPostTest extends BaseTest {
                 .clickOnButtonSaveNewPost()
                     .checkIsRedirectToSinglePostPage()
                     .checkIsSuccessMessageDisplayed()
-
         ;
 
     }
+
 
     @After
     public void deletePost (){
@@ -56,8 +54,6 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToProfilePage()
                     .deletePostWhilePresent(POST_TITLE)
         ;
-
-
     }
 
 }
