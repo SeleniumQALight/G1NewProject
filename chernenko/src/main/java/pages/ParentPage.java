@@ -15,10 +15,10 @@ import ru.yandex.qatools.htmlelements.element.TypifiedElement;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
-public abstract class ParentPage {
+abstract class ParentPage {
     protected WebDriver webDriver;
     protected WebDriverWait webDriverWait10, webDriverWait15;
-    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+    protected static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
     protected final String baseUrl = configProperties.base_url();
 
     Logger logger = Logger.getLogger(getClass());
@@ -35,6 +35,8 @@ public abstract class ParentPage {
     }
 
     abstract String getRelativeUrl ();
+
+
 
 
     public void enterTextIntoElement(WebElement webElement, String text){
@@ -57,7 +59,7 @@ public abstract class ParentPage {
         return elementName;
     }
 
-    // WAit till the chat window disappeared method
+    // WAit till the chat window disappeared methot
     protected void waitChatBeHied(){
         webDriverWait10.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
     }

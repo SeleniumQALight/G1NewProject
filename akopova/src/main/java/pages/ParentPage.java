@@ -16,16 +16,16 @@ import ru.yandex.qatools.htmlelements.element.TypifiedElement;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
-abstract class ParentPage {
+public abstract class ParentPage {
 
     @FindBy(xpath = ".//*[contains(text(),'Complex app for testing')]")
     private WebElement homePageLink;
 
     protected WebDriver webDriver;
-    protected WebDriverWait webDriverWait10, getWebDriverWait15;
+    protected WebDriverWait webDriverWait10, getWebDriverWait15, getWebDriverWait20;
 
     // creating object of config.properties and create pairs of keys listed there
-    protected static ConfigProperties configProperties =
+    public static ConfigProperties configProperties =
             ConfigFactory.create(ConfigProperties.class);
     protected final String baseUrl = configProperties.base_url();
 
@@ -39,6 +39,8 @@ abstract class ParentPage {
 
         webDriverWait10 = new WebDriverWait(webDriver, 10);
         getWebDriverWait15 = new WebDriverWait(webDriver, 15);
+        getWebDriverWait20 = new WebDriverWait(webDriver, 20);
+
     }
 
     abstract String getRelativeUrl();
@@ -99,7 +101,7 @@ abstract class ParentPage {
             return state;
         }
         catch (Exception e){
-            logger.info(getElementName(webElement) + "Element displayed : false");
+            logger.info(getElementName(webElement) + "Element is not yet displayed : false");
             return false;
         }
     }
@@ -108,6 +110,27 @@ abstract class ParentPage {
         Assert.assertTrue( "element is not visible", isElementDisplayed(webElement));
 
     }
+
+    protected void checkIsElementEnabled(WebElement webElement) {
+        Assert.assertTrue("Element " + webElement.getTagName() + " is not Clickable"
+        , isElementEnabled(webElement));
+    }
+
+    protected boolean isElementEnabled(WebElement webElement) {
+        try{
+            boolean state = webElement.isEnabled();
+            logger.info(getElementName(webElement) + "Element enabled : " + state);
+        return state;
+
+    }
+        catch (Exception e){
+            logger.info(getElementName(webElement) + "Element is not yet enabled : false");
+            return false;
+    }
+    }
+
+
+
 
     protected void selectTextInDropDown(WebElement webElement, String text) {
         try{
@@ -149,5 +172,9 @@ abstract class ParentPage {
         }
     }
 
+    public ParentPage clearElement (WebElement webElement) {
+        webElement.clear();
+        return this;
+    }
 
 }

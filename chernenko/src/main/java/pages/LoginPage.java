@@ -1,12 +1,12 @@
 package pages;
 
 import libs.TestData;
+import libs.Util;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
@@ -14,12 +14,7 @@ import ru.yandex.qatools.htmlelements.element.TextInput;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElements;
-
 public class LoginPage extends ParentPage{
-
-
 
     @FindBy (xpath =".//*[@placeholder='Username']")
     private TextInput inputLogin;
@@ -42,9 +37,6 @@ public class LoginPage extends ParentPage{
 
     @FindBy (xpath = ".//button[contains(text(),'Sign up for OurApp')]")
     private Button buttonSignUp;
-
-    @FindBy (xpath = ".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]")
-    private TextInput errorMessage;
 
 
 
@@ -116,40 +108,15 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSignUp);
     }
 
-    protected void waitMessagesWereDisplayed(){
-        webDriverWait10.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]")));
-    }
-
-    public Integer numberOfErrorMessageWereDisplayed (){
+    public ArrayList numberOfErrorMessageWereDisplayed (){
         // Use for the test date from TestData file
-        waitMessagesWereDisplayed();
+        //fillLoginFormNewUserAndSubmit(TestData.UNIQUE_USERNAME,TestData.INVALID_EMAIL,TestData.SORT_PASSWORD);
+        Util.waitABit(2);
         List<WebElement> list = new ArrayList<>();
         list = webDriver.findElements(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]"));
-        int numberOfErrorMessages = list.size();
-        return numberOfErrorMessages;
-    }
+        return (ArrayList) list;
 
-    public  String textOfErrorMessageWasDisplayed (String message){
-        String testResult = "";
-        ArrayList <String> arrayListOfErrors = new ArrayList<>();
-        waitMessagesWereDisplayed();
-        List<WebElement> list = new ArrayList<>();
-        list = webDriver.findElements(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]"));
-        for (WebElement e: list
-             ) {
-            String textOfError = e.getText();
-            arrayListOfErrors.add(textOfError);
-        }
-        for (String textOfError: arrayListOfErrors
-             ) {if (message.equals(textOfError)){
-            testResult = "found";
-            break;
-        }else {
-             testResult = "not found";
-             }
-        } return testResult;
     }
-
 
 
 }
