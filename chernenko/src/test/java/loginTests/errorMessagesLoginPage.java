@@ -55,7 +55,7 @@ public class errorMessagesLoginPage extends BaseTest {
             "1234567890qwertyuiopqwertyuiop1,test,123456qwerty123456qwerty123456qwerty123456qwerty123456qwerty, 3"
     })
     @TestCaseName(
-            "numbersOfMessagesWereDisplayed: username = {1}, email = {2}, password = {3} "
+            "numbersOfMessagesWereDisplayed: username = {1}, email = {2}, password = {3},  "
     )
     public void checkErrorMessagesTestWithParameters(String username, String email, String password, int expectedResult){
         loginPage.fillLoginFormNewUserAndSubmit(username, email, password);

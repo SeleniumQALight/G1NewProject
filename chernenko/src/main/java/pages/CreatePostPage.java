@@ -12,10 +12,10 @@ import ru.yandex.qatools.htmlelements.element.TextInput;
 
 public class CreatePostPage extends ParentPage {
     @FindBy (id = "post-title")
-    private TextInput inputTitle;
+    private WebElement inputTitle;
 
     @FindBy (id = "post-body")
-    private TextInput inputBody;
+    private WebElement inputBody;
 
     @FindBy (xpath = ".//button[text()='Save New Post']")
     private Button buttonSaveNewPost;

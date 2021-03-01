@@ -2,9 +2,10 @@ package pages;
 
 import libs.Util;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
@@ -28,6 +29,10 @@ public class SinglePostPage extends ParentPage {
     @FindBy (xpath = ".//*[@data-original-title='My Profile']")
     private Button profileButton;
 
+    @FindBy(xpath = ".//*[@data-icon ='edit']")
+    private Button editPost;
+
+
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -37,12 +42,9 @@ public class SinglePostPage extends ParentPage {
         return "/post/";
     }
 
-    @FindBy(xpath = ".//*[@data-original-title='Edit']")
-    private Button editPost;
-
     public SinglePostPage checkIsRedirectToSinglePostPage(){
         waitChatBeHied();
-       // Util.waitABit(2);
+        Util.waitABit(2);
         Assert.assertThat("Invalid Page",webDriver.getCurrentUrl(), containsString(baseUrl+getRelativeUrl()));
         return this;
     }
@@ -64,9 +66,11 @@ public class SinglePostPage extends ParentPage {
         return new ProfilePage(webDriver);
     }
 
-    public CreatePostPage clickOnEditButton(){
+
+    public EditPostPage clickOnEditButton() {
         clickOnElement(editPost);
-        return new CreatePostPage(webDriver);
+        webDriverWait10.until(ExpectedConditions.elementToBeClickable(By.id("post-body")));
+        return new EditPostPage(webDriver);
     }
 
 }
