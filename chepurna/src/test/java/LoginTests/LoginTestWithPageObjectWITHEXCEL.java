@@ -29,7 +29,7 @@ public class LoginTestWithPageObjectWITHEXCEL extends BaseTest {
     }
 
 //USE EXCEL === INVALID LOGIN WITH PARAMETERS
-    @Parameterized.Parameters
+    @Parameterized.Parameters (name = "Parameters are {0} and {1}")
     public static Collection testData() throws IOException {
         InputStream spreadsSheet = new FileInputStream(ParentPage.configProperties.DATA_FILE_PATH()+"testDataSuit.xls"); //connection
         return new SpreadsheetData(spreadsSheet, "InvalidLogOn").getData();
