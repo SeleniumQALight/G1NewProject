@@ -16,11 +16,11 @@ import ru.yandex.qatools.htmlelements.element.TypifiedElement;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
-abstract class ParentPage {         //abstract = nobody can create object and we can create abstract method
+public abstract class ParentPage {         //abstract = nobody can create object and we can create abstract method
     protected WebDriver webDriver;
     protected WebDriverWait webDriverWait10, webDriverWait15;
 //Properties
-    protected static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
     protected final String baseUrl = configProperties.base_url();
     Logger logger = Logger.getLogger(getClass());
     public ParentPage(WebDriver webDriver){ //constrictor
@@ -67,7 +67,7 @@ protected void waitChatToBeHide(){
     return elementName;
     }
 
-    // CLICK ON THE ELEMENT
+// CLICK ON THE ELEMENT
     protected void clickOnElement(WebElement webElement){
         try {
             webDriverWait15.until(ExpectedConditions.elementToBeClickable(webElement));
@@ -100,6 +100,10 @@ protected void waitChatToBeHide(){
         }
     }
 
+    protected void checkIsElementVisible(WebElement webElement){
+        Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
+    }
+
 // SELECT IN DROP DOWN === JAVA BY TEXT (need time)
     protected void selectTextInDropDown(WebElement webElement, String text){
         try{
@@ -130,7 +134,4 @@ protected void waitChatToBeHide(){
         Assert.fail("Can not work with element" + e); // will write to report
     }
 
-    protected void checkIsElementVisible(WebElement webElement){
-        Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
-    }
 }

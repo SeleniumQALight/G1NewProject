@@ -15,10 +15,12 @@ import ru.yandex.qatools.htmlelements.element.TypifiedElement;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
-abstract class ParentPage {
+import java.util.List;
+
+public abstract class ParentPage {
     protected WebDriver webDriver;
     protected WebDriverWait webDriverWait10,webDriverWait15;
-    protected static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
     protected final String baseUrl = configProperties.base_url();
     Logger logger = Logger.getLogger(getClass());
     public ParentPage (WebDriver webDriver){
@@ -118,5 +120,7 @@ abstract class ParentPage {
             printErrorMessageAndStopTest(e);
         }
     }
+
+
 
 }

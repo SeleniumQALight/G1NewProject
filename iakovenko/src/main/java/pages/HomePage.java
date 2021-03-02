@@ -4,20 +4,26 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
 
 public class HomePage extends ParentPage{
     @FindBy (xpath = ".//button[text()='Sign Out']")
-    private WebElement buttonSignOut;
+    private Button buttonSignOut;
     @FindBy(xpath = ".//*[text()='Create Post']" )
-    private WebElement createPostButton;
+    private Button createPostButton;
     @FindBy (xpath = ".//*[@data-original-title='My Profile']")
-    private WebElement profileButton;
+    private Button profileButton;
 
     public HomePage(WebDriver webDriver){
         super(webDriver);
     }
 
-   public boolean isButtonSignOutVisible() {
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
+    public boolean isButtonSignOutVisible() {
       return isElementDisplayed(buttonSignOut);
     }
 

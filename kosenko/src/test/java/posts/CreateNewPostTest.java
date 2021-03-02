@@ -1,32 +1,39 @@
 package posts;
 
-import baseTest.BaseTest;
 import org.junit.After;
 import org.junit.Test;
 
-public class CreateNewPostTest extends BaseTest {
+import baseTest.BaseTest;
+import libs.Util;
 
+public class CreateNewPostTest extends BaseTest {
+    final String POST_TITLE = "Kosenko Title of Post" + Util.getDateAndTimeFormated();
 
     @Test
-    public void createNewPost() {
+    public void createNewPost(){
         loginPage.loginWithValidCred()
                 .checkIsButtonSignOutVisible()
                 .clickOnCreatePostButton()
                 .checkIsRedirectedOnCreatePostPage()
-                .enterTitleIntoInputTitle("Kosenko Title of Post")
-                .enterTextIntoInputBody("Kosenko Post Body")
+                .enterTitleInToInputTitle(POST_TITLE)
+                .enterTextInToInputBody("Post body")
+                .selectTextInDropDownRole("Частное сообщение")
                 .clickOnButtonSaveNewPost()
-                .chechIsRedirectToSinglePostPage()
-                .checkIsSuccessMessageDisplayed();
+                .checkIsRedirectToSinglePostPage()
+                .checkIsSuccessMessageDisplayed()
+                .clickOnProfileButton()
+                .checkIsRedirectToProfilePage()
+                .checkIsPostWasAdded(POST_TITLE)
+        ;
     }
-    @After
 
+    @After
     public void deletePost(){
-        singlePostPage.clickOnMyProfileButton()
-                .chechIsRedirectToProfilePage()
-                .clickOnPostTitle()
-                .chechIsRedirectToSinglePostPage()
-                .clickOnDeletePostButton()
-                .checkIsSuccessDeletedMessageDisplayed();
+        homePage
+                .openHomePage()
+                .checkIsButtonSignOutVisible()
+                .clickOnProfileButton()
+                .checkIsRedirectToProfilePage()
+                .deletePostWhilePresent(POST_TITLE);
     }
 }

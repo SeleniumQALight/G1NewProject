@@ -5,65 +5,57 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.List;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.Select;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 public class CreatePostPage extends ParentPage {
     @FindBy (id = "post-title")
-    private WebElement inputTitle;
-
+    private TextInput inputTitle;
     @FindBy (id = "post-body")
-    private WebElement inputBody;
-
+    private TextInput inputBody;
     @FindBy (xpath = ".//button[text()='Save New Post']")
-    private WebElement buttonSaveNewPost;
+    private Button buttonSaveNewPost;
+    @FindBy(tagName = "select")
+    private Select dropDownRole;
 
 
-    public CreatePostPage (WebDriver webDriver){
+    public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectedOnCreatePostPage() {
-        Assert.assertEquals("Invalid page", "https://qa-complex-app-for-testing.herokuapp.com/create-post", webDriver.getCurrentUrl());
+        waitChatToBeHide();
+        Assert.assertEquals("Invalid page"
+                , baseUrl + getRelativeUrl()
+                , webDriver.getCurrentUrl());
         return this;
     }
 
-    public CreatePostPage enterTitleIntoInputTitle (String title){
-        //TODO will be changed in the future
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        enterTextIntoElement(inputTitle, title);
+    public CreatePostPage enterTitleInToInputTitle (String title){
+        enterTextInToElement(inputTitle, title);
         return this;
     }
 
-    public CreatePostPage enterTextIntoInputBody (String body){
-        enterTextIntoElement(inputBody, body);
+    public CreatePostPage enterTextInToInputBody( String text){
+        enterTextInToElement(inputBody, text);
         return this;
     }
 
-    public SinglePostPage clickOnButtonSaveNewPost (){
+    public SinglePostPage clickOnButtonSaveNewPost(){
         clickOnElement(buttonSaveNewPost);
         return new SinglePostPage(webDriver);
     }
 
-    @After
-    public SinglePostPage clickOnDeleteButton(){
-
-        clickOnDeleteButton();
-        return new SinglePostPage(webDriver);
+    public CreatePostPage selectTextInDropDownRole(String textInDD) {
+        selectTextInDropDown(dropDownRole, textInDD);
+        return this;
     }
-
-    public LoginPage openHomePage() {
-        LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.openLoginPage();
-
-        return loginPage;
-    }
-
 }
 
 

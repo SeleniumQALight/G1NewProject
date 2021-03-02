@@ -11,12 +11,16 @@ import ru.yandex.qatools.htmlelements.element.TextInput;
 public class CreatePostPage extends ParentPage {
     @FindBy(id = "post-title")
     private TextInput inputTitle;
-    @FindBy(id ="post-body")
+    @FindBy(id = "post-body")
     private TextInput inputBody;
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private Button buttonSaveNewPost;
     @FindBy(tagName = "select")
     private Select dropDownRole;
+    @FindBy(xpath = ".//select[@id = 'select1']")
+    private Select dropDown;
+    @FindBy(xpath = ".//select//option[@value = 'All Users']")
+    private Select DropDownValueAllUsers;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -32,23 +36,32 @@ public class CreatePostPage extends ParentPage {
         Assert.assertEquals("Invalid page", baseUrl + getRelativeUrl(), webDriver.getCurrentUrl());
         return this;
     }
-    public CreatePostPage enterTitleInToInputTitle (String title){
-        enterTextInToElement(inputTitle,title);
+
+    public CreatePostPage enterTitleInToInputTitle(String title) {
+        enterTextInToElement(inputTitle, title);
         return this;
     }
 
-    public CreatePostPage enterTextInToInputBody(String text){
+    public CreatePostPage enterTextInToInputBody(String text) {
         enterTextInToElement(inputBody, text);
         return this;
 
     }
-    public SinglePostPage clickOnButtonSaveNewPost(){
+
+    public SinglePostPage clickOnButtonSaveNewPost() {
         clickOnElement(buttonSaveNewPost);
         return new SinglePostPage(webDriver);
     }
 
     public CreatePostPage selectTextInDropdownRole(String textInDD) {
         selectTextInDropDown(dropDownRole, textInDD);
+        return this;
+    }
+
+    //HW-4
+    public CreatePostPage selectValueFromDropDown() { //этим методом можно заменить метод selectTextInDropdownRole в CreateNewPostTest
+        clickOnElement(dropDown);
+        clickOnElement(DropDownValueAllUsers);
         return this;
     }
 }

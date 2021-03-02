@@ -4,25 +4,33 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.Select;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 public class CreatePostPage extends ParentPage {
     @FindBy(id="post-title")
-    private WebElement inputTitle;
+    private TextInput inputTitle;
     @FindBy(id = "post-body")
-    private WebElement inputBody;
+    private TextInput inputBody;
     @FindBy(xpath = ".//button[text()='Save New Post']")
-    private WebElement buttonSaveNewPost;
+    private Button buttonSaveNewPost;
     @FindBy(tagName = "select")
-    private WebElement dropDownRole;
+    private Select dropDownRole;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectedOnCreatePostPage() {
         waitChatToBeHide();
         Assert.assertEquals("Invalid page"
-                ,"https://qa-complex-app-for-testing.herokuapp.com/create-post"
+                , baseUrl + getRelativeUrl()
                 , webDriver.getCurrentUrl());
         return this;
     }

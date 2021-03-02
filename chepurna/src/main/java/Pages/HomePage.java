@@ -42,6 +42,16 @@ public class HomePage extends ParentPage{
         return new CreatePostPage(webDriver);
     }
 
+    public HomePage openHomePage() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (!isButtonSignOutVisible()){
+            loginPage.loginWithValidCred();
+        }
+        logger.info("Home Page was opened");
+        return this;
+    }
+
 //HOMEWORK 02-13
     public ProfilePage clickOnMyProfileButton(){
         clickOnElement(myProfileButton);

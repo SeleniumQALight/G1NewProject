@@ -5,58 +5,50 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import static org.hamcrest.Matchers.containsString;
 
 public class SinglePostPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
-    private WebElement successMessageElement;
+    private TextInput successMessageElement;
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private Button deleteButton;
 
-    @FindBy(xpath = ".//button[@data-original-title='Delete']")
-    private WebElement DeletePostButton;
-
-    @FindBy(xpath = ".//img[@data-original-title='My Profile']")
-    private WebElement myProfileButton;
+    @FindBy(xpath = ".//*[@data-original-title='My Profile']")
+    private Button profileButton;
 
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    //=========================================================
+    @Override
+    String getRelativeUrl() {
+        return "/post/";
+    }
 
-    public SinglePostPage chechIsRedirectToSinglePostPage() {
+    public SinglePostPage checkIsRedirectToSinglePostPage(){
+        waitChatToBeHide();
         Assert.assertThat("Invalid page"
                 , webDriver.getCurrentUrl()
-                , CoreMatchers.containsString("https://qa-complex-app-for-testing.herokuapp.com/post/"));
+                , containsString(baseUrl + getRelativeUrl()));
         return this;
     }
 
-    public SinglePostPage checkIsSuccessMessageDisplayed() {
+    public SinglePostPage checkIsSuccessMessageDisplayed(){
         checkIsElementVisible(successMessageElement);
         return this;
     }
 
-    //HOMEWORK 02-13
-    public ProfilePage clickOnMyProfileButton() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        clickOnElement(myProfileButton);
+    public ProfilePage clickOnDeleteButton() {
+        clickOnElement(deleteButton);
         return new ProfilePage(webDriver);
     }
 
-    public ProfilePage clickOnDeletePostButton() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        clickOnElement(DeletePostButton);
+    public ProfilePage clickOnProfileButton() {
+        clickOnElement(profileButton);
         return new ProfilePage(webDriver);
     }
 }

@@ -7,6 +7,7 @@ import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "Inga Post Title" + MyUtil.getDateAndTimeFormated();
+    final String POST_BODY = "Inga Post Body" + MyUtil.getDateAndTimeFormated();
 
     @Test
     public void createNewPost() {
@@ -16,8 +17,9 @@ public class CreateNewPostTest extends BaseTest {
                 .clickOnCreatePostButton()
                 .checkIsRedirectedOnCreatePostPage()
                 .enterTitleIntoInputTitle(POST_TITLE)
-                .enterTextIntoInputBody("Inga Post Body")
-                .selectTextInDropdownRole("Частное сообщение")
+                .enterTextIntoInputBody(POST_BODY)
+                .selectElementInDropDown("One Person")
+                //.selectTextInDropdownRole("Частное сообщение")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectedToSinglePostPage()
         .checkIsSuccessMessageDisplayed()
