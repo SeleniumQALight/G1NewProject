@@ -1,22 +1,28 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 public class CreatePostPage extends ParentPage {
 
     public String title;
 
     @FindBy(id = "post-title")
-    private WebElement inputTitle;
+    private TextInput inputTitle;
     @FindBy(id = "post-body")
-    private WebElement inputBody;
+    private TextInput inputBody;
     @FindBy(xpath = ".//button[text()='Save New Post']")
-    private WebElement clickOnButtonSaveNewPost;
+    private Button clickOnButtonSaveNewPost;
     @FindBy(tagName = "select")
-    private WebElement dropDownRole;
+    private Button dropDownRole;
+    @FindBy(name = "select1")
+    private Button dropDownInCreatePost;
+    String valueOfDropDownInCreatePost = ".//*[text() = '%s']";
 
     @Override
     String getRelativeUrl() {
@@ -55,4 +61,13 @@ public class CreatePostPage extends ParentPage {
         selectTextInDropDown(dropDownRole, textInDD);
         return this;
     }
+
+    public CreatePostPage clickValueInDropDownInCreatePost(String valueOfDopDown){
+        dropDownInCreatePost.isDisplayed();
+        dropDownInCreatePost.click();
+        webDriver.findElement(By.xpath(String.format(valueOfDropDownInCreatePost,valueOfDopDown))).isDisplayed();
+        webDriver.findElement(By.xpath(String.format(valueOfDropDownInCreatePost,valueOfDopDown))).click();
+        return new CreatePostPage(webDriver);
+    }
+
 }

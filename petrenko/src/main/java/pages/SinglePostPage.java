@@ -4,24 +4,30 @@ import libs.TestData;
 import libs.Util;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.w3c.dom.ls.LSOutput;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextBlock;
 
 import static org.hamcrest.Matchers.containsString;
 
 public class SinglePostPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
-    private WebElement successMessageElement;
+    private TextBlock successMessageElement;
 
     @FindBy(xpath = ".//*[text()= \'" + TestData.VALID_TITLE + " \']")
-    private WebElement validTitleOfPost;
+    private TextBlock validTitleOfPost;
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
-    private WebElement deletePostButton;
+    private Button deletePostButton;
 
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
-    private WebElement profileButton;
+    private Button profileButton;
+    @FindBy(name = "select1")
+    private Button dropDownInCreatePost;
+    String valueOfDropDownInCreatePost = ".//*[text() = '%s']";
+    @FindBy(xpath = ".//a[@class = 'text-primary mr-2']")
+    private Button editPostButton;
+
 
     @Override
     String getRelativeUrl() {
@@ -34,7 +40,7 @@ public class SinglePostPage extends ParentPage {
 
     public SinglePostPage checkIsRedirectOnSinglePostPage() {
         waitChatToBeHide();
-        Assert.assertThat("Invalid page", webDriver.getCurrentUrl(), containsString(baseUrl + getRelativeUrl() ));
+        Assert.assertThat("Invalid page", webDriver.getCurrentUrl(), containsString(baseUrl + getRelativeUrl()));
 
         return this;
     }
@@ -77,5 +83,13 @@ public class SinglePostPage extends ParentPage {
         clickOnElement(profileButton);
         return new MyProfilePage(webDriver);
 
+    }
+
+
+    public EditPostPage clickOnEditPostButton() {
+        Util.waitABit(2);
+        clickOnElement(editPostButton);
+
+        return new EditPostPage(webDriver);
     }
 }

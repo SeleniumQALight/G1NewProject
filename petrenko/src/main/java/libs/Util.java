@@ -16,13 +16,13 @@ public class Util {
 
 
     /**
-     * Method returned SystemDateAndTime In Format yyyy-MM-dd_HH-mm-ss
+     * Method returned SystemDateAndTime In Format yyyyMMddHHmmss
      *
      * @return
      */
     public static String getDateAndTimeFormated() {
 
-        return getDateAndTime("yyyy-MM-dd_HH-mm-ss");
+        return getDateAndTime("yyyyMMddHHmmss");
     }
 
     /**

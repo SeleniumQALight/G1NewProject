@@ -1,24 +1,58 @@
 package pages;
 
+
+import com.google.common.base.Splitter;
 import libs.TestData;
+import libs.Util;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextBlock;
 import ru.yandex.qatools.htmlelements.element.TextInput;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.hamcrest.Matchers.contains;
 
 public class LoginPage extends ParentPage {
 
+
     @FindBy(xpath = ".//form[@action = '/login']//input[@name = 'username']")
-    private TextInput inputLogin;
- //   @Name(value = " ")
+    private TextInput inputUserNameInLoginIn;
     @FindBy(xpath = ".//form[@action = '/login']//input[@name = 'password']")
-    private TextInput inputPassword;
+    private TextInput inputPasswordInLoginIn;
+
+    @FindBy(id = "username-register")
+    private TextInput inputUserNameInRegisterIn;
+    @FindBy(id = "email-register")
+    private TextInput inputEmailInRegisterIn;
+    @FindBy(id = "password-register")
+    private TextInput inputPassWordInRegisterIn;
+
 
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private Button buttonSignIn;
+    @FindBy(xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text() = 'Username must be at least 3 characters.']")
+    private TextBlock popUpErrorUnValidUsername;
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text() = 'You must provide a valid email address.']")
+    private TextBlock popUpErrorUnValidEmail;
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text() = 'Password must be at least 12 characters.']")
+    private TextBlock popUpErrorUnValidPassword;
+
+    @FindBy(xpath = ".//button[@type = 'submit']")
+    private Button buttonSignUpForOurApp;
+    @FindBy(xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private TextBlock registerErrorMessage;
+
+    private String popUpRegisterError = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    private String popUpLoginError = ".//div[@class='alert alert-danger text-center']";
     @Override
     String getRelativeUrl() {
         return "/";
@@ -41,22 +75,23 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterLoginSignIn(String login) {
-        enterTextInToElement(inputLogin, login);
+        enterTextInToElement(inputUserNameInLoginIn, login);
     }
 
     public void enterPassWordSignIn(String passWord) {
-        enterTextInToElement(inputPassword, passWord);
+        enterTextInToElement(inputPasswordInLoginIn, passWord);
     }
 
     public void clickButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
-    public void fillLoginFormAndSubmit(String login, String password) {
+    public LoginPage fillLoginFormAndSubmit(String login, String password) {
         openLoinPage();
         enterLoginSignIn(login);
         enterPassWordSignIn(password);
         clickButtonSignIn();
+        return new LoginPage(webDriver);
     }
 
     public HomePage loginWithValidCred() {
@@ -64,5 +99,76 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    private void enterUserNameRegisterIn(String userName) {
+        enterTextInToElement(inputUserNameInRegisterIn, userName);
+    }
 
+    private void enterEmailRegisterIn(String email) {
+        enterTextInToElement(inputEmailInRegisterIn, email);
+    }
+
+    private void enterPasswordRegisterIn(String password) {
+        enterTextInToElement(inputPassWordInRegisterIn, password);
+    }
+
+    public LoginPage fillRegisterFormAndSubmit(String userName, String email, String password) {
+        openLoinPage();
+        enterUserNameRegisterIn(userName);
+        enterEmailRegisterIn(email);
+        enterPasswordRegisterIn(password);
+        clickOnElement(buttonSignUpForOurApp);
+        return new LoginPage(webDriver);
+    }
+
+    public void checkPopUpMessage() {
+        Assert.assertTrue("PopUp error userName was not displayed", popUpErrorUnValidUsername.isDisplayed());
+    }
+
+
+     public LoginPage checkCountErrorOfMessagesAfterSubmitRegisterIn(int countUnValidValue) {
+
+         Util.waitABit(5);
+        List<WebElement> listOfError = webDriver.findElements(By.xpath(popUpRegisterError));
+        logger.info(listOfError.size());
+        Assert.assertEquals("Count of PopUp errors Message is not correct", listOfError.size(), countUnValidValue);
+        return new LoginPage(webDriver);
+    }
+
+
+    public LoginPage checkCountErrorOfMessagesAfterSubmitLoginIn(int countUnValidValue) {
+
+        Util.waitABit(5);
+        List<WebElement> listOfError = webDriver.findElements(By.xpath(popUpLoginError));
+
+        Assert.assertEquals("Count of PopUp errors Message is not correct", listOfError.size(), countUnValidValue);
+        return new LoginPage(webDriver);
+    }
+
+
+    public void checkTextOfErrorsInRegisterIn(String textOfErrorMessages) {
+
+        if(textOfErrorMessages.isEmpty()){
+            logger.info("textOfErrorMessages ia empty.");
+        }
+        else {
+            String[] words = textOfErrorMessages.split(";");
+
+            for (int i = 0; i < words.length; i++) {
+                Assert.assertTrue("--------- " + words[i] + " message is not correct in PopUp. ", listOfTextsOfWebElementByXpath(popUpRegisterError).contains(words[i]));
+            }
+        }
+
+    }
+
+    public void checkTextOfErrorsInLoginIn(String textOfErrorMessages) {
+
+        if(textOfErrorMessages.isEmpty()){
+            logger.info("textOfErrorMessages ia empty.");
+        }
+        else {
+            Assert.assertEquals("", textOfErrorMessages, webDriver.findElement(By.xpath(popUpLoginError)).getText() );
+        }
+
+    }
 }
+
