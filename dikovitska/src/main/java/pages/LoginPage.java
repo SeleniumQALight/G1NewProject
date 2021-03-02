@@ -127,7 +127,7 @@ public class LoginPage extends ParentPage {
 
     public boolean isErrorMessageForInvalidRegUsernameDisplayed(){
         try{
-            return webDriver.findElement(By.xpath(".//*[(text()='Username must be at least 3 characters.']")).isDisplayed();
+            return webDriver.findElement(By.xpath(".//*[text()='Username must be at least 3 characters.']")).isDisplayed();
         }catch (Exception e){
             return false;
         }
@@ -136,7 +136,7 @@ public class LoginPage extends ParentPage {
 
     public boolean isErrorMessageForInvalidEmailDisplayed(){
         try{
-            return webDriver.findElement(By.xpath(".//*[(text()='You must provide a valid email address.')]")).isDisplayed();
+            return webDriver.findElement(By.xpath(".//*[text()='You must provide a valid email address.']")).isDisplayed();
         } catch (Exception e){
             return false;
         }
@@ -145,7 +145,7 @@ public class LoginPage extends ParentPage {
 
     public boolean isErrorMessageForInvalidRegPasswordDisplayed(){
         try{
-            return webDriver.findElement(By.xpath(".//*[text()='Password must be at least 12 characters.')]")).isDisplayed();
+            return webDriver.findElement(By.xpath(".//*[text()='Password must be at least 12 characters.']")).isDisplayed();
         }catch (Exception e){
             return false;
         }

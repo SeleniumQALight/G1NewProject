@@ -43,7 +43,7 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.fillRegisterForm("t",null,null);
 
 
-        checkExpectedResult("Error message for invalid register username is not displayed", !loginPage.isErrorMessageForInvalidRegUsernameDisplayed());
+        checkExpectedResult("Error message for invalid register username is not displayed", loginPage.isErrorMessageForInvalidRegUsernameDisplayed());
     }
 
     @Test
@@ -51,7 +51,7 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.openLoginPage();
         loginPage.fillRegisterForm(null,"test",null);
 
-        checkExpectedResult("Error message for invalid email is not displayed", !loginPage.isErrorMessageForInvalidEmailDisplayed());
+        checkExpectedResult("Error message for invalid email is not displayed", loginPage.isErrorMessageForInvalidEmailDisplayed());
     }
 
     @Test
@@ -59,7 +59,7 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.openLoginPage();
         loginPage.fillRegisterForm(null,null,"test");
 
-        checkExpectedResult("Error message for invalid register password is not displayed", !loginPage.isErrorMessageForInvalidRegPasswordDisplayed());
+        checkExpectedResult("Error message for invalid register password is not displayed", loginPage.isErrorMessageForInvalidRegPasswordDisplayed());
     }
 
     @Test
@@ -69,8 +69,8 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.clickButtonSignUpForOurApp();
 
         checkExpectedResult("Error message for invalid register username is not displayed", !loginPage.isErrorMessageForInvalidRegUsernameDisplayed());
-        checkExpectedResult("Error message for invalid email is not displayed", !loginPage.isErrorMessageForInvalidEmailDisplayed());
-        checkExpectedResult("Error message for invalid register password is not displayed", !loginPage.isErrorMessageForInvalidRegPasswordDisplayed());
+        checkExpectedResult("Error message for invalid email is not displayed", loginPage.isErrorMessageForInvalidEmailDisplayed());
+        checkExpectedResult("Error message for invalid register password is not displayed", loginPage.isErrorMessageForInvalidRegPasswordDisplayed());
     }
 
     @Test
@@ -78,9 +78,9 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.openLoginPage();
         loginPage.fillRegisterForm("1","test","test");
 
-        checkExpectedResult("Error message for invalid register username is not displayed", !loginPage.isErrorMessageForInvalidRegUsernameDisplayed());
-        checkExpectedResult("Error message for invalid email is not displayed", !loginPage.isErrorMessageForInvalidEmailDisplayed());
-        checkExpectedResult("Error message for invalid register password is not displayed", !loginPage.isErrorMessageForInvalidRegPasswordDisplayed());
+        checkExpectedResult("Error message for invalid register username is not displayed", loginPage.isErrorMessageForInvalidRegUsernameDisplayed());
+        checkExpectedResult("Error message for invalid email is not displayed", loginPage.isErrorMessageForInvalidEmailDisplayed());
+        checkExpectedResult("Error message for invalid register password is not displayed", loginPage.isErrorMessageForInvalidRegPasswordDisplayed());
     }
 
     @Test
@@ -88,8 +88,8 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.openLoginPage();
         loginPage.fillRegisterForm("1","test", "123456qwerty");
 
-        checkExpectedResult("Error message for invalid register username is not displayed", !loginPage.isErrorMessageForInvalidRegUsernameDisplayed());
-        checkExpectedResult("Error message for invalid email is not displayed", !loginPage.isErrorMessageForInvalidEmailDisplayed());
+        checkExpectedResult("Error message for invalid register username is not displayed", loginPage.isErrorMessageForInvalidRegUsernameDisplayed());
+        checkExpectedResult("Error message for invalid email is not displayed", loginPage.isErrorMessageForInvalidEmailDisplayed());
         checkExpectedResult("Error message for invalid register password is displayed", !loginPage.isErrorMessageForInvalidRegPasswordDisplayed());
     }
 
