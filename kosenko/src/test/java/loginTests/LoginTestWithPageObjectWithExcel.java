@@ -23,7 +23,7 @@ public class LoginTestWithPageObjectWithExcel extends BaseTest {
         this.login = login;
         this.pass = pass;
     }
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Parameters are {0} and {1}")
     public static Collection testData() throws IOException{
         InputStream spreadsSheet = new FileInputStream(ParentPage.configProperties.DATA_FILE_PATH() + "testDataSuit.xls");
 return new SpreadsheetData(spreadsSheet, "InvalidLogOn").getData();
