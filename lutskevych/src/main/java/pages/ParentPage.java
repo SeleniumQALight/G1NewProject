@@ -15,6 +15,8 @@ import ru.yandex.qatools.htmlelements.element.TypifiedElement;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
+import java.util.List;
+
 public abstract class ParentPage {
     protected WebDriver webDriver;
     protected WebDriverWait webDriverWait10,webDriverWait15;
@@ -118,5 +120,7 @@ public abstract class ParentPage {
             printErrorMessageAndStopTest(e);
         }
     }
+
+
 
 }

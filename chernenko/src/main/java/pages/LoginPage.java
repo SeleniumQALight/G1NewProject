@@ -108,10 +108,17 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSignUp);
     }
 
-    public ArrayList numberOfErrorMessageWereDisplayed (){
+    public ArrayList listOfErrorMessageWereDisplayed (){
         List<WebElement> list = new ArrayList<>();
         list = webDriver.findElements(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]"));
         return (ArrayList) list;
+
+    }
+
+    public int numberOfErrorMessageWereDisplayed (){
+        List<WebElement> list = new ArrayList<>();
+        list = webDriver.findElements(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]"));
+        return  list.size();
 
     }
 

@@ -23,6 +23,8 @@ public class CreatePostPage extends ParentPage {
     private Select dropDownList;
     @FindBy(xpath = ".//select//option[@value = 'One Person']")
     private Select onePerson;
+    @FindBy(xpath = ".//button[@class='btn btn-primary']")
+    private WebElement buttonSaveUpdates;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -39,6 +41,7 @@ public class CreatePostPage extends ParentPage {
         return this;
     }
     public CreatePostPage enterTitleToInputTitle(String title){
+        waitChatToBeHide();
         enterTextIntoElement(inputTitle, title);
         return this;
     }
@@ -60,5 +63,15 @@ public class CreatePostPage extends ParentPage {
         clickOnElement(dropDownList);
         clickOnElement(onePerson);
         return this;
+    }
+    public void clickButtonSaveUpdates(){
+        clickOnElement(buttonSaveUpdates);
+    }
+    public boolean messagePostSuccessfullyUpdatedVisible(){
+        try{
+            return webDriver.findElement(By.xpath(".//*[contains(text(),'Post successfully updated')]")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
     }
 }

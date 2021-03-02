@@ -86,11 +86,11 @@ public class ProfilePage extends ParentPage{
         return this;
     }
 
-//CHECK THAT WE CREATED JUST 1 POST
+//CHECK THAT WE CREATED JUST 1 (QTY) POST
 
-    public ProfilePage checkISPostWasAdded(String post_title){
+    public ProfilePage checkISPostWasAdded(String post_title, int qty){
         List<WebElement> postsList = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
-        Assert.assertEquals("Number of posts with title " + post_title , 1, postsList.size());
+        Assert.assertEquals("Number of posts with title " + post_title , qty, postsList.size());
         return this;
     }
 

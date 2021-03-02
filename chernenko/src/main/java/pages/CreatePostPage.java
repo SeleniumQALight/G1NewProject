@@ -12,10 +12,10 @@ import ru.yandex.qatools.htmlelements.element.TextInput;
 
 public class CreatePostPage extends ParentPage {
     @FindBy (id = "post-title")
-    private TextInput inputTitle;
+    private WebElement inputTitle;
 
     @FindBy (id = "post-body")
-    private TextInput inputBody;
+    private WebElement inputBody;
 
     @FindBy (xpath = ".//button[text()='Save New Post']")
     private Button buttonSaveNewPost;
@@ -62,6 +62,7 @@ public class CreatePostPage extends ParentPage {
         return new SinglePostPage(webDriver);
     }
 
+
     @After
     public SinglePostPage clickOnDeleteButton(){
 
@@ -74,10 +75,13 @@ public class CreatePostPage extends ParentPage {
         return this;
     }
 
+
     //TODO Rework!!!!
     public CreatePostPage selectValueInDropDownRole (String value){
         clickOnElement(typeOfPostList);
-   //     selectValueInDropDown(valueOfList, value);
+        //     selectValueInDropDown(valueOfList, value);
         return this;
     }
+
+
 }

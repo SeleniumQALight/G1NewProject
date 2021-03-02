@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
@@ -19,6 +20,8 @@ public class SinglePostPage extends ParentPage {
     private Button deleteButton;
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
     private Button profileButton;
+    @FindBy(xpath = ".//*[@data-icon='edit']")
+    private WebElement buttonEdit;
 
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -48,5 +51,8 @@ public class SinglePostPage extends ParentPage {
     public MyProfilePage clickOnProfileButton() {
         clickOnElement(profileButton);
         return new MyProfilePage(webDriver);
+    }
+    public void clickOnButtonEdit(){
+        clickOnElement(buttonEdit);
     }
 }

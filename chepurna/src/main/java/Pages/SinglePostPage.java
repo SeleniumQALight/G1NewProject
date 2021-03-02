@@ -17,12 +17,14 @@ public class SinglePostPage extends ParentPage {
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
     private TextInput successMessageElement;
 
+    @FindBy(xpath = ".//*[@data-original-title='Edit']")
+    private Button EditPostButton;
+
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
     private Button DeletePostButton;
 
     @FindBy(xpath = ".//img[@data-original-title='My Profile']")
     private Button myProfileButton;
-
 
     public SinglePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -61,6 +63,12 @@ public class SinglePostPage extends ParentPage {
         return new ProfilePage(webDriver);
     }
 
+    public CreatePostPage clickOnEditButton(){
+        waitChatToBeHide();
+        clickOnElement(EditPostButton);
+        return new CreatePostPage(webDriver);
+    }
+
 // I WAS ILL
     public SinglePostPage checkIsRedirectToSinglePostPage(){
         waitChatToBeHide();
@@ -69,6 +77,8 @@ public class SinglePostPage extends ParentPage {
                 , Matchers.containsString(baseUrl + "/post/"));
         return this;
     }
+
+
 
 }
 

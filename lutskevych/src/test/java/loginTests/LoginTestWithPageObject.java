@@ -4,6 +4,7 @@ import baseTest.BaseTest;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -45,6 +46,22 @@ public class LoginTestWithPageObject extends BaseTest {
 
         checkExpectedResult("Button SignOut is visible, but should `t"
                 , !homePage.isButtonSignOutVisible());
+
+    }
+    @Test
+    @Parameters({
+            "id,,,1",
+            ",12,,1",
+            ",,pass,1",
+            "id,98,pass,3",
+            "id,95,123456qwerty,2"
+    })
+    @TestCaseName("checkErrorMessagesForInvalidCredentials: login = {0}, email = {1}, password = {2}, count error messages {3}")
+    public void checkErrorMessagesForInvalidCredentials(String login,String email, String pass, int expectedCountOfErrorMessages){
+        loginPage.openLoginPage();
+        loginPage.fullFillLoginForm(login,email,pass);
+        int actualCountOfErrorMessages = loginPage.countValidateMessages();
+        Assert.assertEquals("Wrong number of error messages", expectedCountOfErrorMessages, actualCountOfErrorMessages);
 
     }
 
