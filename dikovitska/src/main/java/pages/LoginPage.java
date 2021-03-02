@@ -9,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
+import java.util.List;
+
 public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@placeholder='Username']")
@@ -19,6 +21,20 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//button[text()='Sign In']")
     private Button buttonSignIn;
+
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private TextInput inputRegUsername;
+
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private TextInput inputEmail;
+
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private TextInput inputRegPassword;
+
+    @FindBy(xpath = ".//button[text()='Sign up for OurApp']")
+    private Button buttonSignUpForOurApp;
+
+
 
 
     public LoginPage(WebDriver webDriver) {
@@ -93,4 +109,47 @@ public class LoginPage extends ParentPage {
         fillLoginFormAndSubmit(TestData.VALID_LOGIN, TestData.VALID_PASSWORD);
         return new HomePage(webDriver);
     }
+
+//HW-4
+
+    public void clickButtonSignUpForOurApp(){
+        clickOnElement(buttonSignUpForOurApp);
+    }
+
+
+
+    public void fillRegisterForm(String login, String email, String pass){
+        enterTextInToElement(inputRegUsername, login);
+        enterTextInToElement(inputEmail, email);
+        enterTextInToElement(inputRegPassword, pass);
+    }
+
+
+    public boolean isErrorMessageForInvalidRegUsernameDisplayed(){
+        try{
+            return webDriver.findElement(By.xpath(".//*[(text()='Username must be at least 3 characters.']")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+
+    public boolean isErrorMessageForInvalidEmailDisplayed(){
+        try{
+            return webDriver.findElement(By.xpath(".//*[(text()='You must provide a valid email address.')]")).isDisplayed();
+        } catch (Exception e){
+            return false;
+        }
+    }
+
+
+    public boolean isErrorMessageForInvalidRegPasswordDisplayed(){
+        try{
+            return webDriver.findElement(By.xpath(".//*[text()='Password must be at least 12 characters.')]")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+
 }
