@@ -35,6 +35,7 @@ public class MyProfilePage extends ParentPage {
     }
 
     public MyProfilePage clickOnMyProfileButton(){
+        waitChatToBeHide();
         clickOnElement(buttonMyProfile);
         logger.info("Button my profile is clicked");
         return new MyProfilePage(webDriver);
@@ -94,6 +95,11 @@ public class MyProfilePage extends ParentPage {
     public MyProfilePage checkIsPostWasAdded(String post_title) {
         List<WebElement>postList = webDriver.findElements(By.xpath((String.format(postTitleLocator, post_title))));
         Assert.assertEquals("Number of posts with title " + post_title,1, postList.size());
+        return this;
+    }
+    public MyProfilePage checkIsPostWasEdited(String edited_post_title) {
+        List<WebElement>postList = webDriver.findElements(By.xpath((String.format(postTitleLocator, edited_post_title))));
+        Assert.assertEquals("Number of posts with title " + edited_post_title,1, postList.size());
         return this;
     }
 }

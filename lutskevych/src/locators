@@ -10,6 +10,7 @@ LoginPage.message.wrongEmail = ".//*[contains(text(),'You must provide a valid e
 LoginPage.message.wrongPass = ".//*[contains(text(),'Password must be at least 12 characters.')]"
 LoginPage.input.userNameRegister = ".//input [@id='username-register']"
 LoginPage.input.userPassRegister = ".//input [@id='password-register']"
+LoginPage.alertMessages = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"
 
 
 
@@ -30,10 +31,16 @@ CreatePost.button.saveNewPost = ".//button[contains(text(),'Save New Post')]"
 CreatePost.header.NewPostSuccessfullyCreated' = ".//*[contains(text(),'New post successfully created')]"
 CreatePost.FindPostText = ".//*[contains(text(),'Weather test')]"
 CreatePost.form.deletePost = ".//form[contains(@class,'delete')]"
+CreatePost.button.saveUpdates = ".//button[@class='btn btn-primary']"
+CreatePost.message.PostSuccessfullyUpdated = ".//*[contains(text(),'Post successfully updated')]"
 
 #MyProfile
 MyProfile.href.posts = ".//a[contains(text(),'Posts')]"
 MyProfile.div.PostSuccessfullyDeletedText = "//*[contains(text(),'Post successfully deleted')]"
+
+#SinglePostPage
+SinglePostPage.a.PostEdit = ".//a[contains(@href,'edit')]"
+""
 
 
 
