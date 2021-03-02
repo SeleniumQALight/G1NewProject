@@ -19,6 +19,9 @@ public class CreatePostPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private Button buttonSaveNewPost;
 
+    @FindBy(xpath = ".//button[text()='Save Updates']")
+    private WebElement buttonSaveUpdates;
+
     @FindBy(id = "select1")
     private WebElement dropDownRole;
 
@@ -56,6 +59,11 @@ public class CreatePostPage extends ParentPage {
 
     public SinglePostPage clickOnButtonSaveNewPost(){
         clickOnElement(buttonSaveNewPost);
+        return new SinglePostPage(webDriver);
+    }
+
+    public SinglePostPage clickOnButtonSaveUpdates(){
+        clickOnElement(buttonSaveUpdates);
         return new SinglePostPage(webDriver);
     }
 
