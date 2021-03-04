@@ -18,7 +18,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectedOnCreatePostPage()
                 .enterTitleIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody(POST_BODY)
-                .selectElementInDropDown("One Person")
+                .selectElementInDropDown("All Users")
                 //.selectTextInDropdownRole("Частное сообщение")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectedToSinglePostPage()

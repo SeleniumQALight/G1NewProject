@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
 
@@ -15,13 +16,18 @@ import static org.hamcrest.CoreMatchers.containsString;
 
 public class MyProfilePage extends ParentPage{
 
-    final String postTitleLocator = ".//*[text()='%s']";
+    public final String postTitleLocator = ".//*[text()='%s']";
+
+    @FindBy(xpath = postTitleLocator)
+    public TextInput postTitle;
 
     @FindBy(xpath = ".//*[contains(text(),'Inga')][1]")
     private WebElement linkToPost;
 
     @FindBy(xpath = ".//*[contains(text(), 'successfully deleted')]")
     private TextInput deletionSuccessText;
+
+
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -97,4 +103,49 @@ public class MyProfilePage extends ParentPage{
 
         return this;
     }
+
+    // 27-02-2021
+    /**
+    public MyProfilePage editPost(String post_title) {
+        SinglePostPage singlePostPage = new SinglePostPage(webDriver);
+        clickOnElement(webDriver.findElement(
+                By.xpath(String.format(postTitleLocator, post_title))),
+                " Post with Title " + post_title);
+                singlePostPage.waitChatToBeHide();
+
+        //Click on Edit icon
+    //    SinglePostPage singlePostPage = new SinglePostPage(webDriver);
+
+                singlePostPage.checkIsRedirectedToSinglePostPage();
+                singlePostPage.clickOnEditIcon();
+                singlePostPage.waitChatToBeHide();
+                singlePostPage.checkIsRedirectedToSinglePostPage();
+                String titleText = postTitleField.getText();
+        logger.info("Current post title is " + titleText);
+                singlePostPage.enterTextIntoElement(postTitleField, titleText + " updated");
+                singlePostPage.clickOnElement(buttonSaveUpdates);
+                //singlePostPage.checkIsRedirectedToSinglePostPage()
+        singlePostPage.checkIfTheUpdateNotificationPresent()
+                .checkIfTheTitleWasUpdated(postTitleField, post_title);
+                singlePostPage.clickOnProfileButton()
+                .waitChatToBeHide();
+               ;
+
+        return this;
+    }
+*/
+     // 04-03-2021
+
+     public MyProfilePage clickOnPost (String post_title) {
+         SinglePostPage singlePostPage = new SinglePostPage(webDriver);
+         clickOnElement(webDriver.findElement(
+                 By.xpath(String.format(postTitleLocator, post_title))),
+                 " Post with Title " + post_title);
+         singlePostPage.waitChatToBeHide();
+
+         return this;
+     }
+
+
+
 }
