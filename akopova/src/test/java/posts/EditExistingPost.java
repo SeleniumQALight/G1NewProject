@@ -54,14 +54,13 @@ public void preparePostToEdit() throws Exception{
             singlePostPage.clickOnEditIcon();
             singlePostPage.waitChatToBeHide();
             singlePostPage.checkIsRedirectedToSinglePostPage();
-            singlePostPage.getPostTitle();
-            singlePostPage.updatePostTitle();
+            singlePostPage.updatePostTitle(POST_TITLE_UPD);
             singlePostPage.clickSaveButton()
             .waitChatToBeHide();
             singlePostPage.checkIfTheUpdateNotificationPresent()
             .waitChatToBeHide();
 
-            singlePostPage.checkIfTheTitleWasUpdated();
+            singlePostPage.checkIfTheTitleWasUpdated(POST_TITLE_UPD);
             singlePostPage.clickOnProfileButton()
                     .waitChatToBeHide();
 

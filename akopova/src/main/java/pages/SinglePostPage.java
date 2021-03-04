@@ -12,7 +12,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 
 public class SinglePostPage extends ParentPage{
 
-    public String postTitleText = "";
+    //public String postTitleText = "";
 
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
     private TextInput successMessageElement;
@@ -84,7 +84,7 @@ public class SinglePostPage extends ParentPage{
         return new MyProfilePage(webDriver);
     }
 
-    public void checkIfTheTitleWasUpdated() {
+    public void checkIfTheTitleWasUpdated(String postTitleText) {
         //public void checkIfTheTitleWasUpdated(WebElement postTitle, String updateText) {
         Assert.assertThat("Title was not Updated", postTitleText, containsString("updated"));
     }
@@ -94,18 +94,20 @@ public class SinglePostPage extends ParentPage{
         Assert.assertTrue("Successful Update message is not displayed", successUpdateMessage.isDisplayed());
         return this;
     }
+    /**
     public String getPostTitle(){
         //public String getPostTitle(WebElement postTitleField){
         postTitleText = postTitleField.getText();
         logger.info("initially Title is " + postTitleText);
         return postTitleText;
     }
-
+*/
    // @Override
-    public void updatePostTitle() {
+    public void updatePostTitle(String postTitleText) {
         //clickOnElement();
-        enterTextIntoElement(postTitleField, postTitleText + " updated");
-        getPostTitle();
+        //enterTextIntoElement(postTitleField, postTitleText + " updated");
+        enterTextIntoElement(postTitleField, postTitleText);
+        //getPostTitle();
         logger.info("Updated post Title is " + postTitleText);
         //return postTitleText;
     }
