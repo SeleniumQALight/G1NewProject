@@ -1,14 +1,17 @@
 package post;
 
 import baseTest.BaseTest;
+import categories.SmokeTests;
 import libs.Util;
 import org.junit.After;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "Cherchenko Lena Title of Post" + Util.getDateAndTimeFormated();
     final String POST_BODY_TEXT = "Cherchenko Post Body";
 
+    @Category(SmokeTests.class)
     @Test
     public void createNewPost() {
         loginPage.loginWithValidCred()
