@@ -3,18 +3,25 @@ package loginTests;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
+import libs.ExcelDriver;
 import org.junit.Test;
 
 import baseTest.BaseTest;
 import org.junit.runner.RunWith;
+import pages.ParentPage;
+
+import java.io.IOException;
+import java.util.Map;
 
 @RunWith(JUnitParamsRunner.class)
 public class LoginTestWithPageObject extends BaseTest {
     @Test
-    public void validLogin(){
+    public void validLogin() throws IOException {
+        Map<String, String> dataForValidLogin = ExcelDriver.getData(ParentPage.configProperties.DATA_FILE(), "validLogOn");
+
         loginPage.openLoginPage();
-        loginPage.enterLoginSignIn("auto");
-        loginPage.enterPassWordSignIn("123456qwerty");
+        loginPage.enterLoginSignIn(dataForValidLogin.get("login"));
+        loginPage.enterPassWordSignIn(dataForValidLogin.get("pass"));
         loginPage.clickButtonSignIn();
 
         checkExpectedResult("Button SignOut is not visible"
