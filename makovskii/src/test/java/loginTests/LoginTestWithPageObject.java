@@ -1,25 +1,42 @@
 package loginTests;
 import baseTest.BaseTest;
+import libs.SpreadsheetData;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import pages.ParentPage;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
 
 
+@RunWith(Parameterized.class)
 public class LoginTestWithPageObject extends BaseTest {
-    @Test
-    public void validLogin(){
-        loginPage.openLoginPage();
-        loginPage.enterLoginSignIn("auto");
-        loginPage.enterPassWordSignIn("123456qwerty");
-        loginPage.clickButtonSignIn();
+    private String login, pass;
 
-        checkExpectedResult("Button SignOut is not visible",
-                homePage.isButtonSignOutVisible());
+    public LoginTestWithPageObject(String login, String pass) {
+        this.login = login;
+        this.pass = pass;
     }
+
+
+
+    @Parameterized.Parameters
+    public static Collection testData() throws IOException {
+        InputStream speadsSheet = new FileInputStream(ParentPage.configProperties.DATA_FILE_PATH() + "testDataSuit.xls");
+        return new SpreadsheetData(speadsSheet, "InvalidLogOn").getData();
+    }
+
 
     @Test
     public void inValidLogin(){
-        loginPage.filLoginFormAndSubmit("WrongLogin", "123456qwerty");
-        checkExpectedResult("Button SignOut is visible, but should not",
-                !homePage.isButtonSignOutVisible());
+        loginPage.filLoginFormAndSubmit(login,pass);
+
+        checkExpectedResult("Button SignOut is visible, but should not"
+                , !homePage.isButtonSignOutVisible());
     }
 
 

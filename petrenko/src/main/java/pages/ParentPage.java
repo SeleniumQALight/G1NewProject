@@ -16,22 +16,24 @@ import ru.yandex.qatools.htmlelements.element.TypifiedElement;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 
-abstract class ParentPage {
+
+public abstract class ParentPage {
     protected WebDriver webDriver;
     protected WebDriverWait webDriverWait10, webDriverWait15;
-    protected static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
     protected final String baseUrl = configProperties.base_url();
     Logger logger = Logger.getLogger(getClass());
 
     abstract String getRelativeUrl();
 
 
-
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
-      //  PageFactory.initElements(webDriver, this);
-        PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(webDriver)),this);
+        //  PageFactory.initElements(webDriver, this);
+        PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(webDriver)), this);
         webDriverWait10 = new WebDriverWait(webDriver, 10);
         webDriverWait15 = new WebDriverWait(webDriver, 15);
     }
@@ -40,6 +42,12 @@ abstract class ParentPage {
     protected void waitChatToBeHide() {
         webDriverWait10.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
     }
+
+    protected void waitBackToPostPermalink() {
+        webDriverWait10.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[text() ='« Back to post permalink']")));
+    }
+
+    //« Back to post permalink
 
     protected void enterTextInToElement(WebElement webElement, String text) {
         try {
@@ -56,7 +64,7 @@ abstract class ParentPage {
 
     private String getElementName(WebElement webElement) {
         String elementName = "";
-        if(webElement instanceof TypifiedElement){
+        if (webElement instanceof TypifiedElement) {
             elementName = " '" + ((TypifiedElement) webElement).getName() + "' ";
         }
         return elementName;
@@ -86,7 +94,7 @@ abstract class ParentPage {
             logger.info(getElementName(webElement) + "Element displayed:" + state);
             return state;
         } catch (Exception e) {
-            logger.info(getElementName(webElement) +  "Element displayed:" + false);
+            logger.info(getElementName(webElement) + "Element displayed:" + false);
             return false;
         }
     }
@@ -103,7 +111,7 @@ abstract class ParentPage {
         try {
             Select select = new Select(webElement);
             select.selectByVisibleText(text);
-            logger.info(text + "was selcted in DropDown." + getElementName(webElement) );
+            logger.info(text + "was selcted in DropDown." + getElementName(webElement));
 
         } catch (Exception e) {
             printErrorMessageAndStopTest(e);
@@ -119,6 +127,15 @@ abstract class ParentPage {
         } catch (Exception e) {
             printErrorMessageAndStopTest(e);
         }
+    }
+
+    protected List<String> listOfTextsOfWebElementByXpath(String xpath) {
+        ArrayList<String> listOfTextErrors = new ArrayList<>();
+        List<WebElement> listOfError = webDriver.findElements(By.xpath(xpath)); // сохранил текст всех эроров в лист
+        for (int i = 0; i < listOfError.size(); i++) {
+            listOfTextErrors.add(listOfError.get(i).getText());
+        }
+        return listOfTextErrors;
     }
 
 }

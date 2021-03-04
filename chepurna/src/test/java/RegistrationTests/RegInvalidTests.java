@@ -1,12 +1,18 @@
 package RegistrationTests;
 
 import baseTest.BaseTest;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+import junitparams.naming.TestCaseName;
 import libs.TestData;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import static libs.TestData.*;
 
+@RunWith(JUnitParamsRunner.class)
 public class RegInvalidTests extends BaseTest {
 
-// HOMEWORK 02-20
+// REGISTRATION INVALID (HOMEWORK 02-20)
 
     @Test
     public void regUserAlreadyExists(){
@@ -23,6 +29,19 @@ public class RegInvalidTests extends BaseTest {
                 .checkIsValidationMessageDisplayed("You must provide a valid email address.")
                 .checkIsValidationMessageDisplayed("Password must be at least 12 characters.")
                 .checkAndCoundValidatiotMessages(3);
+    }
+
+// REGISTRATION INVALID WITH PARAMETERS (HOMEWORK 02-27)
+    @Test
+    @Parameters(value = {
+            VALID_LOGIN + "," + VALID_EMAIL+ "," + VALID_PASSWORD + ",1",
+            VALID_LOGIN + "," + EMAIL_ALREDY_EXISTS + "," + VALID_PASSWORD + ",2",
+            INVALID_USERNAME + "," + INVALID_EMAIL + "," + INVALID_PASSWORD + ",3"
+    })
+    @TestCaseName("inValidRegistration: username = {0}, email = {1}, password = {2}, quantity = {3}")
+    public void regUserInvalidFieldsWithParmeters(String username, String email, String password, int qty){
+        loginPage.fillRegFormAndSubmit(username, email, password)
+                .checkAndCoundValidatiotMessages(qty);
     }
 
 }

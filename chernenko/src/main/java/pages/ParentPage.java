@@ -61,7 +61,7 @@ public abstract class ParentPage {
 
     // WAit till the chat window disappeared methot
     protected void waitChatBeHied(){
-        webDriverWait10.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
+        webDriverWait15.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
     }
 
     protected void waitErrorMessageAppears(){

@@ -1,12 +1,17 @@
 package baseTest;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.junit.After;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
@@ -15,21 +20,28 @@ import posts.DeletePost;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import static pages.ParentPage.configProperties;
+
+
 public class BaseTest {
     public WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     protected LoginPage loginPage;
     protected HomePage homePage;
 
+    @Rule
+    public TestName testName = new TestName();
+
 
     @Before
-    public void setup() {
-        File fileFF = new File("./drivers/chromedriver.exe");
-        System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
-        webDriver = new ChromeDriver();
+    public void setup() throws Exception {
+        logger.info("-------- " + testName.getMethodName() + " was started.------------");
+     //   File fileFF = new File("./drivers/chromedriver.exe");
+      //  System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
+        webDriver = initDriver();
 
         webDriver.manage().window().fullscreen();
-        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(configProperties.TIME_FOR_DFFAULT_WAIT(), TimeUnit.SECONDS);
         logger.info("Browser was open.");
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
@@ -37,11 +49,32 @@ public class BaseTest {
 
     }
 
+    private WebDriver initDriver() throws Exception {
+        String browser = System.getProperty("browser");
+        if(browser == null || ("chrome".equalsIgnoreCase(browser))){
+            WebDriverManager .chromedriver().setup();
+            return new ChromeDriver();
+            }
+        else if("firefox".equalsIgnoreCase(browser)){
+                WebDriverManager .firefoxdriver().setup();
+                return new FirefoxDriver();
+        }
+
+        else if("ie".equalsIgnoreCase(browser)){
+            WebDriverManager .iedriver().arch32().setup();
+            return new InternetExplorerDriver();
+        }
+        else {
+            throw new Exception("Check browser var");
+        }
+    }
+
 
     @After
     public void tearDown() {
         webDriver.quit();
         logger.info("Browser was closed");
+        logger.info("-------- " + testName.getMethodName() + " was ended.--------------");
 
     }
 
@@ -49,5 +82,6 @@ public class BaseTest {
     protected void checkExpectedResult(String massage, boolean aktualResult){
         Assert.assertTrue(massage, aktualResult);
     }
+
 
 }

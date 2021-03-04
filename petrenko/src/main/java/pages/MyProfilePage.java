@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextBlock;
 
 import java.util.List;
 
@@ -18,12 +20,12 @@ public class MyProfilePage extends ParentPage {
     final String postTitleLocator = ".//*[text()= '%s']";
 
     @FindBy(xpath = postTitleLocator)
-    private WebElement validTitleOfPost;
+    private TextBlock validTitleOfPost;
 
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
-    private WebElement myProfileButton;
+    private Button myProfileButton;
     @FindBy(xpath = ".//*[contains(text(), 'successfully deleted')]")
-    private WebElement successPostDeleteElement;
+    private TextBlock successPostDeleteElement;
 
     @Override
     String getRelativeUrl() {
@@ -106,8 +108,16 @@ public class MyProfilePage extends ParentPage {
     }
 
     public MyProfilePage checkIsPostWasAdded(String post_title) {
+
+
         List<WebElement> postsList = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
         Assert.assertEquals("Numbers of posts with title " + post_title, 1, postsList.size());
+        logger.info("End before");
         return this;
+    }
+
+    public SinglePostPage clickOnPostWithTitle(String post_title) {
+        clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator,post_title))));
+        return new SinglePostPage(webDriver);
     }
 }

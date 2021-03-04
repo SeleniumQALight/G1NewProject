@@ -9,10 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.MyProfilePage;
-import pages.SinglePostPage;
+import pages.*;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -26,6 +23,7 @@ public class BaseTest {
     protected HomePage homePage;
     protected SinglePostPage singlePostPage;
     protected MyProfilePage myProfilePage;
+    protected CreatePostPage createPostPage;
 
     @Rule
     public TestName testName = new TestName();
@@ -43,6 +41,7 @@ public class BaseTest {
         homePage = new HomePage(webDriver);
         myProfilePage = new MyProfilePage(webDriver);
         singlePostPage = new SinglePostPage(webDriver);
+        createPostPage = new CreatePostPage(webDriver);
     }
 
     private WebDriver initDriver() throws Exception {

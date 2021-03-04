@@ -1,16 +1,21 @@
 package LoginTests;
 
+import Pages.ParentPage;
 import baseTest.BaseTest;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
+import libs.ExcelDriver;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.io.IOException;
+import java.util.Map;
 
 @RunWith(JUnitParamsRunner.class) // it means that class use parameters
 public class LoginTestWithPageObject extends BaseTest {
 
-    @Test
+  /*  @Test
     public void validLogin(){
         loginPage.openLoginPage();
         loginPage.enterLoginSignIn("auto");
@@ -19,6 +24,8 @@ public class LoginTestWithPageObject extends BaseTest {
 
         checkExpectedResult("Button SignOut is not visible", homePage.isButtonSignOutVisible());
     }
+
+   */
 
 //INVALID LOGIN
     @Test
@@ -38,5 +45,18 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.fillLoginFormAndSubmit(login, pass);
         checkExpectedResult("Button SignOut is visible, but should't", !homePage.isButtonSignOutVisible());
     }
+
+//USE EXCEL
+    @Test
+    public void validLogin() throws IOException {
+        Map<String, String> dataForValidLogin = ExcelDriver.getData(ParentPage.configProperties.DATA_FILE(),"validLogOn");
+        loginPage.openLoginPage();
+        loginPage.enterLoginSignIn(dataForValidLogin.get("login"));
+        loginPage.enterPassSignIn(dataForValidLogin.get("pass"));
+        loginPage.clickButtonSignIn();
+
+        checkExpectedResult("Button SignOut is not visible", homePage.isButtonSignOutVisible());
+    }
+
 
 }
