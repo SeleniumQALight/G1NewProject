@@ -61,6 +61,7 @@ public void preparePostToEdit() throws Exception{
             .waitChatToBeHide();
 
             singlePostPage.checkIfTheTitleWasUpdated(POST_TITLE_UPD);
+            singlePostPage.waitChatToBeHide();
             singlePostPage.clickOnProfileButton()
                     .waitChatToBeHide();
 
