@@ -32,16 +32,17 @@ public class LoginTestWithPageObjectWithExcel extends BaseTest {
     public static Collection testData() throws IOException {
 //here we have to point path to gine (02-03-2020)
         InputStream spreadSheet = new FileInputStream(ParentPage.configProperties.DATA_FILE_PATH()
-        + "testDataSuite.xls");
-    return new SpreadsheetData(spreadSheet, "InvalidLogin").getData();
+        + "testDataSuit.xls");
+    return new SpreadsheetData(spreadSheet, "InvalidLogOn").getData();
 
     }
 
 
     @Test
+    //public void inValidLogin(String login, String password) {
 
-    public void inValidLogin(String login, String password) {
-        loginPage.fillLoginFormAndSubmit(login, password);
+    public void inValidLogin() {
+        loginPage.fillLoginFormAndSubmit(login, pass);
         // To be added
         /**
         loginPage.fillLoginFormAndSubmit("WrongLogin", "123456qwerty");
