@@ -18,4 +18,9 @@ import pages.CreatePostPage;
 )
 public class Smoke {
 
+
+
+
+
+
 }
