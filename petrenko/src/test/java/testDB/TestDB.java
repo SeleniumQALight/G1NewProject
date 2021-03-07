@@ -1,6 +1,7 @@
 package testDB;
 
 
+import libs.DB_Util;
 import libs.Database;
 import libs.MySQL_Database;
 import org.apache.log4j.Logger;
@@ -18,17 +19,10 @@ public class TestDB {
     private Logger logger = Logger.getLogger(getClass());
 
 
-
     @Before
     public void setUp() throws SQLException, ClassNotFoundException {
         mySqlDatabase = MySQL_Database.getDataBase();
     }
-
-
-
-
-
-
 
 
     @After
@@ -37,11 +31,18 @@ public class TestDB {
     }
 
     @Test
-    public void testDataBase() throws SQLException {
-        List<Map<String , String>>  dataFromSeleniumTable = mySqlDatabase.selectTableAsMap("select * from seleniumTable");
+    public void testDataBase() throws SQLException, ClassNotFoundException {
+        List<Map<String, String>> dataFromSeleniumTable = mySqlDatabase.selectTableAsMap("select * from seleniumTable where login = 'G1Petrenko'");
         logger.info(dataFromSeleniumTable);
-    }
+//        int numbersOfRows = mySqlDatabase.changeTable("INSERT INTO seleniumTable values(3256, 'G1Petrenko', 'Pass')");
+//        logger.info(numbersOfRows);
+//        dataFromSeleniumTable = mySqlDatabase.selectTableAsMap("select * from seleniumTable where login = 'G1Petrenko'");
+//        logger.info(dataFromSeleniumTable);
+        DB_Util db_util = new DB_Util();
 
+        logger.info( db_util.getPassForLogin("G2taras"));
+
+    }
 
 
 }
