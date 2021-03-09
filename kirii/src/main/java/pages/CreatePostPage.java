@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,11 +20,14 @@ public class CreatePostPage extends ParentPage {
     private Button profileButton;
     @FindBy(tagName = "select")
     private Select dropDownRole;
-    @FindBy (id = "select1")
+    @FindBy(id = "select1")
     private TextInput postListType;
-    @FindBy (xpath = ".// select [@id = 'select1']")
+    @FindBy(xpath = ".// select [@id = 'select1']")
     private TextInput valueOfList;
 
+
+    @FindBy(xpath = ".//button[@class='btn btn-primary']")
+    private WebElement buttonSaveUpdates;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -36,15 +40,16 @@ public class CreatePostPage extends ParentPage {
 
     public CreatePostPage checkIsRedirectedOnCreatePostPage() {
         waitChatToBeHide();
-        Assert.assertEquals("Invalid page", baseUrl + getRelativeUrl() , webDriver.getCurrentUrl()); //"", expected, actual
+        Assert.assertEquals("Invalid page", baseUrl + getRelativeUrl(), webDriver.getCurrentUrl()); //"", expected, actual
         return this;
     }
 
-    public CreatePostPage enterTitleToInputTitle(String title){
+    public CreatePostPage enterTitleToInputTitle(String title) {
+        waitChatToBeHide();
         enterTextIntoElement(inputTitle, title);
         //делаем задержку
 
-        enterTextIntoElement (inputTitle, title);
+        enterTextIntoElement(inputTitle, title);
         return this;
     }
 
@@ -53,7 +58,7 @@ public class CreatePostPage extends ParentPage {
         return this;
     }
 
-    public SinglePostPage clickOnButtonSaveNewPost(){
+    public SinglePostPage clickOnButtonSaveNewPost() {
         clickOnElement(buttonSaveNewPost);
         return new SinglePostPage(webDriver);
     }
@@ -62,16 +67,26 @@ public class CreatePostPage extends ParentPage {
         selectTextInDropdown(dropDownRole, textInDD);
         return this;
     }
-    public CreatePostPage selectValueInDropDown (String valueInDD){
+
+    public CreatePostPage selectValueInDropDown(String valueInDD) {
         clickOnElement(postListType);
         selectValueInDropDown(valueOfList, valueInDD);
         return this;
+    }
+    public void clickButtonSaveUpdates(){
+        clickOnElement(buttonSaveUpdates);
+    }
+    public boolean messagePostSuccessfullyUpdatedVisible(){
+        try{
+            return webDriver.findElement(By.xpath(".//*[contains(text(),'Post successfully updated')]")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
     }
 
 /*    public ProfilePage clickOnProfileButton(){
         clickOnElement(profileButton);
         return new ProfilePage(webDriver);
     }*/
-
 
 }
