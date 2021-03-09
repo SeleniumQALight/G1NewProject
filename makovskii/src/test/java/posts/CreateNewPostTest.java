@@ -1,13 +1,16 @@
 package posts;
 
 import baseTest.BaseTest;
+import categories.SmokeTests;
 import libs.Util;
 import org.junit.After;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 public class CreateNewPostTest extends BaseTest {
 
     final String POST_TITLE = "Nikolai Title of post " + Util.getDateAndTimeFormated();
+    @Category(SmokeTests.class)
 
     @Test
     public void createNewPost(){
