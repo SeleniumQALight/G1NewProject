@@ -183,4 +183,13 @@ public class LoginPage extends ParentPage{
         enterTextIntoElement(inputEmail, email);
         enterTextIntoElement(registerPassword, pass);
     }
+    public int countValidateMessages(){
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        List<WebElement> messagesCount = webDriver.findElements(By.xpath(".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
+        return messagesCount.size();
+    }
 }
