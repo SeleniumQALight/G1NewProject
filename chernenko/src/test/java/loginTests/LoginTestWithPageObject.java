@@ -5,6 +5,7 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
 import libs.ExcelDriver;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -29,6 +30,7 @@ public class LoginTestWithPageObject  extends BaseTest {
     }
 
 
+    @Ignore
     @Test
     @Parameters({
             "WrongLogin, 123456qwerty",
