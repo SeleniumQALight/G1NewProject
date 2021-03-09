@@ -20,7 +20,7 @@ public class LoginTestWithPageObject extends BaseTest {
         Map<String, String> dataForValidLogin = ExcelDriver.getData(ParentPage.configProperties.DATA_FILE(), "validLogOn");
 
         loginPage.openLoginPage();
-        loginPage.enterLoginSignIn(dataForValidLogin.get("login"));
+        loginPage.enterLoginSignIn(dataForValidLogin.get("logi1n"));
         loginPage.enterPassWordSignIn(dataForValidLogin.get("pass"));
         loginPage.clickButtonSignIn();
 
