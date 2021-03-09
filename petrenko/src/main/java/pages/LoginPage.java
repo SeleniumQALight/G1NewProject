@@ -2,6 +2,7 @@ package pages;
 
 
 import com.google.common.base.Splitter;
+import io.qameta.allure.Step;
 import libs.TestData;
 import libs.Util;
 import org.junit.Assert;
@@ -93,24 +94,24 @@ public class LoginPage extends ParentPage {
         clickButtonSignIn();
         return new LoginPage(webDriver);
     }
-
+@Step
     public HomePage loginWithValidCred() {
         fillLoginFormAndSubmit(TestData.VALID_LOGIN, TestData.VALID_PASSWORD);
         return new HomePage(webDriver);
     }
-
+    @Step
     private void enterUserNameRegisterIn(String userName) {
         enterTextInToElement(inputUserNameInRegisterIn, userName);
     }
-
+    @Step
     private void enterEmailRegisterIn(String email) {
         enterTextInToElement(inputEmailInRegisterIn, email);
     }
-
+    @Step
     private void enterPasswordRegisterIn(String password) {
         enterTextInToElement(inputPassWordInRegisterIn, password);
     }
-
+    @Step
     public LoginPage fillRegisterFormAndSubmit(String userName, String email, String password) {
         openLoinPage();
         enterUserNameRegisterIn(userName);
@@ -119,12 +120,12 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignUpForOurApp);
         return new LoginPage(webDriver);
     }
-
+    @Step
     public void checkPopUpMessage() {
         Assert.assertTrue("PopUp error userName was not displayed", popUpErrorUnValidUsername.isDisplayed());
     }
 
-
+    @Step
      public LoginPage checkCountErrorOfMessagesAfterSubmitRegisterIn(int countUnValidValue) {
 
          Util.waitABit(5);
@@ -134,7 +135,7 @@ public class LoginPage extends ParentPage {
         return new LoginPage(webDriver);
     }
 
-
+    @Step
     public LoginPage checkCountErrorOfMessagesAfterSubmitLoginIn(int countUnValidValue) {
 
         Util.waitABit(5);
@@ -144,7 +145,7 @@ public class LoginPage extends ParentPage {
         return new LoginPage(webDriver);
     }
 
-
+    @Step
     public void checkTextOfErrorsInRegisterIn(String textOfErrorMessages) {
 
         if(textOfErrorMessages.isEmpty()){
@@ -159,7 +160,7 @@ public class LoginPage extends ParentPage {
         }
 
     }
-
+    @Step
     public void checkTextOfErrorsInLoginIn(String textOfErrorMessages) {
 
         if(textOfErrorMessages.isEmpty()){
