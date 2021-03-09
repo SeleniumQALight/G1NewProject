@@ -10,6 +10,7 @@ import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.List;
 
+import static java.lang.String.format;
 import static org.hamcrest.CoreMatchers.containsString;
 
 public class ProfilePage extends ParentPage{
@@ -47,19 +48,24 @@ public class ProfilePage extends ParentPage{
         , containsString(baseUrl + getRelativeUrl()));
         return this;
     }
+    public void clickOnCreatedPost (String postTitle){
+        String xpath = format(".//*[contains(text(),'%s')]", postTitle);
+        WebElement post = webDriver.findElement(By.xpath(xpath));
+        clickOnElement(post);
+    }
 
     public ProfilePage deletePostWhilePresent (String post_title){
-        List<WebElement> listOfPost = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
+        List<WebElement> listOfPost = webDriver.findElements(By.xpath(format(postTitleLocator, post_title)));
 
         int counter = 0;
         while (!listOfPost.isEmpty() && counter < 100){
-            clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, post_title))), "Post with title " + post_title);
+            clickOnElement(webDriver.findElement(By.xpath(format(postTitleLocator, post_title))), "Post with title " + post_title);
             new SinglePostPage(webDriver)
                     .checkIsRedirectToSinglePostPage()
                     .clickOnDeleteButton()
                     .checkIsRedirectedToProfilePage()
             .checkSuccessDeletePost();
-            listOfPost = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
+            listOfPost = webDriver.findElements(By.xpath(format(postTitleLocator, post_title)));
             counter++;
         }
         return this;
@@ -70,8 +76,13 @@ public class ProfilePage extends ParentPage{
     }
 
     public ProfilePage checkIsPostWasAdded(String post_title) {
-        List<WebElement> postsList = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));  //формат вместо процент С добавляет значение
+        List<WebElement> postsList = webDriver.findElements(By.xpath(format(postTitleLocator, post_title)));  //формат вместо процент С добавляет значение
         Assert.assertEquals("Number of with title " + post_title, 1, postsList.size());
+        return this;
+    }
+    public ProfilePage checkIsPostWasEdited(String edited_post_title) {
+        List<WebElement>postList = webDriver.findElements(By.xpath((format(postTitleLocator, edited_post_title))));
+        Assert.assertEquals("Number of posts with title " + edited_post_title,1, postList.size());
         return this;
     }
 }

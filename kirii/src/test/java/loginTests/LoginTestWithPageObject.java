@@ -5,6 +5,7 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
 import libs.ExcelDriver;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import pages.ParentPage;
@@ -28,7 +29,7 @@ public class LoginTestWithPageObject extends BaseTest {
         checkExpectedResult("Button SignOut is not visible", homePage.isButtonSignOutVisible());
     }
 
-    @Test
+    /*@Test
     @Parameters({
             "WrongLogin,123456qwerty",
             ",123456qwerty"
@@ -38,5 +39,20 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.fillLoginFormAndSubmit(login, pass);
 
         checkExpectedResult("Button SignOut is visible, but shouldn't 't", !homePage.isButtonSignOutVisible());
+    }*/
+    @Test
+    @Parameters({
+            "us,,,1",
+            ",email,,1",
+            ",,password,1",
+            "us,11,password,3",
+            "username,email,123456qwerty,1"
+    })
+    @TestCaseName("checkErrorMessagesForInvalidCredentials: login = {0}, email = {1}, password = {2}, count error messages {3}")
+    public void checkErrorMessagesForInvalidCredentials(String login, String email, String pass, int expectedCountOfErrorMessages) {
+        loginPage.openLoginPage();
+        loginPage.fullFillLoginForm(login, email, pass);
+        int actualCountOfErrorMessages = loginPage.countValidateMessages();
+        Assert.assertEquals("Wrong error messages number", expectedCountOfErrorMessages, actualCountOfErrorMessages);
     }
 }
