@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import io.qameta.allure.Step;
 import ru.yandex.qatools.htmlelements.element.Button;
 
 public class HomePage extends ParentPage {
@@ -26,6 +27,7 @@ public class HomePage extends ParentPage {
         return "/";
     }
 
+    @Step
     public boolean isButtonSignOutVisible() {
        return isElementDisplayed(buttonSignOut);
     }
