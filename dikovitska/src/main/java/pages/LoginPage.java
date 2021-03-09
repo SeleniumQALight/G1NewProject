@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -46,6 +47,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl + getRelativeUrl());
@@ -57,6 +59,7 @@ public class LoginPage extends ParentPage {
 
     }
 
+    @Step
     public void enterLoginSignIn(String login) {
      /*   try {
             inputLogin.clear();
@@ -71,7 +74,7 @@ public class LoginPage extends ParentPage {
       */
         enterTextInToElement(inputLogin, login);
     }
-
+    @Step
     public void enterPassWordSignIn(String passWord) {
       /*  try {
             inputPassword.clear();
@@ -85,7 +88,7 @@ public class LoginPage extends ParentPage {
        */
         enterTextInToElement(inputPassword, passWord);
     }
-
+    @Step
     public void clickButtonSignIn() {
       /*  try {
             buttonSignIn.click();
@@ -98,33 +101,34 @@ public class LoginPage extends ParentPage {
        */
        clickOnElement(buttonSignIn);
     }
-
+    @Step
     public void fillLoginFormAndSubmit(String login, String pass){
         openLoginPage();
         enterLoginSignIn(login);
         enterPassWordSignIn(pass);
         clickButtonSignIn();
     }
+    @Step
     public HomePage loginWithValidCred(){
         fillLoginFormAndSubmit(TestData.VALID_LOGIN, TestData.VALID_PASSWORD);
         return new HomePage(webDriver);
     }
 
 //HW-4
-
+    @Step
     public void clickButtonSignUpForOurApp(){
         clickOnElement(buttonSignUpForOurApp);
     }
 
 
-
+    @Step
     public void fillRegisterForm(String login, String email, String pass){
         enterTextInToElement(inputRegUsername, login);
         enterTextInToElement(inputEmail, email);
         enterTextInToElement(inputRegPassword, pass);
     }
 
-
+    @Step
     public boolean isErrorMessageForInvalidRegUsernameDisplayed(){
         try{
             return webDriver.findElement(By.xpath(".//*[text()='Username must be at least 3 characters.']")).isDisplayed();
@@ -133,7 +137,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
-
+    @Step
     public boolean isErrorMessageForInvalidEmailDisplayed(){
         try{
             return webDriver.findElement(By.xpath(".//*[text()='You must provide a valid email address.']")).isDisplayed();
@@ -142,7 +146,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
-
+    @Step
     public boolean isErrorMessageForInvalidRegPasswordDisplayed(){
         try{
             return webDriver.findElement(By.xpath(".//*[text()='Password must be at least 12 characters.']")).isDisplayed();
