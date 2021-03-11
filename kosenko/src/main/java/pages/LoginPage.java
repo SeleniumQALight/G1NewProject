@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -27,6 +28,8 @@ public class LoginPage extends ParentPage {
     String getRelativeUrl() {
         return "/";
     }
+
+    @Step
     public void openLoginPage(){
         try {
             webDriver.get(baseUrl + getRelativeUrl());
@@ -36,23 +39,26 @@ public class LoginPage extends ParentPage {
             Assert.fail("Can't open Login page");
         }
     }
-
+    @Step
     public void  enterLoginSignIn(String login) {
         enterTextInToElement(inputLogin, login);
     }
+    @Step
     public void enterPassWordSignIn(String passWord) {
         enterTextInToElement(inputPassWord, passWord);
     }
-
+    @Step
     public void clickButtonSignIn() {
        clickOnElement(buttonSignIn);
         }
+    @Step
         public void fillLoginFormAndSubmit(String login, String pass){
         openLoginPage();
         enterLoginSignIn(login);
         enterPassWordSignIn(pass);
         clickButtonSignIn();
         }
+    @Step
         public HomePage loginWithValidCred(){
         fillLoginFormAndSubmit(TestData.VALID_LOGIN, TestData.VALID_PASSWORD);
         return new HomePage(webDriver);
