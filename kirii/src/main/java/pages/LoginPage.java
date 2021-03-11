@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -47,6 +48,7 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl + getRelativeUrl());
@@ -57,6 +59,7 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    @Step
     public void enterLoginSignIn(String login) {
 //        try {
 //            inputLogin.clear();
@@ -68,6 +71,7 @@ public class LoginPage extends ParentPage{
 //        }
         enterTextIntoElement(inputLogin, login);
     }
+    @Step
     public void enterPasswordSignIn(String password) {
 //        try {
 //            inputPassword.clear();
@@ -80,6 +84,7 @@ public class LoginPage extends ParentPage{
         enterTextIntoElement(inputPassword, password);
     }
 
+    @Step
     public void clickButtonSignIn() {
 //        try {
 //            buttonSignIn.click();
@@ -90,7 +95,6 @@ public class LoginPage extends ParentPage{
 //        }
         clickOnElement(buttonSignIn);
     }
-
 
 
     public boolean isButtonSignInVisible() {
@@ -168,12 +172,14 @@ public class LoginPage extends ParentPage{
             return false;
         }
     }
+    @Step
     public void fillLoginFormAndSubmit(String login,String pass){
         openLoginPage();
         enterLoginSignIn(login);
         enterPasswordSignIn(pass);
         clickButtonSignIn();
     }
+    @Step
     public HomePage loginWithValidCred(){
         fillLoginFormAndSubmit(TestData.VALID_LOGIN,TestData.VALID_PASSWORD);
         return new HomePage(webDriver);

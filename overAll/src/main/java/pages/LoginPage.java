@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.*;
@@ -31,6 +32,7 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
+    @Step
     public void openLoginPage(){
         try {
             webDriver.get(baseUrl + getRelativeUrl());
@@ -41,25 +43,26 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    @Step
     public void enterLoginSignIn(String login) {
         enterTextInToElement(inputLogin, login);
     }
-
+    @Step
     public void enterPassWordSignIn(String passWord) {
         enterTextInToElement(inputPassWord, passWord);
     }
-
+    @Step
     public void clickButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
-
+    @Step
     public void fillLoginFormAndSubmit(String login, String pass){
         openLoginPage();
         enterLoginSignIn(login);
         enterPassWordSignIn(pass);
         clickButtonSignIn();
     }
-
+    @Step
     public HomePage loginWithValidCred(){
         fillLoginFormAndSubmit(TestData.VALID_LOGIN, TestData.VALID_PASSWORD);
         return new HomePage(webDriver);
