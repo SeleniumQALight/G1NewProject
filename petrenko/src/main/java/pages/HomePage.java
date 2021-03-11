@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.Util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,38 +33,38 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
-
+    @Step
     public boolean isButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
     }
-
+    @Step
     public boolean isButtonSignOutNotVisible() {
         return !isElementDisplayed(buttonSignOut);
     }
-
+    @Step
     public CreatePostPage clickOnCreatePostButton() {
 
         clickOnElement(createPostButton);
         return new CreatePostPage(webDriver);
     }
-
+    @Step
     public HomePage checkIsButtonSignOutVisible() {
         checkIsElementVisible(buttonSignOut);
         return this;
     }
-
+    @Step
     public HomePage clickTextBackToStartHomePage() {
 
         clickOnElement(textComplexAppForTestingQa);
         return new HomePage(webDriver);
     }
-
+    @Step
     public MyProfilePage clickOnMyProfileButton() {
         waitChatToBeHide();
         clickOnElement(myProfileButton);
         return new MyProfilePage(webDriver);
     }
-
+    @Step
     public HomePage openHomePage() {
 
         LoginPage loginPage = new LoginPage(webDriver);

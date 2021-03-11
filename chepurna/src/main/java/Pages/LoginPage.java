@@ -1,5 +1,6 @@
 package Pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -56,6 +57,7 @@ public class LoginPage extends ParentPage{
 //=========================================================
 
 //OPEN LOGIN PAGE
+    @Step
     public void openLoginPage(){
         try {
             webDriver.get(baseUrl + getRelativeUrl()); // = URL
@@ -67,18 +69,19 @@ public class LoginPage extends ParentPage{
     }
 
 // LOGIN
+@Step
     public void enterLoginSignIn(String login) {
     enterTextInToElement(inputLogin, login);
 }
-
+    @Step
     public void enterPassSignIn(String passWord) {
     enterTextInToElement(intutPassword, passWord);
 }
-
+    @Step
     public void clickButtonSignIn() {
     clickOnElement(buttonSignIn);
 }
-
+    @Step
     public boolean isMessageErrorVisible() {
         try {
             return webDriver.findElement(By.xpath(".//*[contains(text(),'Error')]")).isDisplayed();
@@ -88,6 +91,7 @@ public class LoginPage extends ParentPage{
     }
 
 // LOGIN 4 IN 1
+   @Step
     public void fillLoginFormAndSubmit(String login, String pass) {
         openLoginPage();
         enterLoginSignIn(login);
@@ -95,24 +99,29 @@ public class LoginPage extends ParentPage{
         clickButtonSignIn();
     }
 
+    @Step
     public HomePage loginWithValidCred(){
     fillLoginFormAndSubmit(TestData.VALID_LOGIN, TestData.VALID_PASSWORD);
     return new HomePage(webDriver); //result is new page Home page
     }
 
 // REGISTRATION (HOMEWORK 02-20)
+    @Step
     public void enterRegUsername(String username) {
         enterTextInToElement(inputRegUsername, username);
     }
 
+    @Step
     public void enterRegEmail(String email) {
         enterTextInToElement(inputRegEmail, email);
     }
 
+    @Step
     public void enterRegPassword(String passWord) {
         enterTextInToElement(inputRegPassword, passWord);
     }
 
+    @Step
     public void clickButtonSignUp() {
         clickOnElement(buttonSignUp);
     }

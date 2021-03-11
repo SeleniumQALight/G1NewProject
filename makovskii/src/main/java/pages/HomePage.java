@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,23 +26,23 @@ public class HomePage extends ParentPage {
     String getRelativeUrl() {
         return "/";
     }
-
+    @Step
     public boolean isButtonSignOutVisible() {
   return isElementDisplayed(buttonSignOut);
     }
 
-
+    @Step
     public HomePage checkIsButtonSignOutVisible(){
         checkIsElementVisible(buttonSignOut);
         return this;
     }
 
-
+    @Step
     public CreatePostPage clickOnCreatePostButton(){
         clickOnElement(createPostButton);
         return new  CreatePostPage(webDriver);
     }
-
+    @Step
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();
@@ -52,7 +53,7 @@ public class HomePage extends ParentPage {
         return this;
 
     }
-
+    @Step
     public ProfilePage clickOnProfileButton() {
         clickOnElement(profileButton);
         return new ProfilePage(webDriver);
