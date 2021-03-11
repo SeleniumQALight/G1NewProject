@@ -1,6 +1,5 @@
 package pages;
 
-import jdk.nashorn.internal.runtime.ECMAException;
 import libs.ConfigProperties;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;

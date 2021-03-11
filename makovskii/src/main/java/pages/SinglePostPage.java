@@ -8,8 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
-import javax.xml.soap.Text;
-
 import static org.hamcrest.Matchers.containsString;
 
 public class SinglePostPage extends ParentPage {
