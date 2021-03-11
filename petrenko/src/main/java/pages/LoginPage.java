@@ -62,7 +62,7 @@ public class LoginPage extends ParentPage {
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
-
+    @Step
     public void openLoinPage() {
 
         try {
@@ -74,19 +74,19 @@ public class LoginPage extends ParentPage {
         }
 
     }
-
+    @Step
     public void enterLoginSignIn(String login) {
         enterTextInToElement(inputUserNameInLoginIn, login);
     }
-
+    @Step
     public void enterPassWordSignIn(String passWord) {
         enterTextInToElement(inputPasswordInLoginIn, passWord);
     }
-
+    @Step
     public void clickButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
-
+    @Step
     public LoginPage fillLoginFormAndSubmit(String login, String password) {
         openLoinPage();
         enterLoginSignIn(login);
