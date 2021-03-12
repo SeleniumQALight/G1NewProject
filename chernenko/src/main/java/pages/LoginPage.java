@@ -1,12 +1,15 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import libs.Util;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
@@ -63,27 +66,33 @@ public class LoginPage extends ParentPage{
         enterTextIntoElement(inputLogin, login);
     }
 
+    @Step
     public void enterUsernameIntoLogin(String newUsername){
         enterTextIntoElement(pickAUsername, newUsername);
     }
 
+    @Step
     public void enterPasswordSignIn(String passWord) {
         enterTextIntoElement(inputPassword, passWord);
     }
 
+    @Step
     public void enterEmailIntoLogin (String userEmail){
         enterTextIntoElement(emailForRegistration, userEmail);
     }
 
+    @Step
     public void enterPasswordIntoLogin (String newPassword){
         enterTextIntoElement(passwordForRegistration, newPassword);
     }
 
+    @Step
     public void clickButtonSignIn() {
         clickOnElement(buttonSignIn);
 
     }
 
+    @Step
     public void fillLoginFormAndSubmit(String login, String pass){
         openLoginPage();
         enterLoginSignIn(login);
@@ -91,11 +100,13 @@ public class LoginPage extends ParentPage{
         clickButtonSignIn();
     }
 
+    @Step
     public HomePage loginWithValidCred (){
         fillLoginFormAndSubmit(TestData.VALID_LOGIN, TestData.VALID_PASSWORD);
         return new HomePage(webDriver);
     }
 
+    @Step
     public void fillLoginFormNewUserAndSubmit (String newUsername, String userEmail, String newPassword){
         openLoginPage();
         enterUsernameIntoLogin(newUsername);
@@ -104,10 +115,12 @@ public class LoginPage extends ParentPage{
         clickButtonSignUp();
     }
 
+    @Step
     public void clickButtonSignUp() {
         clickOnElement(buttonSignUp);
     }
 
+    @Step
     public ArrayList listOfErrorMessageWereDisplayed (){
         List<WebElement> list = new ArrayList<>();
         list = webDriver.findElements(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]"));
@@ -115,12 +128,33 @@ public class LoginPage extends ParentPage{
 
     }
 
+    @Step
     public int numberOfErrorMessageWereDisplayed (){
         List<WebElement> list = new ArrayList<>();
-        list = webDriver.findElements(By.xpath(".// div[contains(@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible')]"));
+        list = webDriver.findElements(By.xpath(".//*[@class,'alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
         return  list.size();
 
     }
 
+    @Step
+    public void checkErrors(String errors)  {
+        webDriverWait15.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")));
+        String [] errorsArray = errors.split(";");
 
+        List<WebElement> actualErrorsList = webDriver.findElements(By.xpath(".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
+
+        Assert.assertEquals("Number os Messages", errorsArray.length, actualErrorsList.size());
+        SoftAssertions softAssertions = new SoftAssertions();
+        ArrayList <String > textFromErrors = new ArrayList<>();
+        for (WebElement element : actualErrorsList){
+            textFromErrors.add(element.getText());
+        }
+
+        for (int i = 0; i < errorsArray.length; i++) {
+            softAssertions.assertThat(errorsArray[i]).isIn(textFromErrors);
+        }
+        softAssertions.assertAll();
+
+
+    }
 }
