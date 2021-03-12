@@ -29,7 +29,7 @@ public class LoginTestWithPageObject extends BaseTest {
         Map<String,String> dataForValidLogin = ExcelDriver.getData(ParentPage.configProperties.DATA_FILE(),"validLogOn");
 
         loginPage.openLoginPage();
-        loginPage.enterLoginSignIn(dataForValidLogin.get("login1"));
+        loginPage.enterLoginSignIn(dataForValidLogin.get("login"));
         loginPage.enterPasswordSignIn(dataForValidLogin.get("pass"));
         loginPage.clickButtonSignIn();
         checkExpectedResult("Button SignOut is not visible", homePage.isButtonSignOutVisible());
