@@ -49,8 +49,6 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//button[@type = 'submit']")
     private Button buttonSignUpForOurApp;
-    @FindBy(xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
-    private TextBlock registerErrorMessage;
 
     private String popUpRegisterError = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     private String popUpLoginError = ".//div[@class='alert alert-danger text-center']";
@@ -100,15 +98,15 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
     @Step
-    private void enterUserNameRegisterIn(String userName) {
+    public void enterUserNameRegisterIn(String userName) {
         enterTextInToElement(inputUserNameInRegisterIn, userName);
     }
     @Step
-    private void enterEmailRegisterIn(String email) {
+    public void enterEmailRegisterIn(String email) {
         enterTextInToElement(inputEmailInRegisterIn, email);
     }
     @Step
-    private void enterPasswordRegisterIn(String password) {
+    public void enterPasswordRegisterIn(String password) {
         enterTextInToElement(inputPassWordInRegisterIn, password);
     }
     @Step
