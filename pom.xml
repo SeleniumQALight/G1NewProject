@@ -23,6 +23,7 @@
     <module>shablii</module>
     <module>iakovenko</module>
     <module>kirii</module>
+      <module>yurmanovych</module>
   </modules>
   <packaging>pom</packaging>
 
