@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,7 @@ public class HomePage extends ParentPage {
         return "/";
     }
 
+    @Step
     public boolean isButtonSignOutVisible(){
 //        try {
 //            return webDriver.findElement(By.xpath(".//button[contains(text(),'Sign Out')]")).isDisplayed();
