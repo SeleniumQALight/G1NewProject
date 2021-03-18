@@ -24,6 +24,7 @@
     <module>iakovenko</module>
     <module>kirii</module>
       <module>yurmanovych</module>
+    <module>kosolap</module>
   </modules>
   <packaging>pom</packaging>
 
