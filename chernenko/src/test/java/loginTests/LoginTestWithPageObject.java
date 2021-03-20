@@ -1,6 +1,7 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import io.qameta.allure.*;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
@@ -15,7 +16,16 @@ import java.io.IOException;
 import java.util.Map;
 
 @RunWith(JUnitParamsRunner.class)
-public class LoginTestWithPageObject  extends BaseTest {
+@Epic("Allure examples")
+@Feature("Junit 4 support")
+public class LoginTestWithPageObject extends BaseTest {
+    @Description("Some detailed test description")
+    @Story("Base support for bdd annotations")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void validLogin() throws IOException {
         Map <String, String> dataForValidLogin = ExcelDriver.getData(ParentPage.configProperties.DATA_FILE(), "validLogOn");
