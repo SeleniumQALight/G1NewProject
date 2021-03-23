@@ -1,6 +1,8 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +13,7 @@ import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.String.format;
@@ -31,6 +34,12 @@ public class LoginPage extends ParentPage{
     private TextInput registerLogin;
     @FindBy(xpath = ".//input [@id='password-register']")
     private TextInput registerPassword;
+    @FindBy(xpath = ".//*[@id = 'username-register']")
+    private WebElement userNameInput;
+    @FindBy (xpath = ".//*[@id = 'email-register']")
+    private TextInput emailForRegistration;
+    @FindBy (xpath = ".//*[@id ='password-register']")
+    private WebElement passwordForRegistration;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -41,6 +50,7 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
+    @Step
     public void openLoginPage(){
         try {
             webDriver.get(baseUrl + getRelativeUrl());
@@ -50,10 +60,11 @@ public class LoginPage extends ParentPage{
             Assert.fail("Can not open Login page");
         }
     }
-
+    @Step
     public void enterLoginSignIn(String login) {
         enterTextIntoElement(inputLogin,login);
     }
+    @Step
     public void enterPasswordSignIn(String password) {
 //        try{
 //            inputPassword.clear();
@@ -65,7 +76,7 @@ public class LoginPage extends ParentPage{
 //        }
         enterTextIntoElement(inputPassword,password);
     }
-
+    @Step
     public void clickButtonSignIn() {
 //        try{
 //            buttonSignIn.click();
@@ -77,6 +88,7 @@ public class LoginPage extends ParentPage{
 //        }
         clickOnElement(buttonSignIn);
     }
+    @Step
     public void clickButtonSignUpForOurApp(){
         clickOnElement(buttonSignUpForOurApp);
     }
@@ -127,17 +139,19 @@ public class LoginPage extends ParentPage{
             return false;
         }
     }
+    @Step
     public void fillLoginFormAndSubmit(String login,String pass){
         openLoginPage();
         enterLoginSignIn(login);
         enterPasswordSignIn(pass);
         clickButtonSignIn();
     }
-
+    @Step
     public HomePage loginWithValidCred(){
         fillLoginFormAndSubmit(TestData.VALID_LOGIN,TestData.VALID_PASSWORD);
         return new HomePage(webDriver);
     }
+    @Step
     public void fullFillLoginForm(String login, String email, String pass){
             enterTextIntoElement(registerLogin, login);
             enterTextIntoElement(inputEmail, email);
@@ -153,5 +167,37 @@ public class LoginPage extends ParentPage{
         return messagesCount.size();
     }
 
+    @Step
+    public void enterUserName(String userName) {
+        enterTextIntoElement(userNameInput, userName);
+    }
+    @Step
+    public void enterEmail(String email) {
+        enterTextIntoElement(emailForRegistration, email);
+    }
+    @Step
+    public void enterPassword(String pass) {
+        enterTextIntoElement(passwordForRegistration, pass);
+    }
+    @Step
+    public void checkErrors(String errors) throws InterruptedException {
+        Thread.sleep(1000);
+        String[] errorsArray = errors.split(";");
+        List<WebElement> actualErrorList = webDriver.findElements(By.xpath(".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
+        Assert.assertEquals("Number of Messages", errorsArray.length,actualErrorList.size());
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        ArrayList<String> textFromErrors = new ArrayList<>();
+        for(WebElement element : actualErrorList){
+            textFromErrors.add(element.getText());
+
+        }
+        for (int i = 0; i < errorsArray.length; i++) {
+            softAssertions.assertThat(errorsArray[i]).isIn(textFromErrors);
+
+        }
+        softAssertions.assertAll();
+
+    }
 
 }

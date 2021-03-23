@@ -2,12 +2,16 @@ package posts;
 
 import Pages.SinglePostPage;
 import baseTest.BaseTest;
+import categories.SmokeTests;
 import libs.Util;
 import org.junit.After;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
+import suit.Smoke;
 
 public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "Chepurna Title of Post" + Util.getDateAndTimeFormated();
+    @Category(SmokeTests.class)
     @Test
     public void createNewPost() {
         loginPage.loginWithValidCred()

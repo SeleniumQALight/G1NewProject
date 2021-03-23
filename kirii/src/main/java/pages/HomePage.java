@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,6 +29,7 @@ public class HomePage extends ParentPage {
         return "/";
     }
 
+    @Step
     public boolean isButtonSignOutVisible() {
 //        try {
 //            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isEnabled();
@@ -56,6 +58,7 @@ public class HomePage extends ParentPage {
         return new HomePage(webDriver);
     }
     public ProfilePage clickOnProfileButton(){
+        waitChatToBeHide();
         clickOnElement(profileButton);
         return new ProfilePage(webDriver);
     }

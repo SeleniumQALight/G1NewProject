@@ -2,6 +2,7 @@ package pages;
 
 
 import com.google.common.base.Splitter;
+import io.qameta.allure.Step;
 import libs.TestData;
 import libs.Util;
 import org.junit.Assert;
@@ -48,8 +49,6 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//button[@type = 'submit']")
     private Button buttonSignUpForOurApp;
-    @FindBy(xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
-    private TextBlock registerErrorMessage;
 
     private String popUpRegisterError = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     private String popUpLoginError = ".//div[@class='alert alert-danger text-center']";
@@ -61,7 +60,7 @@ public class LoginPage extends ParentPage {
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
-
+    @Step
     public void openLoinPage() {
 
         try {
@@ -73,19 +72,19 @@ public class LoginPage extends ParentPage {
         }
 
     }
-
+    @Step
     public void enterLoginSignIn(String login) {
         enterTextInToElement(inputUserNameInLoginIn, login);
     }
-
+    @Step
     public void enterPassWordSignIn(String passWord) {
         enterTextInToElement(inputPasswordInLoginIn, passWord);
     }
-
+    @Step
     public void clickButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
-
+    @Step
     public LoginPage fillLoginFormAndSubmit(String login, String password) {
         openLoinPage();
         enterLoginSignIn(login);
@@ -93,24 +92,24 @@ public class LoginPage extends ParentPage {
         clickButtonSignIn();
         return new LoginPage(webDriver);
     }
-
+@Step
     public HomePage loginWithValidCred() {
         fillLoginFormAndSubmit(TestData.VALID_LOGIN, TestData.VALID_PASSWORD);
         return new HomePage(webDriver);
     }
-
-    private void enterUserNameRegisterIn(String userName) {
+    @Step
+    public void enterUserNameRegisterIn(String userName) {
         enterTextInToElement(inputUserNameInRegisterIn, userName);
     }
-
-    private void enterEmailRegisterIn(String email) {
+    @Step
+    public void enterEmailRegisterIn(String email) {
         enterTextInToElement(inputEmailInRegisterIn, email);
     }
-
-    private void enterPasswordRegisterIn(String password) {
+    @Step
+    public void enterPasswordRegisterIn(String password) {
         enterTextInToElement(inputPassWordInRegisterIn, password);
     }
-
+    @Step
     public LoginPage fillRegisterFormAndSubmit(String userName, String email, String password) {
         openLoinPage();
         enterUserNameRegisterIn(userName);
@@ -119,12 +118,12 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignUpForOurApp);
         return new LoginPage(webDriver);
     }
-
+    @Step
     public void checkPopUpMessage() {
         Assert.assertTrue("PopUp error userName was not displayed", popUpErrorUnValidUsername.isDisplayed());
     }
 
-
+    @Step
      public LoginPage checkCountErrorOfMessagesAfterSubmitRegisterIn(int countUnValidValue) {
 
          Util.waitABit(5);
@@ -134,7 +133,7 @@ public class LoginPage extends ParentPage {
         return new LoginPage(webDriver);
     }
 
-
+    @Step
     public LoginPage checkCountErrorOfMessagesAfterSubmitLoginIn(int countUnValidValue) {
 
         Util.waitABit(5);
@@ -144,7 +143,7 @@ public class LoginPage extends ParentPage {
         return new LoginPage(webDriver);
     }
 
-
+    @Step
     public void checkTextOfErrorsInRegisterIn(String textOfErrorMessages) {
 
         if(textOfErrorMessages.isEmpty()){
@@ -159,7 +158,7 @@ public class LoginPage extends ParentPage {
         }
 
     }
-
+    @Step
     public void checkTextOfErrorsInLoginIn(String textOfErrorMessages) {
 
         if(textOfErrorMessages.isEmpty()){

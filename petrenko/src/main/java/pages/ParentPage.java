@@ -1,6 +1,7 @@
 package pages;
 
 
+import io.qameta.allure.Step;
 import libs.ConfigProperties;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
@@ -76,7 +77,7 @@ public abstract class ParentPage {
         Assert.fail("Can not work with element " + e);
 
     }
-
+    @Step
     protected void clickOnElement(WebElement webElement) {
         try {
             webDriverWait15.until(ExpectedConditions.elementToBeClickable(webElement));

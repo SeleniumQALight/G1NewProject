@@ -1,6 +1,8 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
@@ -34,7 +37,14 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Sign up for OurApp']")
     private Button buttonSignUpForOurApp;
 
+    @FindBy(xpath = ".//*[@id = 'username-register']") //дубль
+    private WebElement userNameInput;
 
+    @FindBy (xpath = ".//*[@id = 'email-register']") //дубль
+    private TextInput emailForRegistration;
+
+    @FindBy (xpath = ".//*[@id ='password-register']") //дубль
+    private WebElement passwordForRegistration;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -46,6 +56,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl + getRelativeUrl());
@@ -57,6 +68,7 @@ public class LoginPage extends ParentPage {
 
     }
 
+    @Step
     public void enterLoginSignIn(String login) {
      /*   try {
             inputLogin.clear();
@@ -71,7 +83,7 @@ public class LoginPage extends ParentPage {
       */
         enterTextInToElement(inputLogin, login);
     }
-
+    @Step
     public void enterPassWordSignIn(String passWord) {
       /*  try {
             inputPassword.clear();
@@ -85,7 +97,7 @@ public class LoginPage extends ParentPage {
        */
         enterTextInToElement(inputPassword, passWord);
     }
-
+    @Step
     public void clickButtonSignIn() {
       /*  try {
             buttonSignIn.click();
@@ -98,33 +110,34 @@ public class LoginPage extends ParentPage {
        */
        clickOnElement(buttonSignIn);
     }
-
+    @Step
     public void fillLoginFormAndSubmit(String login, String pass){
         openLoginPage();
         enterLoginSignIn(login);
         enterPassWordSignIn(pass);
         clickButtonSignIn();
     }
+    @Step
     public HomePage loginWithValidCred(){
         fillLoginFormAndSubmit(TestData.VALID_LOGIN, TestData.VALID_PASSWORD);
         return new HomePage(webDriver);
     }
 
 //HW-4
-
+    @Step
     public void clickButtonSignUpForOurApp(){
         clickOnElement(buttonSignUpForOurApp);
     }
 
 
-
+    @Step
     public void fillRegisterForm(String login, String email, String pass){
         enterTextInToElement(inputRegUsername, login);
         enterTextInToElement(inputEmail, email);
         enterTextInToElement(inputRegPassword, pass);
     }
 
-
+    @Step
     public boolean isErrorMessageForInvalidRegUsernameDisplayed(){
         try{
             return webDriver.findElement(By.xpath(".//*[text()='Username must be at least 3 characters.']")).isDisplayed();
@@ -133,7 +146,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
-
+    @Step
     public boolean isErrorMessageForInvalidEmailDisplayed(){
         try{
             return webDriver.findElement(By.xpath(".//*[text()='You must provide a valid email address.']")).isDisplayed();
@@ -142,7 +155,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
-
+    @Step
     public boolean isErrorMessageForInvalidRegPasswordDisplayed(){
         try{
             return webDriver.findElement(By.xpath(".//*[text()='Password must be at least 12 characters.']")).isDisplayed();
@@ -151,5 +164,39 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
+    public void enterUsername(String userName) {
+        enterTextInToElement(userNameInput, userName);
+    }
 
+    @Step
+    public void enterEmail(String email) {
+        enterTextInToElement(emailForRegistration, email);
+    }
+
+    @Step
+    public void enterPassWord(String passWord) {
+        enterTextInToElement(passwordForRegistration, passWord);
+    }
+
+    @Step
+    public void checkErrors(String errors) {
+        String[] errorsArray = errors.split(";");
+
+        List<WebElement> actualErrorList = webDriver.findElements(By.xpath(".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
+
+        Assert.assertEquals("Number of Message", errorsArray.length, actualErrorList.size());
+
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        ArrayList<String> textFromErrors = new ArrayList<>();
+        for (WebElement element : actualErrorList){
+            textFromErrors.add(element.getText());
+        }
+
+        for (int i = 0; i < errorsArray.length; i++) {
+            softAssertions.assertThat(errorsArray[i]).isIn(textFromErrors);
+
+        }
+    }
 }
