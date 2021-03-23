@@ -20,8 +20,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
-import posts.DeletePost;
-
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
