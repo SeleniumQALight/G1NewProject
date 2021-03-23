@@ -85,9 +85,7 @@ public class SinglePostPage extends ParentPage{
     }
 
     public void checkIfTheTitleWasUpdated(String postTitleText) {
-        //public void checkIfTheTitleWasUpdated(WebElement postTitle, String updateText) {
         Assert.assertEquals("not", postTitleText, postTitleField.getText());
-        //Assert.assertThat("Title was not Updated", postTitleText, containsString("updated"));
     }
 
     public SinglePostPage checkIfTheUpdateNotificationPresent(){
