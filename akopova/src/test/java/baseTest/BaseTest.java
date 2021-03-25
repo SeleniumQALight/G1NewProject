@@ -19,6 +19,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.*;
+import posts.CreateNewPostTest;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -34,8 +35,11 @@ public class BaseTest {
     protected HomePage homePage;
     protected SinglePostPage singlePostPage;
     protected MyProfilePage myProfilePage;
+    protected CreateNewPostTest createNewPostTest;
 
-    @Rule
+
+
+        @Rule
     public TestName testName = new TestName();
 
     @Before

@@ -45,13 +45,13 @@ public abstract class ParentPage {
 
     abstract String getRelativeUrl();
 
-    protected void waitChatToBeHide() {
+    public void waitChatToBeHide() {
         webDriverWait10.until(ExpectedConditions
                 .invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
     }
 
 
-    protected void enterTextIntoElement(WebElement webElement, String text){
+    public void enterTextIntoElement(WebElement webElement, String text){
         try {
             getWebDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
@@ -86,7 +86,7 @@ public abstract class ParentPage {
         try {
             getWebDriverWait15.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
-            logger.info(elementName + "Element was clicked");
+            logger.info(elementName + " Element was clicked");
         } catch (Exception e) {
             printErrorMessageAndStopTest(e);
         }
@@ -176,5 +176,9 @@ public abstract class ParentPage {
         webElement.clear();
         return this;
     }
+
+    //public abstract void updatePostTitle();
+
+    //public abstract String updatePostTitle(WebElement postTitleField);
 
 }
