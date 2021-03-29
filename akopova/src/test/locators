@@ -54,6 +54,7 @@ ProfilePage.mainArea.tabPosts = ".//*[@href='/profile/auto']";
 ProfilePage.mainArea.tabFollowers = ".//*[@href='/profile/auto/followers']";
 ProfilePage.mainArea.tabFollowing = ".//*[@href='/profile/auto/following']";
 ProfilePage.mainArea.postLine = ".//*[@class='list-group']/descendant::*[1]";
+ProfilePage.editPostIcon = ".//*[@data-icon = 'edit']";
 
 HomePage with just deleted post
 HomePageDeletedPostConfirmation = ".//*[contains(text(), 'successfully deleted')]";

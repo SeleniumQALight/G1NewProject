@@ -9,7 +9,7 @@ public class TestData {
 
     // Correct Credentials to sign up
     public final static String VALID_SIGNUP_LOGIN = "newAuto";
-    public final static String VALID_SIGNUP_EMAIL = "mymail000002000307@gmail.com";
+    public final static String VALID_SIGNUP_EMAIL = "mymail000300307@gmail.com";
     public final static String VALID_SIGNUP_PASSWORD = "098765poiuyt";
     // Incorrect Credentials to sign up
     public final static String INVALID_SIGNUP_LOGIN_SIGN = "@auto";

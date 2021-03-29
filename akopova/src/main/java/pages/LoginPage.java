@@ -168,13 +168,27 @@ public class LoginPage extends ParentPage {
                 , String signUpEmailValue
                 , String signUpPasswordValue) {
             enterLoginSignUp(signUpLoginValue);
+            try {
             waitForErrorMessageToBecomeVisible(loginErrorMessageLocator);
-
-            enterEmailSignUp(signUpEmailValue);
+        }
+            catch (Exception e){
+            logger.error("No such an object as Login Error message");
+        }
+        enterEmailSignUp(signUpEmailValue);
+        try {
             waitForErrorMessageToBecomeVisible(emailErrorMessageLocator);
+        }
+        catch (Exception e){
+            logger.error("No such an object as E-mail Error message");
+        }
 
             enterPasswordSignUp(signUpPasswordValue);
+            try {
             waitForErrorMessageToBecomeVisible(passwordErrorMessageLocator);
+        }
+        catch (Exception e){
+            logger.error("No such an object as Password Error message");
+        }
 
             return this;
         }
