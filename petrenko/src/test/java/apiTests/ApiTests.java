@@ -27,6 +27,8 @@ public class ApiTests {
     public void getAllPostsByUser() {
         Logger logger = Logger.getLogger(getClass());
 
+
+
         PostDTO[] responseBody = given()
                 .contentType(ContentType.JSON).log().all()
 
