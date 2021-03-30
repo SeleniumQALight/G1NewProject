@@ -1,5 +1,6 @@
 package suits;
 
+import apiTests.ApiTests;
 import loginTests.LoginTestWithPageObject;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -9,7 +10,8 @@ import posts.CreateNewPostTest;
 @Suite.SuiteClasses(
         {
                 LoginTestWithPageObject.class,
-                CreateNewPostTest.class
+                CreateNewPostTest.class,
+                ApiTests.class
         }
 )
 
