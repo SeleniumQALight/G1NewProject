@@ -92,7 +92,7 @@ public class PostDTO {
         return isVisitorOwner;
     }
 
-    public void setIsVisitorOwner(Boolean isVisitorOwner) {
+    public void setVisitorOwner(Boolean isVisitorOwner) {
         isVisitorOwner = isVisitorOwner;
     }
 
