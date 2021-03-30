@@ -148,6 +148,13 @@
       <version>2.12.1</version>
     </dependency>
 
+    <!-- json cheme-validator -->
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>json-schema-validator</artifactId>
+      <version>3.3.0</version>
+
+    </dependency>
 
 
   </dependencies>

@@ -8,8 +8,8 @@ import libs.TestData;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.testng.*;
-import org.testng.annotations.BeforeClass;
+//import org.testng.*;
+//import org.testng.annotations.BeforeClass;
 
 @RunWith(JUnitParamsRunner.class)
 public class RegisterNewUserTest extends BaseTest {
