@@ -3,6 +3,7 @@ package apiTests;
 import api.AuthorDTO;
 import api.EndPoints;
 import api.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -26,6 +27,7 @@ public class ApiTests {
     public void getAllPostsByUser() {
         PostDTO[] responseBody = given()
                 .contentType(ContentType.JSON).log().all()
+                .filter(new AllureRestAssured())
 
                 .when()
                 .get(POST_BY_USER, USER_NAME)
@@ -58,6 +60,7 @@ public class ApiTests {
         String responseBody =
                 given()
                         .contentType(ContentType.JSON).log().all()
+                        .filter(new AllureRestAssured())
                         .when()
                         .get(POST_BY_USER, "notValidUser")
                         .then()
@@ -72,6 +75,7 @@ public class ApiTests {
         Response responseBody =
                 given()
                         .contentType(ContentType.JSON).log().all()
+                        .filter(new AllureRestAssured())
                         .when()
                         .get(POST_BY_USER, USER_NAME)
                         .then()
@@ -95,6 +99,7 @@ public class ApiTests {
     public void getAllPostsByUserSchema() {
         given()
                 .contentType(ContentType.JSON).log().all()
+                .filter(new AllureRestAssured())
                 .when()
                 .get(POST_BY_USER, USER_NAME)
                 .then().assertThat().body(matchesJsonSchemaInClasspath("respons.json"));
