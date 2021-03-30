@@ -1,7 +1,7 @@
 package api;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.ResponseBody;
-import jdk.jfr.ContentType;
 import org.json.JSONObject;
 
 import static api.EndPoints.POST_BY_USER;
@@ -14,7 +14,7 @@ public class ApiHelper {
         requestParams.put("password", passWord);
         ResponseBody responseBody =
                 given()
-                        .contentType(ContentType.JSON)
+                        .contentType(io.restassured.http.ContentType.JSON)
                         .body(requestParams.toMap())
                         .when()
                         .post(EndPoints.LOGIN)
@@ -33,8 +33,6 @@ public class ApiHelper {
                 .statusCode(200).log().all()
                 .extract()
                 .response().as(PostDTO[].class);
-        return responseBody.asString().replace("\"","");
+        return responseBody;
     }
-
-
 }
