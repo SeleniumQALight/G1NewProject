@@ -1,5 +1,6 @@
 package api;
 
+
 public interface EndPoints {
 
     String baseUrl = "http://qa-complex-app-for-testing.herokuapp.com";
@@ -15,4 +16,6 @@ public interface EndPoints {
     String nepalURL = baseFeerieURL + "/tours/1779";
 
 
+    String LOGIN = baseUrl + "/api/login";
+    String CREATE_POST = baseUrl + "/api/create-post";
 }

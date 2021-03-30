@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "select1": {
+          "type": "string"
+        },
+        "createdDate": {
+          "type": "string"
+        },
+        "author": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "avatar": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "username",
+            "avatar"
+          ]
+        },
+        "isVisitorOwner": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "_id",
+        "title",
+        "body",
+        "select1",
+        "createdDate",
+        "author",
+        "isVisitorOwner"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "select1": {
+          "type": "string"
+        },
+        "createdDate": {
+          "type": "string"
+        },
+        "author": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "avatar": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "username",
+            "avatar"
+          ]
+        },
+        "isVisitorOwner": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "_id",
+        "title",
+        "body",
+        "select1",
+        "createdDate",
+        "author",
+        "isVisitorOwner"
+      ]
+    }
+  ]
+}

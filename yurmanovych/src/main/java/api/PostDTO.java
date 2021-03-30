@@ -1,32 +1,29 @@
 package api;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.annotations.SerializedName;
 
-//@JsonIgnoreProperties(ignoreUnknown = true) 
-
+@JsonIgnoreProperties(ignoreUnknown = true) // this for being able to skip (not define) fields in response
 public class PostDTO {
     @SerializedName("_id")
-    String _id;
-
+    private String _id;
     @SerializedName("title")
-    String title;
-
+    private String title;
     @SerializedName("body")
-    String body;
+    private String body;
 
     @SerializedName("select1")
-    String select1;
+    private String select1;
 
     @SerializedName("createdDate")
-    String createdDate;
+    private String createdDate;
 
     @SerializedName("author")
-    AuthorDTO author;
+    private AuthorDTO author;
 
     @SerializedName("isVisitorOwner")
-    Boolean isVisitorOwner;
+    private Boolean isVisitorOwner;
 
-    //constructor
     public PostDTO(String title, String body, String select1, AuthorDTO author, Boolean isVisitorOwner) {
         this.title = title;
         this.body = body;
@@ -34,10 +31,7 @@ public class PostDTO {
         this.author = author;
         this.isVisitorOwner = isVisitorOwner;
     }
-
-    //empty constructor
-    public PostDTO(){
-
+    public PostDTO() {
     }
 
     public String get_id() {
@@ -92,8 +86,8 @@ public class PostDTO {
         return isVisitorOwner;
     }
 
-    public void setVisitorOwner(Boolean isVisitorOwner) {
-        isVisitorOwner = isVisitorOwner;
+    public void setIsVisitorOwner(Boolean isVisitorOwner) {
+        this.isVisitorOwner = isVisitorOwner;
     }
 
     @Override
