@@ -2,31 +2,25 @@ package api;
 
 import com.google.gson.annotations.SerializedName;
 
-//@JsonIgnoreProperties(ignoreUnknown = true) 
+//@JsonIgnoreProperties(ignoreUnknown = true)
 
 public class PostDTO {
     @SerializedName("_id")
     String _id;
-
     @SerializedName("title")
     String title;
-
     @SerializedName("body")
     String body;
-
     @SerializedName("select1")
     String select1;
-
     @SerializedName("createdDate")
     String createdDate;
-
     @SerializedName("author")
     AuthorDTO author;
-
     @SerializedName("isVisitorOwner")
     Boolean isVisitorOwner;
 
-    //constructor
+
     public PostDTO(String title, String body, String select1, AuthorDTO author, Boolean isVisitorOwner) {
         this.title = title;
         this.body = body;
@@ -35,10 +29,10 @@ public class PostDTO {
         this.isVisitorOwner = isVisitorOwner;
     }
 
-    //empty constructor
     public PostDTO(){
 
     }
+
 
     public String get_id() {
         return _id;
@@ -92,8 +86,8 @@ public class PostDTO {
         return isVisitorOwner;
     }
 
-    public void setVisitorOwner(Boolean isVisitorOwner) {
-        isVisitorOwner = isVisitorOwner;
+    public void setVisitorOwner(Boolean isvisitorOwner) {
+        isVisitorOwner = isvisitorOwner;
     }
 
     @Override
