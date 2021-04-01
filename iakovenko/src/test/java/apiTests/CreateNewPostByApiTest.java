@@ -8,6 +8,7 @@ import io.restassured.http.ContentType;
 import org.assertj.core.api.SoftAssertions;
 import org.json.JSONObject;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
@@ -16,6 +17,11 @@ public class CreateNewPostByApiTest {
     final String userName = "romantest";
     final String password = "123456qwerty";
     ApiHelper apiHelper = new ApiHelper();
+
+    @Before
+    public void deleteAllPosts(){
+        apiHelper.deletePostsTillPresent(userName, password);
+    }
 
     @Test
     public void createNewPosts() {
@@ -34,7 +40,7 @@ public class CreateNewPostByApiTest {
                 .post(EndPoints.CREATE_POST)
                 .then()
                 .statusCode(200);
-        PostDTO[] responseBody = apiHelper.getTokenAllPostsByUserName(userName);
+        PostDTO[] responseBody = apiHelper.getAllPostsByUserName(userName);
         Assert.assertEquals(1,responseBody.length);
 
         PostDTO[] expectedPostsDTO =
