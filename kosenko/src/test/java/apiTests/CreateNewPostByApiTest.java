@@ -8,6 +8,7 @@ import io.restassured.http.ContentType;
 import org.assertj.core.api.SoftAssertions;
 import org.json.JSONObject;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
@@ -17,7 +18,10 @@ public class CreateNewPostByApiTest {
 final String userName = "autonastya";
         final String passWord = "123456qwerty";
         ApiHelper apiHelper = new ApiHelper();
-    String token = apiHelper.getToken(userName, passWord);
+    @Before
+    public void deleteAllPosts(){
+        apiHelper.deletePostTillPresent(userName, passWord);
+    }
     @Test
     public void createNewPosts(){
 String token = apiHelper.getToken(userName, passWord);

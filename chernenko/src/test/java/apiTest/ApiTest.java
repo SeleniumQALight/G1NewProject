@@ -3,6 +3,7 @@ package apiTest;
 import api.AuthorDTO;
 import api.EndPoints;
 import api.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -28,6 +29,7 @@ public class ApiTest {
     public void getAllPostsByUsers(){
         PostDTO[] responseBody = given()
                 .contentType(ContentType.JSON).log().all()
+                .filter(new AllureRestAssured())
        .when()
                 .get(POST_BY_USER, USER_NAME)
         .then()
@@ -57,9 +59,10 @@ public class ApiTest {
         String responseBody =
                 given()
                         .contentType(ContentType.JSON).log().all()
-                        .when()
+                        .filter(new AllureRestAssured())
+                .when()
                         .get(POST_BY_USER,"notValidUser")
-                        .then()
+                .then()
                         .statusCode(200).log().all()
                         .extract().response().getBody().asString();
 
@@ -72,9 +75,10 @@ public class ApiTest {
         Response responseBody =
                 given()
                         .contentType(ContentType.JSON).log().all()
-                        .when()
+                        .filter(new AllureRestAssured())
+                .when()
                         .get(POST_BY_USER,USER_NAME)
-                        .then()
+                .then()
                         .statusCode(200).log().all()
                         .extract().response();
         List<String> titleList = responseBody.jsonPath().getList("title", String.class);
@@ -94,9 +98,10 @@ public class ApiTest {
 
                 given()
                         .contentType(ContentType.JSON).log().all()
-                        .when()
+                        .filter(new AllureRestAssured())
+                .when()
                         .get(POST_BY_USER,USER_NAME)
-                        .then().assertThat().body(matchesJsonSchemaInClasspath("respons.json"));
+                .then().assertThat().body(matchesJsonSchemaInClasspath("respons.json"));
     }
 
 

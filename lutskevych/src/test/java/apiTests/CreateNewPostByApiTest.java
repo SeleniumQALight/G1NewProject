@@ -26,31 +26,7 @@ public class CreateNewPostByApiTest {
 
     @Before
     public void postDeletion(){
-        String token = apiHelper.getToken(userName, password);
-
-        JSONObject requestParams = new JSONObject();
-        requestParams.put("token", token);
-
-        PostDTO[] responseBody = apiHelper.getAllPostsByUser(userName);
-
-
-        if (responseBody.length > 0){
-            for (int i = 0; i <responseBody.length; i++) {
-                String id = responseBody[i].get_id();
-                Response deleteBody =
-                        given()
-                                .contentType(ContentType.JSON).log().all()
-                                .body(requestParams.toMap()).log().all()
-                                .when()
-                                .delete(DELETE_POST, id)
-                                .then()
-                                .statusCode(200).log().all()
-                                .extract()
-                                .response();
-
-            }
-        }
-
+        apiHelper.deletePostTillPresent(userName, password);
     }
 
     @Test
@@ -58,7 +34,7 @@ public class CreateNewPostByApiTest {
         String token = apiHelper.getToken(userName, password);
 
         JSONObject requestParams = new JSONObject();
-        requestParams.put("title", "New Post from API222222");
+        requestParams.put("title", "New Post from API111");
         requestParams.put("body", "post body");
         requestParams.put("select1", "One Person");
         requestParams.put("token", token);
