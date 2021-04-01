@@ -12,5 +12,5 @@ public interface Endpoints {
     String TEST_APP_POST_BY_USER = testAppBaseUrl + "/api/postsByAuthor/{1}";
     String LOGIN = testAppBaseUrl + "/api/login";
     String CREATE_POST = testAppBaseUrl + "/api/create-post";
-
+    String DELETE_POST = testAppBaseUrl + "/api/post/{1}";
 }

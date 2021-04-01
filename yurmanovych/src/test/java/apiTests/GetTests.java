@@ -3,6 +3,7 @@ package apiTests;
 import api.AuthorDTO;
 import api.Endpoints;
 import api.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -26,6 +27,7 @@ public class GetTests {
     public void getPBExchangeRates() {
         given()
                 .contentType(ContentType.JSON).log().uri()
+                .filter(new AllureRestAssured())
                 .when()
                 .get(Endpoints.PB_GET_EXCH_RATES)
                 .then()
@@ -58,6 +60,7 @@ public class GetTests {
     public void getPostsByUser() {
         PostDTO[] AR = given()
                 .contentType(ContentType.JSON).log().uri()
+                .filter(new AllureRestAssured())
                 .when()
                 .get(TEST_APP_POST_BY_USER, USER_NAME)
                 .then()
@@ -100,6 +103,7 @@ public class GetTests {
     public void getAllPostsByUsersNeg() {
         String response = given()
                 .contentType(ContentType.JSON).log().all()
+                .filter(new AllureRestAssured())
                 .when()
                 .get(TEST_APP_POST_BY_USER, "invalid user")
                 .then()
@@ -113,6 +117,7 @@ public class GetTests {
     public void getAllPostsByUsersPath() {
         Response response = given()
                 .contentType(ContentType.JSON).log().all()
+                .filter(new AllureRestAssured())
                 .when()
                 .get(TEST_APP_POST_BY_USER, USER_NAME)
                 .then()
