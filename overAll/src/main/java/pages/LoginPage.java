@@ -1,7 +1,7 @@
 package pages;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 
 import org.assertj.core.api.SoftAssertions;
@@ -13,8 +13,10 @@ import org.openqa.selenium.support.FindBy;
 
 import io.qameta.allure.Step;
 import libs.TestData;
-import ru.yandex.qatools.htmlelements.annotations.Name;
+import libs.Util;
+
 import ru.yandex.qatools.htmlelements.element.*;
+
 
 public class LoginPage extends ParentPage{
 
@@ -37,6 +39,9 @@ public class LoginPage extends ParentPage{
     @FindBy (xpath = ".//*[@id ='password-register']")
     private WebElement passwordForRegistration;
 
+    @FindBy(xpath = ".//*[contains(@class,'alert-danger text-center')]")
+    private WebElement alertInCenter;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -49,11 +54,11 @@ public class LoginPage extends ParentPage{
     @Step
     public void openLoginPage(){
         try {
-            webDriver.get(baseUrl + getRelativeUrl());
+            webDriver.get("https://qa-complex-app-for-testing.herokuapp.com" + getRelativeUrl());
             logger.info("Login Page was opened");
         }catch (Exception e){
-            logger.error("Can not open Login page");
-            Assert.fail("Can not open Login page");
+            logger.error("Can not open Login page" + e);
+            Assert.fail("Can not open Login page" + e);
         }
     }
 
@@ -120,5 +125,32 @@ public class LoginPage extends ParentPage{
         }
         softAssertions.assertAll();
 
+    }
+    @Step
+    public void checkErrors(List<String> errors) {
+        Util.waitABit(1000);
+
+        List<WebElement> actualErrorsList = webDriver.findElements(By.xpath(
+                ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
+
+        Assert.assertEquals("Number of Messages", errors.size(), actualErrorsList.size());
+
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        ArrayList<String> textFromErrors = new ArrayList<>();
+        for (WebElement element : actualErrorsList){
+            textFromErrors.add(element.getText());
+        }
+
+        for (int i = 0; i < errors.size(); i++) {
+            softAssertions.assertThat(errors.get(i)).isIn(textFromErrors);
+        }
+        softAssertions.assertAll();
+
+    }
+
+    @Step
+    public void checkAllertText(String message) {
+        Assert.assertEquals("Message in alert ", message, alertInCenter.getText());
     }
 }
