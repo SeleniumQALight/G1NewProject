@@ -6,13 +6,13 @@ import com.google.gson.annotations.SerializedName;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CashRateDTO {
     @SerializedName("ccy")
-    String ccy;
+    private String ccy;
     @SerializedName("base_ccy")
-    String base_ccy;
+    private String base_ccy;
     @SerializedName("buy")
-    String buy;
+    private String buy;
     @SerializedName("sale")
-    String sale;
+    private String sale;
 
     public CashRateDTO(String ccy, String base_ccy, String buy, String sale) {
         this.ccy = ccy;
