@@ -75,5 +75,27 @@ public class ApiHelper {
         logger.info("All posts deleted.");
     }
 
+    public void deletePostById(String userName, String password, String postId){
+
+        String token = getToken(userName, password);
+        JSONObject requestParams = new JSONObject();
+        requestParams.put("token", token);
+
+
+            given()
+                    .contentType(ContentType.JSON)
+                    .body(requestParams.toMap()).log().all()
+                    .when()
+                    .delete(EndPoints.DELETE_POST, postId)
+                    .then()
+                    .statusCode(200);
+
+
+
+
+
+    }
+
+
 
 }
