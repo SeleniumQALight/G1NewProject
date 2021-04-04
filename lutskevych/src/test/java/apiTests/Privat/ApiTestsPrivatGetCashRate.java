@@ -20,6 +20,9 @@ public class ApiTestsPrivatGetCashRate {
     public void getCashRate(){
         CashRateDTO[] responseBody =
                 given()
+                        .param("json")
+                        .param("exchange")
+                        .param("coursid=5")
                         .log().all()
                         .filter(new AllureRestAssured())
                 .when()
