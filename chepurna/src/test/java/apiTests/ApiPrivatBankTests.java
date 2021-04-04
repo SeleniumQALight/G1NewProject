@@ -1,5 +1,5 @@
 package apiTests;
-import api.CurremcyDTO;
+import api.CurrencyDTO;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -7,33 +7,33 @@ import org.junit.Test;
 import static api.EndPoints.GET_PRIVAT_CURRENCY;
 import static io.restassured.RestAssured.given;
 
-public class ApiPrivateBankTests {
+public class ApiPrivatBankTests {
     Logger logger = Logger.getLogger(getClass());
 
     @Test
     public void getPrivateCurrency(){
 
 //GET response
-        CurremcyDTO[] responseBody = given()
+        CurrencyDTO[] responseBody = given()
                 .contentType(ContentType.JSON).log().all()
-         .when()
+                .when()
                 .get(GET_PRIVAT_CURRENCY)
-         .then()
+                .then()
                 .statusCode(200).log().all()
                 .extract()
-                .response().as(CurremcyDTO[].class);
+                .response().as(CurrencyDTO[].class);
 
 //Expected List of currency DTO
-        CurremcyDTO[] expectedListCurremcyDTO = {
-             //   new CurremcyDTO("USD", "UAH"   ),
-             //   new CurremcyDTO("EUR", "UAH"   ),
-             //   new CurremcyDTO("RUR", "UAH"   ),
-             //  new CurremcyDTO("BTC", "USD"   )
+        CurrencyDTO[] expectedListCurremcyDTO = {
+                //   new CurremcyDTO("USD", "UAH"   ),
+                //   new CurremcyDTO("EUR", "UAH"   ),
+                //   new CurremcyDTO("RUR", "UAH"   ),
+                //  new CurremcyDTO("BTC", "USD"   )
         };
 
 
 //ASSERT lengths
-       // Assert.assertEquals(responseBody.length, expectedListCurremcyDTO.length);
+        // Assert.assertEquals(responseBody.length, expectedListCurremcyDTO.length);
 
 //SOFT ASSERTIONS
         //SoftAssertions softAssertions = new SoftAssertions();
@@ -41,11 +41,12 @@ public class ApiPrivateBankTests {
         for (int i = 0; i < responseBody.length; i++) {
             //softAssertions.assertThat(expectedListCurremcyDTO[i].equals(responseBody[i]));
             logger.info("Курс " + responseBody[i].getCcy() +
-                         " к " + responseBody[i].getBase_ccy() +
-                         " покупки " + responseBody[i].getBuy() +
-                         " и продажи " +responseBody[i].getSale());
+                    " к " + responseBody[i].getBase_ccy() +
+                    " покупки " + responseBody[i].getBuy() +
+                    " и продажи " +responseBody[i].getSale());
         }
 
-       // softAssertions.assertAll();
+        // softAssertions.assertAll();
     }
 }
+

@@ -2,7 +2,7 @@ package api;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CurremcyDTO {
+public class CurrencyDTO {
 
     @SerializedName("ccy")
     String ccy;
@@ -14,14 +14,14 @@ public class CurremcyDTO {
     String sale;
 
 
-    public CurremcyDTO(String ccy, String base_ccy, String buy, String sale) {
+    public CurrencyDTO(String ccy, String base_ccy, String buy, String sale) {
         this.ccy = ccy;
         this.base_ccy = base_ccy;
         this.buy = buy;
         this.sale = sale;
     }
 
-    public CurremcyDTO(){
+    public CurrencyDTO(){
     }
 
     public String getCcy() {
