@@ -20,6 +20,9 @@ public class ProfilePage extends ParentPage {
     @FindBy(xpath = ".//*[contains(text(), 'successfully deleted')]")
     private TextInput successPostDeleteElement;
 
+    @FindBy(xpath = ".//*[@class='list-group']/a")
+    private List<WebElement> postsList;
+
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -66,5 +69,10 @@ public class ProfilePage extends ParentPage {
                 By.xpath(String.format(postTitleLocator, post_title)));
         Assert.assertEquals("Number of posts with title " + post_title , 1, postsList.size());
         return this;
+    }
+
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts ", expectedNumberOfPosts, postsList.size());
     }
 }

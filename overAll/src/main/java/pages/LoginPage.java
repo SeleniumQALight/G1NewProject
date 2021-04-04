@@ -37,6 +37,9 @@ public class LoginPage extends ParentPage{
     @FindBy (xpath = ".//*[@id ='password-register']")
     private WebElement passwordForRegistration;
 
+    @FindBy(xpath = ".//*[contains(@class,'alert-danger text-center')]")
+    private WebElement alertInCenter;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -49,7 +52,7 @@ public class LoginPage extends ParentPage{
     @Step
     public void openLoginPage(){
         try {
-            webDriver.get("https://qa-complex-app-for-testing.herokuapp.com" + getRelativeUrl());
+            webDriver.get(baseUrl + getRelativeUrl());
             logger.info("Login Page was opened");
         }catch (Exception e){
             logger.error("Can not open Login page");
@@ -120,5 +123,9 @@ public class LoginPage extends ParentPage{
         }
         softAssertions.assertAll();
 
+    }
+
+    public void checkAlertMessageText(String alertText) {
+        Assert.assertEquals("Message in alert ", alertText, alertInCenter.getText());
     }
 }
