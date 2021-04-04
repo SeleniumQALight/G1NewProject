@@ -60,7 +60,7 @@ public class LoginPage extends ParentPage{
     @Step
     public void openLoginPage(){
         try {
-            webDriver.get(baseUrl + getRelativeUrl()); // = URL
+            webDriver.get("https://qa-complex-app-for-testing.herokuapp.com" + getRelativeUrl()); // = URL
             logger.info("Login Page was opened");
         }catch (Exception e){
             logger.error("Can not open Login page");
