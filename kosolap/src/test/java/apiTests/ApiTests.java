@@ -2,6 +2,7 @@ package apiTests;
 
 import static api.EndPoints.POST_BY_USER;
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 import api.AuthorDTO;
 import api.PostDTO;
@@ -85,6 +86,16 @@ public class ApiTests {
             }
 
             softAssertions.assertAll();
+        }
+
+        @Test
+    public void getAllPostsByUserSchema() {
+
+                given().
+                        contentType(ContentType.JSON).log().all()
+                .when()
+                .get(POST_BY_USER, USER_NAME)
+                .then().assertThat().body(matchesJsonSchemaInClasspath("respons.json"));
         }
 
 }
