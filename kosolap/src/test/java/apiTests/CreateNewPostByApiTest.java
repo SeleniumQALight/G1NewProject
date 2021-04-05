@@ -5,6 +5,7 @@ import api.AuthorDTO;
 import api.EndPoints;
 import api.PostDTO;
 import io.restassured.http.ContentType;
+import org.assertj.core.api.SoftAssertions;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
@@ -44,5 +45,17 @@ public class CreateNewPostByApiTest {
                                 new AuthorDTO(userName),
                                 false)
                 };
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        for (int i = 0; i < expectedPostsDTO.length; i++) {
+            softAssertions.assertThat(expectedPostsDTO[i])
+                    .isEqualToIgnoringGivenFields(responseBody[i], "_id", "createdDate", "author");
+            softAssertions.assertThat(expectedPostsDTO[i].getAuthor())
+                    .isEqualToIgnoringGivenFields(responseBody[i].getAuthor(), "avatar");
+        }
+
+
+        softAssertions.assertAll();
+
     }
 }
