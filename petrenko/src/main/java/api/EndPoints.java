@@ -12,5 +12,5 @@ public interface EndPoints {
     String CREATE_POST = baseUrl+"/api/create-post";
 
 
-    String CURRENCY = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
+    String CURRENCY = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid={1}";
 }
