@@ -28,7 +28,7 @@ public class Database {
         Class.forName(dbDriver);
                 
         // Create a connection to the database
-        connection= DriverManager.getConnection(bdUrl,user_name,user_pass);
+        connection = DriverManager.getConnection(bdUrl,user_name,user_pass);
         
     }
 
