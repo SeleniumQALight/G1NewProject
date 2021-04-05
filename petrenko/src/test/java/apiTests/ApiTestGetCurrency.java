@@ -32,13 +32,13 @@ public class ApiTestGetCurrency {
                 .extract().response().as(CurrencyDTO[].class);
         Assert.assertEquals("Response body length is not correct -" + responseBody.length, 4, responseBody.length);
 
-        for (CurrencyDTO curr : responseBody) {
+        for (CurrencyDTO currency : responseBody) {
 
             System.out.println(String.format("Курс %s к %s покупки %s и продажи %s"
-                    , curr.getCcy()
-                    ,curr.getBase_ccy()
-                    , curr.getBuy()
-                    , curr.getSale()));
+                    , currency.getCcy()
+                    ,currency.getBase_ccy()
+                    , currency.getBuy()
+                    , currency.getSale()));
 
         }
 
