@@ -14,5 +14,6 @@ target/site
 *.ipr
 *.iws
 .allure
+yurmanovych/allure-results
 
 /akopova/drivers/chromedriver.exe
