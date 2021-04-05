@@ -27,7 +27,7 @@ public class NBUCurrencyResponseTest {
                 .get("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
          .then()
                 .statusCode(200).log().all()
-                .assertThat().body(matchesJsonSchemaInClasspath("responsenbu.json"));
+                .assertThat().body(matchesJsonSchemaInClasspath("responseNBU.json"));
     }
 
     @Test
@@ -42,7 +42,7 @@ public class NBUCurrencyResponseTest {
                 .statusCode(200).log().all()
                 .extract()
                 .response().as(NBUCurrencyDTO[].class);
-                //.assertThat().body(matchesJsonSchemaInClasspath("responseNBU.json"));
+                //.assertThat().body(matchesJsonSchemaInClasspath("responseNBU.json.json"));
         NBUCurrencyDTO[] expectedListNBUCurrencyDTO = {
          new NBUCurrencyDTO("USD","UAH","27.70000","28.10000"),
          new NBUCurrencyDTO("EUR","UAH","32.50000","33.12000"),
@@ -51,7 +51,7 @@ public class NBUCurrencyResponseTest {
         };
 
 
-        logger.info(expectedListNBUCurrencyDTO);
+        //logger.info(expectedListNBUCurrencyDTO);
         Assert.assertEquals(bodyResponse.length,expectedListNBUCurrencyDTO.length);
         SoftAssertions softAssertions = new SoftAssertions();
 
@@ -59,7 +59,6 @@ public class NBUCurrencyResponseTest {
             softAssertions.assertThat(expectedListNBUCurrencyDTO[i]).isEqualToIgnoringGivenFields(bodyResponse[i], "buy","sale");
             logger.info("Exchange   " + bodyResponse[i].getCcy()+ "  to  " + bodyResponse[i].getBase_ccy() + "  buy   "
                     + bodyResponse[i].getBuy()+ "  sale  " + bodyResponse[i].getSale() );
-
 
         }
 
