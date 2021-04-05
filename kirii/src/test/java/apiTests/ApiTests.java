@@ -2,6 +2,7 @@ package apiTests;
 
 import api.AuthorDTO;
 import api.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 import static api.EndPoints.POST_BY_USER;
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class ApiTests {
     final String USER_NAME = "autoapi";
@@ -23,6 +25,7 @@ public class ApiTests {
     public void getAllPostsByUser() {
         PostDTO[] responseBody = given()
                 .contentType(ContentType.JSON).log().all()
+                .filter(new AllureRestAssured())
                 .when()
                 .get(POST_BY_USER, USER_NAME)
                 .then()
@@ -52,6 +55,7 @@ public class ApiTests {
         String responseBody =
                 given()
                         .contentType(ContentType.JSON).log().all()
+                        .filter(new AllureRestAssured())
                         .when()
                         .get(POST_BY_USER, "notValidUser")
                         .then()
@@ -66,6 +70,7 @@ public class ApiTests {
         Response responseBody =
                 given()
                         .contentType(ContentType.JSON).log().all()
+                        .filter(new AllureRestAssured())
                         .when()
                         .get(POST_BY_USER, USER_NAME)
                         .then()
@@ -80,6 +85,16 @@ public class ApiTests {
             softAssertions.assertThat(authorList.get(i).get("username")).as("Item number " + i).isEqualTo(USER_NAME);
         }
         softAssertions.assertAll();
+    }
+
+    @Test
+    public void getAllPostsByUserSchema() {
+                given()
+                        .contentType(ContentType.JSON).log().all()
+                        .filter(new AllureRestAssured())
+                        .when()
+                        .get(POST_BY_USER, USER_NAME)
+                        .then().assertThat().body(matchesJsonSchemaInClasspath("respons.json"));
     }
 
 }
