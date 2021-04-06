@@ -24,17 +24,6 @@ public class GetTests {
     final private String USER_NAME = "autoapi";
 
     @Test
-    public void getPBExchangeRates() {
-        given()
-                .contentType(ContentType.JSON).log().uri()
-                .filter(new AllureRestAssured())
-                .when()
-                .get(Endpoints.PB_GET_EXCH_RATES)
-                .then()
-                .statusCode(200).log().all();
-    }
-
-    @Test
     public void getPBBranches() {
         String city = "Днепропетровск";
         String branch = "Титова";
@@ -54,7 +43,6 @@ public class GetTests {
 
         Assert.assertEquals(city, response.jsonPath().getString("city"));
     }
-
 
     @Test
     public void getPostsByUser() {
