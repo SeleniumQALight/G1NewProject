@@ -28,7 +28,8 @@ public class Database {
         Class.forName(dbDriver);
                 
         // Create a connection to the database
-        connection= DriverManager.getConnection(bdUrl,user_name,user_pass);
+        //TODO 04/04/2021
+        //connection=  DriverHelper.getConnection(bdUrl,user_name,user_pass);
         
     }
 

@@ -10,7 +10,7 @@ public class LoginPage_StepDefinitions {
     @Given("^User opens 'Login' page$")
     public void userOpenLoginPage(){
         loginPage.openLoginPage();
-
     }
+
 
 }

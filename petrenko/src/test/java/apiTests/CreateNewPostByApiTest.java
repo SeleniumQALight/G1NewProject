@@ -26,9 +26,9 @@ public class CreateNewPostByApiTest {
 
 
 @Before
-public void deletePostWhilePresent() {
+public void deleteALLPosts() {
+apiHelper.deleteAllPostsTillPresent(userName, password );
 
-        apiHelper.deletePostWhilePresent(userName,password);
 
 }
 

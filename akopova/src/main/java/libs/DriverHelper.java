@@ -4,11 +4,14 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.sql.Connection;
 import java.util.concurrent.TimeUnit;
 
-public class DriverManager {
+public class DriverHelper {
 
     private static WebDriver webDriver;
+
+
 
     public void createDriver(){
         WebDriverManager.chromedriver().setup();

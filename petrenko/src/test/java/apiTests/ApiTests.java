@@ -4,6 +4,7 @@ import api.AuthorDTO;
 import api.EndPoints;
 import api.PostDTO;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -28,10 +29,9 @@ public class ApiTests {
         Logger logger = Logger.getLogger(getClass());
 
 
-
         PostDTO[] responseBody = given()
                 .contentType(ContentType.JSON).log().all()
-
+                .filter(new AllureRestAssured())
                 .when()
 
                 .get(POST_BY_USER, USER_NAME)
@@ -54,8 +54,8 @@ public class ApiTests {
         for (int i = 0; i < expectedListPostDTO.length; i++) {
             softAssertions.assertThat(expectedListPostDTO[i])
                     .isEqualToIgnoringGivenFields(responseBody[i], "_id", "createdDate", "author");
-        softAssertions.assertThat(expectedListPostDTO[i]
-                .getAuthor()).isEqualToIgnoringGivenFields(responseBody[i].getAuthor(),"avatar");
+            softAssertions.assertThat(expectedListPostDTO[i]
+                    .getAuthor()).isEqualToIgnoringGivenFields(responseBody[i].getAuthor(), "avatar");
         }
 
 
@@ -63,21 +63,22 @@ public class ApiTests {
 
 
     }
+
     @Test
-    public void getAllPostsByUserNegative(){
+    public void getAllPostsByUserNegative() {
         String responseBody =
                 given()
                         .contentType(ContentType.JSON).log().all()
+                        .filter(new AllureRestAssured())
                         .when()
-                        .get(POST_BY_USER,"notValidUser")
+                        .get(POST_BY_USER, "notValidUser")
                         .then()
                         .statusCode(200).log().all()
                         .extract().response().getBody().asString();
 
-        Assert.assertEquals("","\"Sorry, invalid user requested.undefined\"", responseBody);
+        Assert.assertEquals("", "\"Sorry, invalid user requested.undefined\"", responseBody);
 
     }
-
 
 
     @Test
@@ -85,6 +86,7 @@ public class ApiTests {
         Response responseBody =
                 given()
                         .contentType(ContentType.JSON).log().all()
+                        .filter(new AllureRestAssured())
                         .when()
                         .get(POST_BY_USER, USER_NAME)
                         .then()
@@ -93,12 +95,11 @@ public class ApiTests {
         List<String> titleList = responseBody.jsonPath().getList("title", String.class);
         List<Map> authorList = responseBody.jsonPath().getList("author", Map.class);
         SoftAssertions softAssertions = new SoftAssertions();
-        for (int i = 0; i <titleList.size() ; i++) {
+        for (int i = 0; i < titleList.size(); i++) {
             softAssertions.assertThat(titleList.get(i)).contains("test").as("Item number " + i).contains("test2");
-softAssertions.assertThat(authorList.get(i).get("username")).as("Item number " + i).isEqualTo(USER_NAME);
+            softAssertions.assertThat(authorList.get(i).get("username")).as("Item number " + i).isEqualTo(USER_NAME);
 
         }
-
 
 
         softAssertions.assertAll();
@@ -108,11 +109,12 @@ softAssertions.assertThat(authorList.get(i).get("username")).as("Item number " +
     @Test
     public void getAllPostsByUserSchema() {
 
-                given()
-                        .contentType(ContentType.JSON).log().all()
-                        .when()
-                        .get(POST_BY_USER, USER_NAME)
-                        .then().assertThat().body(matchesJsonSchemaInClasspath("respons.json"));
+        given()
+                .contentType(ContentType.JSON).log().all()
+                .filter(new AllureRestAssured())
+                .when()
+                .get(POST_BY_USER, USER_NAME)
+                .then().assertThat().body(matchesJsonSchemaInClasspath("respons.json"));
 
     }
 
