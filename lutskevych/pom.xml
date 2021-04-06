@@ -198,7 +198,7 @@
 
                             <configuration>
                                 <glue>StepDefinitions</glue>
-                                <featuresDirectory>D:\workSpace\QaLight\G1Project\G1NewProject\overAll\src\test\resources\features\loginTest</featuresDirectory>
+                                <featuresDirectory>src/test/resources</featuresDirectory>
                                 <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
                                 <format>json,html</format>
                                 <tags>"${tag}"</tags>
@@ -229,14 +229,14 @@
                             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                         </argLine>
                         <properties>
-                            <property>
-                                <name>listener</name>
-                                <value>io.qameta.allure.junit4.AllureJunit4</value>
-                            </property>
 <!--                            <property>-->
 <!--                                <name>listener</name>-->
-<!--                                <value>io.tapack.allure.cucumberjvm.AllureCucumberListener</value>-->
+<!--                                <value>io.qameta.allure.junit4.AllureJunit4</value>-->
 <!--                            </property>-->
+                            <property>
+                                <name>listener</name>
+                                <value>io.tapack.allure.cucumberjvm.AllureCucumberListener</value>
+                            </property>
                         </properties>
                         <systemProperties>
                             <property>
