@@ -13,12 +13,14 @@ public class Hooks {
 
     @Before
     public void setUp(Scenario scenario){
+        logger.info(scenario.getName() + " started");
         driverHelper.createDriver();
     }
 
     @After
-    public void tearDown(){
+    public void tearDown(Scenario scenario){
         driverHelper.closeDriver();
+        logger.info(scenario.getName() + " ended with status " + scenario.getStatus());
     }
 
 
