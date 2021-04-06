@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class DriverManager {
+public class DriverHelper {
     private static WebDriver webDriver;
 
     public void createDriver(){
