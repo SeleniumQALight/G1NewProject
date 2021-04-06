@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class DriverManager {
+public class DriverHelper {
     private  static WebDriver webDriver;
 
     public void createDriver (){
