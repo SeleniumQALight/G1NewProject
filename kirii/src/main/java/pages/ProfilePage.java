@@ -1,6 +1,5 @@
 package pages;
 
-import libs.Util;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,12 +15,15 @@ import static org.hamcrest.CoreMatchers.containsString;
 public class ProfilePage extends ParentPage{
     @FindBy(xpath = ".//*[text()='Post successfully deleted']")
     private TextInput checkSuccessDeletePost;
+
+    final String postTitleLocator = ".//*[text()='%s']";
+
     @FindBy(xpath = ".//strong[contains(text(),'Yaroslav5 Title of Post')]")
     private TextInput yaroslavPost;
 
+    @FindBy(xpath = ".//*[@class='list-group']/a")
+    private List<WebElement> postsList;
 
-
-    final String postTitleLocator = ".//*[text()='%s']";
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -84,5 +86,9 @@ public class ProfilePage extends ParentPage{
         List<WebElement>postList = webDriver.findElements(By.xpath((format(postTitleLocator, edited_post_title))));
         Assert.assertEquals("Number of posts with title " + edited_post_title,1, postList.size());
         return this;
+    }
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts", expectedNumberOfPosts, postsList.size());
     }
 }
