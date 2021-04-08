@@ -1,15 +1,38 @@
 package StepDefinitions;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
-import libs.DriverManager;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import libs.DriverHelper;
 import pages.LoginPage;
 
 public class LoginPage_StepDefinitions {
-    private LoginPage loginPage = new LoginPage(DriverManager.getWebDriver());
+    private LoginPage loginPage = new LoginPage(DriverHelper.getWebDriver());
 
     @Given("^User opens 'Login' page$")
     public void userOpenLoginPage(){
         loginPage.openLoginPage();
 
+    }
+
+    @When("^User enters '(.*)' login into 'Login' input on 'Login' page$")
+    public void userEntersLoginIntoLoginInputOnLoginPage(String userName) {
+        loginPage.enterUsernameIntoLogin(userName);
+    }
+
+    @When("^User enters '(.*)' passWord into 'passWord' input on 'Login' page$")
+    public void userEntersPassWordIntoPassWordInputOnLogiPpage(String passWord)  {
+        loginPage.enterPasswordIntoLogin(passWord);
+    }
+
+    @And("^User click on 'SignIn' button on 'Login' page$")
+    public void userClickOnSignInButtonOnLoginPage() {
+        loginPage.clickButtonSignIn();
+    }
+
+    @Then("^User sees alert message with text '(.*)'$")
+    public void userSeesAlertMessageWithTextInvalidUsernamePassword(String messageTest) {
+        loginPage.checkAlertMessageText(messageTest);
     }
 }
