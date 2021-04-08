@@ -2,6 +2,15 @@
 Feature: User Login
 
    @R001
-   Scenario: R001 Login with invalid Login
+   Scenario Outline: R001 Login with invalid Login
+   Given User opens 'Login' page
+      When User enters '<login>' login into 'Login' input on 'Login' page
+      And User enters '<passWord>' passWord into 'PassWord' input on 'Login' page
+      And User clicks on 'SignIn' button on 'Login' page
+      Then User sees alert message with text 'Invalid username \ password'
 
-      Given User opens 'Login' page
+      Examples:
+      | login       | passWord     |
+      | Wrong login | Wrong pass   |
+      |             | 123456qwerty |
+

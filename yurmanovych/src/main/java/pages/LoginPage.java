@@ -11,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
+import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,9 @@ public class LoginPage extends ParentPage{
 
     @FindBy (xpath = ".//*[@id ='password-register']")
     private WebElement passwordForRegistration;
+
+    @FindBy(xpath = ".//*[contains(@class,'alert-danger text-center')]")
+    private WebElement alertInCenter;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -118,5 +122,10 @@ public class LoginPage extends ParentPage{
         }
         softAssertions.assertAll();
 
+    }
+
+    public void verifyErrorMessageText(String errorMessage) {
+        
+        Assert.assertEquals("Message in the center",errorMessage, alertInCenter.getText());
     }
 }

@@ -11,14 +11,16 @@ public class Hooks {
     Logger logger = Logger.getLogger(getClass());
 
     @Before
-    public void setUp(Scenario scenario){
-        logger.info(scenario.getName() + " was started");
+    public void setUp (Scenario scenario){
+        logger.info(scenario.getName() + " Was started");
+
         driverHelper.createDriver();
     }
 
-    @After
-    public void tearDown(Scenario scenario){
-        logger.info(scenario.getName() + " was ended with status" + scenario.getStatus());
+    @After public void tearDown (Scenario scenario){
         driverHelper.closeDriver();
+        logger.info(scenario.getName() + "was ended with status " + scenario.getStatus());
+
+
     }
 }

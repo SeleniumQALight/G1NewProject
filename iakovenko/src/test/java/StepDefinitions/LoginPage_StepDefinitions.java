@@ -8,22 +8,22 @@ import libs.DriverHelper;
 import pages.LoginPage;
 
 public class LoginPage_StepDefinitions {
-    private LoginPage loginPage = new LoginPage(DriverHelper.getWebDriver());
+    private LoginPage loginPage =new LoginPage(DriverHelper.getWebDriver());
 
-    @Given("^User opens 'Login' page$")
+    @Given("^User open 'Login' page$")
     public void userOpenLoginPage(){
         loginPage.openLoginPage();
+
     }
 
-
     @When("^User enters '(.*)' login into 'Login' input on 'Login' page$")
-    public void userEntersWrongLoginIntoLoginInputOnLoginPage(String userName) {
+    public void userEntersLoginIntoLoginInputOnLoginPage(String userName) {
         loginPage.enterLoginSignIn(userName);
     }
 
-    @And("^User enters '(.*)' passWord into 'Password' input on 'Login' page$")
-    public void userEntersWrongPassPassWordIntoPasswordInputOnLoginPage(String passWord) {
-        loginPage.enterPassWordSignIn(passWord);
+    @And("^User enters '(.*)' passWord into 'PassWord' input on 'Login' page$")
+    public void userEntersWrongPassPassWordIntoPassWordInputOnLoginPage(String passWord) {
+        loginPage.enterPasswordSignIn(passWord);
     }
 
     @And("^User click on 'SignIn' button on 'Login' page$")
@@ -33,6 +33,6 @@ public class LoginPage_StepDefinitions {
 
     @Then("^User sees alert message with text '(.*)'$")
     public void userSeesAlertMessageWithTextInvalidUsernamePassword(String messageText) {
-        loginPage.checkAllertMessageText(messageText);
+        loginPage.checkAlertMessageText(messageText);
     }
 }

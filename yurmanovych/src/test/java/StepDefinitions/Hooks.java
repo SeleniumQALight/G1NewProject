@@ -1,4 +1,4 @@
-package StepsDefinitions;
+package StepDefinitions;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -12,12 +12,14 @@ public class Hooks {
 
     @Before
     public void setup(Scenario scenario){
+        LOG.info(scenario.getName() + " has been launched.");
         driverManager.createDriver();
 
     }
 
     @After
-    public void teardown(){
+    public void teardown(Scenario scenario){
         driverManager.closeDriver();
+        LOG.info(scenario.getName() + " has ended with status: "+scenario.getStatus());
     }
 }
