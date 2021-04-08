@@ -3,7 +3,7 @@ package libs;
 public class TestData {
 
     // Correct Credentials to log in
-    public final static String VALID_LOGIN = "auto";
+    public final static String VALID_LOGIN = "inga1";
     public final static String VALID_PASSWORD = "123456qwerty";
 
 

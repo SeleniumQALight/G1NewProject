@@ -1,6 +1,7 @@
 package pages;
 
-import libs.MyUtil;
+//import com.sun.deploy.util.JVMParameters;
+//import libs.MyUtil;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,7 +28,9 @@ public class MyProfilePage extends ParentPage{
     @FindBy(xpath = ".//*[contains(text(), 'successfully deleted')]")
     private TextInput deletionSuccessText;
 
-
+    // List of my mesages on my profile page
+    @FindBy(xpath=".//*[@class='list-group']/a")
+    private List<WebElement> postList;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -35,8 +38,12 @@ public class MyProfilePage extends ParentPage{
 
     @Override
     String getRelativeUrl() {
-        return "/profile/auto";
+        return "/profile/inga1";
     }
+ //   String getRelativeUrl() {
+       // return "/profile/auto";
+         //   return "/profile/auto";
+ //   }
 
 
     public MyProfilePage checkIsRedirectedOnMyProfilePage(){
@@ -147,5 +154,8 @@ public class MyProfilePage extends ParentPage{
      }
 
 
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+         Assert.assertEquals("", expectedNumberOfPosts, postList.size());
 
+    }
 }
