@@ -36,7 +36,7 @@ public abstract class ParentPage {
 
     abstract String getRelativeUrl();
 
-    protected void waitChatToBeHide(){
+    protected void waitChatToBeHidden(){
         webDriverWait10.until(ExpectedConditions
                 .invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
     }

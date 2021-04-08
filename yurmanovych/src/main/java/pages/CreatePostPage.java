@@ -27,7 +27,7 @@ public class CreatePostPage extends ParentPage {
     }
 
     public CreatePostPage checkIsRedirectedOnCreatePostPage() {
-        waitChatToBeHide();
+        waitChatToBeHidden();
         Assert.assertEquals("Invalid page"
                 , baseUrl + getRelativeUrl()
                 , webDriver.getCurrentUrl());
