@@ -161,12 +161,7 @@ public class LoginPage extends ParentPage {
     @Step
     public void checkTextOfErrorsInLoginIn(String textOfErrorMessages) {
 
-        if(textOfErrorMessages.isEmpty()){
-            logger.info("textOfErrorMessages ia empty.");
-        }
-        else {
-            Assert.assertEquals("", textOfErrorMessages, webDriver.findElement(By.xpath(popUpLoginError)).getText() );
-        }
+      Assert.assertEquals("Message in center ", textOfErrorMessages, webDriver.findElement(By.xpath(popUpLoginError)).getText() );
 
     }
 }

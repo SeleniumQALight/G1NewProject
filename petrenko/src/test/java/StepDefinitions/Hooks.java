@@ -12,7 +12,7 @@ public class Hooks {
     Logger logger = Logger.getLogger(getClass());
     @Before
     public void setUp(Scenario scenario){
-        driverHelper.closeDriver();
+        driverHelper.createDriver();
 
 
 

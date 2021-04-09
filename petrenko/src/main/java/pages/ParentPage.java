@@ -33,7 +33,6 @@ public abstract class ParentPage {
 
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
-        //  PageFactory.initElements(webDriver, this);
         PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(webDriver)), this);
         webDriverWait10 = new WebDriverWait(webDriver, 10);
         webDriverWait15 = new WebDriverWait(webDriver, 15);
@@ -77,6 +76,7 @@ public abstract class ParentPage {
         Assert.fail("Can not work with element " + e);
 
     }
+
     @Step
     protected void clickOnElement(WebElement webElement) {
         try {
