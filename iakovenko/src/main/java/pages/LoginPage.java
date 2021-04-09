@@ -2,6 +2,7 @@ package pages;
 
 import io.qameta.allure.Step;
 import libs.TestData;
+import org.apache.http.client.entity.EntityBuilder;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -31,6 +32,8 @@ public class LoginPage extends ParentPage {
     private TextInput emailForRegistration;
     @FindBy(xpath = ".//*[@id ='password-register']")
     private WebElement passwordForRegistration;
+    @FindBy(xpath = ".//*[contains(@class,'alert-danger text-center')]")
+    private WebElement alertInCenter;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -44,7 +47,7 @@ public class LoginPage extends ParentPage {
     @Step
     public void openLoginPage() {
         try {
-            webDriver.get("https://qa-complex-app-for-testing.herokuapp.com" + getRelativeUrl());
+            webDriver.get(baseUrl + getRelativeUrl());
             logger.info("Login Page was opened");
         } catch (Exception e) {
             logger.error("Can not open Login Page");
@@ -112,6 +115,10 @@ public class LoginPage extends ParentPage {
             softAssertions.assertThat(errorsArray[i]).isIn(textFromErrors);
         }
         softAssertions.assertAll();
+    }
+
+    public void checkAlertMessageText(String messageText) {
+        Assert.assertEquals("Message in Center", messageText, alertInCenter.getText());
     }
 }
 

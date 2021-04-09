@@ -1,6 +1,7 @@
 package Pages;
 
 import io.qameta.allure.Step;
+import javafx.scene.input.InputMethodTextRun;
 import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -44,6 +45,9 @@ public class LoginPage extends ParentPage{
     @FindAll(@FindBy(xpath =".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"))
     private List <WebElement> listOfValidatiomMessages;
 
+    @FindBy(xpath = ".//*[contains(@class,'alert-danger text-center')]")
+    private WebElement alertInCenter;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -60,7 +64,7 @@ public class LoginPage extends ParentPage{
     @Step
     public void openLoginPage(){
         try {
-            webDriver.get("https://qa-complex-app-for-testing.herokuapp.com" + getRelativeUrl()); // = URL
+            webDriver.get(baseUrl + getRelativeUrl()); // = URL
             logger.info("Login Page was opened");
         }catch (Exception e){
             logger.error("Can not open Login page");
@@ -152,6 +156,9 @@ public class LoginPage extends ParentPage{
         return this;
     }
 
+    public void checkAlertMessageText(String messageText) {
+        Assert.assertEquals("Message in Center ", messageText, alertInCenter.getText());
+    }
 }
 
 

@@ -1,0 +1,99 @@
+
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "ccy": {
+          "type": "string"
+        },
+        "base_ccy": {
+          "type": "string"
+        },
+        "buy": {
+          "type": "string"
+        },
+        "sale": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ccy",
+        "base_ccy",
+        "buy",
+        "sale"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "ccy": {
+          "type": "string"
+        },
+        "base_ccy": {
+          "type": "string"
+        },
+        "buy": {
+          "type": "string"
+        },
+        "sale": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ccy",
+        "base_ccy",
+        "buy",
+        "sale"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "ccy": {
+          "type": "string"
+        },
+        "base_ccy": {
+          "type": "string"
+        },
+        "buy": {
+          "type": "string"
+        },
+        "sale": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ccy",
+        "base_ccy",
+        "buy",
+        "sale"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "ccy": {
+          "type": "string"
+        },
+        "base_ccy": {
+          "type": "string"
+        },
+        "buy": {
+          "type": "string"
+        },
+        "sale": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ccy",
+        "base_ccy",
+        "buy",
+        "sale"
+      ]
+    }
+  ]
+}

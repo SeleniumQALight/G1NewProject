@@ -8,4 +8,6 @@ public interface EndPoints {
     String LOGIN = baseUrl+ "/api/login";
     String CREATE_POST = baseUrl + "/api/create-post";
     String DELETE_POST = baseUrl + "/api/post/{1}";
+
+    String GET_NBU_CURRENCY = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
 }

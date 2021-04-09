@@ -1,6 +1,7 @@
 package pages;
 
 import io.qameta.allure.Step;
+import javafx.scene.input.InputMethodTextRun;
 import libs.MyUtil;
 import libs.TestData;
 import org.junit.Assert;
@@ -55,7 +56,11 @@ public class LoginPage extends ParentPage {
         public static String emailErrorMessageLocator = ".//*[@id='email-register']/following-sibling::*";
         public static String passwordErrorMessageLocator = ".//*[@id='password-register']/following-sibling::*";
 
-        public LoginPage(WebDriver webDriver) {
+        @FindBy(xpath = ".//*[contains(@class,'alert-danger text-center')]")
+        private WebElement alertInCenter;
+    //private InputMethodTextRun alertInCenter;
+
+    public LoginPage(WebDriver webDriver) {
             super(webDriver);
         }
 
@@ -66,7 +71,8 @@ public class LoginPage extends ParentPage {
 
         public void openLoginPage() {
             try {
-                webDriver.get("https://qa-complex-app-for-testing.herokuapp.com" + getRelativeUrl());
+                //webDriver.get("https://qa-complex-app-for-testing.herokuapp.com" + getRelativeUrl());
+                webDriver.get(baseUrl + getRelativeUrl());
                 logger.info("Login Page opened");
             } catch (Exception e) {
                 logger.info("can't open Login Page");
@@ -259,6 +265,7 @@ public class LoginPage extends ParentPage {
         }
 
 
-
-
+    public void checkAlertMessageText(String messageText) {
+            Assert.assertEquals("Message in Center", messageText, alertInCenter.getText());
+    }
 }
