@@ -1,5 +1,6 @@
 package pages;
 
+import com.sun.xml.txw2.DatatypeWriter;
 import libs.TestData;
 import libs.Util;
 import org.junit.Assert;
@@ -26,6 +27,8 @@ public class MyProfilePage extends ParentPage {
     private Button myProfileButton;
     @FindBy(xpath = ".//*[contains(text(), 'successfully deleted')]")
     private TextBlock successPostDeleteElement;
+    @FindBy(xpath = ".//*[@class='list-group']/a")
+    private List<WebElement> postsList;
 
     @Override
     String getRelativeUrl() {
@@ -119,5 +122,10 @@ public class MyProfilePage extends ParentPage {
     public SinglePostPage clickOnPostWithTitle(String post_title) {
         clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator,post_title))));
         return new SinglePostPage(webDriver);
+    }
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+
+        Assert.assertEquals("Number of posts ", expectedNumberOfPosts, postsList.size());
     }
 }

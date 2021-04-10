@@ -5,29 +5,24 @@ import api.AuthorDTO;
 import api.EndPoints;
 import api.PostDTO;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
-
-import static api.EndPoints.POST_BY_USER;
 import static io.restassured.RestAssured.given;
 
 public class CreateNewPostByApiTest {
 
     final String userName = "bald2004";
-    final String password = "tetyyytetyyytetyyy";
+    final String passWord = "tetyyytetyyytetyyy";
     ApiHelper apiHelper = new ApiHelper();
 
 
 @Before
 public void deleteALLPosts() {
-apiHelper.deleteAllPostsTillPresent(userName, password );
+apiHelper.deleteAllPostsTillPresent(userName, passWord);
 
 
 }
@@ -37,7 +32,7 @@ apiHelper.deleteAllPostsTillPresent(userName, password );
     @Test
     public void createNewPosts() {
 
-        String token = apiHelper.getToken(userName, password);
+        String token = apiHelper.getToken(userName, passWord);
         JSONObject requestParams  = new JSONObject();
         requestParams.put("title", "New POST from API");
         requestParams.put("body", "post body");
