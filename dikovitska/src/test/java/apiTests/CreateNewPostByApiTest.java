@@ -38,7 +38,7 @@ public class CreateNewPostByApiTest {
                 .body(requestParams.toMap()).log().all()
         .when()
                 .post(EndPoints.CREATE_POST)
-                .then()
+         .then()
                 .statusCode(200);
 
 
