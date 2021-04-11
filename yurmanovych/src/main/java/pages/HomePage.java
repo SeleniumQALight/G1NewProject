@@ -54,6 +54,7 @@ public class HomePage extends ParentPage {
     }
 
     public ProfilePage clickOnProfileButton() {
+        waitChatToBeHidden();
         clickOnElement(profileButton);
         return new ProfilePage(webDriver);
     }
