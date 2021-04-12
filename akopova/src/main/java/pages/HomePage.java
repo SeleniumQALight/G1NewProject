@@ -76,7 +76,9 @@ public class HomePage extends ParentPage{
     }
 
     public void clickOnProfileButton() {
+        waitChatToBeHide();
         clickOnElement(profileButton);
+
     }
 
 

@@ -1,6 +1,7 @@
 package apiTests;
 
 import api.AuthorDTO;
+import api.CurrencyDTO;
 import api.EndPoints;
 import api.PostDTO;
 import io.qameta.allure.restassured.AllureRestAssured;
@@ -114,19 +115,45 @@ public class ApiTests {
 
     }
 
-
-
-
-
-
     @Test
     public void getCurrenciesRateCashJson(){
-        given()
+        CurrencyDTO[] actualResponseCurrencyBody = given()
                 .contentType(ContentType.JSON).log().all()
         .when()
                 .get(currencyExchangeCashJson)
         .then()
-                .statusCode(200).log().all();
+                .statusCode(200).log().all()
+                .extract().as(CurrencyDTO[].class);
+
+        CurrencyDTO[] expectedListResponseCurrency =  {
+                new CurrencyDTO("USD", "UAH", "27.65000", "28.05000"),
+                new CurrencyDTO("EUR", "UAH", "32.75000", "33.35000"),
+                new CurrencyDTO("RUR", "UAH", "0.35200", "0.38200"),
+                new CurrencyDTO("BTC", "USD", "56598.7153", "62588.4525")
+        };
+
+        for(int i=0; i< expectedListResponseCurrency.length; i++) {
+            logger.info("Rate "+ expectedListResponseCurrency[i].getCcy() +
+            " to " + expectedListResponseCurrency[i].getBase_ccy() + ". " +
+            " Buy : " + expectedListResponseCurrency[i].getBuy() +
+            ", Sell : " + expectedListResponseCurrency[i].getSale());
+        }
+
+        Assert.assertEquals(actualResponseCurrencyBody.length, expectedListResponseCurrency.length);
+
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        for (int i=0; i< expectedListResponseCurrency.length; i++) {
+
+            softAssertions.assertThat(expectedListResponseCurrency[i])
+                    .isEqualToIgnoringGivenFields(actualResponseCurrencyBody[i]
+                            , "buy", "sale");
+
+
+        }
+
+        softAssertions.assertAll();
+
     }
 
     @Test

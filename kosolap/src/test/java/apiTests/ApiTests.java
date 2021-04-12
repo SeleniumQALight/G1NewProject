@@ -6,6 +6,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 
 import api.AuthorDTO;
 import api.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
@@ -29,6 +30,7 @@ public class ApiTests {
 
         PostDTO[] responseBody  = given()
                 .contentType(ContentType.JSON).log().all()
+                .filter(new AllureRestAssured())
         .when()
                 .get(POST_BY_USER, USER_NAME)
         .then()
@@ -59,6 +61,7 @@ public class ApiTests {
         String responseBody =
                 given()
                         .contentType(ContentType.JSON).log().all()
+                        .filter(new AllureRestAssured())
                         .when()
                         .get(POST_BY_USER, "notValidUser")
                         .then()
@@ -72,6 +75,7 @@ public class ApiTests {
             Response responseBody =
                     given()
                             .contentType(ContentType.JSON).log().all()
+                            .filter(new AllureRestAssured())
                             .when()
                             .get(POST_BY_USER, USER_NAME)
                             .then()
@@ -93,6 +97,7 @@ public class ApiTests {
 
                 given().
                         contentType(ContentType.JSON).log().all()
+                        .filter(new AllureRestAssured())
                 .when()
                 .get(POST_BY_USER, USER_NAME)
                 .then().assertThat().body(matchesJsonSchemaInClasspath("respons.json"));

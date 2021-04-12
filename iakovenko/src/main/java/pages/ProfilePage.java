@@ -1,6 +1,7 @@
 package pages;
 
 import libs.Util;
+import net.bytebuddy.dynamic.Transformer;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +17,8 @@ public class ProfilePage extends ParentPage {
     final String postTitleLocator = ".//*[text()='%s']";
     @FindBy(xpath = ".//*[contains(text(), 'successfully deleted')]")
     private TextInput succesPostDeleteElement;
+    @FindBy(xpath = ".//*[@class='list-group']/a")
+    private List<WebElement> postsList;
 
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -66,5 +69,9 @@ public class ProfilePage extends ParentPage {
         List<WebElement> postList = webDriver.findElements(By.xpath(String.format(postTitleLocator, post_title)));
         Assert.assertEquals("Number of posts with title" + post_title,1, postList.size());
         return this;
+    }
+
+    public void checkNumberOfPosts(int expectedNUmberOfPosts) {
+        Assert.assertEquals("Number of posts", expectedNUmberOfPosts, postsList.size());
     }
 }
