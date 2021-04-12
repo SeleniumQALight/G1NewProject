@@ -1,6 +1,7 @@
 //HOMEWORK 02-13
 package Pages;
 
+import com.sun.deploy.util.JVMParameters;
 import org.hamcrest.core.StringContains;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -22,6 +23,9 @@ public class ProfilePage extends ParentPage{
     private TextInput successDeletedMessageElement;
 
     final String postTitleLocator = ".//*[text()='%s']";
+
+    @FindBy(xpath = ".//*[@class='list-group']/a")
+    private List<WebElement> postsList;
 
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -93,4 +97,8 @@ public class ProfilePage extends ParentPage{
         return this;
     }
 
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts ", expectedNumberOfPosts, postsList.size());
+
+    }
 }

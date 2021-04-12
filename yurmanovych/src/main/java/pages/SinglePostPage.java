@@ -28,7 +28,7 @@ public class SinglePostPage extends ParentPage {
     }
 
     public SinglePostPage checkIsRedirectToSinglePostPage(){
-        waitChatToBeHide();
+        waitChatToBeHidden();
         Assert.assertThat("Invalid page"
                 , webDriver.getCurrentUrl()
                 , containsString(baseUrl + getRelativeUrl()));
