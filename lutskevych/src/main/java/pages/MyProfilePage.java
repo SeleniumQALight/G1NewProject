@@ -1,5 +1,6 @@
 package pages;
 
+import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import libs.Util;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -24,6 +25,8 @@ public class MyProfilePage extends ParentPage {
 
     @FindBy(xpath = "//*[contains(text(),'Post successfully deleted')]")
     private TextInput successessDeleteMessage;
+    @FindBy(xpath = ".//*[@class='list-group']/a")
+    private List<WebElement> postsList;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -101,5 +104,9 @@ public class MyProfilePage extends ParentPage {
         List<WebElement>postList = webDriver.findElements(By.xpath((String.format(postTitleLocator, edited_post_title))));
         Assert.assertEquals("Number of posts with title " + edited_post_title,1, postList.size());
         return this;
+    }
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts ", expectedNumberOfPosts, postsList.size());
     }
 }
