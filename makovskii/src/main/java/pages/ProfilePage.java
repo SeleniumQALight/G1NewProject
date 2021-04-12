@@ -1,7 +1,5 @@
 package pages;
 
-import jdk.nashorn.api.scripting.ScriptObjectMirror;
-import libs.Util;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
