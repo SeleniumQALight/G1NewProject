@@ -190,7 +190,7 @@
 
               <configuration>
                 <glue>StepDefinitions</glue>
-                <featuresDirectory>D:\workSpace\QaLight\G1Project\G1NewProject\overAll\src\test\resources\features\loginTest</featuresDirectory>
+                <featuresDirectory>src/test/resources</featuresDirectory>
                 <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
                 <format>json,html</format>
                 <tags>"${tag}"</tags>
