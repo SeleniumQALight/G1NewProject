@@ -38,7 +38,7 @@ public class CurrencyHelper {
 
                 TestData.RATE_CURRENCY_BY_API = currencyDTO.getBuy();
                 logger.info(TestData.RATE_CURRENCY_BY_API);
-                TestData.RATE_CURRENCY_SALE_API = currencyDTO.getBase_ccy();
+                TestData.RATE_CURRENCY_SALE_API = currencyDTO.getSale();
                 logger.info(TestData.RATE_CURRENCY_SALE_API);
             }
         }

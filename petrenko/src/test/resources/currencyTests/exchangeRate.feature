@@ -15,4 +15,4 @@ Feature: ExchangeRate.
       | USD      |  | USD      || USD      |
       | EUR      |  | EUR      || EUR      |
       | RUB      |  | RUB      || RUB      |
-      | EUR      |  | EUR      || EUR      |
+#      | BTC      |  | BTC      || BTC      |
