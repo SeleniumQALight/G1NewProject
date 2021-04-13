@@ -225,7 +225,6 @@
                 <name>listener</name>
                 <value>io.qameta.allure.junit4.AllureJunit4</value>
               </property>
-              Taras Radulenko, [01.04.21 20:18]
 <!--                        <property>-->
 <!--                            <name>listener</name>-->
 <!--                            <value>io.tapack.allure.cucumberjvm.AllureCucumberListener</value>-->
