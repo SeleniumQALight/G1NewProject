@@ -29,7 +29,7 @@ public class Database {
                 
         // Create a connection to the database
    //   connection= DriverHelper.getConnection(bdUrl,user_name,user_pass);
-        
+        connection= DriverManager.getConnection(bdUrl,user_name,user_pass);
     }
 
     /*
