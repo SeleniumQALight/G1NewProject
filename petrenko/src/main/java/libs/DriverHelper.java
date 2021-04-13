@@ -23,7 +23,8 @@ public class DriverHelper {
     }
 
 
-    public static WebDriver getWebDriver() {
+    public static WebDriver getWebDriver()
+    {
         return webDriver;
     }
 }
