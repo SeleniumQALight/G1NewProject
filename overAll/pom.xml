@@ -19,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <aspectj.version>1.8.9</aspectj.version>
+        <aspectj.version>1.9.6</aspectj.version>
         <compiler.version>1.8</compiler.version>
         <tag>@R001</tag>
     </properties>
@@ -174,7 +174,20 @@
             <artifactId>allure-rest-assured</artifactId>
             <version>2.13.8</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber2-jvm -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber4-jvm</artifactId>
+            <version>2.13.9</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-cucumber-jvm-adaptor</artifactId>
+            <version>1.6.2</version>
+        </dependency>
     </dependencies>
+
+
 
     <build>
         <plugins>
@@ -224,17 +237,19 @@
                     <testFailureIgnore>true</testFailureIgnore>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        -Dcucumber.options="--plugin ru.yandex.qatools.allure.cucumberjvm.AllureReporter"
+<!--                        -Dcucumber.options="&#45;&#45;plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"-->
                     </argLine>
                     <properties>
 <!--                        <property>-->
 <!--                            <name>listener</name>-->
 <!--                            <value>io.qameta.allure.junit4.AllureJunit4</value>-->
 <!--                        </property>-->
-                        <property>
-                            <name>listener</name>
-                            <value>io.tapack.allure.cucumberjvm.AllureCucumberListener
-                            </value>
-                        </property>
+<!--                        <property>-->
+<!--                            <name>listener</name>-->
+<!--                            <value>io.tapack.allure.cucumberjvm.AllureCucumberListener-->
+<!--                            </value>-->
+<!--                        </property>-->
                     </properties>
                     <systemProperties>
                         <property>
