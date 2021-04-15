@@ -1,6 +1,5 @@
 Feature: ExchangeRate.
 
-
   @R003
 
   Scenario Outline: R003 Check exchange rate
