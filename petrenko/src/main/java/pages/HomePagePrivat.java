@@ -12,8 +12,9 @@ public class HomePagePrivat {
     WebDriver webDriver = DriverHelper.getWebDriver();
     Logger logger = Logger.getLogger(getClass());
 
-    String buy = "%s_buy";
-    String sell = "%s_sell";
+    String buy = ".//*[@id = '%s_buy']";
+    String sell = ".//*[@id = '%s_sell']";
+    String rub = "RUB";
 
     @Step
     public void openHomePage() {
@@ -27,16 +28,25 @@ public class HomePagePrivat {
         }
 
     }
+
     @Step
     public void saveCurseByValueCurrency(String currency) {
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println(currency);
+        if (("RUR").contains(currency)) {
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            currency = rub;
+            System.out.println(currency);
+        }
         try {
 
-            TestData.RATE_CURRENCY_BY_UI = webDriver.findElement(By.id(String.format(buy, currency))).getText();
-            logger.info( TestData.RATE_CURRENCY_BY_UI);
-            TestData.RATE_CURRENCY_SALE_UI = webDriver.findElement(By.id(String.format(sell, currency))).getText();
-            logger.info(TestData.RATE_CURRENCY_SALE_UI);
-        }
-        catch (Exception e){
+            TestData.RATE_CURRENCY_BY_UI = webDriver.findElement(By.xpath(String.format(buy, currency))).getText();
+            logger.info(TestData.RATE_CURRENCY_BY_UI);
+            TestData.RATE_CURRENCY_SELL_UI = webDriver.findElement(By.xpath(String.format(sell, currency))).getText();
+            logger.info(TestData.RATE_CURRENCY_SELL_UI);
+
+
+        } catch (Exception e) {
             logger.info(e);
         }
 

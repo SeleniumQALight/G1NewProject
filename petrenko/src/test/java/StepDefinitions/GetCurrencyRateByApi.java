@@ -41,8 +41,8 @@ public class GetCurrencyRateByApi {
     @Then("^check '(.*)' API with UI$")
     public void checkCurrencyAPIWithUI(String currency) {
         logger.info(RATE_CURRENCY_BY_API +"---"+currency+"--"+ TestData.RATE_CURRENCY_BY_UI);
-        logger.info(RATE_CURRENCY_SALE_API +"---"+currency+"--"+ RATE_CURRENCY_SALE_UI);
+        logger.info(RATE_CURRENCY_SELL_API +"---"+currency+"--"+ RATE_CURRENCY_SELL_UI);
         Assert.assertTrue("Curse by is not correct", RATE_CURRENCY_BY_API.contains(RATE_CURRENCY_BY_UI));
-        Assert.assertTrue("Curse sell is not correct", RATE_CURRENCY_SALE_API.contains(RATE_CURRENCY_SALE_UI));
+        Assert.assertTrue("Curse sell is not correct", RATE_CURRENCY_SELL_API.contains(RATE_CURRENCY_SELL_UI));
     }
 }

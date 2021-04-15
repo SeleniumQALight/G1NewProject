@@ -11,7 +11,7 @@ Feature: ExchangeRate.
     Then  check '<currency>' API with UI
 
     Examples:
-      | currency |  | currency || currency |
-      | USD      |  | USD      || USD      |
-      | EUR      |  | EUR      || EUR      |
-      | RUB      |  | RUB      || RUB      |
+      | currency |
+      | USD      |
+      | EUR      |
+      | RUR      |

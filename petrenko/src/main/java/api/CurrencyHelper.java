@@ -37,9 +37,9 @@ public class CurrencyHelper {
             if (currency.equals(currencyDTO.getCcy())) {
 
                 TestData.RATE_CURRENCY_BY_API = currencyDTO.getBuy();
-                logger.info(TestData.RATE_CURRENCY_BY_API);
-                TestData.RATE_CURRENCY_SALE_API = currencyDTO.getSale();
-                logger.info(TestData.RATE_CURRENCY_SALE_API);
+                logger.info("Remember by rate currency from PrivatBank by API " + currency+":" +TestData.RATE_CURRENCY_BY_API);
+                TestData.RATE_CURRENCY_SELL_API = currencyDTO.getSale();
+                logger.info("Remember sell rate currency from PrivatBank by API " + currency+":" +TestData.RATE_CURRENCY_SELL_API);
             }
         }
 
