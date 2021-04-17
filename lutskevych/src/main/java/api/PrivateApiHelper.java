@@ -16,7 +16,7 @@ public class PrivateApiHelper {
                 given()
                         .param("json")
                         .param("exchange")
-                        .param("coursid=5")
+                        .queryParam("coursid", 5)
                         .log().all()
                         .filter(new AllureRestAssured())
                 .when()
