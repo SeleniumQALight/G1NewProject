@@ -8,6 +8,7 @@ import cucumber.api.java.en.When;
 
 import libs.TestData;
 import org.apache.log4j.Logger;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import pages.HomePagePrivat;
 
@@ -17,6 +18,7 @@ public class GetCurrencyRateByApi {
     HomePagePrivat homePagePrivat = new HomePagePrivat();
     CurrencyHelper currencyHelper = new CurrencyHelper();
     Logger logger = Logger.getLogger(getClass());
+    SoftAssertions softAssertions = new SoftAssertions();
 
     @Given("^User remembers '(.*)' kurs from PrivatBank by API$")
     public void userRemembersCurrencyKursFromPrivatBankByAPI(String currency) {
@@ -42,7 +44,10 @@ public class GetCurrencyRateByApi {
     public void checkCurrencyAPIWithUI(String currency) {
         logger.info(RATE_CURRENCY_BY_API +"---"+currency+"--"+ TestData.RATE_CURRENCY_BY_UI);
         logger.info(RATE_CURRENCY_SELL_API +"---"+currency+"--"+ RATE_CURRENCY_SELL_UI);
-        Assert.assertTrue("Curse by is not correct", RATE_CURRENCY_BY_API.contains(RATE_CURRENCY_BY_UI));
-        Assert.assertTrue("Curse sell is not correct", RATE_CURRENCY_SELL_API.contains(RATE_CURRENCY_SELL_UI));
+
+        softAssertions.assertThat(RATE_CURRENCY_BY_API).contains(RATE_CURRENCY_BY_UI);
+        softAssertions.assertThat(RATE_CURRENCY_SELL_API).contains(RATE_CURRENCY_SELL_UI);
+        softAssertions.assertAll();
+
     }
 }
