@@ -9,6 +9,6 @@ public class TestData {
     public final static String EMAIL_ALREDY_EXISTS = "8005613@gmail.com";
     public final static String INVALID_PASSWORD = "123456789";
 
-
-
+    public static String rateBuyAPI;
+    public static String rateSellAPI;
 }

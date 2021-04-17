@@ -56,4 +56,5 @@ public class CurrencyDTO {
         this.sale = sale;
     }
 
+
 }

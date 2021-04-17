@@ -11,7 +11,7 @@ public class ApiPrivatBankTests {
     Logger logger = Logger.getLogger(getClass());
 
     @Test
-    public void getPrivateCurrency(){
+    public void getPrivatCurrencyAPI(){
 
 //GET response
         CurrencyDTO[] responseBody = given()
@@ -31,13 +31,6 @@ public class ApiPrivatBankTests {
                 //  new CurremcyDTO("BTC", "USD"   )
         };
 
-
-//ASSERT lengths
-        // Assert.assertEquals(responseBody.length, expectedListCurremcyDTO.length);
-
-//SOFT ASSERTIONS
-        //SoftAssertions softAssertions = new SoftAssertions();
-
         for (int i = 0; i < responseBody.length; i++) {
             //softAssertions.assertThat(expectedListCurremcyDTO[i].equals(responseBody[i]));
             logger.info("Курс " + responseBody[i].getCcy() +
@@ -46,7 +39,6 @@ public class ApiPrivatBankTests {
                     " и продажи " +responseBody[i].getSale());
         }
 
-        // softAssertions.assertAll();
     }
 }
 
