@@ -7,7 +7,7 @@ Feature: User Login.
       When User enters '<login>' login into 'Login' input on 'Login' page
       And User enters '<password>' password into 'Password' input on 'Login' page
       And User click on 'SignIn' button on 'Login' page
-      Then User sees alert message with text 'Invalid username \ password'
+      Then User sees alert message with text 'Invalid username / password'
 
        Examples:
           | login       | password     |
