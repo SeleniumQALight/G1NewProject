@@ -10,13 +10,14 @@ public class ProfilePage_StepDefinitions {
     private ProfilePage profilePage = new ProfilePage(DriverHelper.getWebDriver());
 
 
-    @Then("^User is redirected to 'Profile' page$")
+    @Then("^User is redirect to 'Profile' page$")
     public void userIsRedirectedToProfilePage() {
         profilePage.checkIsRedirectToProfilePage();
     }
 
-    @And("^User sees (\\d+) post in 'Posts list' on 'Profile' page$")
-    public void userSeesPostInPostsListOnProfilePage(int expectedNumberOfPosts) {
+
+    @And("^User sees (\\d+) posts in 'Posts list' on 'Profile' page$")
+    public void userSeesPostsInPostsListOnProfilePage(int expectedNumberOfPosts) {
         profilePage.checkNumberOfPosts(expectedNumberOfPosts);
     }
 }

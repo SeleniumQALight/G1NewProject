@@ -1,7 +1,6 @@
 package StepDefinitions;
 
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import libs.DriverHelper;
 import pages.HomePage;
@@ -11,7 +10,7 @@ public class HomePage_StepDefinitions {
     private LoginPage loginPage = new LoginPage(DriverHelper.getWebDriver());
     private HomePage homePage = new HomePage(DriverHelper.getWebDriver());
 
-    @Given("^User opens 'Home page' page$")
+    @Given("^User opens 'Home' page$")
     public void userOpensHomePagePage() {
         loginPage.loginWithValidCred().checkIsButtonSignOutVisible();
     }
