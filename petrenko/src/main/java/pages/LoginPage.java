@@ -1,7 +1,7 @@
 package pages;
 
 
-import com.google.common.base.Splitter;
+
 import io.qameta.allure.Step;
 import libs.TestData;
 import libs.Util;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.contains;
+
 
 public class LoginPage extends ParentPage {
 
@@ -161,12 +161,7 @@ public class LoginPage extends ParentPage {
     @Step
     public void checkTextOfErrorsInLoginIn(String textOfErrorMessages) {
 
-        if(textOfErrorMessages.isEmpty()){
-            logger.info("textOfErrorMessages ia empty.");
-        }
-        else {
-            Assert.assertEquals("", textOfErrorMessages, webDriver.findElement(By.xpath(popUpLoginError)).getText() );
-        }
+      Assert.assertEquals("Message in center ", textOfErrorMessages, webDriver.findElement(By.xpath(popUpLoginError)).getText() );
 
     }
 }

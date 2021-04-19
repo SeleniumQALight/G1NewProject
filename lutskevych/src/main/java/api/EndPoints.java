@@ -9,4 +9,5 @@ public interface EndPoints {
     String DELETE_POST = baseUrl + "/api/post/{1}";
 
     String GET_CASH_RATE = "https://api.privatbank.ua/p24api/pubinfo";
+    String BASE_URL_FOR_PRIVATE = "https://privatbank.ua/";
 }
