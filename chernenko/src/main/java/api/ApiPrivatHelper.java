@@ -14,14 +14,13 @@ import static io.restassured.RestAssured.given;
 public class ApiPrivatHelper {
     Logger logger = Logger.getLogger(getClass());
 
-
     public NBUCurrencyDTO[] nduCurrencyByAPI(){
         NBUCurrencyDTO[] bodyResponse =
                 given()
                         .contentType(ContentType.JSON)
-                        .when()
-                        .get("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
-                        .then()
+                .when()
+                        .get(EndPoints.GET_NBU_CURRENCY)
+                .then()
                         .statusCode(200).log().all()
                         .extract()
                         .response().as(NBUCurrencyDTO[].class);

@@ -2,7 +2,6 @@ package StepDefinitions;
 
 import api.ApiHelper;
 import api.ApiPrivatHelper;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import libs.TestData;
 
