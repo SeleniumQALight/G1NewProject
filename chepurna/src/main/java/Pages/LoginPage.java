@@ -1,7 +1,6 @@
 package Pages;
 
 import io.qameta.allure.Step;
-import javafx.scene.input.InputMethodTextRun;
 import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
