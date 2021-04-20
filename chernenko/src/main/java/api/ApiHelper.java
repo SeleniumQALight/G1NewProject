@@ -1,6 +1,5 @@
 package api;
 
-
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -10,6 +9,7 @@ import io.restassured.specification.RequestSpecification;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.junit.Assert;
+
 
 
 import static api.EndPoints.POST_BY_USER;
@@ -100,4 +100,6 @@ public class ApiHelper {
                 .then()
                 .statusCode(200);
     }
+
+
 }

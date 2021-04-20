@@ -240,11 +240,12 @@
 <!--                                <name>listener</name>-->
 <!--                                <value>io.qameta.allure.junit4.AllureJunit4</value>-->
 <!--                            </property>-->
-
+//BDD
                             <property>
                                 <name>listener</name>
                                 <value>io.tapack.allure.cucumberjvm.AllureCucumberListener</value>
                             </property>
+//BDD
 
                         </properties>
                         <systemProperties>

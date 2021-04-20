@@ -10,6 +10,8 @@ public class TestData {
     public final static String INVALID_EMAIL = "test.tes.ua";
     public final static String INVALID_LONG_PASSWORD="123456qwerty123456qwerty123456qwerty123456qwerty123456qwerty123456qwerty";
     public final static String INVALID_SHORT_PASSWORD = "pass";
-
-
+    public static String BUY_VALUE_API;
+    public static String SALE_VALUE_API;
+    public static String BUY_VALUE_UI;
+    public static String SALE_VALUE_UI;
 }
