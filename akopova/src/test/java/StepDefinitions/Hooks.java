@@ -7,6 +7,9 @@ import cucumber.api.java.Before;
 import libs.DriverHelper;
 import libs.TestData;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriverException;
 
 public class Hooks {
 
@@ -20,11 +23,27 @@ public class Hooks {
         driverHelper.createDriver();
     }
 
-    @After(order = 100)
+    @After(order = 0)
     public void tearDown(Scenario scenario){
         driverHelper.closeDriver();
         logger.info(scenario.getName() + " ended with status " + scenario.getStatus());
     }
+
+    @After(order = 100)
+    public void embedScreenshot(Scenario scenario) {
+        if (scenario.isFailed()) {
+            try {
+                scenario.write("Current Page URL is " + DriverHelper.getWebDriver().getCurrentUrl());
+                byte[] screenshot = ((TakesScreenshot) DriverHelper.getWebDriver()).getScreenshotAs(OutputType.BYTES);
+                scenario.embed(screenshot, "image/png");  // Stick it in the report
+            } catch (WebDriverException somePlatformsDontSupportScreenshots) {
+                System.out.println(somePlatformsDontSupportScreenshots.getMessage());
+            } catch (ClassCastException cce) {
+                cce.printStackTrace();
+            }
+        }
+    }
+
 
     @Before(value="@BeforeDeletingAllPostsForDefaultUser", order = 100)
     @After(value="@AfterDeletingAllPostsForDefaultUser", order = 50)

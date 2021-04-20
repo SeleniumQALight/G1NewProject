@@ -2,7 +2,7 @@
 Feature: User login
 
   @R001
-  Scenario Outline: R001 Login with invalid Login
+  Scenario Outline: R001 Login with invalid Login <login>,<passWord>
     Given User opens 'Login' page
     When User enters '<login>' login into 'Login' input on 'Login' page
     And User enters '<passWord>' password into 'Password' input on 'Login' page
