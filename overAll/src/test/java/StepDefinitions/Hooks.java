@@ -18,7 +18,7 @@ public class Hooks {
     private ApiHelper apiHelper = new ApiHelper();
 
     @Before(order = 0)
-    public void setUp(Scenario scenario){
+    public void setUp(Scenario scenario) throws Exception {
         logger.info(scenario.getName() + " was started");
         driverHelper.createDriver();
     }
