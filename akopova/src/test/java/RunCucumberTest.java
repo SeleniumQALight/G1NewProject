@@ -5,7 +5,7 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"pretty","io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"},
+        plugin = {"pretty"},
         glue = "StepDefinitions"
 )
 public class RunCucumberTest {
