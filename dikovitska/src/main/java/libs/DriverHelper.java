@@ -17,7 +17,7 @@ public class DriverHelper {
     private static WebDriver webDriver;
 
     public void createDriver() throws Exception {
-        WebDriverManager.chromedriver().setup();
+      //  WebDriverManager.chromedriver().setup();
         webDriver = initDriver();
         webDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         webDriver.manage().window().maximize();
@@ -33,7 +33,7 @@ public class DriverHelper {
 
 
     private WebDriver initDriver() throws Exception {
-        String browser = System.getProperty("browser");
+        String browser = System.getProperty("browser"); //Dbrowser
         if ((browser == null) || ("chrome".equalsIgnoreCase(browser)) ){
             WebDriverManager.chromedriver().setup();
             return new ChromeDriver();
@@ -46,7 +46,7 @@ public class DriverHelper {
         } else if ("remote".equals(browser)){
                 DesiredCapabilities cap=new DesiredCapabilities();
                 cap.setBrowserName("chrome");
-                cap.setPlatform(Platform.WINDOWS);
+               // cap.setPlatform(Platform.WINDOWS);
                 //cap.setVersion("79");
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.merge(cap);
