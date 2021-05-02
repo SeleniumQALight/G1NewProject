@@ -30,10 +30,10 @@ public class DriverHelper {
 
     private WebDriver initDriver() throws Exception {
         String browser = System.getProperty("browser");
-        if ((browser == null) || ("chrome".equalsIgnoreCase(browser)) ){
+        if ("chrome".equalsIgnoreCase(browser)){
             WebDriverManager.chromedriver().setup();
             return new ChromeDriver();
-        } else if ("firefox".equalsIgnoreCase(browser)){
+        } else if ((browser == null) ||"firefox".equalsIgnoreCase(browser)){
             WebDriverManager.firefoxdriver().setup();
             return new FirefoxDriver();
         } else if ("ie".equalsIgnoreCase(browser)){
