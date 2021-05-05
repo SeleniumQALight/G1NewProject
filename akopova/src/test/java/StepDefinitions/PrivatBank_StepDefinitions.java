@@ -43,25 +43,14 @@ public class PrivatBank_StepDefinitions {
         logger.info("Sale rate by UI is "  + TestData.UI_RATE_SELL);
 
         // Compare Buy Rates
-        try{
-            Assert.assertTrue("Expected and actual Buy rates do not match",
-                    (Double.valueOf(TestData.API_RATE_BUY)
-                            .equals(Double.valueOf(TestData.UI_RATE_BUY))));
-        }
-        catch (Exception e){
-            logger.error("Exception occurred in Step definitions" + e);
-        }
+            softAssertions.assertThat(Double.valueOf(TestData.API_RATE_BUY)
+                    .equals(Double.valueOf(TestData.UI_RATE_BUY)));
+
 
         // Compare Sale Rates
-        try{
-            Assert.assertTrue("Expected and actual Sale rates do not match",
-                    (Double.valueOf(TestData.API_RATE_SELL)
-                            .equals(Double.valueOf(TestData.API_RATE_SELL))));
-        }
-        catch (Exception e){
-            logger.error("Exception occurred " + e);
-        }
-
+            softAssertions.assertThat(Double.valueOf(TestData.API_RATE_SELL)
+                    .equals(Double.valueOf(TestData.API_RATE_SELL)));
 
     }
+
 }
