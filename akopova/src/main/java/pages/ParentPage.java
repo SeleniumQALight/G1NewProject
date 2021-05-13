@@ -28,6 +28,8 @@ public abstract class ParentPage {
     public static ConfigProperties configProperties =
             ConfigFactory.create(ConfigProperties.class);
     protected final String baseUrl = configProperties.base_url();
+    // Privat baseURL
+    protected final String basePrivateUrl = configProperties.base_PrivatURL();
 
     Logger logger = Logger.getLogger(getClass());
     public ParentPage (WebDriver webDriver)

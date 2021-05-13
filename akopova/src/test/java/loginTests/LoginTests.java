@@ -14,10 +14,16 @@ public class LoginTests {
     WebDriver webDriver;
     @Test
     public void validLogIn() {
-        File fileFF = new File("./drivers/chromedriver.exe");
-
+        File fileFF = new File("./drivers/geckodriver.exe");
+       // File fileFF = new File("./drivers/chromedriver.exe");
         System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
         webDriver = new ChromeDriver();
+
+
+/**
+        System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
+        webDriver = new ChromeDriver();
+ */
 
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

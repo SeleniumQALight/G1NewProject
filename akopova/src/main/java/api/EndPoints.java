@@ -10,6 +10,7 @@ public interface EndPoints {
     String basicPrivURL = "https://api.privatbank.ua/";
     String currencyExchangeCashJson = basicPrivURL + "/p24api/pubinfo?json&exchange&coursid=5";
     String currencyExchangeCashXML = basicPrivURL + "/p24api/pubinfo?exchange&coursid=5";
+    String basePrivateURL = "https://privatbank.ua";
 
     // Feerie
     String baseFeerieURL = "https://feerie.com.ua/ua";
