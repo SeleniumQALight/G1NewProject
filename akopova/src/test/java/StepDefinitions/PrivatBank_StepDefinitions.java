@@ -51,6 +51,7 @@ public class PrivatBank_StepDefinitions {
             softAssertions.assertThat(Double.valueOf(TestData.API_RATE_SELL)
                     .equals(Double.valueOf(TestData.API_RATE_SELL)));
 
+        softAssertions.assertAll();
     }
 
 }
