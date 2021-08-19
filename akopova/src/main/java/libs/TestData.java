@@ -17,6 +17,11 @@ public class TestData {
     public final static String INVALID_SIGNUP_EMAIL = "No_Mail";
     public final static String INVALID_SIGNUP_PASSWORD = "@#$1a";
 
+    // PrivatBank section
+    public  static String API_RATE_BUY = "";
+    public  static String API_RATE_SELL = "";
+    public  static String UI_RATE_BUY = "";
+    public  static String UI_RATE_SELL = "";
 
 
 }

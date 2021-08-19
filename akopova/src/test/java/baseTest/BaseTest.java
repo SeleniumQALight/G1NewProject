@@ -1,5 +1,6 @@
 package baseTest;
 
+import api.CurrencyDTO;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
@@ -36,6 +37,8 @@ public class BaseTest {
     protected SinglePostPage singlePostPage;
     protected MyProfilePage myProfilePage;
     protected CreateNewPostTest createNewPostTest;
+    protected PrivatBankPage privatBankPage;
+    protected CurrencyDTO currencyDTO;
 
 
 
@@ -63,6 +66,8 @@ public class BaseTest {
         homePage = new HomePage(webDriver);
         singlePostPage = new SinglePostPage(webDriver);
         myProfilePage = new MyProfilePage(webDriver);
+        privatBankPage = new PrivatBankPage(webDriver);
+        currencyDTO = new CurrencyDTO();
 
 
 
@@ -72,11 +77,11 @@ public class BaseTest {
         // Switch between varios web drivers
         String browser = System.getProperty("browser");
 
-        if ((browser == null) || ("chrome".equalsIgnoreCase(browser))) {
+        if (("chrome".equalsIgnoreCase(browser))) {
             // Create new instance of browser
             WebDriverManager.chromedriver().setup();
             return new ChromeDriver();
-        } else if ("firefox".equalsIgnoreCase(browser)) {
+        } else if ((browser == null) ||"firefox".equalsIgnoreCase(browser)) {
             WebDriverManager.firefoxdriver().setup();
             return new FirefoxDriver();
         } else if ("ie".equalsIgnoreCase(browser)) {

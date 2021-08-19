@@ -16,6 +16,7 @@ public interface ConfigProperties extends Config {
 	String Oracle();
 	String MySQL();
 	String sqlServer();
+	String base_PrivatURL();
 
 	String MySQL_DB();
 	String MySQL_DB_USER();
